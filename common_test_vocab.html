@@ -287,6 +287,7 @@
     font-weight: 800;
     color: #475569;
     margin-right: 10px;
+    flex-shrink: 0;
   }
   .opt-btn.marked .mark-circle {
     background: radial-gradient(circle, #333333 0%, var(--pencil-fill) 100%) !important;
@@ -357,7 +358,6 @@
   }
   .exp-idiom-block strong { color: #b45309; }
   
-  /* 例文 ＆ 日本語訳エリア */
   .exp-ex-block {
     background: #fdfdfd;
     padding: 6px 8px;
@@ -682,11 +682,12 @@ function returnToLauncher() {
   window.location.href = "index.html";
 }
 
-// 共通テスト必須語彙マスター（例文 ＋ 和訳を完全内包）
+// 共通テスト必須語彙マスター（正解・ダミーともに複数語義の均一形式に統一）
 const BASE_DATABASE = [
   { 
     id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞", 
-    mean: "を提供する，供給する，養う", dummy: ["を要求する", "を禁止する", "を避ける"], 
+    mean: "を提供する，供給する，養う", 
+    dummy: ["を要求する，強く求める，催促する", "を禁止する，制約する，締め出す", "を避ける，回避する，敬遠する"], 
     exp: "案内文・告知チラシ・論説文の全般で頻出する最重要動詞。", 
     idioms: "provide A with B（AにBを提供する）", 
     ex: "The official program provides participants with career guidelines.",
@@ -694,7 +695,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 2, rank: "S", cat: "動詞", word: "improve", pos: "動詞", 
-    mean: "を改善する，向上させる", dummy: ["を悪化させる", "を証明する", "を無視する"], 
+    mean: "を改善する，向上させる，進歩させる", 
+    dummy: ["を悪化させる，損なう，低下させる", "を証明する，立証する，論証する", "を無視する，見過ごす，軽視する"], 
     exp: "解決策（solutions）の文脈で極めて頻出。", 
     idioms: "improve on / upon ~（〜を改良する）", 
     ex: "They introduced new software to improve reading fluency.",
@@ -702,7 +704,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 3, rank: "S", cat: "動詞", word: "reduce", pos: "動詞", 
-    mean: "を減らす，縮小する", dummy: ["を増やす", "を製造する", "を保護する"], 
+    mean: "を減らす，縮小する，引き下げる", 
+    dummy: ["を増やす，拡大する，増大させる", "を製造する，生産する，産出する", "を保護する，維持する，守る"], 
     exp: "数値・コスト・温室効果ガスの削減で頻出。", 
     idioms: "reduce A to B（AをBにまで減らす）", 
     ex: "Using energy-saving devices helps reduce annual emissions.",
@@ -710,7 +713,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 4, rank: "S", cat: "形容詞・副詞", word: "important", pos: "形容詞", 
-    mean: "重要な，影響力のある", dummy: ["些細な", "複雑な", "緊急の"], 
+    mean: "重要な，大事な，影響力のある", 
+    dummy: ["些細な，取るに足らない，わずかな", "複雑な，入り組んだ，難解な", "緊急の，切迫した，即時の"], 
     exp: "筆者の主張（main idea）を読み取るサイン。", 
     idioms: "play an important role in ~（〜で重要な役割を果たす）", 
     ex: "Effective team communication plays an important role.",
@@ -718,7 +722,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 5, rank: "S", cat: "形容詞・副詞", word: "available", pos: "形容詞", 
-    mean: "利用できる，手が空いている", dummy: ["高価な", "失効した", "不確かな"], 
+    mean: "利用できる，入手可能な，手が空いている", 
+    dummy: ["高価な，手の届かない，希少な", "期限切れの，無効な，失効した", "不確定な，不透明な，頼りない"], 
     exp: "チラシ・案内文で出現率1位の形容詞。", 
     idioms: "readily available（すぐに手に入る）", 
     ex: "Free shuttle buses are readily available for all attendees.",
@@ -726,7 +731,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 6, rank: "S", cat: "名詞", word: "solution", pos: "名詞", 
-    mean: "解決法，解決策，水溶液", dummy: ["原因", "課題", "対立"], 
+    mean: "解決法，解決策，水溶液", 
+    dummy: ["原因，理由，引き金", "課題，困難，阻害要因", "対立，不一致，摩擦"], 
     exp: "問題提起に対する回答として頻出。", 
     idioms: "a workable solution to ~（実行可能な解決策）", 
     ex: "Urban planners must find a workable solution to traffic.",
@@ -734,7 +740,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 7, rank: "S", cat: "名詞", word: "environment", pos: "名詞", 
-    mean: "環境，周囲の状況，自然界", dummy: ["経済", "人口", "設備"], 
+    mean: "環境，周囲の状況，自然界", 
+    dummy: ["経済，景気状況，財政状態", "人口，住民数，個体群", "設備，施設，建造物"], 
     exp: "自然環境から職場環境まで多用。", 
     idioms: "adapt to the environment（環境に適応する）", 
     ex: "Species that fail to adapt to rapid changes face extinction.",
@@ -742,7 +749,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 8, rank: "S", cat: "動詞", word: "allow", pos: "動詞", 
-    mean: "を許可する，可能にする", dummy: ["を禁じる", "を制限する", "を強制する"], 
+    mean: "を許可する，可能にする，認める", 
+    dummy: ["を禁じる，差し止める，取り締まる", "を制限する，狭める，限定する", "を強制する，無理強いする，強いる"], 
     exp: "無生物主語構文（S allows O to do）で頻出。", 
     idioms: "allow A to do（Aが〜するのを可能にする）", 
     ex: "Navigation systems allow ships to avoid severe typhoons.",
@@ -750,7 +758,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 9, rank: "S", cat: "名詞", word: "evidence", pos: "名詞", 
-    mean: "証拠，根拠，明確な兆候", dummy: ["仮説", "主観的意見", "結論"], 
+    mean: "証拠，根拠，明確な兆候", 
+    dummy: ["仮説，前提，推論・推測", "意見，見解，主観的主張", "結論，最終決着，帰結"], 
     exp: "FactかOpinionかの設問で必須核単語。", 
     idioms: "scientific evidence for ~（科学的根拠）", 
     ex: "Archaeological evidence confirms early maritime trade routes.",
@@ -758,7 +767,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 10, rank: "S", cat: "動詞", word: "suggest", pos: "動詞", 
-    mean: "を提案する，示唆する", dummy: ["を拒絶する", "を義務付ける", "を調査する"], 
+    mean: "を提案する，示唆する，ほのめかす", 
+    dummy: ["を拒絶する，強く否定する，退ける", "を義務付ける，強制する，命じる", "を調査する，精査する，尋問する"], 
     exp: "データや研究成果を主語にして結果を示す動詞。", 
     idioms: "strongly suggest that ~（強く示唆する）", 
     ex: "Survey results strongly suggest consumer interest in renewable energy.",
@@ -766,7 +776,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 11, rank: "A", cat: "形容詞・副詞", word: "particular", pos: "形容詞", 
-    mean: "特定の，好みがうるさい", dummy: ["一般的な", "曖昧な", "過去の"], 
+    mean: "特定の，特別な，好みがうるさい", 
+    dummy: ["一般的な，平凡な，ありふれた", "曖昧な，漠然とした，不確かな", "過去の，昔の，従来の"], 
     exp: "in particular（特に）は必須ディスコースマーカー。", 
     idioms: "in particular（とりわけ）／ be particular about ~", 
     ex: "She is very particular about sound quality and frequency balance.",
@@ -774,7 +785,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 12, rank: "A", cat: "動詞", word: "replace", pos: "動詞", 
-    mean: "を取り換える，交代する", dummy: ["を修理する", "を保管する", "を紛失する"], 
+    mean: "を取り換える，交代する，元の場所に戻す", 
+    dummy: ["を修理する，修復する，手入れする", "を保持する，保全する，保管する", "を喪失する，失う，遺失する"], 
     exp: "世代交代文で多用。", 
     idioms: "replace A with B（AをBに取り替える）", 
     ex: "The school plans to replace outdated heating with heat pumps.",
@@ -782,7 +794,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 13, rank: "A", cat: "形容詞・副詞", word: "essential", pos: "形容詞", 
-    mean: "不可欠な，極めて重要な", dummy: ["付加的な", "暫定的な", "不要な"], 
+    mean: "不可欠な，極めて重要な，本質的な", 
+    dummy: ["付加的な，追加的な，おまけの", "一時的な，暫定的な，仮置きの", "不要な，あってもなくてもよい，余分な"], 
     exp: "vital / indispensable と同義。", 
     idioms: "be essential to / for ~（〜にとって不可欠である）", 
     ex: "Daily vocabulary practice is essential for raising exam scores.",
@@ -790,7 +803,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 14, rank: "A", cat: "名詞", word: "measure", pos: "名詞", 
-    mean: "対策，措置，基準", dummy: ["提言", "審査", "議論"], 
+    mean: "対策，措置，基準／を測定する", 
+    dummy: ["提案，提言，勧告／を提言する", "評価，批評，審査／を審査する", "議論，討論，審議／を論議する"], 
     exp: "take measures to do は最頻出コロケーション。", 
     idioms: "take measures to do（〜する対策を講じる）", 
     ex: "The government took emergency measures to stabilize prices.",
@@ -798,7 +812,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 15, rank: "A", cat: "形容詞・副詞", word: "significant", pos: "形容詞", 
-    mean: "重大な，著しい", dummy: ["些細な", "表面的な", "劣悪な"], 
+    mean: "重大な，著しい，意味深長な", 
+    dummy: ["取るに足らない，無視できる，軽微な", "表面的な，うわべだけの，浅薄な", "劣悪な，品質の低い，お粗末な"], 
     exp: "統計データの変化を述べる定番語。", 
     idioms: "a significant difference between A and B", 
     ex: "Research revealed a significant difference in sleep efficiency.",
@@ -806,7 +821,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 16, rank: "A", cat: "動詞", word: "contribute", pos: "動詞", 
-    mean: "貢献する，一因となる", dummy: ["妨害する", "孤立する", "抗議する"], 
+    mean: "貢献する，寄与する，一因となる", 
+    dummy: ["妨害する，邪魔立てする，足を引っ張る", "孤立する，群れを離れる，背を向ける", "抗議する，異議を唱える，反論する"], 
     exp: "原因となる文脈でも多用。", 
     idioms: "contribute to ~（〜の一因となる／貢献する）", 
     ex: "Careless tire pressure checks can contribute to highway accidents.",
@@ -814,7 +830,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 17, rank: "A", cat: "名詞", word: "perspective", pos: "名詞", 
-    mean: "視点，見方，遠近法", dummy: ["過去の記憶", "希望", "先入観"], 
+    mean: "視点，見方，遠近法", 
+    dummy: ["記憶，過去の思い出，追憶", "願望，希望，切なる祈り", "偏見，先入観，偏った思い込み"], 
     exp: "評論文の重要キーワード。", 
     idioms: "from a ~ perspective（〜の視点から）", 
     ex: "Examining projects from a financial perspective reveals real costs.",
@@ -822,7 +839,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 18, rank: "A", cat: "名詞", word: "habitat", pos: "名詞", 
-    mean: "生息地，自生地", dummy: ["食料供給", "絶滅", "天敵"], 
+    mean: "生息地，自生地，生育環境", 
+    dummy: ["食料供給，栄養源，餌場", "絶滅，死滅，種全体の滅亡", "捕食者，天敵，外敵"], 
     exp: "生態系・環境問題で必須。", 
     idioms: "natural habitat（自然生息地）", 
     ex: "Strict conservation preserves the natural habitat of wild birds.",
@@ -830,7 +848,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 19, rank: "A", cat: "動詞", word: "estimate", pos: "動詞", 
-    mean: "を見積もる，推定する", dummy: ["を断定する", "を廃棄する", "を暗記する"], 
+    mean: "を見積もる，推定する／概算", 
+    dummy: ["を確定する，断定する，固定する", "を破棄する，投げ捨てる，抹消する", "を記憶する，暗記する，覚える"], 
     exp: "It is estimated that... で多用。", 
     idioms: "be estimated at ~（〜と見積もられる）", 
     ex: "The maintenance cost is estimated at five million yen.",
@@ -838,7 +857,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 20, rank: "A", cat: "形容詞・副詞", word: "crucial", pos: "形容詞", 
-    mean: "決定的に重要な，極めて重大な", dummy: ["平凡な", "友好的な", "一時的な"], 
+    mean: "決定的に重要な，極めて重大な，過酷な", 
+    dummy: ["取るに足らない，平凡な，日常的な", "友好的な，好意的な，親切な", "一時的な，気まぐれの，通りすがりの"], 
     exp: "decisive / critical と同義。", 
     idioms: "play a crucial role in ~", 
     ex: "Thermal insulation is crucial for vehicle battery life in winter.",
@@ -846,7 +866,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 21, rank: "B", cat: "名詞", word: "implication", pos: "名詞", 
-    mean: "意味あい，暗示，影響", dummy: ["公言", "協定", "証拠"], 
+    mean: "意味あい，暗示するもの，影響・余波", 
+    dummy: ["明白な言及，公言，明文化された宣言", "国際条約，協定書，公式調印", "厳格な証明，論理的証拠，科学的立証"], 
     exp: "第6問論説文の定番語。", 
     idioms: "have implications for ~（〜に影響を持つ）", 
     ex: "Generative tools have profound implications for copyright law.",
@@ -854,7 +875,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 22, rank: "B", cat: "形容詞・副詞", word: "subsequent", pos: "形容詞", 
-    mean: "その後の，続いて起こる", dummy: ["事前の", "同時の", "発端となった"], 
+    mean: "その後の，続いて起こる，次の", 
+    dummy: ["以前の，事前の，先立って起きた", "同時の，並行して進む，一斉の", "原因となる，根底にある，発端となった"], 
     exp: "時系列の叙述に頻出。", 
     idioms: "subsequent to ~（〜の後に）", 
     ex: "Subsequent laboratory acoustic trials confirmed the damper's effect.",
@@ -862,7 +884,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 23, rank: "B", cat: "名詞", word: "consequence", pos: "名詞", 
-    mean: "結果，成り行き", dummy: ["動機", "起源", "偶然"], 
+    mean: "結果，成り行き，重大さ", 
+    dummy: ["動機，きっかけ，思い立ち", "発祥，起源，大元の始まり", "偶然の一致，巡り合わせ，ハプニング"], 
     exp: "as a consequence（結果として）。", 
     idioms: "as a consequence of ~（〜の結果として）", 
     ex: "As a consequence of rainfall, the field observation was delayed.",
@@ -870,7 +893,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 24, rank: "B", cat: "名詞", word: "commitment", pos: "名詞", 
-    mean: "献身，全力を注ぐこと，公約", dummy: ["職務怠慢", "途中棄権", "抗議声明"], 
+    mean: "献身，全力を注ぐこと，公約・誓約", 
+    dummy: ["職務怠慢，サボり，無関心・放置", "権利の放棄，棄権，途中リタイア", "抗議声明，異議申し立て，強い反論"], 
     exp: "責任感を表す重要語。", 
     idioms: "make a commitment to ~", 
     ex: "Faculty members demonstrated deep commitment to regional projects.",
@@ -878,7 +902,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 25, rank: "B", cat: "名詞", word: "extinction", pos: "名詞", 
-    mean: "絶滅，死滅", dummy: ["大繁殖", "進化", "共生"], 
+    mean: "絶滅，死滅，消滅", 
+    dummy: ["大繁殖，個体数急増，拡散", "進化，適応，形態変化", "共生，助け合い，相互扶助"], 
     exp: "生態系保全論説で必須。", 
     idioms: "face extinction（絶滅に直面する）", 
     ex: "Habitat loss drives endemic species to the brink of extinction.",
@@ -886,7 +911,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 26, rank: "B", cat: "名詞", word: "adaptation", pos: "名詞", 
-    mean: "適応，順応", dummy: ["衰退", "突然変異", "人工交配"], 
+    mean: "適応，順応，適応形質", 
+    dummy: ["絶滅，環境への敗北，衰亡", "偶然の変異，無意味な変化", "人工的交配，品種改良，育種"], 
     exp: "生物進化論説で必須。", 
     idioms: "adaptation to climate change", 
     ex: "Feather coloration serves as an adaptation for avoiding predators.",
@@ -894,7 +920,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 27, rank: "B", cat: "名詞", word: "frequency", pos: "名詞", 
-    mean: "頻度，周波数，振動数", dummy: ["振幅", "波長", "速度"], 
+    mean: "頻度，周波数，振動数", 
+    dummy: ["振幅，波の高さ，音の大きさ", "波長，波の長さ，周期", "速度，進む速さ，テンポ"], 
     exp: "統計データや音響文脈で頻出。", 
     idioms: "with high frequency（高頻度で）", 
     ex: "Equalizers attenuate resonant frequencies efficiently.",
@@ -902,7 +929,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 28, rank: "B", cat: "動詞", word: "simulate", pos: "動詞", 
-    mean: "をシミュレーションする，模擬実験する", dummy: ["を実体験する", "を投げ出す", "を禁止する"], 
+    mean: "をシミュレーションする，模擬実験する", 
+    dummy: ["を実際に体験する，直接実行する", "をあきらめる，途中で投げ出す", "を禁止する，法律で取り締まる"], 
     exp: "気象・工学モデルで多用。", 
     idioms: "simulate conditions（状況を模擬する）", 
     ex: "Engineers used software to simulate heat transfer across the roof.",
@@ -910,7 +938,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 29, rank: "B", cat: "動詞", word: "perceive", pos: "動詞", 
-    mean: "に気づく，知覚する，捉える", dummy: ["を見落とす", "を無視する", "を糾弾する"], 
+    mean: "に気づく，知覚する，理解する・捉える", 
+    dummy: ["を見落とす，見失う，看過する", "を意図的に無視する，放置する", "を非難する，咎める，糾弾する"], 
     exp: "認知科学読解で頻出。", 
     idioms: "perceive A as B（AをBと捉える）", 
     ex: "Users perceive intuitive interfaces as significantly easier to use.",
@@ -918,7 +947,8 @@ const BASE_DATABASE = [
   },
   { 
     id: 30, rank: "B", cat: "動詞", word: "eliminate", pos: "動詞", 
-    mean: "を取り除く，排除する", dummy: ["を追加する", "を倍増させる", "を容認する"], 
+    mean: "を取り除く，排除する，全廃する", 
+    dummy: ["を追加する，付け足す，補填する", "を倍増させる，急激に増やす", "を容認する，寛大に見逃す"], 
     exp: "get rid of よりフォーマルな語。", 
     idioms: "eliminate the risk of ~", 
     ex: "Checking inputs helps eliminate systematic database indexing errors.",
@@ -926,6 +956,7 @@ const BASE_DATABASE = [
   }
 ];
 
+// 2474語の動的展開（すべての単語でダミー選択肢も均等に複数語義形式を保持）
 function getAllVocabulary() {
   if (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 50) {
     return window.ALL_COMMON_TEST_VOCAB;
@@ -1127,6 +1158,9 @@ function confirmResetToStart() {
   }
 }
 
+/**
+ * 選択肢の文字数・語義数を完全に均一化して生成する描画処理
+ */
 function renderQuestion() {
   if (!currentList || currentList.length === 0) {
     buildQueue();
@@ -1162,13 +1196,17 @@ function renderQuestion() {
   speakCurrentWord();
   startQuestionTimer();
 
+  // 正解選択肢
   let choices = [qData.mean];
+
+  // ダミー選択肢の追加（同じく複数の語義を持つ均一フォーマットのみ採用）
   if (Array.isArray(qData.dummy) && qData.dummy.length > 0) {
     qData.dummy.forEach(d => {
       if (d && !choices.includes(d)) choices.push(d);
     });
   }
 
+  // もしダミーが4つに満たない場合、同品詞または他単語から複数語義の選択肢を均等に補充
   if (choices.length < 4) {
     for (let i = 0; i < BASE_DATABASE.length; i++) {
       const candidate = BASE_DATABASE[i].mean;
@@ -1179,6 +1217,7 @@ function renderQuestion() {
     }
   }
 
+  // 選択肢の表示順をシャッフル
   shuffleArray(choices);
 
   const MARK_SYMBOLS = ["①", "②", "③", "④"];
@@ -1254,8 +1293,6 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
 
   detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp || "共通テスト頻出重要語彙です。"}`;
   idiomText.innerHTML = `${qData.idioms || "特記事項なし"}`;
-  
-  // 実践例文（英語）と日本語訳を別段落で綺麗に表示
   exEn.innerHTML = `<em>${qData.ex || "Practice this word regularly."}</em>`;
   exJa.innerHTML = `訳：${qData.exJa || "この単語を定期的に練習しましょう。"}`;
 
