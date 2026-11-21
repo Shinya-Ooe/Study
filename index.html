@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学習ランチャー</title>
+<style>
+:root{--bg:#eef2f5;--card:#fff;--ink:#1d2733;--sub:#5d6b7a;--ai:#1f3f6b;--line:#d3dce4}
+@media(prefers-color-scheme:dark){:root{--bg:#121a24;--card:#1b2635;--ink:#e6ecf2;--sub:#97a6b6;--ai:#8fb4ea;--line:#2d3b4d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font:800 26px/1.3 "Hiragino Mincho ProN","Yu Mincho",serif;color:var(--ai);margin:8px 0 12px}
+h2{font-size:15px;color:var(--sub);margin:20px 0 6px}
+a.item{display:block;padding:14px 16px;margin:8px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none}
+a.item b{display:block;font-size:17px;color:var(--ai)}
+a.item span{font-size:13px;color:var(--sub);word-break:break-all}
+a.item:active{border-color:var(--ai)}
+#msg{color:var(--sub)}
+</style>
+</head>
+<body>
+<main>
+<h1>学習ランチャー</h1>
+<p id="msg">読み込み中…</p>
+<div id="list"></div>
+</main>
+<script>
+(function(){
+// 自動で判定されます。独自ドメインなどで動かない場合だけ、ここに入力してください。
+var OWNER="", REPO="";
+
+var msg=document.getElementById("msg"), list=document.getElementById("list");
+var host=location.hostname, parts=location.pathname.split("/");
+if(!OWNER && /\.github\.io$/.test(host)) OWNER=host.split(".")[0];
+if(!REPO) REPO=(parts[1] && parts[1].indexOf(".")<0) ? parts[1] : (OWNER ? OWNER+".github.io" : "");
+
+if(!OWNER||!REPO){
+  msg.textContent="GitHub Pagesで開くと一覧が表示されます。（この画面のOWNERとREPOを設定しても使えます）";
+  return;
+}
+
+function enc(p){return p.split("/").map(encodeURIComponent).join("/")}
+
+fetch("https://api.github.com/repos/"+OWNER+"/"+REPO+"/git/trees/HEAD?recursive=1")
+.then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+.then(function(d){
+  var groups={}, n=0;
+  (d.tree||[]).forEach(function(t){
+    var p=t.path;
+    if(t.type!=="blob" || !/\.html?$/i.test(p)) return;
+    if(p==="index.html" || p.charAt(0)==="." || p.indexOf("/.")>=0) return;
+    var i=p.lastIndexOf("/"), dir=i>0?p.slice(0,i):"", base=p.slice(i+1);
+    if(base.charAt(0)==="_") return; // 「_」で始まるファイルは非表示
+    (groups[dir]=groups[dir]||[]).push(p); n++;
+  });
+  if(!n){ msg.textContent="HTMLファイルがまだありません。"; return; }
+  msg.textContent="";
+  Object.keys(groups).sort().forEach(function(dir){
+    if(dir){ var h=document.createElement("h2"); h.textContent=dir; list.appendChild(h); }
+    groups[dir].sort().forEach(function(p){
+      var a=document.createElement("a"), b=document.createElement("b"), s=document.createElement("span");
+      a.className="item"; a.href=enc(p);
+      b.textContent=p.slice(p.lastIndexOf("/")+1).replace(/\.html?$/i,"");
+      s.textContent=p;
+      a.appendChild(b); a.appendChild(s); list.appendChild(a);
+      // ページの<title>があればそれを題名にする
+      fetch(enc(p)).then(function(r){return r.text()}).then(function(t){
+        var m=t.match(/<title>([^<]*)<\/title>/i);
+        if(m && m[1].trim()) b.textContent=m[1].trim();
+      }).catch(function(){});
+    });
+  });
+})
+.catch(function(e){
+  msg.textContent="一覧を取得できませんでした（"+e.message+"）。しばらくしてからもう一度開いてください。";
+});
+})();
+</script>
+</body>
+</html>
