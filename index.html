@@ -2,80 +2,102 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>学習ランチャー</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>問題集ランチャ</title>
 <style>
-:root{--bg:#eef2f5;--card:#fff;--ink:#1d2733;--sub:#5d6b7a;--ai:#1f3f6b;--line:#d3dce4}
-@media(prefers-color-scheme:dark){:root{--bg:#121a24;--card:#1b2635;--ink:#e6ecf2;--sub:#97a6b6;--ai:#8fb4ea;--line:#2d3b4d}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Hiragino Sans","Yu Gothic",Meiryo,sans-serif}
-main{max-width:640px;margin:0 auto;padding:16px}
-h1{font:800 26px/1.3 "Hiragino Mincho ProN","Yu Mincho",serif;color:var(--ai);margin:8px 0 12px}
-h2{font-size:15px;color:var(--sub);margin:20px 0 6px}
-a.item{display:block;padding:14px 16px;margin:8px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none}
-a.item b{display:block;font-size:17px;color:var(--ai)}
-a.item span{font-size:13px;color:var(--sub);word-break:break-all}
-a.item:active{border-color:var(--ai)}
-#msg{color:var(--sub)}
+:root{--bg:#f5f6f2;--fg:#1f2421;--card:#fff;--ac:#2f7d5b;--mu:#667;--bd:#dcdfd8;color-scheme:light;
+ padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root{--bg:#171a18;--fg:#eceeea;--card:#242825;--ac:#5fbf92;--mu:#a3aaa4;--bd:#3a403b;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.6}
+#wrap{max-width:680px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+h1{font-size:22px;margin:8px 0}
+#re{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:20px;padding:8px 14px;cursor:pointer}
+#st{font-size:13px;color:var(--mu);margin:2px 0 8px}
+a.c{display:block;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:8px 0;color:var(--fg);text-decoration:none}
+a.c b{display:block;font-size:17px}a.c span{font-size:12px;color:var(--mu);word-break:break-all}
+a.c:active{border-color:var(--ac)}
+#ptr{position:fixed;left:0;right:0;top:0;text-align:center;font-size:13px;color:var(--mu);padding:calc(env(safe-area-inset-top,0px) + 4px) 0 4px;background:var(--bg);transform:translateY(-100%);transition:transform .15s;z-index:5}
+#ptr.on{transform:none}
+.sp{display:inline-block;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
+.err{color:#c0392b}
 </style>
 </head>
 <body>
-<main>
-<h1>学習ランチャー</h1>
-<p id="msg">読み込み中…</p>
-<div id="list"></div>
-</main>
+<div id="ptr"></div>
+<div id="wrap">
+ <header><h1>📚 問題集ランチャ</h1><button id="re" onclick="scan()">🔄 更新</button></header>
+ <div id="st">読み込み中…</div>
+ <div id="list"></div>
+</div>
 <script>
-(function(){
-// 自動で判定されます。独自ドメインなどで動かない場合だけ、ここに入力してください。
-var OWNER="", REPO="";
+/* 自動判定できない場合だけ書きます（独自ドメインなど）。dir は index.html のあるフォルダ（トップなら空）*/
+const CFG={owner:'',repo:'',dir:null};
+const $=id=>document.getElementById(id);
+const KEY='launcher-simple-v1';
+let busy=false;
 
-var msg=document.getElementById("msg"), list=document.getElementById("list");
-var host=location.hostname, parts=location.pathname.split("/");
-if(!OWNER && /\.github\.io$/.test(host)) OWNER=host.split(".")[0];
-if(!REPO) REPO=(parts[1] && parts[1].indexOf(".")<0) ? parts[1] : (OWNER ? OWNER+".github.io" : "");
-
-if(!OWNER||!REPO){
-  msg.textContent="GitHub Pagesで開くと一覧が表示されます。（この画面のOWNERとREPOを設定しても使えます）";
-  return;
+function guess(){
+  const m=location.hostname.match(/^(.+)\.github\.io$/);
+  let p=location.pathname.split('/').filter(Boolean);
+  if(p.length&&/\.html?$/i.test(p[p.length-1]))p.pop();       // index.html を除く
+  const owner=CFG.owner||(m?m[1]:'');
+  let repo=CFG.repo,dir;
+  if(!repo&&m){
+    if(p.length){repo=p.shift()}else repo=owner+'.github.io';
+  }else if(CFG.repo&&p[0]===CFG.repo)p.shift();
+  dir=CFG.dir!==null?CFG.dir:p.join('/');
+  return{owner,repo,dir};
 }
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
+function save(v){try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
-function enc(p){return p.split("/").map(encodeURIComponent).join("/")}
-
-fetch("https://api.github.com/repos/"+OWNER+"/"+REPO+"/git/trees/HEAD?recursive=1")
-.then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-.then(function(d){
-  var groups={}, n=0;
-  (d.tree||[]).forEach(function(t){
-    var p=t.path;
-    if(t.type!=="blob" || !/\.html?$/i.test(p)) return;
-    if(p==="index.html" || p.charAt(0)==="." || p.indexOf("/.")>=0) return;
-    var i=p.lastIndexOf("/"), dir=i>0?p.slice(0,i):"", base=p.slice(i+1);
-    if(base.charAt(0)==="_") return; // 「_」で始まるファイルは非表示
-    (groups[dir]=groups[dir]||[]).push(p); n++;
-  });
-  if(!n){ msg.textContent="HTMLファイルがまだありません。"; return; }
-  msg.textContent="";
-  Object.keys(groups).sort().forEach(function(dir){
-    if(dir){ var h=document.createElement("h2"); h.textContent=dir; list.appendChild(h); }
-    groups[dir].sort().forEach(function(p){
-      var a=document.createElement("a"), b=document.createElement("b"), s=document.createElement("span");
-      a.className="item"; a.href=enc(p);
-      b.textContent=p.slice(p.lastIndexOf("/")+1).replace(/\.html?$/i,"");
-      s.textContent=p;
-      a.appendChild(b); a.appendChild(s); list.appendChild(a);
-      // ページの<title>があればそれを題名にする
-      fetch(enc(p)).then(function(r){return r.text()}).then(function(t){
-        var m=t.match(/<title>([^<]*)<\/title>/i);
-        if(m && m[1].trim()) b.textContent=m[1].trim();
-      }).catch(function(){});
-    });
-  });
-})
-.catch(function(e){
-  msg.textContent="一覧を取得できませんでした（"+e.message+"）。しばらくしてからもう一度開いてください。";
-});
+function render(d,note){
+  $('list').innerHTML=d.files.map(f=>`<a class="c" href="./${encodeURIComponent(f.name)}"><b>${esc(f.title||f.name.replace(/\.html?$/i,''))}</b><span>${esc(f.name)}</span></a>`).join('')||'<p>同じフォルダに html ファイルがありません。</p>';
+  const t=new Date(d.at).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+  $('st').innerHTML=`${d.files.length}件・${t}に更新${note?'　<span class="err">'+esc(note)+'</span>':''}`;
+}
+async function title(name,old){
+  try{
+    const r=await fetch('./'+encodeURIComponent(name),{cache:'no-store'});
+    if(!r.ok)throw 0;
+    const m=(await r.text()).match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    return m?m[1].trim():old;
+  }catch(e){return old}
+}
+async function scan(){
+  if(busy)return;busy=true;
+  $('re').innerHTML='<span class="sp">🔄</span> 更新中';
+  const old=load(),cached={};
+  (old&&old.files||[]).forEach(f=>cached[f.name]=f.title);
+  try{
+    const{owner,repo,dir}=guess();
+    if(!owner||!repo)throw new Error('リポジトリを判定できません。CFGに owner と repo を書いてください。');
+    const r=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${dir.split('/').map(encodeURIComponent).join('/')}`,{cache:'no-store'});
+    if(!r.ok)throw new Error(r.status==403?'GitHubの利用制限です。少し待ってから更新してください。':'一覧を取得できません（'+r.status+'）');
+    const names=(await r.json()).filter(x=>x.type==='file'&&/\.html?$/i.test(x.name)&&x.name.toLowerCase()!=='index.html').map(x=>x.name).sort((a,b)=>a.localeCompare(b,'ja'));
+    const files=await Promise.all(names.map(async n=>({name:n,title:await title(n,cached[n])})));
+    const d={files,at:Date.now()};save(d);render(d);
+  }catch(e){
+    if(old)render(old,'更新に失敗：'+e.message);
+    else{$('list').innerHTML='';$('st').innerHTML='<span class="err">'+esc(e.message||'エラー')+'</span>'}
+  }
+  $('re').textContent='🔄 更新';busy=false;
+}
+/* 画面を下にフリックして更新 */
+(function(){
+  let y0=null,d=0;const p=$('ptr');
+  addEventListener('touchstart',e=>{y0=window.scrollY<=0?e.touches[0].clientY:null;d=0},{passive:true});
+  addEventListener('touchmove',e=>{
+    if(y0===null)return;d=e.touches[0].clientY-y0;
+    if(d>20){p.classList.add('on');p.textContent=d>100?'⬆ はなして更新':'⬇ 引っぱって更新'}else p.classList.remove('on');
+  },{passive:true});
+  addEventListener('touchend',()=>{p.classList.remove('on');if(y0!==null&&d>100)scan();y0=null;d=0});
 })();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){const c=load();if(!c||Date.now()-c.at>60000)scan()}});
+const c=load();if(c)render(c);   // 前回の一覧をすぐ表示
+scan();                          // 裏で最新を検索
 </script>
 </body>
 </html>
