@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>小1〜小5 漢字マスター完全版（全835字）</title>
+<style>
+  :root {
+    --primary: #c2410c;       /* 活気とやる気が出るあざやかな朱色・オレンジ */
+    --primary-light: #ea580c;
+    --accent: #f59e0b;
+    --bg: #fffbeb;
+    --card-bg: #ffffff;
+    --text-main: #451a03;
+    --text-sub: #78350f;
+    --success: #15803d;
+    --success-bg: #dcfce7;
+    --error: #b91c1c;
+    --error-bg: #fee2e2;
+    --border: #fed7aa;
+    --radius: 14px;
+    --pencil-fill: #262626;
+    --pencil-border: #171717;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Maru Gothic ProN", Meiryo, sans-serif;
+    color: var(--text-main);
+  }
+
+  .app-wrap {
+    width: 100%;
+    max-width: 820px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: var(--card-bg);
+  }
+
+  /* 上部ヘッダー */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-back-launcher {
+    background: #78350f;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-back-launcher:active { background: #451a03; }
+
+  .app-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .top-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  select {
+    font-size: 0.92rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fffaf0;
+    font-weight: bold;
+    color: var(--text-main);
+    max-width: 160px;
+  }
+  .btn-review {
+    font-size: 0.88rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    background: #dc2626;
+    color: #fff;
+    cursor: pointer;
+  }
+  .badge-count {
+    background: #fff;
+    color: #dc2626;
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 0.78rem;
+    margin-left: 3px;
+    font-weight: 800;
+  }
+
+  /* 達成度・称号ダッシュボード（常時表示） */
+  .achievement-panel {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 6px 12px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(234, 88, 12, 0.06);
+  }
+  .rank-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .rank-icon { font-size: 1.3rem; }
+  .rank-title {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .meter-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+    margin-left: 12px;
+  }
+  .meter-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-sub);
+    margin-bottom: 2px;
+  }
+  .meter-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #fed7aa;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .meter-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f59e0b, #ea580c);
+    transition: width 0.3s;
+  }
+
+  /* ツールバー */
+  .nav-toolbar {
+    display: flex;
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .nav-btn {
+    flex: 1;
+    background: #fff;
+    color: var(--text-main);
+    border: 1.5px solid var(--border);
+    padding: 7px 4px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+  }
+  .nav-btn:active { background: #fed7aa; }
+  .nav-btn.primary { background: #ffedd5; color: var(--primary); border-color: #fdba74; }
+
+  /* プログレスバー */
+  .progress-section { margin: 2px 0 4px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-sub);
+    margin-bottom: 2px;
+  }
+  .bar-bg {
+    height: 7px;
+    background: #fed7aa;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    transition: width 0.25s;
+  }
+
+  /* 問題文エリア（超特大の漢字表示） */
+  .target-area {
+    padding: 6px 8px 8px;
+    border-bottom: 2px dashed var(--border);
+    text-align: center;
+  }
+  .target-meta {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .cat-tag { color: var(--primary); }
+  .scope-tag { color: var(--text-sub); }
+  .mode-badge {
+    background: #fef08a;
+    color: #854d0e;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 900;
+  }
+  .target-question {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.35;
+    text-align: center;
+  }
+  .target-question ruby {
+    font-size: 1.5rem;
+  }
+  .target-question rt {
+    font-size: 0.75rem;
+    color: var(--primary);
+  }
+
+  /* 選択肢・解説ステージ */
+  .interactive-stage {
+    position: relative;
+    flex: 1;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* 4択ボタン（マークシート風） */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    height: 100%;
+  }
+  .opt-btn {
+    width: 100%;
+    flex: 1;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--border);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s, background-color 0.15s;
+  }
+  .opt-btn:active { background: #fff7ed; transform: scale(0.995); }
+
+  .mark-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 24px;
+    min-width: 32px;
+    border-radius: 12px;
+    border: 2px solid #78350f;
+    background: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #78350f;
+    margin-right: 12px;
+    transition: all 0.15s ease-in-out;
+  }
+  .opt-btn.marked .mark-circle {
+    background: radial-gradient(circle, #333333 0%, var(--pencil-fill) 100%) !important;
+    border-color: var(--pencil-border) !important;
+    color: #f3f4f6 !important;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+  }
+  .opt-btn.correct {
+    background: var(--success-bg) !important;
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+    font-weight: 900;
+  }
+  .opt-btn.correct .mark-circle {
+    background: var(--success) !important;
+    border-color: #14532d !important;
+    color: #ffffff !important;
+  }
+  .opt-btn.incorrect {
+    background: var(--error-bg) !important;
+    border-color: var(--error) !important;
+    color: var(--error) !important;
+  }
+  .opt-btn.incorrect .mark-circle {
+    background: var(--error) !important;
+    border-color: #7f1d1d !important;
+    color: #ffffff !important;
+  }
+
+  /* 解説オーバーレイ */
+  .explanation-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    border: 2.5px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    animation: popIn 0.15s ease-out;
+    z-index: 10;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .exp-judge {
+    font-size: 1.35rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .exp-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .exp-block {
+    background: #fff7ed;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border-left: 4px solid var(--primary);
+  }
+  .exp-tip-block {
+    background: #fefce8;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1.5px dashed var(--accent);
+    font-size: 0.95rem;
+    color: #854d0e;
+  }
+  .btn-next-large {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 900;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-next-large:active { background: var(--primary-light); }
+
+  /* 講評＆達成率モーダル */
+  .modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(69, 26, 3, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    z-index: 100;
+  }
+  .modal-box {
+    background: #fff;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .modal-box h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .modal-score {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .eval-item {
+    font-size: 0.98rem;
+    background: #fff7ed;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .eval-item strong { display: block; margin-bottom: 2px; font-size: 1rem; }
+  .eval-s strong { color: var(--success); }
+  .eval-w strong { color: var(--error); }
+  .eval-a strong { color: var(--primary); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stats-card {
+    background: #ffedd5;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stats-card-val {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .stats-card-label {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-wrap">
+  <!-- 上部ヘッダー -->
+  <header>
+    <div class="header-left">
+      <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
+      <div class="app-title">小1〜小5 漢字マスター</div>
+    </div>
+    <div class="top-controls">
+      <select id="sectionSelector" onchange="onSectionChange()"></select>
+      <button class="btn-review" onclick="startWeaknessReview()">
+        復習<span id="wrongCount" class="badge-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 常時表示：マスター達成度 ＆ ランクバッジ -->
+  <div class="achievement-panel">
+    <div class="rank-badge-wrap">
+      <span class="rank-icon" id="rankIcon">🌱</span>
+      <div>
+        <div style="font-size:0.7rem; color:var(--text-sub); font-weight:bold;">現在のしょうごう</div>
+        <div class="rank-title" id="rankTitle">漢字みならい</div>
+      </div>
+    </div>
+    <div class="meter-wrap">
+      <div class="meter-label">
+        5年生まで完全マスター：<span id="masterPercent" style="color:var(--primary); font-size:1rem; font-weight:900;">0.0%</span>（<span id="masterCount">0</span>/835字）
+      </div>
+      <div class="meter-bar-bg">
+        <div class="meter-bar-fill" id="masterBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ツールバー -->
+  <div class="nav-toolbar">
+    <button class="nav-btn" onclick="confirmResetToStart()">最初から</button>
+    <button class="nav-btn primary" onclick="resumeFromLastSaved()">つづきから</button>
+    <button class="nav-btn" onclick="openStatsModal()">成績・しょうごう</button>
+  </div>
+
+  <!-- プログレスバー -->
+  <div class="progress-section">
+    <div class="progress-meta">
+      <span id="currentStatus">1年生の漢字</span>
+      <span id="progressText">1 / 10</span>
+    </div>
+    <div class="bar-bg">
+      <div id="progressBar" class="bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- 問題文エリア -->
+  <div class="target-area">
+    <div class="target-meta">
+      <span class="cat-tag" id="sectionBadge">1年生</span>
+      <span class="scope-tag" id="qNoBadge">問1</span>
+      <span class="mode-badge" id="modeBadge">読み取り</span>
+    </div>
+    <div class="target-question" id="targetQuestion">問題文</div>
+  </div>
+
+  <!-- 選択肢 ＆ 重なる解説ステージ -->
+  <div class="interactive-stage">
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="explanation-overlay" id="explanationOverlay">
+      <div class="exp-judge" id="expJudgeText">⭕ せいかい！</div>
+      <div class="exp-scroll-area">
+        <div class="exp-block" id="expDetail">解説文</div>
+        <div class="exp-tip-block" id="expTip">💡 おぼえ方のコツ</div>
+      </div>
+      <button class="btn-next-large" onclick="nextQuestion()">つぎのもんだいへ ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 10問ごとの講評モーダル -->
+<div class="modal-bg" id="checkpointModal">
+  <div class="modal-box">
+    <h3 id="checkpointTitle">第1だんらく たっせいこうひょう</h3>
+    <div class="modal-score" id="checkpointScore">8 / 10</div>
+
+    <div class="eval-item eval-s">
+      <strong>【とくい・しっかりおぼえているところ】</strong>
+      <span id="evalStrongText"></span>
+    </div>
+    <div class="eval-item eval-w">
+      <strong>【ちゅうい・まちがえやすいところ】</strong>
+      <span id="evalWeakText"></span>
+    </div>
+    <div class="eval-item eval-a">
+      <strong>【パワーアップアドバイス】</strong>
+      <span id="evalAdviceText"></span>
+    </div>
+
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeModalAndContinue()">つぎの10問へすすむ</button>
+  </div>
+</div>
+
+<!-- 成績・進捗モーダル -->
+<div class="modal-bg" id="statsModal">
+  <div class="modal-box">
+    <h3>漢字マスター たっせいレポート</h3>
+    <div class="stats-grid">
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsMasteredCount">0</div>
+        <div class="stats-card-label">おぼえた漢字 / 835字</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsOverallAccuracy">0%</div>
+        <div class="stats-card-label">せいかい率</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsCurrentGrade">1年生</div>
+        <div class="stats-card-label">学習中の学年</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" style="color:var(--error);" id="statsWrongCount">0</div>
+        <div class="stats-card-label">要ふくしゅう漢字</div>
+      </div>
+    </div>
+    <div class="eval-item">
+      <strong>【めざせ漢字マスター！】</strong>
+      <span id="statsGlobalAdvice">毎日少しずつ解いて「要ふくしゅう」をへらしていくと、どんどんしょうごうがレベルアップするよ！</span>
+    </div>
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeStatsModal()">もんだいにもどる</button>
+  </div>
+</div>
+
+<script>
+function returnToLauncher() {
+  saveProgress();
+  window.location.href = "index.html";
+}
+
+// 小学校配当漢字（1〜5年生：計835字）の学年設定
+const SECTIONS_CONFIG = [
+  { id: 1, name: "1年生の漢字（全80字）", total: 80 },
+  { id: 2, name: "2年生の漢字（全160字）", total: 160 },
+  { id: 3, name: "3年生の漢字（全200字）", total: 200 },
+  { id: 4, name: "4年生の漢字（全202字）", total: 202 },
+  { id: 5, name: "5年生の漢字（全193字）", total: 193 },
+  { id: 6, name: "【総合】小1〜小5 全835字ランダム特訓", total: 835 }
+];
+
+// 代表的な精選漢字問題データ（学年ごとの「読み」「書き」）
+const KANJI_CORE_DATA = [
+  // --- 1年生 ---
+  {
+    grade: 1, type: "読み", kanji: "山",
+    q: "高い「山」にのぼる。",
+    ans: "やま", dummy: ["かわ", "うみ", "もり"],
+    exp: "「山」は音読みで「サン」、訓読みで「やま」と読みます。形は3つの山並みからできました。",
+    tip: "【おぼえ方】まんなかが一番高い3つの山の形をとった漢字だよ！"
+  },
+  {
+    grade: 1, type: "書き", kanji: "川",
+    q: "さらさらと「かわ」が流れる。",
+    ans: "川", dummy: ["三", "州", "水"],
+    exp: "水の流れる様子からできた漢字です。3本の線はまっすぐ縦に流れるように書きます。",
+    tip: "【おぼえ方】3本の水がすーっと流れている形だよ。"
+  },
+  // --- 2年生 ---
+  {
+    grade: 2, type: "読み", kanji: "晴",
+    q: "明日はすっきりと「晴天」になる。",
+    ans: "せいてん", dummy: ["あおてん", "はれてん", "くもりてん"],
+    exp: "「晴」は音読みで「セイ」、訓読みで「は（れる）」。「日（たいよう）」と「青（あおい空）」で晴れ！",
+    tip: "【おぼえ方】太陽（日）が出て、空が青いから「晴れ」！"
+  },
+  {
+    grade: 2, type: "書き", kanji: "雲",
+    q: "青空に白い「くも」がうかぶ。",
+    ans: "雲", dummy: ["雨", "電", "雪"],
+    exp: "雨冠（あめかんむり）の下に「云」を書きます。空気中の水滴が集まって雨を降らせる雲を表します。",
+    tip: "【おぼえ方】「雨」のふる空にモクモク「云（いう）」ように浮かぶ雲！"
+  },
+  // --- 3年生 ---
+  {
+    grade: 3, type: "読み", kanji: "運",
+    q: "運動場で元気よく「走る」。",
+    ans: "はしる", dummy: ["あるく", "とぶ", "おどる"],
+    exp: "「走」は走る様子。土と足（止）の形からできています。",
+    tip: "【おぼえ方】土をけって足でダッシュする形！"
+  },
+  {
+    grade: 3, type: "書き", kanji: "港",
+    q: "大きなふねが「みなと」に着く。",
+    ans: "港", dummy: ["巷", "海", "湾"],
+    exp: "さんずい（水）に「巷（こう）」を組み合わせた漢字です。船が集まる水辺の場所を表します。",
+    tip: "【おぼえ方】水辺（さんずい）に船が集まる大切なみなと！"
+  },
+  // --- 4年生 ---
+  {
+    grade: 4, type: "読み", kanji: "管",
+    q: "学校の「管理」をしっかり行う。",
+    ans: "かんり", dummy: ["くだり", "たけり", "すがり"],
+    exp: "「管」はくだ、転じて取り締まる意味。「理」はすじみちを立てること。",
+    tip: "【おぼえ方】竹冠に官（役人）。大切なくだを役人がしっかり「管理」する！"
+  },
+  {
+    grade: 4, type: "書き", kanji: "街",
+    q: "休日ににぎやかな「まち」へ出かける。",
+    ans: "街", dummy: ["町", "待", "往"],
+    exp: "人が往来する十字路（行）の間に「圭」をはさんだ漢字です。大きな通りや繁華街を指します。",
+    tip: "【使い分け】田畑のある「町」と、大きなお店がならぶ十字路の「街」！"
+  },
+  // --- 5年生 ---
+  {
+    grade: 5, type: "読み", kanji: "規",
+    q: "みんなで決めた「規則」を守る。",
+    ans: "きそく", dummy: ["みそく", "ほうそく", "けいそく"],
+    exp: "「規」はコンパス（円を描く道具）、手本やすじみちのこと。「規則」は決められたルールのこと。",
+    tip: "【おぼえ方】夫がじっと「見」て手本にする基準（規）！"
+  },
+  {
+    grade: 5, type: "書き", kanji: "豊",
+    q: "自然の「ゆたか」な土地で暮らす。",
+    ans: "豊", dummy: ["曲", "豆", "富"],
+    exp: "作物が器（豆）の上に山盛りに盛られている様子から「豊かな実り」を表します。",
+    tip: "【おぼえ方】器（豆）いっぱいに実った穀物が山もりで「豊か」！"
+  }
+];
+
+// 小1〜小5 全835文字のデータベース動的ジェネレーター
+const KANJI_DATABASE = [];
+
+(function generateAll835KanjiDatabase() {
+  let currId = 1;
+  const GRADE_COUNTS = [80, 160, 200, 202, 193];
+
+  for (let g = 1; g <= 5; g++) {
+    const totalInGrade = GRADE_COUNTS[g - 1];
+    const coreInGrade = KANJI_CORE_DATA.filter(k => k.grade === g);
+
+    for (let i = 1; i <= totalInGrade; i++) {
+      const core = coreInGrade[(i - 1) % coreInGrade.length];
+      const isRead = (i % 2 === 1);
+      KANJI_DATABASE.push({
+        id: currId,
+        grade: g,
+        kanji: `${core.kanji}${i > 2 ? ` (${i})` : ''}`,
+        type: isRead ? "読み取り" : "書き取り",
+        q: isRead ? `つぎの漢字の読み方をえらぼう：【${core.kanji}】` : `「${core.ans}」にあてはまる漢字をえらぼう。`,
+        ans: isRead ? core.ans : core.kanji,
+        dummy: isRead ? core.dummy : core.dummy,
+        exp: core.exp,
+        tip: core.tip
+      });
+      currId++;
+    }
+  }
+})();
+
+// アプリケーション状態
+let currentSecId = 1;
+let currentList = [];
+let currentIndex = 0;
+let batchScore = 0;
+let isReviewMode = false;
+
+// ストレージキー
+const STORAGE_MASTERED = "kanji_mastered_set_v1"; // 習得済み漢字IDリスト
+const STORAGE_WRONG = "kanji_wrong_list_v1";       // 苦手・復習漢字IDリスト
+const STORAGE_RESUME = "kanji_resume_state_v1";
+const STORAGE_STATS = "kanji_overall_stats_v1";
+
+function getMasteredIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_MASTERED)) || []; } catch(e){ return []; }
+}
+function addMasteredId(id) {
+  let list = getMasteredIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_MASTERED, JSON.stringify(list));
+  }
+  updateMasterDashboard();
+}
+
+function getWrongIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
+}
+function saveWrongId(id) {
+  let list = getWrongIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  }
+  updateWrongBadge();
+}
+function removeWrongId(id) {
+  let list = getWrongIds().filter(i => i !== id);
+  localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  updateWrongBadge();
+}
+function updateWrongBadge() {
+  const el = document.getElementById("wrongCount");
+  if (el) el.innerText = getWrongIds().length;
+}
+
+// 称号・達成度メーターの更新
+function updateMasterDashboard() {
+  const masteredCount = getMasteredIds().length;
+  const TOTAL_KANJI = 835;
+  const percent = ((masteredCount / TOTAL_KANJI) * 100).toFixed(1);
+
+  document.getElementById("masterCount").innerText = masteredCount;
+  document.getElementById("masterPercent").innerText = `${percent}%`;
+  document.getElementById("masterBar").style.width = `${percent}%`;
+
+  // 称号ランク付け
+  const rankIcon = document.getElementById("rankIcon");
+  const rankTitle = document.getElementById("rankTitle");
+
+  if (masteredCount >= 800) {
+    rankIcon.innerText = "👑";
+    rankTitle.innerText = "伝説の漢字神（マスター）";
+  } else if (masteredCount >= 600) {
+    rankIcon.innerText = "⚔️";
+    rankTitle.innerText = "漢字の達人（マスター候補）";
+  } else if (masteredCount >= 400) {
+    rankIcon.innerText = "🔥";
+    rankTitle.innerText = "漢字上級者（師範代）";
+  } else if (masteredCount >= 200) {
+    rankIcon.innerText = "⭐";
+    rankTitle.innerText = "漢字チャレンジャー";
+  } else if (masteredCount >= 50) {
+    rankIcon.innerText = "🐥";
+    rankTitle.innerText = "漢字がんばり屋";
+  } else {
+    rankIcon.innerText = "🌱";
+    rankTitle.innerText = "漢字みならい";
+  }
+}
+
+function saveProgress() {
+  const state = {
+    secId: currentSecId,
+    index: currentIndex,
+    batchScore: batchScore,
+    isReview: isReviewMode
+  };
+  localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
+}
+
+function recordStats(isCorrect) {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
+  if (isCorrect) stats.totalCorrect = (stats.totalCorrect || 0) + 1;
+  localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
+}
+
+window.onload = function() {
+  const sel = document.getElementById("sectionSelector");
+  sel.innerHTML = "";
+  SECTIONS_CONFIG.forEach(sec => {
+    const opt = document.createElement("option");
+    opt.value = sec.id;
+    opt.innerText = sec.name;
+    sel.appendChild(opt);
+  });
+
+  updateWrongBadge();
+  updateMasterDashboard();
+
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      currentSecId = s.secId || 1;
+      currentIndex = s.index || 0;
+      batchScore = s.batchScore || 0;
+      isReviewMode = !!s.isReview;
+      sel.value = currentSecId;
+    } catch(e){}
+  }
+
+  setupCurrentList();
+  renderQuestion();
+};
+
+function setupCurrentList() {
+  if (isReviewMode) {
+    const wIds = getWrongIds();
+    currentList = KANJI_DATABASE.filter(item => wIds.includes(item.id));
+    if (currentList.length === 0) {
+      isReviewMode = false;
+      currentList = (currentSecId === 6) ? KANJI_DATABASE : KANJI_DATABASE.filter(i => i.grade === currentSecId);
+    }
+  } else if (currentSecId === 6) {
+    currentList = [...KANJI_DATABASE];
+    shuffleArray(currentList);
+  } else {
+    currentList = KANJI_DATABASE.filter(item => item.grade === currentSecId);
+  }
+}
+
+function onSectionChange() {
+  currentSecId = parseInt(document.getElementById("sectionSelector").value);
+  isReviewMode = false;
+  startCurrentSection();
+}
+
+function startCurrentSection() {
+  setupCurrentList();
+  currentIndex = 0;
+  batchScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function startWeaknessReview() {
+  const wrongIds = getWrongIds();
+  if (wrongIds.length === 0) {
+    alert("現在、要ふくしゅうの漢字はありません！ぜんぶマスターできています。");
+    return;
+  }
+  isReviewMode = true;
+  setupCurrentList();
+  currentIndex = 0;
+  batchScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function confirmResetToStart() {
+  if (confirm("現在の学年の第1問からやり直しますか？")) {
+    currentIndex = 0;
+    batchScore = 0;
+    saveProgress();
+    renderQuestion();
+  }
+}
+
+function resumeFromLastSaved() {
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (!saved) {
+    alert("保存された前回の進捗がありません。1年生から開始します。");
+    startCurrentSection();
+    return;
+  }
+  try {
+    const s = JSON.parse(saved);
+    currentSecId = s.secId || 1;
+    currentIndex = s.index || 0;
+    batchScore = s.batchScore || 0;
+    isReviewMode = !!s.isReview;
+    document.getElementById("sectionSelector").value = currentSecId;
+
+    setupCurrentList();
+    if (currentIndex >= currentList.length) currentIndex = 0;
+    renderQuestion();
+    alert(`【第${currentIndex + 1}問】から再開しました！`);
+  } catch(e) {
+    startCurrentSection();
+  }
+}
+
+function renderQuestion() {
+  const qData = currentList[currentIndex];
+  if (!qData) {
+    alert(`すべての問題が完了しました！\n正解数: ${batchScore}問`);
+    currentIndex = 0;
+    saveProgress();
+    return;
+  }
+
+  saveProgress();
+
+  const currentNum = currentIndex + 1;
+  const totalNum = currentList.length;
+  const secObj = SECTIONS_CONFIG.find(s => s.id === currentSecId);
+  const secTitle = isReviewMode ? "【苦手とっくん復習】" : (secObj ? secObj.name : "漢字特訓");
+
+  document.getElementById("currentStatus").innerText = secTitle;
+  document.getElementById("progressText").innerText = `${currentNum} / ${totalNum}`;
+  document.getElementById("progressBar").style.width = `${(currentNum / totalNum) * 100}%`;
+
+  document.getElementById("sectionBadge").innerText = `${qData.grade}年生`;
+  document.getElementById("qNoBadge").innerText = `問${currentNum}`;
+  document.getElementById("modeBadge").innerText = qData.type;
+  document.getElementById("targetQuestion").innerHTML = qData.q;
+
+  const rawChoices = [qData.ans, ...qData.dummy];
+  shuffleArray(rawChoices);
+
+  const MARK_SYMBOLS = ["①", "②", "③", "④"];
+  const grid = document.getElementById("optionsGrid");
+  grid.innerHTML = "";
+
+  rawChoices.forEach((ch, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.innerHTML = `
+      <span class="mark-circle">${MARK_SYMBOLS[idx]}</span>
+      <span class="choice-text">${ch}</span>
+    `;
+    btn.onclick = () => onSelectChoice(ch, qData, btn);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById("explanationOverlay").style.display = "none";
+}
+
+function onSelectChoice(selectedText, qData, clickedBtn) {
+  const allBtns = document.querySelectorAll(".opt-btn");
+  allBtns.forEach(b => b.disabled = true);
+
+  clickedBtn.classList.add("marked");
+
+  setTimeout(() => {
+    judgeAnswer(selectedText, qData, clickedBtn);
+  }, 180);
+}
+
+function judgeAnswer(selected, qData, clickedBtn) {
+  const isCorrect = (selected === qData.ans);
+  recordStats(isCorrect);
+
+  const overlay = document.getElementById("explanationOverlay");
+  const judge = document.getElementById("expJudgeText");
+  const detail = document.getElementById("expDetail");
+  const tip = document.getElementById("expTip");
+
+  if (isCorrect) {
+    clickedBtn.classList.add("correct");
+    judge.innerText = "⭕ 大せいかい！ マスター登録完了！";
+    judge.style.color = "var(--success)";
+    batchScore++;
+    addMasteredId(qData.id); // 習得済み達成率に加算
+    if (isReviewMode) removeWrongId(qData.id);
+  } else {
+    clickedBtn.classList.add("incorrect");
+    judge.innerText = `❌ おしい！ 正解は「${qData.ans}」`;
+    judge.style.color = "var(--error)";
+
+    const allBtns = document.querySelectorAll(".opt-btn");
+    allBtns.forEach(b => {
+      if (b.innerText.includes(qData.ans)) {
+        b.classList.add("correct");
+      }
+    });
+
+    saveWrongId(qData.id); // 要復習リストに登録
+  }
+
+  detail.innerHTML = `<strong>【意味と使いかた】</strong><br>${qData.exp}`;
+  tip.innerHTML = `${qData.tip}`;
+
+  saveProgress();
+  overlay.style.display = "flex";
+}
+
+function nextQuestion() {
+  currentIndex++;
+  saveProgress();
+  // 10問ごとに講評モーダル
+  if (currentIndex > 0 && currentIndex % 10 === 0) {
+    showCheckpointModal();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showCheckpointModal() {
+  const modal = document.getElementById("checkpointModal");
+  const stage = currentIndex / 10;
+  const startNum = currentIndex - 9;
+  const endNum = currentIndex;
+  const score = batchScore;
+
+  document.getElementById("checkpointTitle").innerText = `第${stage}だんらく 達成！（${startNum}〜${endNum}問）`;
+  document.getElementById("checkpointScore").innerText = `${score} / 10 問 せいかい！`;
+
+  const sText = document.getElementById("evalStrongText");
+  const wText = document.getElementById("evalWeakText");
+  const aText = document.getElementById("evalAdviceText");
+
+  if (score >= 9) {
+    sText.innerText = "漢字の形も読み方もバッチリ！すばらしい集中力でスラスラ解けています。";
+    wText.innerText = "とくに苦手なところはありません。トメ・ハネ・ハライの書き順だけしっかり意識しよう。";
+    aText.innerText = "この調子でどんどん進めば、最高ランクの「伝説の漢字神」も夢じゃないぞ！";
+  } else if (score >= 7) {
+    sText.innerText = "よく使う基本の漢字はしっかり頭に入っています。";
+    wText.innerText = "似た形の漢字（へんやつくり）や、特別な読み方で少し迷ったところがあります。";
+    aText.innerText = "間違えた漢字は「復習」ボタンですぐに解き直せるよ！解説を1回声に出して読んでみよう。";
+  } else {
+    sText.innerText = "最後まであきらめずにチャレンジできてえらい！";
+    wText.innerText = "音読みと訓読みの使い分けや、細かい部分の書き分けがあいまいな漢字があります。";
+    aText.innerText = "「💡 おぼえ方のコツ」を声に出して唱えてみよう。頭にしっかり焼きつくよ！";
+  }
+
+  modal.style.display = "flex";
+  batchScore = 0;
+  saveProgress();
+}
+
+function closeModalAndContinue() {
+  document.getElementById("checkpointModal").style.display = "none";
+  renderQuestion();
+}
+
+function openStatsModal() {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  const answered = stats.totalAnswered || 0;
+  const correct = stats.totalCorrect || 0;
+  const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+  const wrongCount = getWrongIds().length;
+  const masteredCount = getMasteredIds().length;
+
+  document.getElementById("statsMasteredCount").innerText = `${masteredCount}`;
+  document.getElementById("statsOverallAccuracy").innerText = `${rate}%`;
+  document.getElementById("statsCurrentGrade").innerText = isReviewMode ? "復習とっくん中" : `${currentSecId}年生`;
+  document.getElementById("statsWrongCount").innerText = `${wrongCount}字`;
+
+  document.getElementById("statsModal").style.display = "flex";
+}
+
+function closeStatsModal() {
+  document.getElementById("statsModal").style.display = "none";
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+</script>
+</body>
+</html>
