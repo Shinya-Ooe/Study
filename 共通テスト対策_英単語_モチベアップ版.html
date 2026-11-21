@@ -776,7 +776,7 @@ function returnToLauncher() {
 }
 
 // ユーザー設定
-const STORAGE_CONFIG = "ctest_app_settings_v2";
+const STORAGE_CONFIG = "ctest_app_settings_v3";
 let appSettings = { sound: true, confetti: true, streak: true };
 
 function loadSettings() {
@@ -938,7 +938,7 @@ function animateConfetti(ctx, canvas) {
 }
 
 // ストリーク
-const STORAGE_STREAK = "ctest_streak_info_v2";
+const STORAGE_STREAK = "ctest_streak_info_v3";
 
 function updateStreak() {
   const today = new Date().toISOString().slice(0, 10);
@@ -990,7 +990,7 @@ function stopQuestionTimer() {
 }
 
 // 実績バッジ
-const STORAGE_BADGES = "ctest_badges_unlocked_v2";
+const STORAGE_BADGES = "ctest_badges_unlocked_v3";
 const BADGES_CONFIG = [
   { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
   { id: "streak3", icon: "🔥", title: "3日連続達成", desc: "3日連続で学習を継続した" },
@@ -1328,10 +1328,10 @@ let totalScore = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-const STORAGE_WRONG = "ctest_vocab_round2_wrong_v12";
-const STORAGE_RESUME = "ctest_vocab_round2_resume_v12";
-const STORAGE_STATS = "ctest_vocab_round2_stats_v12";
-const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v12";
+const STORAGE_WRONG = "ctest_vocab_round2_wrong_v13";
+const STORAGE_RESUME = "ctest_vocab_round2_resume_v13";
+const STORAGE_STATS = "ctest_vocab_round2_stats_v13";
+const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v13";
 
 function getWrongIds() {
   try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
@@ -1433,6 +1433,8 @@ function setupCurrentList() {
     if (currentList.length === 0) {
       isReviewMode = false;
       filterListByMode();
+    } else {
+      shuffleArray(currentList); // 復習モードもランダム出題
     }
   } else if (isAdaptiveRound2Mode) {
     buildRound2List();
@@ -1441,16 +1443,18 @@ function setupCurrentList() {
   }
 }
 
+// カテゴリ内完全ランダム化の実装
 function filterListByMode() {
   const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
   if (!mode || mode.cat === "総合") {
     currentList = [...VOCAB_DATABASE];
-    shuffleArray(currentList);
   } else if (mode.rank) {
     currentList = VOCAB_DATABASE.filter(item => item.rank === mode.rank);
   } else if (mode.cat) {
     currentList = VOCAB_DATABASE.filter(item => item.cat === mode.cat);
   }
+  // どのカテゴリを選んでも、そのグループ内の単語を完全にシャッフル！
+  shuffleArray(currentList);
 }
 
 function buildRound2List() {
@@ -1463,8 +1467,9 @@ function buildRound2List() {
     const rankWeightA = a.rank === "S" ? 3 : (a.rank === "A" ? 2 : 1);
     const rankWeightB = b.rank === "S" ? 3 : (b.rank === "A" ? 2 : 1);
 
-    const scoreA = countA * 2 + rankWeightA;
-    const scoreB = countB * 2 + rankWeightB;
+    // 弱点スコア（同点の場合はランダム要素を入れて順序を入れ替え）
+    const scoreA = countA * 2 + rankWeightA + (Math.random() * 0.5);
+    const scoreB = countB * 2 + rankWeightB + (Math.random() * 0.5);
     return scoreB - scoreA;
   });
 }
@@ -1491,7 +1496,7 @@ function onTapResume() {
   const saved = localStorage.getItem(STORAGE_RESUME);
 
   if (!saved && wrongIds.length === 0) {
-    alert("保存された前回の進捗がありません。問1から開始します。");
+    alert("保存された前回の進捗がありません。新しいシャッフル順で開始します。");
     startCurrentMode();
     return;
   }
@@ -1581,12 +1586,9 @@ function startAdaptiveRound2FromModal() {
 
 function confirmResetToStart() {
   initAudioContext();
-  if (confirm("現在のモードの最初（問1）からやり直しますか？")) {
-    currentIndex = 0;
-    batchScore = 0;
-    totalScore = 0;
-    saveProgress();
-    renderQuestion();
+  if (confirm("新しく問題をシャッフルして、最初（問1）から解き直しますか？")) {
+    // リセット時にも新しく配列をランダム化
+    startCurrentMode();
   }
 }
 
@@ -1735,7 +1737,7 @@ function showCheckpointModal() {
   }
 
   if (score >= 9) {
-    sText.innerText = "最優先語彙の定着が極めて強固です！連語（イディオム）の構文把握も完璧です。";
+    sText.innerText = "この分類の語彙は音声・語義ともに完璧に定着しています！瞬時に情景が浮かぶレベルです。";
     wText.innerText = "弱点は皆無です。共通テストの長文読解速度が確実に向上しています。";
     aText.innerText = "この調子で次の10問へ進みましょう！解説の「連語イディオム」を1回声に出すとさらに定着します。";
   } else if (score >= 7) {
@@ -1790,10 +1792,13 @@ function closeModal(id) {
   if (el) el.style.display = "none";
 }
 
+// 完全にバラバラにするフィッシャー・イェーツ・シャッフルアルゴリズム
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    const temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
   }
 }
 </script>
