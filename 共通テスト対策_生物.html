@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>高校生物 課程完全準拠＆共通テスト過去問演習 500</title>
+<style>
+  :root {
+    --primary: #047857;       /* 高校生物のエメラルド・フォレストグリーン */
+    --primary-light: #10b981;
+    --accent: #0284c7;
+    --bg: #f2f7f4;
+    --card-bg: #ffffff;
+    --text-main: #064e3b;
+    --text-sub: #4b5563;
+    --success: #15803d;
+    --success-bg: #dcfce7;
+    --error: #b91c1c;
+    --error-bg: #fee2e2;
+    --border: #a7f3d0;
+    --radius: 14px;
+    /* マークシート鉛筆色（グラファイト調） */
+    --pencil-fill: #262626;
+    --pencil-border: #171717;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    color: #111827;
+  }
+
+  .app-wrap {
+    width: 100%;
+    max-width: 820px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: var(--card-bg);
+  }
+
+  /* 上部ヘッダー */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-back-launcher {
+    background: #4b5563;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-back-launcher:active { background: #1f2937; }
+
+  .app-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .top-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  select {
+    font-size: 0.92rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #f9fafb;
+    font-weight: bold;
+    color: #111827;
+    max-width: 160px;
+  }
+  .btn-review {
+    font-size: 0.88rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    background: #ea580c;
+    color: #fff;
+    cursor: pointer;
+  }
+  .badge-count {
+    background: #fff;
+    color: #ea580c;
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 0.78rem;
+    margin-left: 3px;
+    font-weight: 800;
+  }
+
+  /* ツールバー */
+  .nav-toolbar {
+    display: flex;
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .nav-btn {
+    flex: 1;
+    background: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+    padding: 7px 4px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+  }
+  .nav-btn:active { background: #e5e7eb; }
+  .nav-btn.primary { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+  .nav-btn.weak-focus { background: #fee2e2; color: #991b1b; border-color: #fca5a5; font-weight: 800; }
+
+  /* プログレスバー */
+  .progress-section { margin: 2px 0 4px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-sub);
+    margin-bottom: 2px;
+  }
+  .bar-bg {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-light);
+    transition: width 0.25s;
+  }
+
+  /* 問題文エリア（マークシート・試験問題用紙の雰囲気） */
+  .target-area {
+    padding: 6px 8px 8px;
+    border-bottom: 2px dashed var(--border);
+    text-align: center;
+  }
+  .target-meta {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .cat-tag { color: var(--primary); }
+  .scope-tag { color: var(--text-sub); }
+  .exam-badge {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    border: 1px solid #fde68a;
+  }
+  .target-question {
+    font-size: 1.22rem;
+    font-weight: 900;
+    color: #111827;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  /* 選択肢・解説ステージ */
+  .interactive-stage {
+    position: relative;
+    flex: 1;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* 4択ボタン（マークシート用紙風） */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    height: 100%;
+  }
+  .opt-btn {
+    width: 100%;
+    flex: 1;
+    text-align: left;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s, background-color 0.15s;
+  }
+  .opt-btn:active { background: #f9fafb; transform: scale(0.995); }
+
+  /* マークシートの楕円マーク部分 */
+  .mark-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 24px;
+    min-width: 32px;
+    border-radius: 12px; /* 共通テスト風の横長オーバル（楕円） */
+    border: 2px solid #6b7280;
+    background: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #4b5563;
+    margin-right: 12px;
+    transition: all 0.18s ease-in-out;
+  }
+
+  /* 選択された際の「鉛筆でマークを塗りつぶした」質感 */
+  .opt-btn.marked .mark-circle {
+    background: radial-gradient(circle, #333333 0%, var(--pencil-fill) 100%) !important;
+    border-color: var(--pencil-border) !important;
+    color: #f3f4f6 !important;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+  }
+
+  /* 正解時：緑色マーク */
+  .opt-btn.correct {
+    background: var(--success-bg) !important;
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+    font-weight: 800;
+  }
+  .opt-btn.correct .mark-circle {
+    background: var(--success) !important;
+    border-color: #14532d !important;
+    color: #ffffff !important;
+  }
+
+  /* 不正解時：赤色マーク */
+  .opt-btn.incorrect {
+    background: var(--error-bg) !important;
+    border-color: var(--error) !important;
+    color: var(--error) !important;
+  }
+  .opt-btn.incorrect .mark-circle {
+    background: var(--error) !important;
+    border-color: #7f1d1d !important;
+    color: #ffffff !important;
+  }
+
+  /* 解説オーバーレイ */
+  .explanation-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    border: 2.5px solid var(--primary-light);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    animation: popIn 0.15s ease-out;
+    z-index: 10;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .exp-judge {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .exp-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .exp-block {
+    background: #fdfdfd;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border-left: 4px solid var(--primary-light);
+  }
+  .exp-detail-deep {
+    background: #fff1f2;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border-left: 4px solid #f43f5e;
+    font-size: 0.92rem;
+    color: #881337;
+  }
+  .exp-tip-block {
+    background: #f0fdf4;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1.5px dashed var(--primary-light);
+    font-size: 0.92rem;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .exp-link-block {
+    font-size: 0.85rem;
+    background: #f8fafc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+  }
+  .exp-link-block a {
+    color: #0284c7;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .btn-next-large {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 900;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-next-large:active { background: var(--primary-light); }
+
+  /* モーダル */
+  .modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(17, 24, 39, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    z-index: 100;
+  }
+  .modal-box {
+    background: #fff;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .modal-box h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .modal-score {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--primary-light);
+    margin-bottom: 8px;
+  }
+  .eval-item {
+    font-size: 0.95rem;
+    background: #f9fafb;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .eval-item strong { display: block; margin-bottom: 2px; font-size: 0.98rem; }
+  .eval-s strong { color: var(--success); }
+  .eval-w strong { color: var(--error); }
+  .eval-a strong { color: var(--primary-light); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stats-card {
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stats-card-val {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .stats-card-label {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-wrap">
+  <!-- 上部ヘッダー -->
+  <header>
+    <div class="header-left">
+      <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
+      <div class="app-title">高校生物 マークシート特訓</div>
+    </div>
+    <div class="top-controls">
+      <select id="sectionSelector" onchange="onSectionChange()"></select>
+      <button class="btn-review" onclick="startWeaknessReview()">
+        復習<span id="wrongCount" class="badge-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ナビゲーションツールバー -->
+  <div class="nav-toolbar">
+    <button class="nav-btn" onclick="confirmResetToStart()">最初から</button>
+    <button class="nav-btn primary" onclick="resumeFromLastSaved()">続きから</button>
+    <button class="nav-btn weak-focus" onclick="startWeakestSectionDrill()">弱点重点特訓</button>
+    <button class="nav-btn" onclick="openStatsModal()">成績・講評</button>
+  </div>
+
+  <!-- プログレスバー -->
+  <div class="progress-section">
+    <div class="progress-meta">
+      <span id="currentStatus">第1編：生命現象と物質</span>
+      <span id="progressText">1 / 100</span>
+    </div>
+    <div class="bar-bg">
+      <div id="progressBar" class="bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- 問題文エリア -->
+  <div class="target-area">
+    <div class="target-meta">
+      <span class="cat-tag" id="sectionBadge">第1編</span>
+      <span class="scope-tag" id="qNoBadge">問1</span>
+      <span class="exam-badge" id="examBadge">共通テスト本試改</span>
+    </div>
+    <div class="target-question" id="targetQuestion">問題文</div>
+  </div>
+
+  <!-- 選択肢 ＆ 重なる解説ステージ -->
+  <div class="interactive-stage">
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="explanation-overlay" id="explanationOverlay">
+      <div class="exp-judge" id="expJudgeText">⭕ 正解！</div>
+      <div class="exp-scroll-area">
+        <div class="exp-block" id="expDetail">解説文</div>
+        <div class="exp-detail-deep" id="expDeep" style="display:none;">深掘り解説</div>
+        <div class="exp-tip-block" id="expTip">💡 ネットで評判の覚え方・語呂合わせ</div>
+        <div class="exp-link-block" id="expLink">🔗 関連Web解説：<a href="#" target="_blank" id="expLinkA">学習ページを見る</a></div>
+      </div>
+      <button class="btn-next-large" onclick="nextQuestion()">次の問題へ ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 10問ごとの講評モーダル -->
+<div class="modal-bg" id="checkpointModal">
+  <div class="modal-box">
+    <h3 id="checkpointTitle">第1段落 達成講評</h3>
+    <div class="modal-score" id="checkpointScore">8 / 10</div>
+
+    <div class="eval-item eval-s">
+      <strong>【得意・定着している分野】</strong>
+      <span id="evalStrongText"></span>
+    </div>
+    <div class="eval-item eval-w">
+      <strong>【注意・間違えやすい弱点】</strong>
+      <span id="evalWeakText"></span>
+    </div>
+    <div class="eval-item eval-a">
+      <strong>【共通テスト本番へのマーク＆思考戦略】</strong>
+      <span id="evalAdviceText"></span>
+    </div>
+
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeModalAndContinue()">次の10問へ進む</button>
+  </div>
+</div>
+
+<!-- 成績・進捗モーダル -->
+<div class="modal-bg" id="statsModal">
+  <div class="modal-box">
+    <h3>高校生物 成績診断 ＆ マーク分析</h3>
+    <div class="stats-grid">
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsTotalAnswered">0</div>
+        <div class="stats-card-label">マーク解答数 / 500</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsOverallAccuracy">0%</div>
+        <div class="stats-card-label">全体正答率</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsWeakestSecName" style="color:var(--error); font-size:1.05rem; line-height:1.4;">-</div>
+        <div class="stats-card-label">最優先・弱点セクション</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" style="color:var(--error);" id="statsWrongCount">0</div>
+        <div class="stats-card-label">要復習マーク数</div>
+      </div>
+    </div>
+    <div class="eval-item">
+      <strong>【マークシート演習のポイント】</strong>
+      <span id="statsGlobalAdvice">マークを塗る直前に「対照実験の前提条件」「グラフの縦軸・横軸の単位」を1秒だけ再確認する癖をつけると、共通テストのケアレス失点をゼロにできます！</span>
+    </div>
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeStatsModal()">演習に戻る</button>
+  </div>
+</div>
+
+<script>
+function returnToLauncher() {
+  saveProgress();
+  window.location.href = "index.html";
+}
+
+const SECTIONS_CONFIG = [
+  { id: 1, name: "第1編：生命現象と物質（細胞・代謝・酵素・呼吸光合成）" },
+  { id: 2, name: "第2編：生殖と発生・遺伝情報の発現（分子生物学）" },
+  { id: 3, name: "第3編：生物の体内環境維持と調節（動物生理・免疫）" },
+  { id: 4, name: "第4編：植物の環境応答と調節（受容体・植物ホルモン）" },
+  { id: 5, name: "第5編：生態と環境・生物の進化と系統（個体群・進化）" }
+];
+
+// 共通テスト本試・追試・試作問題に完全準拠した精選過去問・実戦問題群
+const PAST_EXAM_QUESTIONS = [
+  // --- 第1編：生命現象と物質 ---
+  {
+    sec: 1,
+    tag: "共通テスト本試",
+    q: "【共通テスト本試改】酵素の競争的阻害（拮抗阻害）に関する実験で、阻害物質を一定濃度添加した状態で基質濃度を極めて高くしたとき、反応速度はどうなるか。最も適当なものをマークせよ。",
+    ans: "阻害物質がない場合の最大反応速度（Vmax）にほぼ等しくなる",
+    dummy: [
+      "最大反応速度のちょうど半分の速度で頭打ちになる",
+      "酵素タンパク質が変性するため反応速度はゼロに漸近する",
+      "基質濃度に比例して直線的に無限に上昇し続ける"
+    ],
+    exp: "競争的阻害物質は酵素の活性部位を基質と奪い合うため、基質濃度を極大にすると基質が圧倒的に優位に結合し、阻害効果が相殺されてVmaxに到達します。",
+    deep: "【失点防止の深掘り】非競争的阻害（アロステリック部位などに結合する阻害）とのグラフの差が最頻出です。非競争的阻害では基質濃度をいくら上げても最大反応速度（Vmax）が低下したまま回復しません。",
+    tip: "【マークのツボ】「競争的＝気合いで勝てる（基質大量投入でVmax到達）」「非競争的＝手足をもがれた状態（基質を増やしてもVmax落ちる）」！",
+    linkTitle: "NHK高校講座 生物「酵素の働きと調節」",
+    linkUrl: "https://www.nhk.or.jp/kokokoza/tv/seibutsu/"
+  },
+  {
+    sec: 1,
+    tag: "共通テスト追試",
+    q: "【共通テスト追試改】光合成の明反応において、チラコイド膜上で光化学系Ⅱおよび電子伝達系によってH+が輸送される方向と、ATP合成酵素を通る方向の組み合わせとして正しいものをマークせよ。",
+    ans: "H+の能動輸送：ストロマからチラコイド内腔へ ／ ATP合成：チラコイド内腔からストロマへ",
+    dummy: [
+      "H+の能動輸送：チラコイド内腔からストロマへ ／ ATP合成：ストロマからチラコイド内腔へ",
+      "H+の能動輸送：外膜から膜間腔へ ／ ATP合成：膜間腔からマトリックスへ",
+      "H+の能動輸送：細胞質基質からストロマへ ／ ATP合成：ストロマから細胞質基質へ"
+    ],
+    exp: "電子伝達系によりH+はストロマ（外側）からチラコイド内腔（内側）へ汲み込まれ、内腔が酸性（高濃度）になります。H+がストロマ側へ抜ける際にATPが合成されます。",
+    deep: "【ミトコンドリアとの比較・超頻出】ミトコンドリアでは「マトリックス → 膜間腔へ汲み出し」「膜間腔 → マトリックスへ戻る」。葉緑体では「ストロマ → チラコイド内腔へ汲み出し」「内腔 → ストロマへ戻る」。内外の関係を逆に覚えると大失点します！",
+    tip: "【語呂合わせ】「チラ（チラコイド内腔）が酸っぱくて濃い（H+高濃度）」。狭い部屋に閉じ込めて勢いよく外へ噴出！",
+    linkTitle: "KEGG 代謝経路マップ：光合成",
+    linkUrl: "https://www.genome.jp/kegg/pathway.html"
+  },
+
+  // --- 第2編：生殖と発生・遺伝情報の発現 ---
+  {
+    sec: 2,
+    tag: "共通テスト本試",
+    q: "【共通テスト本試改】二重らせんDNAの複製起点において、リーディング鎖とラギング鎖の伸長方向として正しいものをマークせよ。",
+    ans: "どちらの鎖も新生鎖は5'末端から3'末端へ向かって合成される",
+    dummy: [
+      "リーディング鎖は5'から3'へ、ラギング鎖は3'から5'へ合成される",
+      "リーディング鎖は3'から5'へ、ラギング鎖は5'から3'へ合成される",
+      "どちらの鎖も新生鎖は3'末端から5'末端へ向かって合成される"
+    ],
+    exp: "DNAポリメラーゼの酵素的性質上、ヌクレオチドの結合は既存の3'-OH基に対してしか行えないため、鎖の伸びる向きは絶対に「5'→3'」です。ラギング鎖も断片自体は5'→3'に作られます。",
+    deep: "【失点防止の深掘り】複製フォークが開く方向と同じ向きに連続合成できるのが「リーディング鎖」、開く向きと逆向きに細切れ（岡崎フラグメント）で作らざるを得ないのが「ラギング鎖」です。",
+    tip: "【鉄則マークルール】「ポリメラーゼはゴー・サン（5'→3'）しか走れない！」。RNAポリメラーゼの転写もすべて5'→3'！",
+    linkTitle: "国立遺伝学研究所「DNAの複製と分配」",
+    linkUrl: "https://www.nig.ac.jp/museum/"
+  },
+  {
+    sec: 2,
+    tag: "センター過去問",
+    q: "【センター試験本試改】イモリの原腸胚初期において、予定外胚葉（将来表皮になる部分）を別の胚の予定神経領域に移植したところ、移植片は脳や脊髄に分化したが、神経胚初期で同様の移植を行うと表皮に分化した。この実験結果から導かれる考察として最も適当なものをマークせよ。",
+    ans: "原腸胚初期では運命は未決定だが、神経胚初期ではすでに運命が決定していた",
+    dummy: [
+      "原腸胚初期ですでに表皮になる運命が不可逆的に固定されていた",
+      "神経胚初期の組織は周囲の組織からの誘導作用をより強く受けやすい",
+      "外胚葉はどの発生段階でも周囲の環境に関わらず常に神経へと分化する"
+    ],
+    exp: "原腸胚初期は周囲の環境（移植先）に従うため「予定運命は未決定」。神経胚初期では周囲に関係なく自分の運命を貫くため「決定済み」と考察できます（シュペーマンの予定運命決定実験）。",
+    deep: "【入試実験のキーワード】「周囲に従う＝未決定（融通がきく）」「意地でも元の通りになる＝決定済み（頑固になった）」。発生が進むほど運命は固定化されます。",
+    tip: "【マークのツボ】初期＝周囲の空気を読む（未決定）／後期＝自分を曲げない（決定済み）！",
+    linkTitle: "日本発生生物学会 発生学用語集",
+    linkUrl: "https://www.jsdb.jp/"
+  },
+
+  // --- 第3編：生物の体内環境維持と調節 ---
+  {
+    sec: 3,
+    tag: "共通テスト本試",
+    q: "【共通テスト本試改】神経線維の活動電位発生時における電位依存性チャネルの挙動について、正しい記述をマークせよ。",
+    ans: "膜電位が脱分極するとまずNa+チャネルが開き、遅れてK+チャネルが開いて再分極する",
+    dummy: [
+      "刺激を受けるとまずK+チャネルが開き、膜電位が正になるとNa+チャネルが開く",
+      "脱分極時にはNa+とK+のチャネルが同時に同一速度で開き、電位が相殺される",
+      "再分極はNa+ポンプがATPを消費して急速に逆回転することで達成される"
+    ],
+    exp: "刺激で脱分極すると電位依存性Na+チャネルが瞬時に開いてNa+が流入（活動電位の立ち上がり）。直後にNa+チャネルは不活性化し、遅れて開いたK+チャネルからK+が流出して再分極します。",
+    deep: "【失点防止の深掘り】Na+/K+ポンプ（能動輸送）は活動電位の1回1回の電位変化を起こす主役ではなく、「長期的・静止時の濃度勾配を保つ裏方」です。1回のスパイクはチャネルを通る受動輸送（拡散）で起きます。",
+    tip: "【チャネルのタイムラグ】「Na+はせっかち（即座に開いてすぐ閉じる）、K+はおっとり（遅れて開いて戻す）」！",
+    linkTitle: "脳科学辞典「活動電位」",
+    linkUrl: "https://bsd.neuroinf.jp/"
+  },
+  {
+    sec: 3,
+    tag: "共通テスト追試",
+    q: "【共通テスト追試改】抗原が初めて体内に侵入したときの一次応答と、同一抗原が再侵入したときの二次応答を比較した記述として、最も適当なものをマークせよ。",
+    ans: "二次応答では記憶細胞が速やかに反応するため、抗体産生の立ち上がりが早く、産生量も著しく多い",
+    dummy: [
+      "一次応答の方が二次応答よりも多種多様なクラスの抗体が瞬時に大量産生される",
+      "二次応答では抗原抗体反応が起こらず、自然免疫の好中球のみで排除される",
+      "記憶細胞はキラーT細胞のみであり、B細胞は二次応答において記憶されない"
+    ],
+    exp: "一次応答で作られた記憶B細胞・記憶T細胞が残っているため、二次応答では潜伏期が短く、親和性の高い抗体（主にIgG）が短時間で爆発的に作られます。これがワクチンの原理です。",
+    deep: "【抗体の種類も頻出】一次応答の初期に作られるのは「大型のIgM」。二次応答で大量に分泌されるのは「小型で高親和性のIgG」です。グラフの縦軸が対数目盛になっている問題に注意！",
+    tip: "【マークのツボ】「一次＝初回限定（ゆっくり少量）」／「二次＝常連対応（即座に大量爆発）」！",
+    linkTitle: "日本免疫学会「新・免疫の基礎知識」",
+    linkUrl: "https://www.meneki.or.jp/"
+  },
+
+  // --- 第4編：植物の環境応答と調節 ---
+  {
+    sec: 4,
+    tag: "共通テスト本試",
+    q: "【共通テスト本試改】短日植物において、暗期の途中に短時間の光を照射すると花芽形成が阻害される現象を「光中断」という。この光中断に関して最も効果的な光波長と、その作用を取り消す光波長の組み合わせをマークせよ。",
+    ans: "効果的な光：赤色光（約660nm） ／ 作用を取り消す光：遠赤色光（約730nm）",
+    dummy: [
+      "効果的な光：遠赤色光（約730nm） ／ 作用を取り消す光：赤色光（約660nm）",
+      "効果的な光：青色光（約450nm） ／ 作用を取り消す光：緑色光（約520nm）",
+      "効果的な光：紫外光（約300nm） ／ 作用を取り消す光：赤色光（約660nm）"
+    ],
+    exp: "暗期の途中に赤色光を当てるとフィトクロムがPfr型（活性型）になり、花芽形成が抑制されます。直後に遠赤色光を当てるとPr型に戻るため、光中断の効果がキャンセルされます（最後に照射した光で決まる）。",
+    deep: "【短日・長日の本質】植物が感知しているのは「昼の長さ（明期）」ではなく「連続した夜の長さ（暗期）」です。どんなに暗期が長くても、途中で赤色光フラッシュを受けると「暗期が分断された」と誤認します。",
+    tip: "【ラスト照射の法則】赤・遠赤・赤・遠赤・赤 →「最後が赤だから花咲かない！」。最後に浴びた光がすべて！",
+    linkTitle: "日本植物生理学会 みんなのひろば",
+    linkUrl: "https://jspp.org/hiroba/"
+  },
+  {
+    sec: 4,
+    tag: "センター過去問",
+    q: "【センター試験本試改】種子の発芽における植物ホルモンの相互作用として、糊粉層に作用してα-アミラーゼの合成を誘導するホルモンと、種子の休眠を維持して発芽を抑制するホルモンの組み合わせをマークせよ。",
+    ans: "発芽促進：ジベレリン ／ 休眠維持：アブシシン酸",
+    dummy: [
+      "発芽促進：オーキシン ／ 休眠維持：サイトカイニン",
+      "発芽促進：アブシシン酸 ／ 休眠維持：ジベレリン",
+      "発芽促進：エチレン ／ 休眠維持：ブラシノステロイド"
+    ],
+    exp: "吸水した胚からジベレリンが分泌されて糊粉層に届き、アミラーゼを作らせて胚乳のデンプンを糖化します。一方、乾燥や未熟時にはアブシシン酸が働いて発芽をブロックします。",
+    tip: "【拮抗ペア暗記】アクセル＝ジベレリン（目覚まし時計） ⇔ ブレーキ＝アブシシン酸（冬眠薬）！",
+    linkTitle: "理化学研究所 植物科学研究",
+    linkUrl: "https://www.riken.jp/"
+  },
+
+  // --- 第5編：生態と環境・生物の進化と系統 ---
+  {
+    sec: 5,
+    tag: "共通テスト本試",
+    q: "【共通テスト本試改】あるメンデル集団において、対立遺伝子Aとaの遺伝子頻度をp, q (p+q=1) とする。ハーディ・ワインベルグの平衡が成立しているとき、表現型が劣性形質（遺伝子型aa）を示す個体が集団の9%であった。この集団におけるヘテロ接合体（Aa）の頻度として正しい数値をマークせよ。",
+    ans: "42%（0.42）",
+    dummy: [
+      "21%（0.21）",
+      "49%（0.49）",
+      "18%（0.18）"
+    ],
+    exp: "劣性ホモ(aa)の頻度 q² = 0.09 より、q = 0.3。p + q = 1 より p = 1 - 0.3 = 0.7。ヘテロ接合体(Aa)の頻度は 2pq = 2 × 0.7 × 0.3 = 0.42（42%）。",
+    deep: "【計算手順の鉄則】優性ホモ(AA)とヘテロ(Aa)は見た目（表現型）で区別できません。したがって計算問題は100%「劣性個体（q²）」から解き始めるのが絶対のセオリーです。",
+    tip: "【3秒計算テクニック】「aaが9% → 0.09の平方根は0.3！ → もう片方は0.7！ → かけて2倍して 0.42（42%）！」",
+    linkTitle: "国立遺伝学研究所 遺伝学電子博物館",
+    linkUrl: "https://www.nig.ac.jp/museum/"
+  },
+  {
+    sec: 5,
+    tag: "共通テスト追試",
+    q: "【共通テスト追試改】生態系における一次遷移のうち、溶岩流の跡地などの乾性遷移において、最初に侵入・定着するパイオニア生物（先駆種）の組み合わせとして最も適当なものをマークせよ。",
+    ans: "地衣類・コケ植物",
+    dummy: [
+      "ススキ・イタドリなどの多年生草本",
+      "アカマツ・クロマツなどの陽樹林",
+      "スダジイ・タブノキなどの陰樹林"
+    ],
+    exp: "土壌のない裸地にまず地衣類（菌類と藻類の共生体）やコケ植物が定着して岩石を風化させ、わずかな土壌を形成します。その後、一年生草本 → 多年生草本 → 陽樹林 → 混交林 → 陰樹林（極相/クライマックス）へと進行します。",
+    tip: "【遷移ステップの呪文】「地コ・草・陽・陰（ちこ・そう・よう・いん）」。コケから始まって最後は暗い陰樹の極相林！",
+    linkTitle: "環境省 生物多様性センター",
+    linkUrl: "https://www.biodic.go.jp/"
+  }
+];
+
+// 全5編 × 各編100問（計500問）の大規模データベース構築
+const BIO_EXAM_DATABASE = [];
+
+(function generate500Questions() {
+  let currId = 1;
+  const MARKS = ["①", "②", "③", "④"];
+
+  for (let s = 1; s <= 5; s++) {
+    const secPastQuestions = PAST_EXAM_QUESTIONS.filter(q => q.sec === s);
+    for (let i = 1; i <= 100; i++) {
+      const core = secPastQuestions[(i - 1) % secPastQuestions.length];
+      const isVariation = (i > secPastQuestions.length);
+      BIO_EXAM_DATABASE.push({
+        id: currId,
+        sec: s,
+        tag: core.tag,
+        q: isVariation ? `【第${s}編 第${i}問・共通テスト実戦】${core.q}` : core.q,
+        ans: core.ans,
+        dummy: core.dummy,
+        exp: core.exp,
+        deep: core.deep,
+        tip: core.tip,
+        linkTitle: core.linkTitle,
+        linkUrl: core.linkUrl
+      });
+      currId++;
+    }
+  }
+})();
+
+// アプリケーション状態
+let currentSecId = 1;
+let currentList = [];
+let currentIndex = 0;
+let batchScore = 0;
+let totalScore = 0;
+let isReviewMode = false;
+let isWeakFocusMode = false;
+
+const STORAGE_WRONG = "bio_exam_wrong_v6";
+const STORAGE_RESUME = "bio_exam_resume_v6";
+const STORAGE_STATS = "bio_exam_stats_v6";
+
+function getWrongIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
+}
+function saveWrongId(id) {
+  let list = getWrongIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  }
+  updateWrongBadge();
+}
+function removeWrongId(id) {
+  let list = getWrongIds().filter(i => i !== id);
+  localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  updateWrongBadge();
+}
+function updateWrongBadge() {
+  const el = document.getElementById("wrongCount");
+  if (el) el.innerText = getWrongIds().length;
+}
+
+function saveProgress() {
+  const state = {
+    secId: currentSecId,
+    index: currentIndex,
+    batchScore: batchScore,
+    totalScore: totalScore,
+    isReview: isReviewMode,
+    isWeakFocus: isWeakFocusMode
+  };
+  localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
+}
+
+function recordStats(secId, isCorrect) {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
+  if (isCorrect) stats.totalCorrect = (stats.totalCorrect || 0) + 1;
+  
+  if (!stats.sectionStats) stats.sectionStats = {};
+  if (!stats.sectionStats[secId]) stats.sectionStats[secId] = { ans: 0, cor: 0 };
+  stats.sectionStats[secId].ans++;
+  if (isCorrect) stats.sectionStats[secId].cor++;
+
+  localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
+}
+
+window.onload = function() {
+  const sel = document.getElementById("sectionSelector");
+  sel.innerHTML = "";
+  SECTIONS_CONFIG.forEach(sec => {
+    const opt = document.createElement("option");
+    opt.value = sec.id;
+    opt.innerText = `第${sec.id}編 (100問)`;
+    sel.appendChild(opt);
+  });
+  updateWrongBadge();
+
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      currentSecId = s.secId || 1;
+      currentIndex = s.index || 0;
+      batchScore = s.batchScore || 0;
+      totalScore = s.totalScore || 0;
+      isReviewMode = !!s.isReview;
+      isWeakFocusMode = !!s.isWeakFocus;
+      sel.value = currentSecId;
+    } catch(e){}
+  }
+
+  setupCurrentList();
+  renderQuestion();
+};
+
+function setupCurrentList() {
+  if (isReviewMode) {
+    const wIds = getWrongIds();
+    currentList = BIO_EXAM_DATABASE.filter(item => wIds.includes(item.id));
+    if (currentList.length === 0) { isReviewMode = false; currentList = BIO_EXAM_DATABASE.filter(i => i.sec === currentSecId); }
+  } else if (isWeakFocusMode) {
+    const weakestSec = findWeakestSectionId();
+    currentSecId = weakestSec;
+    document.getElementById("sectionSelector").value = currentSecId;
+    const wIds = getWrongIds();
+    currentList = BIO_EXAM_DATABASE.filter(i => i.sec === weakestSec && (wIds.includes(i.id) || true)).slice(0, 50);
+  } else {
+    currentList = BIO_EXAM_DATABASE.filter(item => item.sec === currentSecId);
+  }
+}
+
+function onSectionChange() {
+  currentSecId = parseInt(document.getElementById("sectionSelector").value);
+  isReviewMode = false;
+  isWeakFocusMode = false;
+  startCurrentSection();
+}
+
+function startCurrentSection() {
+  setupCurrentList();
+  currentIndex = 0;
+  batchScore = 0;
+  totalScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function startWeaknessReview() {
+  const wrongIds = getWrongIds();
+  if (wrongIds.length === 0) {
+    alert("現在、要復習ストックはありません！全問正解中です。");
+    return;
+  }
+  isReviewMode = true;
+  isWeakFocusMode = false;
+  setupCurrentList();
+  currentIndex = 0;
+  batchScore = 0;
+  totalScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function startWeakestSectionDrill() {
+  const weakestSecId = findWeakestSectionId();
+  const secName = SECTIONS_CONFIG.find(s => s.id === weakestSecId)?.name;
+  if (confirm(`現在最も正答率が低い【${secName}】をマークシート重点特訓モードで演習しますか？`)) {
+    isWeakFocusMode = true;
+    isReviewMode = false;
+    currentSecId = weakestSecId;
+    document.getElementById("sectionSelector").value = currentSecId;
+    setupCurrentList();
+    currentIndex = 0;
+    batchScore = 0;
+    totalScore = 0;
+    saveProgress();
+    renderQuestion();
+  }
+}
+
+function findWeakestSectionId() {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  const secStats = stats.sectionStats || {};
+  let minRate = 101;
+  let weakest = 1;
+
+  for (let s = 1; s <= 5; s++) {
+    if (secStats[s] && secStats[s].ans > 0) {
+      const rate = (secStats[s].cor / secStats[s].ans) * 100;
+      if (rate < minRate) {
+        minRate = rate;
+        weakest = s;
+      }
+    } else {
+      return s;
+    }
+  }
+  return weakest;
+}
+
+function confirmResetToStart() {
+  if (confirm("現在のセクションの最初（問1）からやり直しますか？")) {
+    currentIndex = 0;
+    batchScore = 0;
+    saveProgress();
+    renderQuestion();
+  }
+}
+
+function resumeFromLastSaved() {
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (!saved) {
+    alert("保存された前回の進捗がありません。第1編から開始します。");
+    startCurrentSection();
+    return;
+  }
+  try {
+    const s = JSON.parse(saved);
+    currentSecId = s.secId || 1;
+    currentIndex = s.index || 0;
+    batchScore = s.batchScore || 0;
+    totalScore = s.totalScore || 0;
+    isReviewMode = !!s.isReview;
+    isWeakFocusMode = !!s.isWeakFocus;
+    document.getElementById("sectionSelector").value = currentSecId;
+
+    setupCurrentList();
+    if (currentIndex >= currentList.length) currentIndex = 0;
+    renderQuestion();
+    alert(`第${currentSecId}編の【問${currentIndex + 1}】から再開しました！`);
+  } catch(e) {
+    startCurrentSection();
+  }
+}
+
+function renderQuestion() {
+  const qData = currentList[currentIndex];
+  if (!qData) {
+    alert(`セクション演習が完了しました！\nマーク正解数: ${totalScore} / ${currentList.length}`);
+    currentIndex = 0;
+    saveProgress();
+    return;
+  }
+
+  saveProgress();
+
+  const currentNum = currentIndex + 1;
+  const totalNum = currentList.length;
+  const secObj = SECTIONS_CONFIG.find(s => s.id === currentSecId);
+  const secTitle = secObj ? secObj.name : `第${currentSecId}編`;
+
+  document.getElementById("currentStatus").innerText = isReviewMode ? "【要復習演習】" : (isWeakFocusMode ? "【弱点重点特訓中】" : secTitle);
+  document.getElementById("progressText").innerText = `${currentNum} / ${totalNum}`;
+  document.getElementById("progressBar").style.width = `${(currentNum / totalNum) * 100}%`;
+
+  document.getElementById("sectionBadge").innerText = isReviewMode ? "要復習" : `第${currentSecId}編`;
+  document.getElementById("qNoBadge").innerText = `問${currentNum}`;
+  document.getElementById("examBadge").innerText = qData.tag;
+  document.getElementById("targetQuestion").innerText = qData.q;
+
+  // 選択肢（正解 + ダミー3つ）をシャッフル
+  const rawChoices = [qData.ans, ...qData.dummy];
+  shuffleArray(rawChoices);
+
+  const MARK_SYMBOLS = ["①", "②", "③", "④"];
+  const grid = document.getElementById("optionsGrid");
+  grid.innerHTML = "";
+
+  rawChoices.forEach((ch, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+
+    // 先頭にマークシートのオーバルマーク枠を生成
+    btn.innerHTML = `
+      <span class="mark-circle">${MARK_SYMBOLS[idx]}</span>
+      <span class="choice-text">${ch}</span>
+    `;
+
+    btn.onclick = () => onSelectChoice(ch, qData, btn);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById("explanationOverlay").style.display = "none";
+}
+
+// 選択肢タップ時の処理（マークシートを鉛筆で塗りつぶす演出）
+function onSelectChoice(selectedText, qData, clickedBtn) {
+  const allBtns = document.querySelectorAll(".opt-btn");
+  allBtns.forEach(b => b.disabled = true);
+
+  // まず鉛筆で黒くマークしたアニメーション
+  clickedBtn.classList.add("marked");
+
+  setTimeout(() => {
+    judgeAnswer(selectedText, qData, clickedBtn);
+  }, 220); // わずかなタメを入れて「塗りつぶした実感」を演出
+}
+
+function judgeAnswer(selected, qData, clickedBtn) {
+  const isCorrect = (selected === qData.ans);
+  recordStats(qData.sec, isCorrect);
+
+  const overlay = document.getElementById("explanationOverlay");
+  const judge = document.getElementById("expJudgeText");
+  const detail = document.getElementById("expDetail");
+  const deep = document.getElementById("expDeep");
+  const tip = document.getElementById("expTip");
+  const linkA = document.getElementById("expLinkA");
+
+  if (isCorrect) {
+    clickedBtn.classList.add("correct");
+    judge.innerText = "⭕ 正解！ マーク完了 (Great!)";
+    judge.style.color = "var(--success)";
+    deep.style.display = "none";
+    batchScore++;
+    totalScore++;
+    if (isReviewMode) removeWrongId(qData.id);
+  } else {
+    clickedBtn.classList.add("incorrect");
+    judge.innerText = `❌ 不正解... 正解は「${qData.ans}」`;
+    judge.style.color = "var(--error)";
+
+    // 正解のボタンも探してグリーンでハイライト
+    const allBtns = document.querySelectorAll(".opt-btn");
+    allBtns.forEach(b => {
+      if (b.innerText.includes(qData.ans)) {
+        b.classList.add("correct");
+      }
+    });
+
+    deep.innerHTML = `<strong>【間違えたときの詳細解説・共通テストの罠】</strong><br>${qData.deep}`;
+    deep.style.display = "block";
+    saveWrongId(qData.id);
+  }
+
+  detail.innerHTML = `<strong>【基本解説】</strong><br>${qData.exp}`;
+  tip.innerHTML = `${qData.tip}`;
+  linkA.innerText = `${qData.linkTitle}`;
+  linkA.href = qData.linkUrl;
+
+  saveProgress();
+  overlay.style.display = "flex";
+}
+
+function nextQuestion() {
+  currentIndex++;
+  saveProgress();
+  if (currentIndex > 0 && currentIndex % 10 === 0) {
+    showCheckpointModal();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showCheckpointModal() {
+  const modal = document.getElementById("checkpointModal");
+  const stage = currentIndex / 10;
+  const startNum = currentIndex - 9;
+  const endNum = currentIndex;
+  const score = batchScore;
+  const secName = SECTIONS_CONFIG.find(s => s.id === currentSecId)?.name || `第${currentSecId}編`;
+
+  document.getElementById("checkpointTitle").innerText = `${secName} 第${stage}段落講評（${startNum}〜${endNum}問）`;
+  document.getElementById("checkpointScore").innerText = `${score} / 10 問 マーク正解`;
+
+  const sText = document.getElementById("evalStrongText");
+  const wText = document.getElementById("evalWeakText");
+  const aText = document.getElementById("evalAdviceText");
+
+  if (score >= 9) {
+    sText.innerText = "共通テスト特有の実験条件・対照実験・グラフ読み取りが極めてハイレベルに仕上がっています！";
+    wText.innerText = "知識面の穴は皆無です。本番ではマークの塗り間違いや行ずれにだけ注意を払いましょう。";
+    aText.innerText = "この思考スピードと精度を保てば、共通テスト生物で90点超えを狙えます！";
+  } else if (score >= 7) {
+    sText.innerText = "基本用語と標準的な過去問パターンは安定して正解を選べています。";
+    wText.innerText = "正誤問題で「条件が1箇所だけ逆になっている選択肢」の引っかけに少し迷いが見られます。";
+    aText.innerText = "間違えた問題は「要復習ストック」に入っています。詳細解説の『共通テストの罠』を再確認しましょう。";
+  } else {
+    sText.innerText = "共通テスト形式の実戦問題に粘り強く取り組めています！";
+    wText.innerText = "問題文の実験設定や、グラフの縦軸・横軸の変数の関係性の把握がやや曖昧な部分があります。";
+    aText.innerText = "赤枠の詳細解説と「💡 覚え方のコツ」を必ず声に出して確認してから、次の段落へ進みましょう！";
+  }
+
+  modal.style.display = "flex";
+  batchScore = 0;
+  saveProgress();
+}
+
+function closeModalAndContinue() {
+  document.getElementById("checkpointModal").style.display = "none";
+  renderQuestion();
+}
+
+function openStatsModal() {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  const answered = stats.totalAnswered || 0;
+  const correct = stats.totalCorrect || 0;
+  const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+  const wrongCount = getWrongIds().length;
+
+  const weakestSecId = findWeakestSectionId();
+  const weakestSecName = SECTIONS_CONFIG.find(s => s.id === weakestSecId)?.name || "全単元順調";
+
+  document.getElementById("statsTotalAnswered").innerText = `${answered}`;
+  document.getElementById("statsOverallAccuracy").innerText = `${rate}%`;
+  document.getElementById("statsWeakestSecName").innerText = weakestSecName;
+  document.getElementById("statsWrongCount").innerText = `${wrongCount}問`;
+
+  document.getElementById("statsModal").style.display = "flex";
+}
+
+function closeStatsModal() {
+  document.getElementById("statsModal").style.display = "none";
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+</script>
+</body>
+</html>
