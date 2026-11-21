@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>共通テスト対策 英単語 モチベアップ版</title>
-<!-- 外部単語データベース（2474語）の安全読み込み -->
+<title>共通テスト英単語 演習2474完全版</title>
 <script src="common_vocab_data.js"></script>
 <style>
   :root {
@@ -685,7 +684,7 @@
   </div>
 
   <div class="nav-toolbar">
-    <button class="nav-btn primary" onclick="onTapResume()">▶ つづきから（次へ進む）</button>
+    <button class="nav-btn primary" onclick="onTapResume()">▶ つづきから</button>
     <button class="nav-btn subtle" onclick="startAdaptiveRound2()">2周目特訓</button>
     <button class="nav-btn subtle" onclick="confirmResetToStart()">シャッフル最初から</button>
     <button class="nav-btn subtle" onclick="openStatsModal()">成績</button>
@@ -709,7 +708,7 @@
       <span class="pos-tag" id="posTag">【動詞】</span>
     </div>
     <div class="word-row">
-      <div class="target-word" id="targetWord">provide</div>
+      <div class="target-word" id="targetWord">---</div>
       <button class="btn-speak" id="btnSpeakWord" onclick="speakCurrentWord()" title="発音を再生">🔊</button>
     </div>
   </div>
@@ -735,7 +734,7 @@
   </div>
 </div>
 
-<!-- 30問ごと共通テスト攻略Tipポップアップ -->
+<!-- 30問ごと攻略Tipポップ -->
 <div class="modal-bg" id="strategyPopModal">
   <div class="strategy-pop-card">
     <div class="strategy-badge-top">💡 共通テスト英語 9割突破の鉄則</div>
@@ -935,7 +934,7 @@ const STRATEGY_TIPS_DATABASE = [
 
 let strategyPopIndex = 0;
 
-const STORAGE_CONFIG = "ctest_app_settings_v2474";
+const STORAGE_CONFIG = "ctest_app_settings_v2474_fixed";
 let appSettings = { sound: true, confetti: true, streak: true };
 
 function loadSettings() {
@@ -1094,7 +1093,7 @@ function animateConfetti(ctx, canvas) {
   }
 }
 
-const STORAGE_STREAK = "ctest_streak_info_v2474";
+const STORAGE_STREAK = "ctest_streak_info_v2474_fixed";
 
 function updateStreak() {
   const today = new Date().toISOString().slice(0, 10);
@@ -1144,7 +1143,7 @@ function stopQuestionTimer() {
   return ((Date.now() - questionStartTime) / 1000);
 }
 
-const STORAGE_BADGES = "ctest_badges_unlocked_v2474";
+const STORAGE_BADGES = "ctest_badges_unlocked_v2474_fixed";
 const BADGES_CONFIG = [
   { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
   { id: "streak3", icon: "🔥", title: "3日連続達成", desc: "3日連続で学習を継続した" },
@@ -1225,10 +1224,21 @@ const PRIORITY_MODES = [
   { id: 7, name: "【全単語総合】全2474語ランダム実戦", cat: "総合" }
 ];
 
-// 単語データソース（外部JSファイルまたは内蔵フォールバック）
-const MASTER_SOURCE = (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 0)
-  ? window.ALL_COMMON_TEST_VOCAB
-  : [];
+// 内蔵ベース辞書（common_vocab_data.js がない場合のフォールバック）
+const FALLBACK_VOCAB = [
+  { id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞", mean: "を提供する，供給する，養う", dummy: ["を要求する", "を禁止する", "を避ける"], exp: "超頻出動詞。", idioms: "provide A with B", ex: "The program provides students with guidelines." },
+  { id: 2, rank: "S", cat: "動詞", word: "improve", pos: "動詞", mean: "を改善する，向上させる", dummy: ["を悪化させる", "を証明する", "を無視する"], exp: "解決策の頻出語。", idioms: "improve on ~", ex: "They took steps to improve insulation." },
+  { id: 3, rank: "S", cat: "動詞", word: "reduce", pos: "動詞", mean: "を減らす，縮小する", dummy: ["を増やす", "を製造する", "を保護する"], exp: "削減文脈で頻出。", idioms: "reduce A to B", ex: "Solar panels help reduce costs." },
+  { id: 4, rank: "S", cat: "形容詞・副詞", word: "important", pos: "形容詞", mean: "重要な，影響力のある", dummy: ["些細な", "複雑な", "緊急の"], exp: "筆者の主張マーカー。", idioms: "play an important role in ~", ex: "It is important to understand this." },
+  { id: 5, rank: "S", cat: "形容詞・副詞", word: "available", pos: "形容詞", mean: "利用できる，手が空いている", dummy: ["高価な", "無効な", "不確かな"], exp: "告知文必須。", idioms: "readily available", ex: "Discounts are available." }
+];
+
+function getMasterDatabase() {
+  if (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 0) {
+    return window.ALL_COMMON_TEST_VOCAB;
+  }
+  return FALLBACK_VOCAB;
+}
 
 let currentModeId = 1;
 let currentList = [];
@@ -1239,12 +1249,12 @@ let sessionAnswerCount = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-const STORAGE_WRONG = "ctest_vocab_round2_wrong_v2474";
-const STORAGE_RESUME = "ctest_vocab_round2_resume_v2474";
-const STORAGE_STATS = "ctest_vocab_round2_stats_v2474";
-const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v2474";
-const STORAGE_SEEN_IDS = "ctest_vocab_seen_ids_v2474";
-const STORAGE_CORRECT_TIMESTAMPS = "ctest_vocab_correct_timestamps_v2474";
+const STORAGE_WRONG = "ctest_vocab_round2_wrong_v2474_fixed";
+const STORAGE_RESUME = "ctest_vocab_round2_resume_v2474_fixed";
+const STORAGE_STATS = "ctest_vocab_round2_stats_v2474_fixed";
+const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v2474_fixed";
+const STORAGE_SEEN_IDS = "ctest_vocab_seen_ids_v2474_fixed";
+const STORAGE_CORRECT_TIMESTAMPS = "ctest_vocab_correct_timestamps_v2474_fixed";
 
 const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -1366,42 +1376,49 @@ function initApp() {
     } catch(e){}
   }
 
-  setupCurrentList();
+  buildCurrentList();
   renderQuestion();
 }
 
 window.addEventListener("DOMContentLoaded", initApp);
 
 function getCategoryPool() {
+  const master = getMasterDatabase();
   const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
   if (!mode || mode.cat === "総合") {
-    return [...MASTER_SOURCE];
+    return [...master];
   } else if (mode.rank) {
-    return MASTER_SOURCE.filter(item => item.rank === mode.rank);
+    return master.filter(item => item.rank === mode.rank);
   } else if (mode.cat) {
-    return MASTER_SOURCE.filter(item => item.cat === mode.cat);
+    return master.filter(item => item.cat === mode.cat);
   }
-  return [...MASTER_SOURCE];
+  return [...master];
 }
 
-function setupCurrentList() {
+/**
+ * 出題キューを1回だけ確定させる堅牢なビルド処理
+ * （出題途中で勝手に再シャッフル・再生成されないよう固定化）
+ */
+function buildCurrentList() {
+  const master = getMasterDatabase();
+
   if (isReviewMode) {
     const wIds = getWrongIds();
-    currentList = MASTER_SOURCE.filter(item => wIds.includes(item.id));
+    currentList = master.filter(item => wIds.includes(item.id));
     if (currentList.length === 0) {
       isReviewMode = false;
-      filterListByMode();
+      buildCategoryQueue();
     } else {
       shuffleArray(currentList);
     }
   } else if (isAdaptiveRound2Mode) {
     buildRound2List();
   } else {
-    filterListByMode();
+    buildCategoryQueue();
   }
 }
 
-function filterListByMode() {
+function buildCategoryQueue() {
   const pool = getCategoryPool();
   const seenIds = getSeenIds();
   const timestamps = getCorrectTimestamps();
@@ -1413,6 +1430,7 @@ function filterListByMode() {
     return t && (now - t >= ONE_WEEK_MS);
   });
 
+  // 全単語を解ききっていた場合はリセットして全単語を候補化
   if (unseenWords.length === 0 && recallWords.length === 0) {
     resetSeenForCurrentCategory();
     unseenWords = [...pool];
@@ -1421,7 +1439,7 @@ function filterListByMode() {
   shuffleArray(unseenWords);
   shuffleArray(recallWords);
 
-  let interleavedList = [];
+  let queue = [];
   let uIdx = 0;
   let rIdx = 0;
 
@@ -1449,12 +1467,12 @@ function filterListByMode() {
     }
 
     shuffleArray(block);
-    interleavedList.push(...block);
+    queue.push(...block);
 
     if (uIdx >= unseenWords.length && rIdx >= recallWords.length) break;
   }
 
-  currentList = interleavedList.length > 0 ? interleavedList : [...pool];
+  currentList = queue.length > 0 ? queue : [...pool];
 }
 
 function buildRound2List() {
@@ -1482,7 +1500,7 @@ function onPriorityChange() {
 }
 
 function startCurrentMode() {
-  setupCurrentList();
+  buildCurrentList();
   currentIndex = 0;
   batchScore = 0;
   totalScore = 0;
@@ -1503,7 +1521,7 @@ function onTapResume() {
       isReviewMode = !!s.isReview;
       isAdaptiveRound2Mode = !!s.isRound2;
       document.getElementById("prioritySelector").value = currentModeId;
-      setupCurrentList();
+      buildCurrentList();
       if (currentIndex >= currentList.length) currentIndex = 0;
       renderQuestion();
       return;
@@ -1520,7 +1538,7 @@ function startWeaknessReview() {
   }
   isReviewMode = true;
   isAdaptiveRound2Mode = false;
-  setupCurrentList();
+  buildCurrentList();
   currentIndex = 0;
   batchScore = 0;
   totalScore = 0;
@@ -1534,7 +1552,7 @@ function startAdaptiveRound2() {
     isAdaptiveRound2Mode = true;
     isReviewMode = false;
     unlockBadge("round2_runner");
-    setupCurrentList();
+    buildCurrentList();
     currentIndex = 0;
     batchScore = 0;
     totalScore = 0;
@@ -1553,13 +1571,15 @@ function confirmResetToStart() {
 }
 
 function renderQuestion() {
-  const qData = currentList[currentIndex];
-  if (!qData) {
+  if (!currentList || currentList.length === 0) {
+    buildCurrentList();
+  }
+  if (currentIndex >= currentList.length) {
     onCompleteCategory();
     return;
   }
 
-  markAsSeen(qData.id);
+  const qData = currentList[currentIndex];
   saveProgress();
 
   const currentNum = currentIndex + 1;
@@ -1572,20 +1592,20 @@ function renderQuestion() {
   document.getElementById("progressBar").style.width = `${(currentNum / totalNum) * 100}%`;
 
   const rankBadge = document.getElementById("rankBadge");
-  rankBadge.className = `rank-badge rank-${qData.rank.toLowerCase()}`;
+  rankBadge.className = `rank-badge rank-${(qData.rank || "S").toLowerCase()}`;
   rankBadge.innerText = qData.rank === "S" ? "最優先★Sランク" : (qData.rank === "A" ? "高得点★Aランク" : "難関★Bランク");
 
   const recallBadge = document.getElementById("recallBadge");
   recallBadge.style.display = qData.isRecall ? "inline-block" : "none";
 
-  document.getElementById("categoryBadge").innerText = qData.cat;
-  document.getElementById("posTag").innerText = `【${qData.pos}】`;
-  document.getElementById("targetWord").innerText = qData.word.replace(/_.*?$/g, "");
+  document.getElementById("categoryBadge").innerText = qData.cat || "英単語";
+  document.getElementById("posTag").innerText = `【${qData.pos || "語"}】`;
+  document.getElementById("targetWord").innerText = (qData.word || "").replace(/_.*?$/g, "");
 
   speakCurrentWord();
   startQuestionTimer();
 
-  const rawChoices = [qData.mean, ...qData.dummy];
+  const rawChoices = [qData.mean, ...(qData.dummy || ["選択肢2", "選択肢3", "選択肢4"])];
   shuffleArray(rawChoices);
 
   const MARK_SYMBOLS = ["①", "②", "③", "④"];
@@ -1625,6 +1645,9 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
   recordStats(isCorrect);
   sessionAnswerCount++;
 
+  // 解答確定時に出題済み（seen）を記録
+  markAsSeen(qData.id);
+
   if (isCorrect) {
     unlockBadge("first_correct");
     if (timeSec < 1.2) unlockBadge("speed_god");
@@ -1663,15 +1686,16 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
     saveWrongId(qData.id);
   }
 
-  detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp}`;
-  idiomText.innerHTML = `${qData.idioms}`;
-  ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex}</em>`;
+  detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp || ""}`;
+  idiomText.innerHTML = `${qData.idioms || "特記事項なし"}`;
+  ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex || ""}</em>`;
 
   saveProgress();
   overlay.style.display = "flex";
 }
 
 function nextQuestion() {
+  // 確実に次の問題へインクリメント
   currentIndex++;
   saveProgress();
 
