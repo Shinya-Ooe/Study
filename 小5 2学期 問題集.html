@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>小5 2学期 問題集</title>
+<style>
+:root{--bg:#f7f5ef;--fg:#222;--card:#fff;--ac:#2f7d5b;--ng:#c0392b;--mu:#666;--bd:#ddd;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1f1d;--fg:#eee;--card:#2a2e2b;--ac:#5fbf92;--ng:#ef7a6c;--mu:#aaa;--bd:#444;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1f1d;--fg:#eee;--card:#2a2e2b;--ac:#5fbf92;--ng:#ef7a6c;--mu:#aaa;--bd:#444;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;line-height:1.7}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:8px 0}h2{font-size:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:10px 0}
+button{font:inherit;width:100%;text-align:left;background:var(--card);color:var(--fg);border:2px solid var(--bd);border-radius:10px;padding:12px;margin:6px 0;cursor:pointer}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac);text-align:center}
+button.ok{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 20%,var(--card))}
+button.ng{border-color:var(--ng);background:color-mix(in srgb,var(--ng) 20%,var(--card))}
+.mu{color:var(--mu);font-size:14px}.bar{height:8px;background:var(--bd);border-radius:4px}.bar i{display:block;height:8px;background:var(--ac);border-radius:4px}
+.g{color:var(--ac);font-weight:bold}.w{color:var(--ng);font-weight:bold}
+</style></head><body><div id="app"></div>
+<script>
+const D={
+m:{n:'算数',q:[
+['倍数・約数','6の倍数はどれ？',['14','18','22','26'],1,'6×3＝18なので、18は6の倍数です。'],
+['倍数・約数','12と18の最大公約数は？',['2','3','6','9'],2,'12の約数は1,2,3,4,6,12、18の約数は1,2,3,6,9,18。共通で最大は6です。'],
+['倍数・約数','4と6の最小公倍数は？',['12','24','10','2'],0,'4の倍数は4,8,12…、6の倍数は6,12…。最初に共通するのは12です。'],
+['倍数・約数','偶数はどれ？',['27','35','48','51'],2,'2でわり切れる整数が偶数です。48÷2＝24でわり切れます。'],
+['分数','6/9を約分すると？',['2/3','3/4','1/3','3/2'],0,'分子と分母を最大公約数の3でわると2/3です。'],
+['分数','1/2＋1/3＝？',['2/5','5/6','1/6','3/5'],1,'通分して3/6＋2/6＝5/6です。分母どうしをたすのはまちがいです。'],
+['平均・単位量','70点、80点、90点の平均は？',['75点','80点','85点','90点'],1,'合計240÷3＝80点です。'],
+['平均・単位量','5mで300円のリボン。1mあたりのねだんは？',['50円','60円','70円','1500円'],1,'300÷5＝60円です。'],
+['合同','合同な三角形で、対応する辺の長さは？',['等しい','ちがう','2倍','半分'],0,'合同はぴったり重なる図形なので、対応する辺・角は等しくなります。'],
+['合同','三角形の3つの角の大きさの和は？',['90°','180°','270°','360°'],1,'どんな三角形でも内角の和は180°です。']]},
+s:{n:'理科',q:[
+['天気','台風が多く日本に近づく季節は？',['春','夏から秋','冬','梅雨だけ'],1,'台風は夏から秋に多く、大雨や強風をもたらします。'],
+['天気','台風が発生する場所は？',['北極','熱帯の海上','砂漠','高い山'],1,'あたたかい海の水蒸気から発達します。'],
+['流れる水','曲がった川の外側では？',['土砂がたまる','けずられる','変化なし','水がなくなる'],1,'外側は流れが速く、しん食がさかんです。内側にはたい積します。'],
+['流れる水','川の上流の石の特ちょうは？',['丸くて小さい','大きくて角ばっている','砂ばかり','ない'],1,'上流は石が運ばれる距離が短く、角ばっています。'],
+['流れる水','雨で水の量がふえると流れる水のはたらきは？',['弱まる','強まる','変わらない','止まる'],1,'水が多いとしん食・運ぱんが大きくなります。'],
+['ものの溶け方','食塩10gを水100gにとかした水よう液の重さは？',['100g','110g','90g','10g'],1,'とけても全体の重さは変わらず、100＋10＝110gです。'],
+['ものの溶け方','水の温度を上げると、ミョウバンがとける量は？',['ふえる','へる','変わらない','全部固まる'],0,'ふつう温度が高いほどとける量はふえます。'],
+['電磁石','電磁石のコイルの巻き数をふやすと？',['弱くなる','強くなる','変わらない','極が消える'],1,'巻き数が多いほど磁力は強くなります。'],
+['電磁石','電流の向きを逆にすると電磁石の極は？',['入れかわる','強くなる','弱くなる','なくなる'],0,'電流の向きが逆になるとN極とS極が入れかわります。'],
+['たんじょう','人の受精卵が育つ母親のからだの部分は？',['胃','子宮','肺','心臓'],1,'子宮の中で、たいばんとへそのおを通して養分をもらいます。']]},
+a:{n:'社会',q:[
+['工業','工業がさかんな、太平洋側の帯状の地域は？',['太平洋ベルト','日本アルプス','東北山地','北海道'],0,'関東から九州北部にかけて工業地帯・地域が集まっています。'],
+['工業','必要な部品を必要なときに届ける方式は？',['ジャストインタイム方式','大量廃棄方式','手作業方式','輸入方式'],0,'むだな在庫をへらすための自動車工場の工夫です。'],
+['工業','中小工場の特ちょうとして正しいのは？',['高い技術で部品などを作る','すべて輸入','農作物を作る','魚をとる'],0,'大工場に部品をおさめる中小工場には、高い技術をもつところも多いです。'],
+['工業','現在、日本の工業生産額で最も多いのは？',['食料品','機械工業','せんい','金属'],1,'自動車などをふくむ機械工業が最大の割合です。'],
+['水産業','魚や貝を育てて大きくして出荷する漁業は？',['養殖業','遠洋漁業','沿岸漁業','沖合漁業'],0,'いけすなどで育てるのが養殖業です。'],
+['水産業','暖流と寒流がぶつかる好漁場は？',['潮目','砂浜','湖','山脈'],0,'潮目（潮境）にはプランクトンと魚が集まります。'],
+['食料','日本でほぼ自給できている食品は？',['米','小麦','大豆','とうもろこし'],0,'米は自給率がほぼ100%です。小麦や大豆は輸入が多いです。'],
+['情報','マスメディアでないものは？',['新聞','テレビ','手紙','ラジオ'],2,'マスメディアは多くの人に一度に情報を伝えるものです。手紙は個人向けです。'],
+['情報','情報を正しく読み取り活用する力は？',['メディアリテラシー','食料自給率','工業生産額','潮目'],0,'うのみにせず、ほんとうか考えて選ぶ力です。'],
+['工業','日本の企業が外国に工場をつくって生産することは？',['海外生産','輸出','輸入','国産'],0,'人件費や市場を求めて海外生産がふえています。']]},
+k:{n:'国語',q:[
+['漢字','「責任」の読み方は？',['せきにん','せっにん','しゃくにん','せいにん'],0,'「責」は「せき」と読みます。'],
+['漢字','「ほうこく」を漢字で書くと？',['報告','抱告','宝告','方告'],0,'知らせるという意味の「報告」です。'],
+['敬語','先生が「来る」の尊敬語は？',['いらっしゃる','まいる','来させる','来ます'],0,'相手の動作には尊敬語「いらっしゃる」を使います。'],
+['敬語','自分が「食べる」の謙譲語は？',['いただく','めしあがる','食べられる','お食べになる'],0,'自分側の動作は謙譲語「いただく」です。'],
+['ことわざ','「猿も木から落ちる」の意味は？',['名人でも失敗することがある','猿は木登りが苦手','木が折れやすい','猿はかしこい'],0,'その道の名人でも失敗することがあるという意味です。'],
+['ことわざ','「急がば回れ」の意味は？',['危険な道をさける','急ぐときこそ確実な方法で','遠回りは損','走れ'],1,'急ぐときは、一見遠回りでも安全で確実な道がよいということです。'],
+['熟語','「増加」の対義語は？',['減少','追加','加入','増大'],0,'ふえるの反対でへる「減少」です。'],
+['熟語','「勝利」の対義語は？',['敗北','成功','優勝','勝負'],0,'勝つの反対は負ける「敗北」です。'],
+['文法','「小さな犬が元気よく走る。」の主語は？',['犬が','走る','元気よく','小さな'],0,'「何が」にあたる部分が主語で、ここでは「犬が」です。'],
+['文法','「雨が降ったので、試合は中止になった。」の「ので」の働きは？',['理由','逆接','並列','例示'],0,'前のことがらが後のことがらの理由になっています。']]}
+};
+const $=document.getElementById('app');let S=null;
+function ld(){try{return JSON.parse(localStorage.getItem('wr5')||'[]')}catch(e){return[]}}
+function sv(a){try{localStorage.setItem('wr5',JSON.stringify(a))}catch(e){}}
+function qs(k){return D[k].q.map((x,i)=>({id:k+i,t:x[0],q:x[1],c:x[2],a:x[3],e:x[4],n:D[k].n}))}
+function home(){const w=ld();let h='<h1>📘 小5 2学期 問題集</h1><p class="mu">教科をえらんで10問ずつ挑戦しよう。まちがえた問題は「復習」にたまります。</p>';
+for(const k in D)h+=`<button onclick="start('${k}')"><b>${D[k].n}</b><br><span class="mu">${D[k].q.length}問・10問で1セット</span></button>`;
+h+=`<button class="p" onclick="review()" ${w.length?'':'disabled'}>🔁 まちがえた問題を復習（${w.length}問）</button>`;$.innerHTML=h}
+function start(k){S={list:qs(k),i:0,r:[],mode:'new',name:D[k].n};show()}
+function review(){const w=ld(),all=[];for(const k in D)all.push(...qs(k));S={list:all.filter(x=>w.includes(x.id)),i:0,r:[],mode:'rev',name:'復習'};show()}
+function show(){const q=S.list[S.i];if(!q)return fin();S.done=false;
+$.innerHTML=`<p class="mu">${S.name}・${S.i+1}/${S.list.length}　<span>${q.t}</span></p><div class="bar"><i style="width:${S.i/S.list.length*100}%"></i></div><div class="card"><b>${q.q}</b></div>`+q.c.map((c,j)=>`<button onclick="ans(${j})" id="b${j}">${'ア イ ウ エ'.split(' ')[j]}　${c}</button>`).join('')+'<div id="ex"></div>'}
+function ans(j){if(S.done)return;S.done=true;const q=S.list[S.i],ok=j==q.a,w=ld();
+document.getElementById('b'+q.a).classList.add('ok');if(!ok)document.getElementById('b'+j).classList.add('ng');
+S.r.push({q,ok});let n=w.filter(x=>x!=q.id);if(!ok)n.push(q.id);sv(n);
+document.getElementById('ex').innerHTML=`<div class="card"><b class="${ok?'g':'w'}">${ok?'⭕ 正解！':'❌ ざんねん'}</b><br>${q.e}</div><button class="p" onclick="S.i++;show()">${S.i+1<S.list.length?'つぎへ':'講評を見る'}</button>`}
+function fin(){const r=S.r,ok=r.filter(x=>x.ok).length,t={};
+r.forEach(x=>{(t[x.q.t]=t[x.q.t]||[0,0])[1]++;if(x.ok)t[x.q.t][0]++});
+const g=[],b=[];for(const k in t){const p=t[k][0]/t[k][1];(p>=.8?g:p<.6?b:[]).push(`${k}（${t[k][0]}/${t[k][1]}）`)}
+const bad=r.filter(x=>!x.ok);
+$.innerHTML=`<h1>講評</h1><div class="card"><b>${ok} / ${r.length} 問正解</b></div><div class="card"><div class="g">💪 得意なところ</div>${g.join('、')||'まだこれから！'}<br><div class="w" style="margin-top:8px">🔍 弱いところ</div>${b.join('、')||'とくになし。すばらしい！'}<p>${bad.length?'まちがえた問題は「復習」に入りました。もう一度やってみよう。':'全問正解！次のセットもがんばろう。'}</p></div>`+
+(bad.length?'<div class="card"><b>まちがえた問題</b>'+bad.map(x=>`<p>・${x.q.q}<br><span class="mu">答え：${x.q.c[x.q.a]}</span></p>`).join('')+'</div>':'')+'<button class="p" onclick="home()">ホームへ</button>'}
+home();
+</script></body></html>
