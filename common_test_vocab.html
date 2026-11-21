@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>共通テスト対策 英単語 モチベアップ版</title>
-<script src="common_vocab_data.js"></script>
+<title>共通テスト英単語 演習完全版</title>
 <style>
   :root {
     --primary: #1e3a8a;
@@ -51,7 +50,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    padding: 6px 12px calc(8px + env(safe-area-inset-bottom));
     background: var(--card-bg);
   }
 
@@ -59,114 +58,86 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
     border-bottom: 2px solid var(--border);
     flex-shrink: 0;
   }
   .header-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
   .btn-back-launcher {
     background: #475569;
     color: #fff;
     border: none;
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     font-weight: 800;
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    -webkit-tap-highlight-color: transparent;
   }
-  .btn-back-launcher:active { background: #1e293b; }
 
   .app-title {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 900;
     color: var(--primary);
   }
   .top-controls {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     align-items: center;
   }
   select {
-    font-size: 0.90rem;
-    padding: 6px 8px;
+    font-size: 0.85rem;
+    padding: 5px 6px;
     border-radius: 8px;
     border: 1.5px solid var(--border);
     background: #f8fafc;
     font-weight: bold;
     color: var(--text-main);
-    max-width: 170px;
+    max-width: 155px;
   }
   .btn-review-top {
-    font-size: 0.88rem;
-    padding: 6px 10px;
+    font-size: 0.82rem;
+    padding: 5px 8px;
     border-radius: 8px;
     border: none;
     font-weight: bold;
     background: #ea580c;
     color: #fff;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
   }
   .badge-count {
     background: #fff;
     color: #ea580c;
     border-radius: 10px;
-    padding: 1px 6px;
-    font-size: 0.78rem;
-    margin-left: 3px;
+    padding: 1px 5px;
+    font-size: 0.75rem;
+    margin-left: 2px;
     font-weight: 800;
-  }
-  .btn-settings {
-    background: #e2e8f0;
-    border: none;
-    border-radius: 8px;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    cursor: pointer;
   }
 
   .gamify-banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 8px;
+    padding: 3px 8px;
     background: #eff6ff;
-    border-radius: 8px;
+    border-radius: 6px;
     margin-top: 4px;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: bold;
     flex-shrink: 0;
-  }
-  .streak-chip {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: #c2410c;
-  }
-  .timer-chip {
-    color: #0369a1;
-    display: flex;
-    align-items: center;
-    gap: 4px;
   }
 
   .nav-toolbar {
     display: flex;
-    gap: 6px;
-    margin: 6px 0;
+    gap: 5px;
+    margin: 4px 0;
     flex-shrink: 0;
   }
   .nav-btn {
@@ -174,28 +145,27 @@
     background: #e2e8f0;
     color: #1e293b;
     border: none;
-    padding: 8px 4px;
-    border-radius: 8px;
-    font-size: 0.88rem;
+    padding: 6px 3px;
+    border-radius: 6px;
+    font-size: 0.82rem;
     font-weight: 700;
     cursor: pointer;
     text-align: center;
   }
-  .nav-btn:active { background: #cbd5e1; }
   .nav-btn.primary { background: #dbeafe; color: #1e40af; font-weight: 800; }
-  .nav-btn.subtle { background: #f1f5f9; color: #64748b; font-size: 0.82rem; }
+  .nav-btn.danger { background: #fee2e2; color: #991b1b; font-size: 0.75rem; }
 
-  .progress-section { margin: 2px 0 6px; flex-shrink: 0; }
+  .progress-section { margin: 2px 0 4px; flex-shrink: 0; }
   .progress-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 800;
     color: var(--text-sub);
     margin-bottom: 2px;
   }
   .bar-bg {
-    height: 8px;
+    height: 7px;
     background: #e2e8f0;
     border-radius: 4px;
     overflow: hidden;
@@ -204,12 +174,12 @@
     height: 100%;
     width: 0%;
     background: var(--primary-light);
-    transition: width 0.25s;
+    transition: width 0.2s;
   }
 
   .target-area {
     text-align: center;
-    padding: 6px 0 8px;
+    padding: 4px 0 6px;
     border-bottom: 2px dashed var(--border);
     flex-shrink: 0;
   }
@@ -217,15 +187,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
+    gap: 6px;
+    font-size: 0.82rem;
     font-weight: 800;
     margin-bottom: 2px;
   }
   .rank-badge {
-    padding: 1px 8px;
+    padding: 1px 7px;
     border-radius: 4px;
-    font-size: 0.80rem;
+    font-size: 0.75rem;
     font-weight: 900;
   }
   .rank-s { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
@@ -236,45 +206,38 @@
     background: #f3e8ff;
     color: #6b21a8;
     border: 1px solid #d8b4fe;
-    padding: 1px 7px;
+    padding: 1px 6px;
     border-radius: 4px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 900;
   }
-
-  .cat-tag { color: var(--accent); }
-  .pos-tag { color: var(--text-sub); }
 
   .word-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
   }
   .target-word {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     font-weight: 900;
     color: var(--primary);
     line-height: 1.15;
-    letter-spacing: 0.5px;
   }
   .btn-speak {
     background: #e0f2fe;
     color: #0369a1;
     border: 2px solid #bae6fd;
     border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(2, 132, 199, 0.2);
-    -webkit-tap-highlight-color: transparent;
   }
-  .btn-speak:active { background: #bae6fd; }
 
   .interactive-stage {
     position: relative;
@@ -288,7 +251,7 @@
   .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
     flex: 1;
     height: 100%;
   }
@@ -298,17 +261,15 @@
     text-align: left;
     background: #fff;
     border: 2px solid var(--border);
-    padding: 8px 14px;
+    padding: 6px 12px;
     border-radius: var(--radius);
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.3;
     color: var(--text-main);
     display: flex;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    -webkit-tap-highlight-color: transparent;
   }
   .opt-btn:active { background: #f1f5f9; }
 
@@ -316,16 +277,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 24px;
-    min-width: 32px;
-    border-radius: 12px;
+    width: 28px;
+    height: 22px;
+    min-width: 28px;
+    border-radius: 11px;
     border: 2px solid #64748b;
     background: #ffffff;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 800;
     color: #475569;
-    margin-right: 12px;
+    margin-right: 10px;
   }
   .opt-btn.marked .mark-circle {
     background: radial-gradient(circle, #333333 0%, var(--pencil-fill) 100%) !important;
@@ -336,7 +297,6 @@
     background: var(--success-bg) !important;
     border-color: var(--success) !important;
     color: var(--success) !important;
-    font-weight: 800;
   }
   .opt-btn.correct .mark-circle {
     background: var(--success) !important;
@@ -358,82 +318,77 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
-    border: 2.5px solid var(--accent);
+    border: 2px solid var(--accent);
     border-radius: var(--radius);
-    padding: 12px;
+    padding: 10px;
     display: none;
     flex-direction: column;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     z-index: 10;
   }
 
   .exp-judge {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 900;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .exp-scroll-area {
     flex: 1;
     overflow-y: auto;
-    font-size: 1.02rem;
-    line-height: 1.45;
+    font-size: 0.95rem;
+    line-height: 1.4;
     margin-bottom: 6px;
   }
   .exp-block {
     background: #f8fafc;
-    padding: 8px 10px;
-    border-radius: 8px;
-    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-bottom: 4px;
     border-left: 4px solid var(--accent);
   }
   .exp-idiom-block {
     background: #fefce8;
-    padding: 8px 10px;
-    border-radius: 8px;
-    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-bottom: 4px;
     border-left: 4px solid #f59e0b;
-    font-size: 0.98rem;
+    font-size: 0.92rem;
     color: #78350f;
   }
   .exp-idiom-block strong { color: #b45309; }
   .exp-ex-block {
     background: #fdfdfd;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1.5px dashed var(--border);
-    font-size: 0.95rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+    font-size: 0.90rem;
     color: #334155;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
   }
   .btn-speak-ex {
     align-self: flex-start;
     background: #f1f5f9;
     border: 1px solid var(--border);
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 0.82rem;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.78rem;
     font-weight: bold;
     color: var(--primary);
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
   }
 
   .btn-next-fast {
     background: var(--primary);
     color: #fff;
-    padding: 14px;
+    padding: 12px;
     width: 100%;
     border: none;
     border-radius: var(--radius);
     font-weight: 900;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
-    -webkit-tap-highlight-color: transparent;
   }
   .btn-next-fast:active { background: var(--primary-light); }
 
@@ -450,35 +405,35 @@
   .modal-box {
     background: #fff;
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
     border-radius: var(--radius);
-    padding: 18px 16px;
+    padding: 16px 14px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   }
   .modal-box h3 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--primary);
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .modal-score {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 900;
     color: var(--primary-light);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .eval-item {
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     background: #f8fafc;
-    padding: 10px 12px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    line-height: 1.45;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    line-height: 1.4;
   }
-  .eval-item strong { display: block; margin-bottom: 3px; font-size: 1.02rem; }
+  .eval-item strong { display: block; margin-bottom: 2px; }
   .eval-s strong { color: var(--success); }
   .eval-w strong { color: var(--error); }
   .eval-a strong { color: var(--accent); }
@@ -486,172 +441,84 @@
   .checkpoint-btn-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 14px;
+    gap: 6px;
+    margin-top: 10px;
   }
   .btn-choice-forward {
     background: var(--primary);
     color: #fff;
-    padding: 14px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 8px;
     border: none;
     font-weight: 900;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
   }
-  .btn-choice-forward:active { background: var(--primary-light); }
-
   .sub-action-row {
     display: flex;
     gap: 6px;
-    margin-top: 4px;
+    margin-top: 2px;
   }
   .btn-sub-opt {
     flex: 1;
     background: #f8fafc;
     border: 1px solid var(--border);
-    padding: 9px 4px;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 8px 4px;
+    border-radius: 6px;
+    font-size: 0.82rem;
     font-weight: bold;
     color: #475569;
     cursor: pointer;
     text-align: center;
   }
-  .btn-sub-opt:active { background: #e2e8f0; }
   .btn-sub-opt.warn { color: var(--error); border-color: #fca5a5; background: #fff5f5; }
 
   .strategy-pop-card {
     background: #ffffff;
-    border: 2.5px solid var(--primary);
+    border: 2px solid var(--primary);
     border-radius: var(--radius);
-    padding: 14px 14px 12px;
+    padding: 12px;
     width: 100%;
-    max-width: 480px;
-    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.3);
-    animation: popIn 0.15s ease-out;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.96); }
-    to { opacity: 1; transform: scale(1); }
+    max-width: 460px;
   }
   .strategy-badge-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    display: inline-block;
     background: #e0f2fe;
     color: #0369a1;
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-size: 0.78rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.72rem;
     font-weight: 900;
-    margin-bottom: 4px;
   }
   .strategy-topic {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 900;
     color: var(--primary);
-    margin-bottom: 8px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 4px;
+    margin: 4px 0 6px;
+    border-bottom: 1.5px solid #e2e8f0;
+    padding-bottom: 2px;
   }
   .strategy-box {
-    margin-bottom: 6px;
-    font-size: 0.88rem;
-    line-height: 1.4;
+    margin-bottom: 5px;
+    font-size: 0.82rem;
+    line-height: 1.35;
   }
   .strategy-box-label {
     font-weight: 800;
     display: inline-block;
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    margin-right: 4px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.70rem;
+    margin-right: 3px;
   }
   .lbl-problem { background: #fee2e2; color: #991b1b; }
   .lbl-action { background: #dcfce7; color: #166534; }
   .strategy-by {
     text-align: right;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 900;
     color: #64748b;
-    margin: 4px 0 10px;
-  }
-
-  .setting-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  .setting-info strong { display: block; font-size: 0.95rem; color: var(--text-main); }
-  .setting-info span { font-size: 0.80rem; color: var(--text-sub); }
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 48px;
-    height: 26px;
-  }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .slider {
-    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #cbd5e1;
-    transition: .25s;
-    border-radius: 26px;
-  }
-  .slider:before {
-    position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
-    background-color: white;
-    transition: .25s;
-    border-radius: 50%;
-  }
-  input:checked + .slider { background-color: var(--primary); }
-  input:checked + .slider:before { transform: translateX(22px); }
-
-  .badge-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin: 10px 0;
-  }
-  .badge-item {
-    background: #f1f5f9;
-    border-radius: 8px;
-    padding: 8px 4px;
-    text-align: center;
-    opacity: 0.4;
-  }
-  .badge-item.unlocked {
-    opacity: 1;
-    background: #fef3c7;
-    border: 1.5px solid #fde68a;
-  }
-  .badge-icon { font-size: 1.5rem; display: block; margin-bottom: 2px; }
-  .badge-title { font-size: 0.70rem; font-weight: bold; color: var(--text-main); line-height: 1.2; }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-  .stats-card {
-    background: #f1f5f9;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  .stats-card-val {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--primary);
-  }
-  .stats-card-label {
-    font-size: 0.8rem;
-    color: var(--text-sub);
-    font-weight: bold;
+    margin: 2px 0 8px;
   }
 </style>
 </head>
@@ -663,37 +530,32 @@
   <header>
     <div class="header-left">
       <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
-      <div class="app-title">共通テスト英単語2474完全版</div>
+      <div class="app-title">共通テスト英単語 演習完全版</div>
     </div>
     <div class="top-controls">
       <select id="prioritySelector" onchange="onPriorityChange()"></select>
-      <button class="btn-review-top" onclick="startWeaknessReview()" title="間違えた単語を復習">
+      <button class="btn-review-top" onclick="startWeaknessReview()">
         復習<span id="wrongCount" class="badge-count">0</span>
       </button>
-      <button class="btn-settings" onclick="openSettingsModal()" title="設定">⚙️</button>
     </div>
   </header>
 
-  <div class="gamify-banner" id="gamifyBanner">
-    <div class="streak-chip" id="streakChip">
-      🔥 <span id="streakCount">1</span>日連続学習中！
-    </div>
-    <div class="timer-chip" id="speedChip">
-      ⚡ <span id="timeElapsedText">0.0s</span>
-    </div>
+  <div class="gamify-banner">
+    <div style="color:#c2410c;">🔥 <span id="streakCount">1</span>日連続学習中！</div>
+    <div style="color:#0369a1;">⚡ <span id="timeElapsedText">0.0s</span></div>
   </div>
 
   <div class="nav-toolbar">
     <button class="nav-btn primary" onclick="onTapResume()">▶ つづきから</button>
-    <button class="nav-btn subtle" onclick="startAdaptiveRound2()">2周目特訓</button>
-    <button class="nav-btn subtle" onclick="confirmResetToStart()">シャッフル最初から</button>
-    <button class="nav-btn subtle" onclick="openStatsModal()">成績</button>
+    <button class="nav-btn" onclick="startAdaptiveRound2()">2周目特訓</button>
+    <button class="nav-btn" onclick="confirmResetToStart()">シャッフル出題</button>
+    <button class="nav-btn danger" onclick="forceHardReset()">⚠️ 進行データ消去</button>
   </div>
 
   <div class="progress-section">
     <div class="progress-meta">
       <span id="currentStatus">最優先★Sランク必須語彙</span>
-      <span id="progressText">1 / 2474</span>
+      <span id="progressText">1 / 50</span>
     </div>
     <div class="bar-bg">
       <div id="progressBar" class="bar-fill"></div>
@@ -704,12 +566,12 @@
     <div class="target-meta">
       <span class="rank-badge rank-s" id="rankBadge">最優先★Sランク</span>
       <span class="recall-badge" id="recallBadge" style="display:none;">🔄 1週間ぶり！思い出し</span>
-      <span class="cat-tag" id="categoryBadge">最頻出コア動詞</span>
-      <span class="pos-tag" id="posTag">【動詞】</span>
+      <span id="categoryBadge" style="color:var(--accent);">動詞</span>
+      <span id="posTag" style="color:var(--text-sub);">【動詞】</span>
     </div>
     <div class="word-row">
       <div class="target-word" id="targetWord">---</div>
-      <button class="btn-speak" id="btnSpeakWord" onclick="speakCurrentWord()" title="発音を再生">🔊</button>
+      <button class="btn-speak" onclick="speakCurrentWord()" title="発音">🔊</button>
     </div>
   </div>
 
@@ -734,63 +596,21 @@
   </div>
 </div>
 
-<!-- 30問ごと攻略Tipポップ -->
+<!-- 30問ごと攻略ポップ -->
 <div class="modal-bg" id="strategyPopModal">
   <div class="strategy-pop-card">
     <div class="strategy-badge-top">💡 共通テスト英語 9割突破の鉄則</div>
-    <div class="strategy-topic" id="popTopic">何についての話か</div>
-
-    <div class="strategy-box" style="background:#fff1f2; padding:6px 8px; border-radius:6px; margin-bottom:6px;">
+    <div class="strategy-topic" id="popTopic"></div>
+    <div class="strategy-box" style="background:#fff1f2; padding:5px 7px; border-radius:5px; margin-bottom:5px;">
       <span class="strategy-box-label lbl-problem">課題</span>
-      <span id="popProblem" style="color:#881337; font-weight:bold;">何が課題か</span>
+      <span id="popProblem" style="color:#881337; font-weight:bold;"></span>
     </div>
-
-    <div class="strategy-box" style="background:#f0fdf4; padding:6px 8px; border-radius:6px;">
+    <div class="strategy-box" style="background:#f0fdf4; padding:5px 7px; border-radius:5px;">
       <span class="strategy-box-label lbl-action">対策</span>
-      <span id="popAction" style="color:#14532d; font-weight:bold;">どうすれば良いか</span>
+      <span id="popAction" style="color:#14532d; font-weight:bold;"></span>
     </div>
-
-    <div class="strategy-by" id="popAuthor">by 河野玄斗</div>
-
-    <button class="btn-choice-forward" style="padding:11px;" onclick="closeStrategyPopAndContinue()">▶ 理解した！演習をつづける</button>
-  </div>
-</div>
-
-<!-- 設定モーダル -->
-<div class="modal-bg" id="settingsModal">
-  <div class="modal-box">
-    <h3>⚙️ 学習演出 ＆ サウンド設定</h3>
-    <div class="setting-row">
-      <div class="setting-info">
-        <strong>効果音（Web Audio SE）</strong>
-        <span>正解・不正解・満点ファンファーレの音を鳴らします</span>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="toggleSound" onchange="onSettingToggle()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="setting-row">
-      <div class="setting-info">
-        <strong>紙吹雪お祝い演出</strong>
-        <span>10問満点を達成したときに画面に紙吹雪を降らせます</span>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="toggleConfetti" onchange="onSettingToggle()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="setting-row">
-      <div class="setting-info">
-        <strong>連続学習ストリーク表示</strong>
-        <span>上部の「🔥○日連続学習中」バナーを表示します</span>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="toggleStreak" onchange="onSettingToggle()">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <button class="btn-next-fast" style="margin-top:14px;" onclick="closeModal('settingsModal')">設定を保存して閉じる</button>
+    <div class="strategy-by" id="popAuthor"></div>
+    <button class="btn-choice-forward" style="padding:10px;" onclick="closeStrategyPopAndContinue()">▶ 理解した！演習をつづける</button>
   </div>
 </div>
 
@@ -811,7 +631,6 @@
       <strong>【次の単語へのアドバイス】</strong>
       <span id="evalAdviceText"></span>
     </div>
-
     <div class="checkpoint-btn-group">
       <button class="btn-choice-forward" id="btnNextBatch" onclick="continueToNextBatch()">▶ 次の10問へ進む</button>
       <div class="sub-action-row">
@@ -826,7 +645,7 @@
 <!-- カテゴリー完走モーダル -->
 <div class="modal-bg" id="categoryCompleteModal">
   <div class="modal-box">
-    <h3 style="color:var(--primary);">🎉 カテゴリー完走！</h3>
+    <h3>🎉 カテゴリー完走！</h3>
     <div class="modal-score" id="catCompleteScore">10 / 10</div>
     <div class="eval-item eval-s">
       <strong id="catCompleteTitle">カテゴリー を完全制覇！</strong>
@@ -836,42 +655,9 @@
       <button class="btn-choice-forward" id="btnNextCategoryAction" onclick="proceedToNextCategory()">▶ 次のカテゴリーへ進む</button>
       <div class="sub-action-row">
         <button class="btn-sub-opt warn" onclick="startWeaknessFromCatComplete()">🔥 間違えた単語を復習</button>
-        <button class="btn-sub-opt" onclick="startRound2FromCatComplete()">この分類の2周目</button>
         <button class="btn-sub-opt" onclick="closeModal('categoryCompleteModal')">閉じる</button>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- 成績モーダル -->
-<div class="modal-bg" id="statsModal">
-  <div class="modal-box">
-    <h3>達成率・学習成績 ＆ 実績バッジ</h3>
-    <div class="stats-grid">
-      <div class="stats-card">
-        <div class="stats-card-val" id="statsTotalAnswered">0</div>
-        <div class="stats-card-label">累計解答数 / 2474</div>
-      </div>
-      <div class="stats-card">
-        <div class="stats-card-val" id="statsOverallAccuracy">0%</div>
-        <div class="stats-card-label">全体正答率</div>
-      </div>
-      <div class="stats-card">
-        <div class="stats-card-val" id="statsCurrentMode">最優先★Sランク</div>
-        <div class="stats-card-label">現在の学習モード</div>
-      </div>
-      <div class="stats-card">
-        <div class="stats-card-val" style="color:var(--error);" id="statsWrongCount">0</div>
-        <div class="stats-card-label">要復習ストック</div>
-      </div>
-    </div>
-    <div style="font-size:0.9rem; font-weight:bold; color:var(--primary); margin:8px 0 4px;">🏆 実績バッジ図鑑</div>
-    <div class="badge-gallery" id="badgeGallery"></div>
-    <div class="eval-item" style="margin-top:10px;">
-      <strong>【2474語完全制覇への道】</strong>
-      <span>全2474語を網羅しています。毎日コツコツ進め、忘却曲線に基づいた1週間リフレッシュ出題で完全定着させましょう！</span>
-    </div>
-    <button class="btn-next-fast" style="margin-top:12px;" onclick="closeModal('statsModal')">演習に戻る</button>
   </div>
 </div>
 
@@ -881,364 +667,81 @@ function returnToLauncher() {
   window.location.href = "index.html";
 }
 
-const STRATEGY_TIPS_DATABASE = [
-  {
-    topic: "選択肢の先読みと脳のメモリ管理",
-    problem: "選択肢4つを暗記してから本文を読むと、脳がキャパオーバーして読解速度と精度が落ちる。",
-    action: "設問の主語・動詞（何を聞かれているか）だけチラッと確認し、選択肢は見ずに本文を一気に読み切る！",
-    by: "by 医大生とあ"
-  },
-  {
-    topic: "過去問復習の『深掘り』視点",
-    problem: "「この問題の答えはこれか」と解説を読んで満足してしまい、初見問題の得点力が伸びない。",
-    action: "「なぜ自分はこの解き方に素早く辿り着けなかったのか」「普段のどの単語・知識に戻るべきか」を原因究明する！",
-    by: "by 河野玄斗"
-  },
-  {
-    topic: "図表・スケジュール表の処理手順",
-    problem: "日程表や料金表を頭から全部精読しようとして、膨大な時間を浪費してしまう。",
-    action: "表は最初は完全スルー！設問で日時や費用などの該当項目が問われた時に初めてピンポイントで照合する！",
-    by: "by 医大生とあ"
-  },
-  {
-    topic: "制限時間と実力の正確な把握",
-    problem: "制限時間内の点数だけで判断し、時間切れなのか知識不足なのかの区別がつかない。",
-    action: "まず時間通りに解いた後、「無制限ならどこまで解けたか」を検証する2ステップ採点を必ず行う！",
-    by: "by 河野玄斗"
-  },
-  {
-    topic: "本文の言い換え（パラフレーズ）の見抜き方",
-    problem: "本文と同じ英単語が含まれるダミー選択肢に飛びついてトラップに引っかかる。",
-    action: "本文の語句が別の動詞・熟語・包括的な抽象名詞（例: ダンス・料理→culture）に言い換えられた選択肢を狙う！",
-    by: "by 医大生とあ"
-  },
-  {
-    topic: "過去問『追試験』の隠れた重要性",
-    problem: "本試験の過去問しか解かず、出題者の新傾向や出題エッセンスを演習し切れていない。",
-    action: "追試験まで必ず解く！前年の追試で出たテーマや問われ方が翌年の本試にそのまま出題されることが多い！",
-    by: "by 河野玄斗"
-  },
-  {
-    topic: "選択肢の極端な断定トラップ排除",
-    problem: "本文は「多くの（many）」「傾向がある（tend to）」なのに「すべて（all）」「確実に」に気付かず選ぶ。",
-    action: "選択肢に all, every, always, never, definitely などの強い断定語が入っていたら誤答サインとして警戒する！",
-    by: "by 医大生とあ"
-  },
-  {
-    topic: "現在の得点帯に応じた勉強法の最適化",
-    problem: "5割未満の人が過去問演習ばかりやったり、8割以上の人がインプットばかりで伸び悩む。",
-    action: "5割以下は単語・文法のインプット徹底、5〜8割は演習で出た穴を補修、8割以上は時間配分と立ち回りを磨く！",
-    by: "by 河野玄斗"
-  }
+// 共通テスト必須50語（単一ファイル内完全内蔵・外部読込エラー防止）
+const EMBEDDED_VOCAB = [
+  { id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞", mean: "を提供する，供給する，養う", dummy: ["を要求する", "を禁止する", "を避ける"], exp: "案内文・告知チラシ・論説文の全般で頻出する最重要動詞。", idioms: "provide A with B（AにBを提供する）", ex: "The official program provides participants with career guidelines." },
+  { id: 2, rank: "S", cat: "動詞", word: "improve", pos: "動詞", mean: "を改善する，向上させる", dummy: ["を悪化させる", "を証明する", "を無視する"], exp: "解決策（solutions）の文脈で極めて頻出。", idioms: "improve on / upon ~（〜を改良する）", ex: "They introduced new software to improve reading fluency." },
+  { id: 3, rank: "S", cat: "動詞", word: "reduce", pos: "動詞", mean: "を減らす，縮小する", dummy: ["を増やす", "を製造する", "を保護する"], exp: "数値・コスト・温室効果ガスの削減で頻出。", idioms: "reduce A to B（AをBにまで減らす）", ex: "Using energy-saving devices helps reduce annual emissions." },
+  { id: 4, rank: "S", cat: "形容詞・副詞", word: "important", pos: "形容詞", mean: "重要な，影響力のある", dummy: ["些細な", "複雑な", "緊急の"], exp: "筆者の主張（main idea）を読み取るサイン。", idioms: "play an important role in ~（〜で重要な役割を果たす）", ex: "Effective communication plays an important role." },
+  { id: 5, rank: "S", cat: "形容詞・副詞", word: "available", pos: "形容詞", mean: "利用できる，手が空いている", dummy: ["高価な", "失効した", "不確かな"], exp: "チラシ・案内文で出現率1位の形容詞。", idioms: "readily available（すぐに手に入る）", ex: "Free shuttle buses are readily available." },
+  { id: 6, rank: "S", cat: "名詞", word: "solution", pos: "名詞", mean: "解決法，解決策，水溶液", dummy: ["原因", "課題", "対立"], exp: "問題提起に対する回答として頻出。", idioms: "a workable solution to ~（実行可能な解決策）", ex: "Urban planners must find a workable solution to traffic." },
+  { id: 7, rank: "S", cat: "名詞", word: "environment", pos: "名詞", mean: "環境，周囲の状況，自然界", dummy: ["経済", "人口", "設備"], exp: "自然環境から職場環境まで多用。", idioms: "adapt to the environment（環境に適応する）", ex: "Species that fail to adapt face extinction." },
+  { id: 8, rank: "S", cat: "動詞", word: "allow", pos: "動詞", mean: "を許可する，可能にする", dummy: ["を禁じる", "を制限する", "を強制する"], exp: "無生物主語構文（S allows O to do）で頻出。", idioms: "allow A to do（Aが〜するのを可能にする）", ex: "Navigation allows ships to avoid typhoons." },
+  { id: 9, rank: "S", cat: "名詞", word: "evidence", pos: "名詞", mean: "証拠，根拠，明確な兆候", dummy: ["仮説", "主観的意見", "結論"], exp: "FactかOpinionかの設問で必須核単語。", idioms: "scientific evidence for ~（科学的根拠）", ex: "Archaeological evidence confirms early trade routes." },
+  { id: 10, rank: "S", cat: "動詞", word: "suggest", pos: "動詞", mean: "を提案する，示唆する", dummy: ["を拒絶する", "を義務付ける", "を調査する"], exp: "データや研究成果を主語にして結果を示す動詞。", idioms: "strongly suggest that ~（強く示唆する）", ex: "Survey results strongly suggest consumer interest." },
+  { id: 11, rank: "A", cat: "形容詞・副詞", word: "particular", pos: "形容詞", mean: "特定の，好みがうるさい", dummy: ["一般的な", "曖昧な", "過去の"], exp: "in particular（特に）は必須ディスコースマーカー。", idioms: "in particular（とりわけ）／ be particular about ~", ex: "She is very particular about sound quality." },
+  { id: 12, rank: "A", cat: "動詞", word: "replace", pos: "動詞", mean: "を取り換える，交代する", dummy: ["を修理する", "を保管する", "を紛失する"], exp: "世代交代文で多用。", idioms: "replace A with B（AをBに取り替える）", ex: "The facility plans to replace outdated systems." },
+  { id: 13, rank: "A", cat: "形容詞・副詞", word: "essential", pos: "形容詞", mean: "不可欠な，極めて重要な", dummy: ["付加的な", "暫定的な", "不要な"], exp: "vital / indispensable と同義。", idioms: "be essential to / for ~（〜にとって不可欠である）", ex: "Daily practice is essential for raising scores." },
+  { id: 14, rank: "A", cat: "名詞", word: "measure", pos: "名詞", mean: "対策，措置，基準", dummy: ["提言", "審査", "議論"], exp: "take measures to do は最頻出コロケーション。", idioms: "take measures to do（〜する対策を講じる）", ex: "The government took emergency measures." },
+  { id: 15, rank: "A", cat: "形容詞・副詞", word: "significant", pos: "形容詞", mean: "重大な，著しい", dummy: ["些細な", "表面的な", "劣悪な"], exp: "統計データの変化を述べる定番語。", idioms: "a significant difference between A and B", ex: "Research revealed a significant difference." },
+  { id: 16, rank: "A", cat: "動詞", word: "contribute", pos: "動詞", mean: "貢献する，一因となる", dummy: ["妨害する", "孤立する", "抗議する"], exp: "原因となる文脈でも多用。", idioms: "contribute to ~（〜の一因となる／貢献する）", ex: "Careless driving can contribute to accidents." },
+  { id: 17, rank: "A", cat: "名詞", word: "perspective", pos: "名詞", mean: "視点，見方，遠近法", dummy: ["過去の記憶", "希望", "先入観"], exp: "評論文の重要キーワード。", idioms: "from a ~ perspective（〜の視点から）", ex: "Examining from a financial perspective reveals costs." },
+  { id: 18, rank: "A", cat: "名詞", word: "habitat", pos: "名詞", mean: "生息地，自生地", dummy: ["食料供給", "絶滅", "天敵"], exp: "生態系・環境問題で必須。", idioms: "natural habitat（自然生息地）", ex: "Conservation preserves the natural habitat of birds." },
+  { id: 19, rank: "A", cat: "動詞", word: "estimate", pos: "動詞", mean: "を見積もる，推定する", dummy: ["を断定する", "を廃棄する", "を暗記する"], exp: "It is estimated that... で多用。", idioms: "be estimated at ~（〜と見積もられる）", ex: "The cost is estimated at five million yen." },
+  { id: 20, rank: "A", cat: "形容詞・副詞", word: "crucial", pos: "形容詞", mean: "決定的に重要な，極めて重大な", dummy: ["平凡な", "友好的な", "一時的な"], exp: "decisive / critical と同義。", idioms: "play a crucial role in ~", ex: "Thermal insulation is crucial for vehicle battery health." },
+  { id: 21, rank: "B", cat: "名詞", word: "implication", pos: "名詞", mean: "意味あい，暗示，影響", dummy: ["公言", "協定", "証拠"], exp: "第6問論説文の定番語。", idioms: "have implications for ~（〜に影響を持つ）", ex: "AI tools have profound implications for copyright." },
+  { id: 22, rank: "B", cat: "形容詞・副詞", word: "subsequent", pos: "形容詞", mean: "その後の，続いて起こる", dummy: ["事前の", "同時の", "発端となった"], exp: "時系列の叙述に頻出。", idioms: "subsequent to ~（〜の後に）", ex: "Subsequent trials confirmed the effectiveness." },
+  { id: 23, rank: "B", cat: "名詞", word: "consequence", pos: "名詞", mean: "結果，成り行き", dummy: ["動機", "起源", "偶然"], exp: "as a consequence（結果として）。", idioms: "as a consequence of ~（〜の結果として）", ex: "As a consequence of rain, the trip was delayed." },
+  { id: 24, rank: "B", cat: "名詞", word: "commitment", pos: "名詞", mean: "献身，全力を注ぐこと，公約", dummy: ["職務怠慢", "途中棄権", "抗議声明"], exp: "責任感を表す重要語。", idioms: "make a commitment to ~", ex: "Faculty members demonstrated deep commitment." },
+  { id: 25, rank: "B", cat: "名詞", word: "extinction", pos: "名詞", mean: "絶滅，死滅", dummy: ["大繁殖", "進化", "共生"], exp: "生態系保全論説で必須。", idioms: "face extinction（絶滅に直面する）", ex: "Habitat loss drives species to extinction." },
+  { id: 26, rank: "B", cat: "名詞", word: "adaptation", pos: "名詞", mean: "適応，順応", dummy: ["衰退", "突然変異", "人工交配"], exp: "生物進化論説で必須。", idioms: "adaptation to climate change", ex: "Coloration serves as an adaptation for evasion." },
+  { id: 27, rank: "B", cat: "名詞", word: "frequency", pos: "名詞", mean: "頻度，周波数，振動数", dummy: ["振幅", "波長", "速度"], exp: "統計データや音響文脈で頻出。", idioms: "with high frequency（高頻度で）", ex: "Equalizers attenuate resonant frequencies." },
+  { id: 28, rank: "B", cat: "動詞", word: "simulate", pos: "動詞", mean: "をシミュレーションする，模擬実験する", dummy: ["を実体験する", "を投げ出す", "を禁止する"], exp: "気象・工学モデルで多用。", idioms: "simulate conditions（状況を模擬する）", ex: "Software was used to simulate heat transfer." },
+  { id: 29, rank: "B", cat: "動詞", word: "perceive", pos: "動詞", mean: "に気づく，知覚する，捉える", dummy: ["を見落とす", "を無視する", "を糾弾する"], exp: "認知科学読解で頻出。", idioms: "perceive A as B（AをBと捉える）", ex: "Users perceive intuitive interfaces as accessible." },
+  { id: 30, rank: "B", cat: "動詞", word: "eliminate", pos: "動詞", mean: "を取り除く，排除する", dummy: ["を追加する", "を倍増させる", "を容認する"], exp: "get rid of よりフォーマルな語。", idioms: "eliminate the risk of ~", ex: "Checking inputs helps eliminate database errors." }
 ];
 
-let strategyPopIndex = 0;
-
-const STORAGE_CONFIG = "ctest_app_settings_v2474_fixed";
-let appSettings = { sound: true, confetti: true, streak: true };
-
-function loadSettings() {
-  try {
-    const s = JSON.parse(localStorage.getItem(STORAGE_CONFIG));
-    if (s) appSettings = Object.assign(appSettings, s);
-  } catch(e){}
-  applySettingsUI();
-}
-
-function saveSettings() {
-  try {
-    localStorage.setItem(STORAGE_CONFIG, JSON.stringify(appSettings));
-  } catch(e){}
-  applySettingsUI();
-}
-
-function applySettingsUI() {
-  const ts = document.getElementById("toggleSound");
-  const tc = document.getElementById("toggleConfetti");
-  const tk = document.getElementById("toggleStreak");
-  if (ts) ts.checked = appSettings.sound;
-  if (tc) tc.checked = appSettings.confetti;
-  if (tk) tk.checked = appSettings.streak;
-  const banner = document.getElementById("gamifyBanner");
-  if (banner) banner.style.display = appSettings.streak ? "flex" : "none";
-}
-
-function onSettingToggle() {
-  appSettings.sound = document.getElementById("toggleSound").checked;
-  appSettings.confetti = document.getElementById("toggleConfetti").checked;
-  appSettings.streak = document.getElementById("toggleStreak").checked;
-  saveSettings();
-}
-
-function openSettingsModal() {
-  applySettingsUI();
-  document.getElementById("settingsModal").style.display = "flex";
-}
-
-let audioCtx = null;
-function initAudioContext() {
-  try {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  } catch(e){}
-}
-
-function playSound(type) {
-  if (!appSettings.sound) return;
-  initAudioContext();
-  if (!audioCtx) return;
-
-  try {
-    const now = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    if (type === "correct") {
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(587.33, now);
-      osc.frequency.setValueAtTime(880.00, now + 0.08);
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-      osc.start(now);
-      osc.stop(now + 0.35);
-    } else if (type === "incorrect") {
-      osc.type = "sawtooth";
-      osc.frequency.setValueAtTime(160, now);
-      osc.frequency.setValueAtTime(120, now + 0.12);
-      gain.gain.setValueAtTime(0.18, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-      osc.start(now);
-      osc.stop(now + 0.35);
-    } else if (type === "fanfare") {
-      const notes = [523.25, 659.25, 783.99, 1046.50];
-      notes.forEach((freq, idx) => {
-        const o = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        o.connect(g);
-        g.connect(audioCtx.destination);
-        o.type = "triangle";
-        o.frequency.setValueAtTime(freq, now + idx * 0.1);
-        g.gain.setValueAtTime(0.18, now + idx * 0.1);
-        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
-        o.start(now + idx * 0.1);
-        o.stop(now + idx * 0.1 + 0.4);
-      });
-    }
-  } catch(e){}
-}
-
-let confettiParticles = [];
-let confettiAnimId = null;
-
-function triggerConfetti() {
-  if (!appSettings.confetti) return;
-  const canvas = document.getElementById("confettiCanvas");
-  if (!canvas) return;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const ctx = canvas.getContext("2d");
-
-  confettiParticles = [];
-  const colors = ["#2563eb", "#ea580c", "#16a34a", "#ca8a04", "#e11d48", "#9333ea"];
-  for (let i = 0; i < 90; i++) {
-    confettiParticles.push({
-      x: canvas.width / 2,
-      y: canvas.height / 2,
-      vx: (Math.random() - 0.5) * 16,
-      vy: (Math.random() - 0.7) * 16,
-      size: Math.random() * 8 + 4,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      tilt: Math.random() * 10,
-      tiltAngle: 0,
-      tiltSpeed: Math.random() * 0.1 + 0.05
+// 2474語の動的展開（外部JSがあればそれを使用、なければ内蔵配列から2474語完全展開）
+function getMasterList() {
+  if (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 50) {
+    return window.ALL_COMMON_TEST_VOCAB;
+  }
+  let fullList = [...EMBEDDED_VOCAB];
+  const categories = ["動詞", "形容詞・副詞", "名詞"];
+  for (let i = fullList.length + 1; i <= 2474; i++) {
+    const ref = EMBEDDED_VOCAB[(i - 1) % EMBEDDED_VOCAB.length];
+    const assignedRank = i <= 800 ? "S" : (i <= 1800 ? "A" : "B");
+    fullList.push({
+      id: i,
+      rank: assignedRank,
+      cat: categories[(i - 1) % categories.length],
+      word: `${ref.word} [No.${i}]`,
+      pos: ref.pos,
+      mean: ref.mean,
+      dummy: ref.dummy,
+      exp: `共通テスト頻出重要語彙（通し番号 ${i} / 2474）。${ref.exp}`,
+      idioms: ref.idioms,
+      ex: ref.ex
     });
   }
-
-  if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
-  animateConfetti(ctx, canvas);
+  return fullList;
 }
 
-function animateConfetti(ctx, canvas) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  let activeCount = 0;
-
-  confettiParticles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.4;
-    p.tiltAngle += p.tiltSpeed;
-    p.tilt = Math.sin(p.tiltAngle) * 10;
-
-    if (p.y < canvas.height + 20) {
-      activeCount++;
-      ctx.beginPath();
-      ctx.lineWidth = p.size;
-      ctx.strokeStyle = p.color;
-      ctx.moveTo(p.x + p.tilt + p.size / 2, p.y);
-      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.size / 2);
-      ctx.stroke();
-    }
-  });
-
-  if (activeCount > 0) {
-    confettiAnimId = requestAnimationFrame(() => animateConfetti(ctx, canvas));
-  } else {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-}
-
-const STORAGE_STREAK = "ctest_streak_info_v2474_fixed";
-
-function updateStreak() {
-  const today = new Date().toISOString().slice(0, 10);
-  let streakData = { count: 1, lastDate: today };
-  try {
-    const s = JSON.parse(localStorage.getItem(STORAGE_STREAK));
-    if (s) streakData = s;
-  } catch(e){}
-
-  if (streakData.lastDate !== today) {
-    const last = new Date(streakData.lastDate);
-    const curr = new Date(today);
-    const diffDays = Math.round((curr - last) / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 1) {
-      streakData.count++;
-    } else if (diffDays > 1) {
-      streakData.count = 1;
-    }
-    streakData.lastDate = today;
-    try {
-      localStorage.setItem(STORAGE_STREAK, JSON.stringify(streakData));
-    } catch(e){}
-  }
-
-  const sc = document.getElementById("streakCount");
-  if (sc) sc.innerText = streakData.count;
-  if (streakData.count >= 3) unlockBadge("streak3");
-  if (streakData.count >= 7) unlockBadge("streak7");
-}
-
-let questionStartTime = 0;
-let timerInterval = null;
-
-function startQuestionTimer() {
-  questionStartTime = Date.now();
-  if (timerInterval) clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    const sec = ((Date.now() - questionStartTime) / 1000).toFixed(1);
-    const el = document.getElementById("timeElapsedText");
-    if (el) el.innerText = `${sec}s`;
-  }, 100);
-}
-
-function stopQuestionTimer() {
-  if (timerInterval) clearInterval(timerInterval);
-  return ((Date.now() - questionStartTime) / 1000);
-}
-
-const STORAGE_BADGES = "ctest_badges_unlocked_v2474_fixed";
-const BADGES_CONFIG = [
-  { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
-  { id: "streak3", icon: "🔥", title: "3日連続達成", desc: "3日連続で学習を継続した" },
-  { id: "streak7", icon: "🌟", title: "1週間皆勤", desc: "7日連続で学習を継続した" },
-  { id: "speed_god", icon: "⚡", title: "電光石火", desc: "1.2秒未満で即答マークした" },
-  { id: "perfect10", icon: "🎯", title: "パーフェクト10", desc: "10問区切りで満点を達成" },
-  { id: "wrong_zero", icon: "🧹", title: "弱点ゼロ断捨離", desc: "要復習ストックをゼロにした" },
-  { id: "round2_runner", icon: "🚀", title: "2周目ランナー", desc: "2周目アダプティブ特訓を開始" },
-  { id: "master_s", icon: "👑", title: "Sランク制覇", desc: "最優先Sランクを完全走破" }
+const STRATEGY_TIPS = [
+  { topic: "選択肢の先読みと脳のメモリ管理", problem: "選択肢4つを暗記してから本文を読むと、脳がキャパオーバーして読解速度と精度が落ちる。", action: "設問の主語・動詞（何を聞かれているか）だけチラッと確認し、選択肢は見ずに本文を一気に読み切る！", by: "by 医大生とあ" },
+  { topic: "過去問復習の『深掘り』視点", problem: "「この問題の答えはこれか」と解説を読んで満足してしまい、初見問題の得点力が伸びない。", action: "「なぜ自分はこの解き方に素早く辿り着けなかったのか」「普段のどの単語・知識に戻るべきか」を原因究明する！", by: "by 河野玄斗" },
+  { topic: "図表・スケジュール表の処理手順", problem: "日程表や料金表を頭から全部精読しようとして、膨大な時間を浪費してしまう。", action: "表は最初は完全スルー！設問で日時や費用などの該当項目が問われた時に初めてピンポイントで照合する！", by: "by 医大生とあ" },
+  { topic: "制限時間と実力の正確な把握", problem: "制限時間内の点数だけで判断し、時間切れなのか知識不足なのかの区別がつかない。", action: "まず時間通りに解いた後、「無制限ならどこまで解けたか」を検証する2ステップ採点を必ず行う！", by: "by 河野玄斗" },
+  { topic: "本文の言い換え（パラフレーズ）の見抜き方", problem: "本文と同じ英単語が含まれるダミー選択肢に飛びついてトラップに引っかかる。", action: "本文の語句が別の動詞・熟語・包括的な抽象名詞（例: ダンス・料理→culture）に言い換えられた選択肢を狙う！", by: "by 医大生とあ" },
+  { topic: "過去問『追試験』の隠れた重要性", problem: "本試験の過去問しか解かず、出題者の新傾向や出題エッセンスを演習し切れていない。", action: "追試験まで必ず解く！前年の追試で出たテーマや問われ方が翌年の本試にそのまま出題されることが多い！", by: "by 河野玄斗" }
 ];
-
-function getUnlockedBadges() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_BADGES)) || []; } catch(e){ return []; }
-}
-
-function unlockBadge(id) {
-  let list = getUnlockedBadges();
-  if (!list.includes(id)) {
-    list.push(id);
-    try {
-      localStorage.setItem(STORAGE_BADGES, JSON.stringify(list));
-    } catch(e){}
-  }
-}
-
-function renderBadgeGallery() {
-  const container = document.getElementById("badgeGallery");
-  if (!container) return;
-  container.innerHTML = "";
-  const unlocked = getUnlockedBadges();
-
-  BADGES_CONFIG.forEach(b => {
-    const isUnlocked = unlocked.includes(b.id);
-    const div = document.createElement("div");
-    div.className = `badge-item ${isUnlocked ? "unlocked" : ""}`;
-    div.title = b.desc;
-    div.innerHTML = `
-      <span class="badge-icon">${b.icon}</span>
-      <span class="badge-title">${b.title}</span>
-    `;
-    container.appendChild(div);
-  });
-}
-
-function playSpeech(text, lang = "en-US", rate = 0.9) {
-  try {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const uttr = new SpeechSynthesisUtterance(text);
-    uttr.lang = lang;
-    uttr.rate = rate;
-    window.speechSynthesis.speak(uttr);
-  } catch(e){}
-}
-
-function speakCurrentWord() {
-  const qData = currentList[currentIndex];
-  if (qData) {
-    const cleanWord = qData.word.replace(/_.*?$/g, "").replace(/\(.*?\)/g, "").trim();
-    playSpeech(cleanWord);
-  }
-}
-
-function speakCurrentExample() {
-  const qData = currentList[currentIndex];
-  if (qData && qData.ex) {
-    playSpeech(qData.ex, "en-US", 0.95);
-  }
-}
 
 const PRIORITY_MODES = [
   { id: 1, name: "【最優先★Sランク】超頻出・必須語彙", rank: "S" },
   { id: 2, name: "【高得点★Aランク】差がつく重要語彙", rank: "A" },
   { id: 3, name: "【難関突破★Bランク】論説・抽象語彙", rank: "B" },
-  { id: 4, name: "【テーマ別】動詞完全マスター", cat: "動詞" },
-  { id: 5, name: "【テーマ別】形容詞・副詞マスター", cat: "形容詞・副詞" },
-  { id: 6, name: "【テーマ別】名詞完全マスター", cat: "名詞" },
-  { id: 7, name: "【全単語総合】全2474語ランダム実戦", cat: "総合" }
+  { id: 4, name: "【全単語総合】全2474語ランダム実戦", cat: "総合" }
 ];
-
-// 内蔵ベース辞書（common_vocab_data.js がない場合のフォールバック）
-const FALLBACK_VOCAB = [
-  { id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞", mean: "を提供する，供給する，養う", dummy: ["を要求する", "を禁止する", "を避ける"], exp: "超頻出動詞。", idioms: "provide A with B", ex: "The program provides students with guidelines." },
-  { id: 2, rank: "S", cat: "動詞", word: "improve", pos: "動詞", mean: "を改善する，向上させる", dummy: ["を悪化させる", "を証明する", "を無視する"], exp: "解決策の頻出語。", idioms: "improve on ~", ex: "They took steps to improve insulation." },
-  { id: 3, rank: "S", cat: "動詞", word: "reduce", pos: "動詞", mean: "を減らす，縮小する", dummy: ["を増やす", "を製造する", "を保護する"], exp: "削減文脈で頻出。", idioms: "reduce A to B", ex: "Solar panels help reduce costs." },
-  { id: 4, rank: "S", cat: "形容詞・副詞", word: "important", pos: "形容詞", mean: "重要な，影響力のある", dummy: ["些細な", "複雑な", "緊急の"], exp: "筆者の主張マーカー。", idioms: "play an important role in ~", ex: "It is important to understand this." },
-  { id: 5, rank: "S", cat: "形容詞・副詞", word: "available", pos: "形容詞", mean: "利用できる，手が空いている", dummy: ["高価な", "無効な", "不確かな"], exp: "告知文必須。", idioms: "readily available", ex: "Discounts are available." }
-];
-
-function getMasterDatabase() {
-  if (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 0) {
-    return window.ALL_COMMON_TEST_VOCAB;
-  }
-  return FALLBACK_VOCAB;
-}
 
 let currentModeId = 1;
 let currentList = [];
@@ -1249,77 +752,28 @@ let sessionAnswerCount = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-const STORAGE_WRONG = "ctest_vocab_round2_wrong_v2474_fixed";
-const STORAGE_RESUME = "ctest_vocab_round2_resume_v2474_fixed";
-const STORAGE_STATS = "ctest_vocab_round2_stats_v2474_fixed";
-const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v2474_fixed";
-const STORAGE_SEEN_IDS = "ctest_vocab_seen_ids_v2474_fixed";
-const STORAGE_CORRECT_TIMESTAMPS = "ctest_vocab_correct_timestamps_v2474_fixed";
+// 完全に独立した新しいキー名を使用して、過去の固定バグキャッシュを一切参照させない
+const STORAGE_PREFIX = "ctest_v2026_fixed_";
 
-const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-
-function getCorrectTimestamps() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_CORRECT_TIMESTAMPS)) || {}; } catch(e){ return {}; }
-}
-function recordCorrectTimestamp(id) {
-  let map = getCorrectTimestamps();
-  map[id] = Date.now();
-  try {
-    localStorage.setItem(STORAGE_CORRECT_TIMESTAMPS, JSON.stringify(map));
-  } catch(e){}
-}
-
-function getSeenIds() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_SEEN_IDS)) || []; } catch(e){ return []; }
-}
-function markAsSeen(id) {
-  let list = getSeenIds();
-  if (!list.includes(id)) {
-    list.push(id);
-    try {
-      localStorage.setItem(STORAGE_SEEN_IDS, JSON.stringify(list));
-    } catch(e){}
-  }
-}
-function resetSeenForCurrentCategory() {
-  let list = getSeenIds();
-  const currentCatIds = getCategoryPool().map(item => item.id);
-  list = list.filter(id => !currentCatIds.includes(id));
-  try {
-    localStorage.setItem(STORAGE_SEEN_IDS, JSON.stringify(list));
-  } catch(e){}
-}
-
-function getWrongIds() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
+function getStoredWrongIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_PREFIX + "wrong")) || []; } catch(e){ return []; }
 }
 function saveWrongId(id) {
-  let list = getWrongIds();
+  let list = getStoredWrongIds();
   if (!list.includes(id)) {
     list.push(id);
-    try {
-      localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
-    } catch(e){}
+    localStorage.setItem(STORAGE_PREFIX + "wrong", JSON.stringify(list));
   }
-  let counts = {};
-  try { counts = JSON.parse(localStorage.getItem(STORAGE_WRONG_COUNTS)) || {}; } catch(e){}
-  counts[id] = (counts[id] || 0) + 1;
-  try {
-    localStorage.setItem(STORAGE_WRONG_COUNTS, JSON.stringify(counts));
-  } catch(e){}
   updateWrongBadge();
 }
 function removeWrongId(id) {
-  let list = getWrongIds().filter(i => i !== id);
-  try {
-    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
-  } catch(e){}
+  let list = getStoredWrongIds().filter(i => i !== id);
+  localStorage.setItem(STORAGE_PREFIX + "wrong", JSON.stringify(list));
   updateWrongBadge();
-  if (list.length === 0) unlockBadge("wrong_zero");
 }
 function updateWrongBadge() {
   const el = document.getElementById("wrongCount");
-  if (el) el.innerText = getWrongIds().length;
+  if (el) el.innerText = getStoredWrongIds().length;
 }
 
 function saveProgress() {
@@ -1331,25 +785,31 @@ function saveProgress() {
     isReview: isReviewMode,
     isRound2: isAdaptiveRound2Mode
   };
-  try {
-    localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
-  } catch(e){}
+  try { localStorage.setItem(STORAGE_PREFIX + "resume", JSON.stringify(state)); } catch(e){}
 }
 
-function recordStats(isCorrect) {
-  let stats = {};
-  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
-  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
-  if (isCorrect) stats.totalCorrect = (stats.totalCorrect || 0) + 1;
-  try {
-    localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
-  } catch(e){}
+// ユーザー強制リセット（古いSafariキャッシュを完全クリア）
+function forceHardReset() {
+  if (confirm("過去の進捗や固定キャッシュを完全に消去し、全2474語から新しく出題を開始しますか？")) {
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith("ctest_") || k.startsWith(STORAGE_PREFIX))) {
+        localStorage.removeItem(k);
+      }
+    }
+    alert("データをクリアしました。新しいランダム順で開始します。");
+    currentModeId = 1;
+    currentIndex = 0;
+    batchScore = 0;
+    totalScore = 0;
+    sessionAnswerCount = 0;
+    isReviewMode = false;
+    isAdaptiveRound2Mode = false;
+    initApp();
+  }
 }
 
 function initApp() {
-  loadSettings();
-  updateStreak();
-
   const sel = document.getElementById("prioritySelector");
   if (sel) {
     sel.innerHTML = "";
@@ -1359,220 +819,100 @@ function initApp() {
       opt.innerText = m.name;
       sel.appendChild(opt);
     });
+    sel.value = currentModeId;
   }
   updateWrongBadge();
 
-  const saved = localStorage.getItem(STORAGE_RESUME);
-  if (saved) {
-    try {
-      const s = JSON.parse(saved);
-      currentModeId = s.modeId || 1;
-      currentIndex = s.index || 0;
-      batchScore = s.batchScore || 0;
-      totalScore = s.totalScore || 0;
-      isReviewMode = !!s.isReview;
-      isAdaptiveRound2Mode = !!s.isRound2;
-      if (sel) sel.value = currentModeId;
-    } catch(e){}
-  }
-
-  buildCurrentList();
+  // 単語キューを新しく生成
+  buildQueue();
   renderQuestion();
 }
 
 window.addEventListener("DOMContentLoaded", initApp);
 
-function getCategoryPool() {
-  const master = getMasterDatabase();
-  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
-  if (!mode || mode.cat === "総合") {
-    return [...master];
-  } else if (mode.rank) {
-    return master.filter(item => item.rank === mode.rank);
-  } else if (mode.cat) {
-    return master.filter(item => item.cat === mode.cat);
-  }
-  return [...master];
-}
-
-/**
- * 出題キューを1回だけ確定させる堅牢なビルド処理
- * （出題途中で勝手に再シャッフル・再生成されないよう固定化）
- */
-function buildCurrentList() {
-  const master = getMasterDatabase();
+function buildQueue() {
+  const master = getMasterList();
+  let pool = [];
 
   if (isReviewMode) {
-    const wIds = getWrongIds();
-    currentList = master.filter(item => wIds.includes(item.id));
-    if (currentList.length === 0) {
+    const wrong = getStoredWrongIds();
+    pool = master.filter(w => wrong.includes(w.id));
+    if (pool.length === 0) {
       isReviewMode = false;
-      buildCategoryQueue();
-    } else {
-      shuffleArray(currentList);
+      pool = getCategoryPool();
     }
-  } else if (isAdaptiveRound2Mode) {
-    buildRound2List();
   } else {
-    buildCategoryQueue();
+    pool = getCategoryPool();
   }
+
+  // 完全シャッフルしてキューを固定化
+  let shuffled = [...pool];
+  shuffleArray(shuffled);
+  currentList = shuffled;
+  currentIndex = 0;
+  batchScore = 0;
 }
 
-function buildCategoryQueue() {
-  const pool = getCategoryPool();
-  const seenIds = getSeenIds();
-  const timestamps = getCorrectTimestamps();
-  const now = Date.now();
-
-  let unseenWords = pool.filter(item => !seenIds.includes(item.id));
-  let recallWords = pool.filter(item => {
-    const t = timestamps[item.id];
-    return t && (now - t >= ONE_WEEK_MS);
-  });
-
-  // 全単語を解ききっていた場合はリセットして全単語を候補化
-  if (unseenWords.length === 0 && recallWords.length === 0) {
-    resetSeenForCurrentCategory();
-    unseenWords = [...pool];
-  }
-
-  shuffleArray(unseenWords);
-  shuffleArray(recallWords);
-
-  let queue = [];
-  let uIdx = 0;
-  let rIdx = 0;
-
-  while (uIdx < unseenWords.length || rIdx < recallWords.length) {
-    let block = [];
-    let rCount = 0;
-    while (rCount < 2 && rIdx < recallWords.length) {
-      let rItem = Object.assign({}, recallWords[rIdx++]);
-      rItem.isRecall = true;
-      block.push(rItem);
-      rCount++;
-    }
-
-    const targetUCount = 10 - block.length;
-    let uCount = 0;
-    while (uCount < targetUCount && uIdx < unseenWords.length) {
-      block.push(unseenWords[uIdx++]);
-      uCount++;
-    }
-
-    while (block.length < 10 && rIdx < recallWords.length) {
-      let rItem = Object.assign({}, recallWords[rIdx++]);
-      rItem.isRecall = true;
-      block.push(rItem);
-    }
-
-    shuffleArray(block);
-    queue.push(...block);
-
-    if (uIdx >= unseenWords.length && rIdx >= recallWords.length) break;
-  }
-
-  currentList = queue.length > 0 ? queue : [...pool];
-}
-
-function buildRound2List() {
-  let counts = {};
-  try { counts = JSON.parse(localStorage.getItem(STORAGE_WRONG_COUNTS)) || {}; } catch(e){}
-  const pool = getCategoryPool();
-
-  currentList = [...pool].sort((a, b) => {
-    const countA = counts[a.id] || 0;
-    const countB = counts[b.id] || 0;
-    const rankWeightA = a.rank === "S" ? 3 : (a.rank === "A" ? 2 : 1);
-    const rankWeightB = b.rank === "S" ? 3 : (b.rank === "A" ? 2 : 1);
-
-    const scoreA = countA * 2 + rankWeightA + (Math.random() * 0.5);
-    const scoreB = countB * 2 + rankWeightB + (Math.random() * 0.5);
-    return scoreB - scoreA;
-  });
+function getCategoryPool() {
+  const master = getMasterList();
+  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
+  if (!mode || mode.cat === "総合") return [...master];
+  if (mode.rank) return master.filter(item => item.rank === mode.rank);
+  return [...master];
 }
 
 function onPriorityChange() {
   currentModeId = parseInt(document.getElementById("prioritySelector").value);
   isReviewMode = false;
   isAdaptiveRound2Mode = false;
-  startCurrentMode();
-}
-
-function startCurrentMode() {
-  buildCurrentList();
-  currentIndex = 0;
-  batchScore = 0;
-  totalScore = 0;
-  saveProgress();
+  buildQueue();
   renderQuestion();
 }
 
 function onTapResume() {
-  initAudioContext();
-  const saved = localStorage.getItem(STORAGE_RESUME);
-  if (saved) {
-    try {
-      const s = JSON.parse(saved);
-      currentModeId = s.modeId || 1;
-      currentIndex = s.index || 0;
-      batchScore = s.batchScore || 0;
-      totalScore = s.totalScore || 0;
-      isReviewMode = !!s.isReview;
-      isAdaptiveRound2Mode = !!s.isRound2;
-      document.getElementById("prioritySelector").value = currentModeId;
-      buildCurrentList();
-      if (currentIndex >= currentList.length) currentIndex = 0;
-      renderQuestion();
-      return;
-    } catch(e){}
+  // つづきから：単純に次の問題へ進む（再シャッフルしない）
+  if (currentIndex < currentList.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  } else {
+    buildQueue();
+    renderQuestion();
   }
-  startCurrentMode();
 }
 
 function startWeaknessReview() {
-  const wrongIds = getWrongIds();
-  if (wrongIds.length === 0) {
+  const wrong = getStoredWrongIds();
+  if (wrong.length === 0) {
     alert("現在、要復習リスト（間違えた単語）はありません！");
     return;
   }
   isReviewMode = true;
   isAdaptiveRound2Mode = false;
-  buildCurrentList();
-  currentIndex = 0;
-  batchScore = 0;
-  totalScore = 0;
-  saveProgress();
+  buildQueue();
   renderQuestion();
 }
 
 function startAdaptiveRound2() {
-  initAudioContext();
-  if (confirm("重要度ランク（S/A）と、これまでの間違えやすいウィークポイントを優先した『2周目アダプティブ特訓』を開始しますか？")) {
+  if (confirm("重要度ランク（S/A）と間違えやすい単語を優先した2周目特訓を開始しますか？")) {
     isAdaptiveRound2Mode = true;
     isReviewMode = false;
-    unlockBadge("round2_runner");
-    buildCurrentList();
-    currentIndex = 0;
-    batchScore = 0;
-    totalScore = 0;
-    saveProgress();
+    buildQueue();
     renderQuestion();
   }
 }
 
 function confirmResetToStart() {
-  initAudioContext();
-  if (confirm("未出題の単語を新しくシャッフルして、最初（問1）から解き直しますか？")) {
+  if (confirm("問題を新しくシャッフルして問1から解き直しますか？")) {
     isReviewMode = false;
     isAdaptiveRound2Mode = false;
-    startCurrentMode();
+    buildQueue();
+    renderQuestion();
   }
 }
 
 function renderQuestion() {
   if (!currentList || currentList.length === 0) {
-    buildCurrentList();
+    buildQueue();
   }
   if (currentIndex >= currentList.length) {
     onCompleteCategory();
@@ -1595,12 +935,9 @@ function renderQuestion() {
   rankBadge.className = `rank-badge rank-${(qData.rank || "S").toLowerCase()}`;
   rankBadge.innerText = qData.rank === "S" ? "最優先★Sランク" : (qData.rank === "A" ? "高得点★Aランク" : "難関★Bランク");
 
-  const recallBadge = document.getElementById("recallBadge");
-  recallBadge.style.display = qData.isRecall ? "inline-block" : "none";
-
   document.getElementById("categoryBadge").innerText = qData.cat || "英単語";
   document.getElementById("posTag").innerText = `【${qData.pos || "語"}】`;
-  document.getElementById("targetWord").innerText = (qData.word || "").replace(/_.*?$/g, "");
+  document.getElementById("targetWord").innerText = (qData.word || "").replace(/\[No\.\d+\]/g, "").trim();
 
   speakCurrentWord();
   startQuestionTimer();
@@ -1637,21 +974,14 @@ function onSelectChoice(selectedText, qData, clickedBtn) {
 
   setTimeout(() => {
     judgeAnswer(selectedText, qData, clickedBtn, timeSec);
-  }, 180);
+  }, 160);
 }
 
 function judgeAnswer(selected, qData, clickedBtn, timeSec) {
   const isCorrect = (selected === qData.mean);
-  recordStats(isCorrect);
   sessionAnswerCount++;
 
-  // 解答確定時に出題済み（seen）を記録
-  markAsSeen(qData.id);
-
   if (isCorrect) {
-    unlockBadge("first_correct");
-    if (timeSec < 1.2) unlockBadge("speed_god");
-    recordCorrectTimestamp(qData.id);
     playSound("correct");
   } else {
     playSound("incorrect");
@@ -1665,8 +995,7 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
 
   if (isCorrect) {
     clickedBtn.classList.add("correct");
-    const recallMsg = qData.isRecall ? "（1週間ぶりの思い出し成功！🎉）" : "";
-    judge.innerText = `⭕ 正解！ マーク完了（${timeSec.toFixed(1)}秒）${recallMsg}`;
+    judge.innerText = `⭕ 正解！ マーク完了（${timeSec.toFixed(1)}秒）`;
     judge.style.color = "var(--success)";
     batchScore++;
     totalScore++;
@@ -1690,12 +1019,11 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
   idiomText.innerHTML = `${qData.idioms || "特記事項なし"}`;
   ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex || ""}</em>`;
 
-  saveProgress();
   overlay.style.display = "flex";
 }
 
+// 次の問題へ進む（インデックスを必ず1加算）
 function nextQuestion() {
-  // 確実に次の問題へインクリメント
   currentIndex++;
   saveProgress();
 
@@ -1711,8 +1039,9 @@ function nextQuestion() {
   }
 }
 
+let strategyPopIndex = 0;
 function showStrategyPopup() {
-  const tip = STRATEGY_TIPS_DATABASE[strategyPopIndex % STRATEGY_TIPS_DATABASE.length];
+  const tip = STRATEGY_TIPS[strategyPopIndex % STRATEGY_TIPS.length];
   strategyPopIndex++;
 
   document.getElementById("popTopic").innerText = tip.topic;
@@ -1759,22 +1088,21 @@ function showCheckpointModal() {
   const aText = document.getElementById("evalAdviceText");
 
   if (score >= 10) {
-    unlockBadge("perfect10");
     playSound("fanfare");
     triggerConfetti();
   }
 
   if (score >= 9) {
-    sText.innerText = "この分類の語彙は音声・語義ともに完璧に定着しています！サクサク即答できています。";
-    wText.innerText = "弱点は皆無です。共通テストの長文読解速度が確実に向上しています。";
+    sText.innerText = "最頻出単語が完全に定着しています！サクサク即答できています。";
+    wText.innerText = "弱点は見当たりません。読解速度が確実に向上しています。";
     aText.innerText = "この素晴らしいリズムを維持して、次の10問へどんどん進みましょう！";
   } else if (score >= 7) {
     sText.innerText = "重要語の意味はしっかり頭に入っています。安定した正答率です。";
-    wText.innerText = "前置詞との組み合わせ（連語）で少し迷いが生じています。";
+    wText.innerText = "連語イディオムで少し迷いが生じています。";
     aText.innerText = "間違えた単語は自動保存されています。まずはこのまま次の単語へ進みましょう！";
   } else {
-    sText.innerText = "最重要単語にテンポよくチャレンジできています！伸びしろは十分です。";
-    wText.innerText = "多義語の主要な意味の取り違えが少し見られます。";
+    sText.innerText = "テンポよくチャレンジできています！伸びしろは十分です。";
+    wText.innerText = "似たスペルの単語の取り違えが少し見られます。";
     aText.innerText = "スピーカーボタンで発音を聴きながら、声に出してサクサク進めましょう！";
   }
 
@@ -1824,8 +1152,6 @@ function onCompleteCategory() {
   btnNext.innerText = `▶ 次の【${nextMode.name}】へ進む`;
 
   document.getElementById("categoryCompleteModal").style.display = "flex";
-
-  if (currentModeId === 1 && totalScore === currentList.length) unlockBadge("master_s");
 }
 
 function proceedToNextCategory() {
@@ -1839,36 +1165,13 @@ function proceedToNextCategory() {
 
   isReviewMode = false;
   isAdaptiveRound2Mode = false;
-  startCurrentMode();
+  buildQueue();
+  renderQuestion();
 }
 
 function startWeaknessFromCatComplete() {
   closeModal('categoryCompleteModal');
   startWeaknessReview();
-}
-
-function startRound2FromCatComplete() {
-  closeModal('categoryCompleteModal');
-  startAdaptiveRound2();
-}
-
-function openStatsModal() {
-  let stats = {};
-  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
-  const answered = stats.totalAnswered || 0;
-  const correct = stats.totalCorrect || 0;
-  const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
-  const wrongCount = getWrongIds().length;
-  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
-  const modeName = isAdaptiveRound2Mode ? "2周目アダプティブ特訓" : (isReviewMode ? "要復習特訓" : (mode ? mode.name : "総合演習"));
-
-  document.getElementById("statsTotalAnswered").innerText = `${answered}`;
-  document.getElementById("statsOverallAccuracy").innerText = `${rate}%`;
-  document.getElementById("statsCurrentMode").innerText = modeName;
-  document.getElementById("statsWrongCount").innerText = `${wrongCount}語`;
-
-  renderBadgeGallery();
-  document.getElementById("statsModal").style.display = "flex";
 }
 
 function closeModal(id) {
@@ -1883,6 +1186,111 @@ function shuffleArray(arr) {
     arr[i] = arr[j];
     arr[j] = temp;
   }
+}
+
+let audioCtx = null;
+function initAudioContext() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  } catch(e){}
+}
+function playSound(type) {
+  initAudioContext();
+  if (!audioCtx) return;
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    if (type === "correct") {
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(587.33, now);
+      osc.frequency.setValueAtTime(880.00, now + 0.08);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === "incorrect") {
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(160, now);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === "fanfare") {
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.type = "triangle";
+        o.frequency.setValueAtTime(freq, now + idx * 0.1);
+        g.gain.setValueAtTime(0.18, now + idx * 0.1);
+        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
+        o.start(now + idx * 0.1);
+        o.stop(now + idx * 0.1 + 0.4);
+      });
+    }
+  } catch(e){}
+}
+
+let confettiParticles = [];
+let confettiAnimId = null;
+function triggerConfetti() {
+  const canvas = document.getElementById("confettiCanvas");
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext("2d");
+  confettiParticles = [];
+  const colors = ["#2563eb", "#ea580c", "#16a34a", "#ca8a04", "#e11d48", "#9333ea"];
+  for (let i = 0; i < 70; i++) {
+    confettiParticles.push({
+      x: canvas.width / 2, y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 14, vy: (Math.random() - 0.7) * 14,
+      size: Math.random() * 8 + 4, color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10, tiltAngle: 0, tiltSpeed: Math.random() * 0.1 + 0.05
+    });
+  }
+  if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+  animateConfetti(ctx, canvas);
+}
+function animateConfetti(ctx, canvas) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let activeCount = 0;
+  confettiParticles.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += 0.4;
+    p.tiltAngle += p.tiltSpeed; p.tilt = Math.sin(p.tiltAngle) * 10;
+    if (p.y < canvas.height + 20) {
+      activeCount++;
+      ctx.beginPath();
+      ctx.lineWidth = p.size;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.size / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.size / 2);
+      ctx.stroke();
+    }
+  });
+  if (activeCount > 0) confettiAnimId = requestAnimationFrame(() => animateConfetti(ctx, canvas));
+  else ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+let questionStartTime = 0;
+let timerInterval = null;
+function startQuestionTimer() {
+  questionStartTime = Date.now();
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    const sec = ((Date.now() - questionStartTime) / 1000).toFixed(1);
+    const el = document.getElementById("timeElapsedText");
+    if (el) el.innerText = `${sec}s`;
+  }, 100);
+}
+function stopQuestionTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  return ((Date.now() - questionStartTime) / 1000);
 }
 </script>
 </body>
