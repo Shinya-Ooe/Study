@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>共通テスト古文 完全ガイド</title>
+<style>
+:root{--bg:#f2f5f8;--fg:#1c2631;--sub:#5b6875;--ac:#2a4a7f;--card:#fff;--ok:#27734f;--ng:#b13a2a;--ln:#d4dbe3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161d;--fg:#e6ebf0;--sub:#9aa8b5;--ac:#8fb0e6;--card:#18212b;--ok:#6fcf9d;--ng:#ff8e7b;--ln:#2a3541;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161d;--fg:#e6ebf0;--sub:#9aa8b5;--ac:#8fb0e6;--card:#18212b;--ok:#6fcf9d;--ng:#ff8e7b;--ln:#2a3541;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.9 "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+main{max-width:680px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.5rem;margin:.2em 0 .4em;letter-spacing:.04em}
+h2{font-size:1.2rem;margin:.6em 0}
+a{color:var(--ac)}
+.s{color:var(--sub);font-size:.9rem;line-height:1.7}
+.c{background:var(--card);border:1px solid var(--ln);border-left:4px solid var(--ac);border-radius:4px;padding:12px 14px;margin:12px 0}
+.b{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left;font:inherit;font-family:"Hiragino Sans","Yu Gothic",sans-serif;font-size:.95rem;line-height:1.6;color:var(--fg);background:var(--card);border:1px solid var(--ln);border-radius:4px;padding:11px 14px;margin:8px 0;cursor:pointer}
+.b:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.b:disabled{cursor:default;opacity:.55}
+.b.ok{border-color:var(--ok);color:var(--ok);opacity:1}
+.b.ng{border-color:var(--ng);color:var(--ng);opacity:1}
+.b.r{border-style:dashed}
+b.ok{color:var(--ok)}b.ng{color:var(--ng)}
+</style>
+</head>
+<body>
+<main id="a"></main>
+<script>
+var INTRO="共通テスト国語（200点・90分）のうち、古文は第3問（50点・目安20分前後）。設問は主に「語句の意味」「文法」「敬語」「内容・心情の説明」「和歌・修辞」の5分野です。各分野を「解説 → 問題 → 復習」の順で進めます。形式は年度で変わるため、最新の様式は大学入試センターの公表で確認してください。";
+var S=[
+{t:"古文単語",l:"現代語と同じ形で意味が違う語が狙われます。中心の意味を覚え、文脈で絞ります。<br>あやし＝不思議だ・身分が低い／ありがたし＝めったにない／をかし＝趣がある／いとほし＝気の毒だ・かわいい／やがて＝すぐに・そのまま／ゆかし＝見たい・知りたい",q:[
+["「いとあやしき声のしければ、人々驚きぬ。」<br>「あやしき」の意味は。",["不思議な","身分の低い","美しい","騒がしい"],0,"声がして人々が驚いたので「不思議な」。「身分が低い」は人や住まいを述べるときの意味です。"],
+["「やがて出でたまひぬ。」<br>「やがて」の意味は。",["すぐに","そのうちに","やはり","ゆっくりと"],0,"古語の「やがて」は「すぐに・そのまま」。現代語の「そのうち」と混同しないこと。"],
+["「その山の花、ゆかしくて、ひとり出でにけり。」<br>「ゆかしく」の意味は。",["見たく","上品で","恐ろしく","不愉快で"],0,"「ゆかし」は心が引かれて見たい・知りたい気持ち。ひとりで出かけた理由として自然です。"]]},
+{t:"文法",l:"「ぬ」は上の活用形で見分けます。未然形＋ぬ＝打消（連体形）、連用形＋ぬ＝完了（終止形）。<br>「なり」は、体言・連体形に付けば断定、動詞の終止形に付けば伝聞・推定（音や声が根拠）です。",q:[
+["「雪降りぬ。」の「ぬ」の意味は。",["完了","打消","推量","伝聞"],0,"「降り」は連用形で、文末の終止形「ぬ」なので完了（雪が降った）。"],
+["「知らぬ人なり。」の「ぬ」の意味は。",["打消","完了","過去","断定"],0,"「知ら」は未然形なので、打消の「ぬ」（連体形）。後ろの「なり」は体言「人」に付く断定です。"],
+["「虫の音すなり。」の「なり」の意味は。",["断定","伝聞・推定","形容動詞の一部","完了"],1,"「す」はサ変の終止形に付くので伝聞・推定。虫の音が聞こえることを根拠にしています。"]]},
+{t:"敬語",l:"尊敬語は動作をする人を敬い、謙譲語は動作を受ける人を敬い、丁寧語は読み手に対して使います。<br>尊敬：おはす・のたまふ・たまふ／謙譲：申す・奉る・まゐる・うけたまはる／丁寧：侍り・候ふ<br>「せたまふ」「させたまふ」は二重敬語（最高敬語）で、帝や中宮など最も身分の高い人に使います。",q:[
+["「帝、花を見せさせたまふ。」の「させたまふ」の働きは。",["帝への最高敬語","筆者への謙譲","読み手への丁寧","受け手への謙譲"],0,"「させ」＋「たまふ」の二重敬語は、動作主（帝）を特に高く敬う最高敬語です。"],
+["「翁、帝に『これを奉らむ』と申す。」<br>「申す」は誰を敬う語か。",["翁","帝","筆者","読み手"],1,"謙譲語は動作を受ける相手を敬います。「申す」の相手（受け手）は帝です。"],
+["「かの人おはしけり。」の「おはす」は何の敬語か。",["尊敬語","謙譲語","丁寧語","敬語ではない"],0,"「おはす」は「あり・行く・来」の尊敬語で、動作主を敬います。"]]},
+{t:"文章の読解（徒然草・第52段）",l:"本文は短く抜き出しています。語注：仁和寺＝京都の寺／石清水＝石清水八幡宮（本社は山の上）／心うし＝残念だ／徒歩＝徒歩で／まうづ＝参詣する／先達＝案内者／あらまほし＝あってほしい。<br>読解は「誰が・何を・なぜ」を押さえ、最後の筆者の主張で内容を確かめます。<div class=c>仁和寺にある法師、年寄るまで石清水を拝まざりければ、心うく覚えて、ある時思ひ立ちて、ただひとり、徒歩よりまうでけり。極楽寺・高良などを拝みて、かばかりと心得て帰りにけり。（中略）少しのことにも、先達はあらまほしき事なり。</div>",q:[
+["法師が「心うく覚えて」思い立った理由は。",["年を取るまで石清水に参拝していなかったから","道に迷ってしまったから","仲間に笑われたから","山道が険しかったから"],0,"直前の「年寄るまで石清水を拝まざりければ」が理由です。"],
+["「かばかりと心得て帰りにけり」の内容は。",["極楽寺・高良を拝んで石清水の参拝が済んだと思い込み、山上の本社を見ずに帰った","疲れて途中で引き返した","目的を忘れて帰った","道を間違えて帰った"],0,"語注のとおり本社は山の上にあります。麓の寺社だけで「これで全部」と誤解したのです。"],
+["筆者の言いたいことは。",["何事も一人でやるべきだ","わずかなことにも案内者がいてほしい","神社は山に登って拝むべきだ","年寄りは旅をしてはならない"],1,"結びの「少しのことにも、先達はあらまほしき事なり」の意味です。"]]},
+{t:"和歌・修辞",l:"掛詞＝同音で二つの意味を重ねる（「まつ」＝待つ・松、「ふる」＝降る・経る、「あき」＝秋・飽き）。縁語＝意味の関連する語を散りばめる。枕詞＝特定の語を導く飾りの語（多くは五音）。<br>係り結び：ぞ・なむ・や・か→連体形、こそ→已然形で結びます。",q:[
+["「あき」が「秋」と「飽き」の二つの意味を表す技法は。",["掛詞","縁語","枕詞","序詞"],0,"同音で二つの意味を重ねるのが掛詞です。"],
+["「花こそ咲きけれ。」の「けれ」の活用形は。",["已然形（こその結び）","連体形","命令形","未然形"],0,"係助詞「こそ」の結びは已然形になります。"]]}
+];
+var W=[],run=null,app=document.getElementById("a");
+try{W=JSON.parse(localStorage.getItem("kotenW")||"[]")}catch(e){W=[]}
+function save(){try{localStorage.setItem("kotenW",JSON.stringify(W))}catch(e){}}
+function get(id){var p=id.split("-");return S[p[0]].q[p[1]]}
+function home(){var n=W.length,h="<h1>共通テスト古文 完全ガイド</h1><p class=s>"+INTRO+"</p>";
+S.forEach(function(s,i){h+="<button class=b onclick=\"lesson("+i+")\"><b>"+(i+1)+". "+s.t+"</b><span>"+s.q.length+"問</span></button>"});
+h+="<button class=\"b r\" onclick=\"review()\""+(n?"":" disabled")+"><b>間違えた問題を復習</b><span>"+n+"問</span></button><p class=s><a href=# onclick=\"reset();return false\">記録を消す</a></p>";app.innerHTML=h;window.scrollTo(0,0)}
+function lesson(i){app.innerHTML="<p><a href=# onclick=\"home();return false\">← 戻る</a></p><h2>"+S[i].t+"</h2><div class=c>"+S[i].l+"</div><button class=b onclick=\"start("+i+")\">問題を解く</button>";window.scrollTo(0,0)}
+function start(i){run={ids:S[i].q.map(function(_,j){return i+"-"+j}),i:0,ok:0,name:S[i].t};ask()}
+function review(){run={ids:W.slice(),i:0,ok:0,name:"復習"};ask()}
+function ask(){if(run.i>=run.ids.length)return fin();var q=get(run.ids[run.i]),h="<p class=s>"+run.name+"　"+(run.i+1)+" / "+run.ids.length+"</p><div class=c>"+q[0]+"</div>";
+q[1].forEach(function(o,k){h+="<button class=b onclick=\"pick("+k+")\">"+"①②③④"[k]+" "+o+"</button>"});app.innerHTML=h+"<div id=f></div>";window.scrollTo(0,0)}
+function pick(k){var id=run.ids[run.i],q=get(id),ok=k==q[2];run.ok+=ok?1:0;W=W.filter(function(x){return x!=id});if(!ok)W.push(id);save();
+document.querySelectorAll(".b").forEach(function(e,j){e.disabled=true;if(j==q[2])e.classList.add("ok");else if(j==k)e.classList.add("ng")});
+document.getElementById("f").innerHTML="<div class=c><b class="+(ok?"ok":"ng")+">"+(ok?"正解":"不正解")+"</b>　正解は "+"①②③④"[q[2]]+"<br>"+q[3]+"</div><button class=b onclick=\"run.i++;ask()\">次へ</button>"}
+function fin(){var h="<h2>結果　"+run.ok+" / "+run.ids.length+"</h2>";
+h+=W.length?"<button class=b onclick=\"review()\"><b>間違えた問題を復習</b><span>"+W.length+"問</span></button>":"<p>間違えた問題はありません。</p>";
+app.innerHTML=h+"<button class=b onclick=\"home()\">ホームへ</button>"}
+function reset(){W=[];save();home()}
+home();
+</script>
+</body>
+</html>
