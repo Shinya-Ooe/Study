@@ -62,33 +62,33 @@ function ids(c){return C[c].q.map(function(_,j){return c+"-"+j})}
 function all(){return [].concat.apply([],C.map(function(_,c){return ids(c)}))}
 function wrong(){return all().filter(function(i){return R[i]===0})}
 function get(id){var p=id.split("-");return C[p[0]].q[p[1]]}
-function top(){window.scrollTo(0,0)}
+function up(){window.scrollTo(0,0)}
 function home(){var w=wrong().length,n=all().length,h="<h1>電気と磁界・発電機 期末テスト問題集</h1><p class=s>全"+n+"問。答えるたびに解説が出ます。間違えた問題は復習でき、最後に得意・不得意の講評が出ます。</p><button class=\"b p\" onclick=\"start(all(),'全問')\"><b>全問に挑戦</b><span>"+n+"問</span></button>";
 C.forEach(function(c,i){h+="<button class=b onclick=\"start(ids("+i+"),C["+i+"].t)\"><b>"+c.t+"</b><span>"+c.q.length+"問</span></button>"});
-h+="<button class=b onclick=\"review()\""+(w?"":" disabled")+"><b>間違えた問題を復習</b><span>"+w+"問</span></button><button class=b onclick=\"rep()\"><b>講評を見る</b></button><p class=s><a href=# onclick=\"reset();return false\">記録を消す</a></p>";app.innerHTML=h;top()}
+h+="<button class=b onclick=\"review()\""+(w?"":" disabled")+"><b>間違えた問題を復習</b><span>"+w+"問</span></button><button class=b onclick=\"rep()\"><b>講評を見る</b></button><p class=s><a href=# onclick=\"reset();return false\">記録を消す</a></p>";app.innerHTML=h;up()}
 function start(l,name){run={ids:l,i:0,ok:0,name:name};ask()}
 function review(){run={ids:wrong(),i:0,ok:0,name:"復習"};ask()}
 function ask(){if(run.i>=run.ids.length)return fin();var q=get(run.ids[run.i]),h="<p class=s>"+run.name+"　"+(run.i+1)+" / "+run.ids.length+"</p><div class=c>"+q[0]+"</div>";
-q[1].forEach(function(o,k){h+="<button class=b onclick=\"pick("+k+")\">"+N[k]+" "+o+"</button>"});app.innerHTML=h+"<div id=f></div>";top()}
+q[1].forEach(function(o,k){h+="<button class=b onclick=\"pick("+k+")\">"+N[k]+" "+o+"</button>"});app.innerHTML=h+"<div id=f></div>";up()}
 function pick(k){var id=run.ids[run.i],q=get(id),ok=k==q[2];run.ok+=ok?1:0;R[id]=ok?1:0;save();
 document.querySelectorAll(".b").forEach(function(e,j){e.disabled=true;if(j==q[2])e.classList.add("ok");else if(j==k)e.classList.add("ng")});
 document.getElementById("f").innerHTML="<div class=c><b class="+(ok?"ok":"ng")+">"+(ok?"正解":"不正解")+"</b>　正解は "+N[q[2]]+"<br>"+q[3]+"</div><button class=b onclick=\"run.i++;ask()\">次へ</button>"}
 function fin(){var w=wrong().length,h="<h2>結果　"+run.ok+" / "+run.ids.length+"</h2>";
 h+="<button class=\"b p\" onclick=\"rep()\"><b>講評を見る</b></button>";
 if(w)h+="<button class=b onclick=\"review()\"><b>間違えた問題を復習</b><span>"+w+"問</span></button>";
-app.innerHTML=h+"<button class=b onclick=\"home()\">ホームへ</button>";top()}
+app.innerHTML=h+"<button class=b onclick=\"home()\">ホームへ</button>";up()}
 function rep(){var tt=0,tc=0,h="<h2>講評</h2>",st=[],wk=[];
 C.forEach(function(c,i){var d=0,o=0;ids(i).forEach(function(id){if(R[id]!==undefined){d++;o+=R[id]}});tt+=d;tc+=o;var p=d?Math.round(o*100/d):0;
 h+="<b>"+c.t+"</b>　"+(d?o+" / "+d+"（"+p+"%）":"未回答")+"<div class=bar><i style=\"width:"+p+"%\"></i></div>";
 if(d){if(p>=80)st.push(c.t);else if(p<60)wk.push(i)}});
-if(!tt){app.innerHTML=h+"<p>まだ回答がありません。問題に挑戦すると講評が出ます。</p><button class=b onclick=\"home()\">ホームへ</button>";return top()}
+if(!tt){app.innerHTML=h+"<p>まだ回答がありません。問題に挑戦すると講評が出ます。</p><button class=b onclick=\"home()\">ホームへ</button>";return up()}
 var P=Math.round(tc*100/tt);
 h+="<div class=c><b>全体　"+tc+" / "+tt+"（"+P+"%）</b><br>"+(P>=90?"とてもよくできています。この調子で、間違えた問題だけ見直せば満点が狙えます。":P>=70?"基本は身についています。弱い分野を直せば、さらに伸びます。":"基本から見直しましょう。解説を読んで、間違えた問題を復習で解き直すのが近道です。")+"</div>";
 h+="<h2>得意な分野</h2><p>"+(st.length?st.join("、"):"80%以上の分野はまだありません。復習で伸ばしましょう。")+"</p><h2>弱い分野（60%未満）</h2>";
 h+=wk.length?wk.map(function(i){return "<div class=c><b>"+C[i].t+"</b><br>"+C[i].tip+"</div>"}).join(""):"<p>60%未満の分野はありません。</p>";
 var w=wrong().length;
 if(w)h+="<button class=\"b p\" onclick=\"review()\"><b>間違えた問題を復習</b><span>"+w+"問</span></button>";
-app.innerHTML=h+"<button class=b onclick=\"home()\">ホームへ</button>";top()}
+app.innerHTML=h+"<button class=b onclick=\"home()\">ホームへ</button>";up()}
 function reset(){R={};save();home()}
 home();
 </script>
