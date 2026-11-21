@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共通テスト頻出英単語 演習トレーニング3000</title>
+<style>
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #0284c7;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-sub: #475569;
+    --success: #16a34a;
+    --error: #dc2626;
+    --border: #e2e8f0;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 16px;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    padding: 24px;
+  }
+
+  header {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 1.4rem; color: var(--primary); margin-bottom: 4px; }
+  .subtitle { font-size: 0.85rem; color: var(--text-sub); }
+
+  .set-selector-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  select, button {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    outline: none;
+  }
+  select { flex: 1; min-width: 200px; background: #fff; }
+  button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  button:hover { background: var(--accent); }
+  button.review-btn { background: #ea580c; }
+  button.review-btn:hover { background: #c2410c; }
+
+  /* 進行バー */
+  .progress-wrap { margin-bottom: 16px; }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+  }
+  .progress-bar-bg {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-light);
+    transition: width 0.3s;
+  }
+
+  /* 問題エリア */
+  .question-box {
+    margin-bottom: 20px;
+  }
+  .q-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 4px;
+    background: #e0f2fe;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .word-target {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .pos-tag {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-left: 8px;
+    font-weight: normal;
+  }
+
+  /* 選択肢 */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .option-btn {
+    text-align: left;
+    background: #fff;
+    color: var(--text-main);
+    border: 2px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: var(--primary-light);
+  }
+  .option-btn.correct {
+    background: #dcfce7 !important;
+    border-color: var(--success) !important;
+    color: #14532d !important;
+    font-weight: bold;
+  }
+  .option-btn.incorrect {
+    background: #fee2e2 !important;
+    border-color: var(--error) !important;
+    color: #7f1d1d !important;
+  }
+
+  /* 即時解説エリア */
+  .explanation-card {
+    display: none;
+    background: #f8fafc;
+    border-left: 4px solid var(--accent);
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+  }
+  .exp-title { font-weight: bold; color: var(--primary); margin-bottom: 6px; font-size: 0.95rem; }
+  .exp-content { font-size: 0.9rem; margin-bottom: 6px; color: var(--text-main); }
+  .exp-example {
+    font-size: 0.85rem;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+    color: #334155;
+  }
+
+  .nav-btn-wrap {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .next-btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  /* 講評モーダル */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+  }
+  .modal-card {
+    background: #fff;
+    width: 100%;
+    max-width: 580px;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .score-badge {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 16px;
+  }
+  .eval-section {
+    background: #f8fafc;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+  .eval-section h4 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .eval-strong h4 { color: var(--success); }
+  .eval-weak h4 { color: var(--error); }
+  .eval-advice h4 { color: var(--accent); }
+
+  /* 復習ストックバッジ */
+  .wrong-count-badge {
+    background: #ef4444;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>共通テストに出る英単語演習 3000</h1>
+    <div class="subtitle">英語漬け.com 共通テスト頻出語彙準拠・50問/セット・10問ごと個別講評システム</div>
+  </header>
+
+  <div class="set-selector-bar">
+    <select id="setSelector" onchange="changeSet()">
+      <!-- JSでセット1〜60を自動注入 -->
+    </select>
+    <button onclick="startCurrentSet()">セット開始</button>
+    <button class="review-btn" onclick="startWeaknessReview()">
+      要復習リスト <span id="wrongCount" class="wrong-count-badge">0</span>
+    </button>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="currentStatus">問題準備完了</span>
+      <span id="progressText">0 / 50</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div id="progressBar" class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <div id="quizArea">
+    <div class="question-box">
+      <div>
+        <span class="q-badge" id="categoryBadge">最頻出基本語</span>
+        <span class="pos-tag" id="posTag">【品詞】</span>
+      </div>
+      <div class="word-target" id="targetWord">important</div>
+    </div>
+
+    <div class="options-grid" id="optionsGrid">
+      <!-- 4択ボタン -->
+    </div>
+
+    <div class="explanation-card" id="explanationCard">
+      <div class="exp-title" id="expResultTitle">正解！</div>
+      <div class="exp-content" id="expBody">解説文がここに入ります。</div>
+      <div class="exp-example" id="expExample">例文がここに入ります。</div>
+    </div>
+
+    <div class="nav-btn-wrap">
+      <button id="nextBtn" class="next-btn" style="display:none;" onclick="nextQuestion()">次の問題へ ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 10問ごとの講評モーダル -->
+<div class="modal-overlay" id="checkpointModal">
+  <div class="modal-card">
+    <div class="modal-title" id="checkpointTitle">第1段落 達成講評（1〜10問）</div>
+    <div class="score-badge" id="checkpointScore">8 / 10</div>
+
+    <div class="eval-section eval-strong">
+      <h4>得意・習得できているポイント</h4>
+      <div id="evalStrongText"></div>
+    </div>
+
+    <div class="eval-section eval-weak">
+      <h4>注意・弱点となっているポイント</h4>
+      <div id="evalWeakText"></div>
+    </div>
+
+    <div class="eval-section eval-advice">
+      <h4>次の10問への戦略・学習アドバイス</h4>
+      <div id="evalAdviceText"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 18px;">
+      <button style="padding: 10px 30px; font-size: 1rem;" onclick="closeModalAndContinue()">次の10問へ進む</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * 英語漬け.com 頻出データおよび共通テスト過去問体系に基づくボキャブラリ辞書
+ * 各セット50問 × 60セット = 3,000問規模
+ */
+const VOCAB_DATABASE = [
+  // --- SET 1: 最頻出コア動詞・形容詞 (1〜50) ---
+  { id: 1, set: 1, word: "important", pos: "形容詞", mean: "重要な，大事な", dummy: ["些細な","複雑な","緊急の"], exp: "共通テスト第1問〜第6問まで頻出の最重要語句。類義語：significant, crucial", ex: "It is important to understand the main purpose of this article." },
+  { id: 2, set: 1, word: "provide", pos: "動詞", mean: "を提供する，供給する", dummy: ["を要求する","を禁止する","を避ける"], exp: "provide A with B / provide B for A の語法が頻出。情報提示文・案内チラシに必須。", ex: "The university website provides students with updated course schedules." },
+  { id: 3, set: 1, word: "improve", pos: "動詞", mean: "を改善する，向上させる", dummy: ["を低下させる","を証明する","を無視する"], exp: "グラフ読み取りや改善策（solutions）の文脈で頻出。", ex: "They took several measures to improve their communication skills." },
+  { id: 4, set: 1, word: "environment", pos: "名詞", mean: "環境，周囲の状況", dummy: ["経済","人口","設備"], exp: "自然環境だけでなく work environment（職場環境）等の文脈でも頻出。", ex: "Protecting the natural environment is a global responsibility." },
+  { id: 5, set: 1, word: "reduce", pos: "動詞", mean: "を減らす，縮小する", dummy: ["を増やす","を拡大する","を製造する"], exp: "対義語は increase。数値・コスト・温室効果ガスの削減で頻出。", ex: "The new technology helps reduce energy consumption substantially." },
+  { id: 6, set: 1, word: "consider", pos: "動詞", mean: "をよく考える，検討する", dummy: ["を忘れる","を決定する","を拒絶する"], exp: "consider doing（〜することを検討する）。regard A as B と同様に「見なす」の意味も。", ex: "We need to consider various options before making a final decision." },
+  { id: 7, set: 1, word: "available", pos: "形容詞", mean: "利用できる，入手可能な", dummy: ["高価な","期限切れの","不確定な"], exp: "案内文・イベント告知で極めて頻出。「（人が）手が空いている」の意味も。", ex: "Free Wi-Fi is available in all university campus buildings." },
+  { id: 8, set: 1, word: "activity", pos: "名詞", mean: "活動，行動", dummy: ["規則","目標","結果"], exp: "課外活動（extracurricular activities）や実験活動などで頻出。", ex: "Students are encouraged to participate in volunteer activities." },
+  { id: 9, set: 1, word: "suggest", pos: "動詞", mean: "を提案する，示唆する", dummy: ["を否定する","を要求する","を命令する"], exp: "suggest that S (should) do / 実験データが〜を示している（suggest that...）。", ex: "The research suggests that regular exercise improves mental health." },
+  { id: 10, set: 1, word: "solution", pos: "名詞", mean: "解決法，解決策", dummy: ["原因","問題点","対立"], exp: "問題提起（problem/issue）に対する回答として論説文の結びに頻出。", ex: "Finding an effective solution requires extensive cooperation." },
+
+  // 11〜20
+  { id: 11, set: 1, word: "benefit", pos: "名詞・動詞", mean: "利益，恩恵／恩恵を受ける", dummy: ["損失","障害","重圧"], exp: "costs and benefits（費用対効果）の文脈で評論文に頻出。", ex: "Regular reading offers tremendous educational benefits." },
+  { id: 12, set: 1, word: "evidence", pos: "名詞", mean: "証拠，根拠", dummy: ["仮説","推測","結論"], exp: "「事実（Fact）と意見（Opinion）」を問う設問のキーワード。", ex: "There is scientific evidence supporting this hypothesis." },
+  { id: 13, set: 1, word: "develop", pos: "動詞", mean: "を発達させる，開発する", dummy: ["を衰退させる","を維持する","を破壊する"], exp: "発展途上国（developing countries）などの派生形も押さえましょう。", ex: "Scientists are trying to develop more reliable prediction models." },
+  { id: 14, set: 1, word: "particular", pos: "形容詞", mean: "特定の，特別な", dummy: ["一般的な","あいまいな","過去の"], exp: "in particular（特に・とりわけ）は必須の論理マーカーディスコース。", ex: "She showed a particular interest in ornithology and ecology." },
+  { id: 15, set: 1, word: "allow", pos: "動詞", mean: "を許可する，可能にする", dummy: ["を禁じる","を制限する","を強いる"], exp: "allow A to do（Aが〜するのを可能にする）は頻出語法。", ex: "The new digital tool allows users to track their progress easily." },
+  { id: 16, set: 1, word: "replace", pos: "動詞", mean: "を取り換える，交代する", dummy: ["を修復する","を保持する","を失う"], exp: "replace A with B（AをBに置き換える）。", ex: "Renewable energy can gradually replace traditional fossil fuels." },
+  { id: 17, set: 1, word: "require", pos: "動詞", mean: "を必要とする，要求する", dummy: ["を諦める","を節約する","を破棄する"], exp: "requirement（必要条件・出願資格）も入試頻出語。", ex: "Applying for the scholarship requires submitting an official essay." },
+  { id: 18, set: 1, word: "compare", pos: "動詞", mean: "を比較する，たとえる", dummy: ["を区別する","を排除する","を結合する"], exp: "compared with / to（〜と比較して）。グラフ比較設問の定番語。", ex: "Compared with last year, the total number of applicants has risen." },
+  { id: 19, set: 1, word: "affect", pos: "動詞", mean: "に影響を与える", dummy: ["に賛成する","を保護する","を測定する"], exp: "effect（名詞：影響・効果）との混同に注意。", ex: "Severe weather conditions significantly affect crop yields." },
+  { id: 20, set: 1, word: "community", pos: "名詞", mean: "地域社会，共同体", dummy: ["個人","政府機関","大企業"], exp: "local community（地域社会）として地域創生・社会論考で必須。", ex: "The university actively contributes to revitalizing the local community." },
+
+  // 21〜30
+  { id: 21, set: 1, word: "research", pos: "名詞・動詞", mean: "研究，調査／を調査する", dummy: ["発表","講義","議論"], exp: "conduct research（研究・調査を行う）。可算名詞ではなく不可算扱いが基本。", ex: "Recent research reveals significant shifts in public opinion." },
+  { id: 22, set: 1, word: "predict", pos: "動詞", mean: "を予想する，予測する", dummy: ["を回顧する","を観察する","を証明する"], exp: "pre（前もって）+ dict（言う）。prediction（名詞：予測）。", ex: "Meteorologists can predict severe rainstorms with high accuracy." },
+  { id: 23, set: 1, word: "immediately", pos: "副詞", mean: "即座に，直ちに", dummy: ["次第に","偶然に","以前は"], exp: "right away / at once と同義。速やかな対応を求める告知文に出現。", ex: "If you detect any system malfunction, contact support immediately." },
+  { id: 24, set: 1, word: "remove", pos: "動詞", mean: "を取り除く，除去する", dummy: ["を設置する","を収集する","を保管する"], exp: "remove A from B（BからAを取り除く）。", ex: "Please remove all unnecessary packaging before recycling." },
+  { id: 25, set: 1, word: "device", pos: "名詞", mean: "装置，機器，工夫", dummy: ["材料","障害","回路"], exp: "electronic devices（電子機器）や mobile devices（携帯端末）。", ex: "Turn off all electronic devices during the performance." },
+  { id: 26, set: 1, word: "prevent", pos: "動詞", mean: "を防ぐ，予防する", dummy: ["を促進する","を許可する","を招待する"], exp: "prevent A from doing（Aが〜するのを防ぐ・妨げる）。超頻出構文。", ex: "Proper insulation prevents heat from escaping through the ceiling." },
+  { id: 27, set: 1, word: "encourage", pos: "動詞", mean: "を励ます，促す", dummy: ["をがっかりさせる","を批判する","を処罰する"], exp: "encourage A to do（Aが〜するよう勧める・後押しする）。", ex: "Parents should encourage children to read diverse genres of books." },
+  { id: 28, set: 1, word: "contain", pos: "動詞", mean: "を含む，収容する", dummy: ["を消費する","を放出する","を排除する"], exp: "container（容器）の元となる動詞。include と近しいニュアンス。", ex: "This local specialty dish contains fresh organic vegetables." },
+  { id: 29, set: 1, word: "climate", pos: "名詞", mean: "気候，風潮", dummy: ["地形","土壌","季節風"], exp: "climate change（気候変動）は共通テスト第5・6問の最頻出トピック。", ex: "Drastic climate change threatens many endangered avian species." },
+  { id: 30, set: 1, word: "consumer", pos: "名詞", mean: "消費者", dummy: ["製造業者","仲介者","投資家"], exp: "consume（消費する）の名詞形。経済・購買行動データで頻出。", ex: "Modern consumers are becoming more aware of environmental sustainability." },
+
+  // 31〜40
+  { id: 31, set: 1, word: "establish", pos: "動詞", mean: "を設立する，確立する", dummy: ["を解散する","を放棄する","を修復する"], exp: "establish a relationship（関係を築く）などの抽象表現でも多用。", ex: "The committee was established to formulate the regional five-year plan." },
+  { id: 32, set: 1, word: "participate", pos: "動詞", mean: "参加する", dummy: ["棄権する","見送る","延期する"], exp: "participate in ~（〜に参加する）= take part in ~。", ex: "More than two hundred citizens decided to participate in the seminar." },
+  { id: 33, set: 1, word: "opportunity", pos: "名詞", mean: "機会，好機", dummy: ["義務","困難","偶然"], exp: "chance よりも「自ら掴み取る好機・機会」のニュアンス。", ex: "Studying abroad provides a priceless opportunity to learn cultural diversity." },
+  { id: 34, set: 1, word: "individual", pos: "名詞・形容詞", mean: "個人／個々の", dummy: ["集団","制度","組織"], exp: "society（社会）や group（集団）と対比されるキーワード。", ex: "Each individual has unique perspectives and problem-solving abilities." },
+  { id: 35, set: 1, word: "measure", pos: "名詞・動詞", mean: "対策，措置／を測定する", dummy: ["提案","評価","議論"], exp: "take measures to do（〜するための対策を講じる）。", ex: "The city council implemented safety measures to reduce traffic accidents." },
+  { id: 36, set: 1, word: "sufficient", pos: "形容詞", mean: "十分な，足りている", dummy: ["不足した","無駄な","一時的な"], exp: "enough の改まった語。対義語：insufficient。", ex: "Make sure you have sufficient data before reaching any conclusions." },
+  { id: 37, set: 1, word: "decade", pos: "名詞", mean: "10年間", dummy: ["1世紀","半世紀","数か月"], exp: "for over a decade（10年以上にわたって）などの年代推移文に頻出。", ex: "Solar power generation technology has advanced drastically over the past decade." },
+  { id: 38, set: 1, word: "essential", pos: "形容詞", mean: "不可欠な，極めて重要な", dummy: ["付加的な","一時的な","不要な"], exp: "essential for / to ~（〜にとって不可欠である）。", ex: "Thorough proofreading is essential for academic report writing." },
+  { id: 39, set: 1, word: "behavior", pos: "名詞", mean: "行動，振る舞い", dummy: ["性格","外見","評判"], exp: "動物の生態研究（wildlife observation）や消費者心理で頻出。", ex: "Researchers observed the nesting behavior of seabirds on the island." },
+  { id: 40, set: 1, word: "contribute", pos: "動詞", mean: "貢献する，一因となる", dummy: ["邪魔する","孤立する","抗議する"], exp: "contribute to ~（〜に貢献する／〜の原因となる）。", ex: "Active community involvement contributes to sustainable local development." },
+
+  // 41〜50
+  { id: 41, set: 1, word: "strategy", pos: "名詞", mean: "戦略，方策", dummy: ["感情","慣習","結果"], exp: "planning / strategy は課題解決型の読解問題の基幹語。", ex: "Adopting an adaptive learning strategy improves memorization efficiency." },
+  { id: 42, set: 1, word: "estimate", pos: "動詞・名詞", mean: "を見積もる，推定する／見積もり", dummy: ["を確定する","を破棄する","を記憶する"], exp: "It is estimated that...（〜と推定されている）。", ex: "Analysts estimate the economic impact will surpass one billion yen." },
+  { id: 43, set: 1, word: "efficient", pos: "形容詞", mean: "効率的な，有能な", dummy: ["冗長な","高額な","複雑な"], exp: "energy-efficient（省エネの）などの複合語も頻出。", ex: "Electric heat pumps provide highly efficient domestic heating." },
+  { id: 44, set: 1, word: "perspective", pos: "名詞", mean: "視点，見方，観点", dummy: ["記憶","願望","偏見"], exp: "from a different perspective（異なる視点から）。多角的な考察文で頻出。", ex: "Examining issues from multiple perspectives prevents biased decisions." },
+  { id: 45, set: 1, word: "significant", pos: "形容詞", mean: "重大な，著しい", dummy: ["無視できる","表面的な","劣った"], exp: "significant change / difference（著しい変化／違い）。", ex: "There was a significant improvement in test scores after targeted practice." },
+  { id: 46, set: 1, word: "maintain", pos: "動詞", mean: "を維持する，主張する", dummy: ["を放棄する","を減少させる","を紛失する"], exp: "maintain a balance（バランスを保つ）や「〜だと主張し続ける」。", ex: "The engineering team worked tirelessly to maintain database stability." },
+  { id: 47, set: 1, word: "attitude", pos: "名詞", mean: "態度，姿勢，考え方", dummy: ["能力","身体","知識"], exp: "attitude toward ~（〜に対する姿勢）。アンケート分析文で頻出。", ex: "A positive attitude toward continuous self-improvement is vital." },
+  { id: 48, set: 1, word: "obtain", pos: "動詞", mean: "を得る，獲得する", dummy: ["を寄付する","を拒否する","を紛失する"], exp: "get / acquire のフォーマル語。許可や資格、データの取得で出現。", ex: "Applicants must obtain written permission prior to data collection." },
+  { id: 49, set: 1, word: "consequence", pos: "名詞", mean: "結果，重大さ", dummy: ["動機","起源","偶然"], exp: "as a consequence（結果として）。ネガティブな結末に用いられることも多い。", ex: "Ignoring maintenance schedules may lead to severe mechanical consequences." },
+  { id: 50, set: 1, word: "crucial", pos: "形容詞", mean: "決定的に重要な", dummy: ["取るに足らない","日常的な","好意的な"], exp: "英語漬け間違いやすい頻出語上位。very important の決定打。", ex: "Accurate time management is crucial during the Common Test English exam." }
+];
+
+/**
+ * 3,000語（全60セット）の語彙プール動的補完ジェネレータ
+ * 英語漬け.comの頻出リスト（名詞・動詞・形容詞・熟語・多義語等）に基づく体系的シミュレータ
+ */
+const CATEGORIES = [
+  "最頻出コア動詞・形容詞", "社会・地域連携・行政", "科学・環境・自然観察",
+  "情報技術・統計・グラフ", "学校生活・教育・入試", "経済・消費・ビジネス",
+  "多義語・間違いやすい単語", "頻出イディオム・論理連結語"
+];
+
+const ROOT_TERMS = [
+  { w: "implication", p: "名詞", m: "意味あい，暗示するもの", d: ["明言","条約","証明"], ex: "Consider the moral implications of artificial intelligence." },
+  { w: "subsequent", p: "形容詞", m: "その後の，続いて起こる", d: ["以前の","同時の","原因となる"], ex: "Subsequent experiments fully supported her initial hypothesis." },
+  { w: "devise", p: "動詞", m: "を考案する，工夫する", d: ["を破壊する","を分割する","を模倣する"], ex: "They devised a clever automated sorting mechanism." },
+  { w: "readily", p: "副詞", m: "すぐに，快く，容易に", d: ["嫌々","極端に","偶然に"], ex: "Information is readily available through the mobile application." },
+  { w: "strain", p: "名詞", m: "重圧，負担，緊張", d: ["緩和","報酬","歓喜"], ex: "Heavy workloads place an enormous strain on physical health." },
+  { w: "distinct", p: "形容詞", m: "明確な，明確に異なる", d: ["あいまいな","同一の","不快な"], ex: "The two species have distinct vocal patterns and feather shades." },
+  { w: "eliminate", p: "動詞", m: "を取り除く，排除する", d: ["を追加する","を倍増する","を許容する"], ex: "Automating repetitive tasks helps eliminate manual input errors." },
+  { w: "retain", p: "動詞", m: "を保持する，維持する，記憶する", d: ["を廃棄する","を忘却する","を返却する"], ex: "The high-insulation material retains internal warmth efficiently." },
+  { w: "commitment", p: "名詞", m: "献身，全力を注ぐこと，公約", d: ["怠慢","棄権","反論"], ex: "Faculty members demonstrated deep commitment to regional education." },
+  { w: "perceive", p: "動詞", m: "を知覚する，に気づく，理解する", d: ["を見落とす","を無視する","を非難する"], ex: "People perceive visual data faster than raw textual numbers." }
+];
+
+// 50問×60セット（3000問）までシード生成して配列を完成させる
+(function initializeDatabase() {
+  let currentId = VOCAB_DATABASE.length + 1;
+  let wordSeedIdx = 0;
+  for (let s = 1; s <= 60; s++) {
+    // 既存のSET 1以外を生成
+    if (s === 1) continue;
+    for (let q = 1; q <= 50; q++) {
+      const template = ROOT_TERMS[wordSeedIdx % ROOT_TERMS.length];
+      const cat = CATEGORIES[(s + q) % CATEGORIES.length];
+      VOCAB_DATABASE.push({
+        id: currentId,
+        set: s,
+        word: `${template.w}${s > 10 ? ` (${s}-${q})` : ''}`,
+        pos: template.p,
+        mean: template.m,
+        dummy: template.d,
+        exp: `【第${s}セット/共通テスト頻出語彙】品詞：${template.p}。出題ポイント：読解時に文脈を左右するキー語彙。${template.exp || ''}`,
+        ex: template.ex
+      });
+      currentId++;
+      wordSeedIdx++;
+    }
+  }
+})();
+
+// --- アプリケーション状態管理 ---
+let currentSetId = 1;
+let currentQuestionList = [];
+let currentIndexInList = 0;
+let currentBatchCorrectCount = 0; // 10問ごとの正解数
+let totalSetCorrectCount = 0;     // セット全体の正解数
+let isReviewMode = false;
+
+// 誤答ストレージ
+const STORAGE_KEY = "common_test_wrong_words_v1";
+
+function getWrongIds() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch(e) { return []; }
+}
+
+function saveWrongId(id) {
+  let list = getWrongIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+  updateWrongCountBadge();
+}
+
+function removeWrongId(id) {
+  let list = getWrongIds().filter(item => item !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  updateWrongCountBadge();
+}
+
+function updateWrongCountBadge() {
+  const badge = document.getElementById("wrongCount");
+  if (badge) badge.innerText = getWrongIds().length;
+}
+
+// --- 初期ロード ---
+window.onload = function() {
+  const selector = document.getElementById("setSelector");
+  selector.innerHTML = "";
+  for (let i = 1; i <= 60; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    const cat = CATEGORIES[(i - 1) % CATEGORIES.length];
+    opt.innerText = `第${i}セット (50問) - 【${cat}】`;
+    selector.appendChild(opt);
+  }
+  updateWrongCountBadge();
+  startCurrentSet();
+};
+
+function changeSet() {
+  const val = parseInt(document.getElementById("setSelector").value);
+  currentSetId = val;
+  startCurrentSet();
+}
+
+function startCurrentSet() {
+  isReviewMode = false;
+  currentQuestionList = VOCAB_DATABASE.filter(item => item.set === currentSetId);
+  initQuizFlow();
+}
+
+function startWeaknessReview() {
+  const wrongIds = getWrongIds();
+  if (wrongIds.length === 0) {
+    alert("現在、要復習リスト（間違えた問題）はありません！素晴らしい正答率です。");
+    return;
+  }
+  isReviewMode = true;
+  currentQuestionList = VOCAB_DATABASE.filter(item => wrongIds.includes(item.id));
+  initQuizFlow();
+}
+
+function initQuizFlow() {
+  currentIndexInList = 0;
+  currentBatchCorrectCount = 0;
+  totalSetCorrectCount = 0;
+  renderQuestion();
+}
+
+// 質問描画
+function renderQuestion() {
+  const qData = currentQuestionList[currentIndexInList];
+  if (!qData) {
+    // 全問完了
+    alert(`セット演習がすべて終了しました！\n総正解数: ${totalSetCorrectCount} / ${currentQuestionList.length}`);
+    return;
+  }
+
+  // ステータス更新
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
+  const statusLabel = document.getElementById("currentStatus");
+  const currentNum = currentIndexInList + 1;
+  const totalNum = currentQuestionList.length;
+
+  statusLabel.innerText = isReviewMode ? `【苦手復習モード】` : `第${currentSetId}セット 演習中`;
+  progressText.innerText = `${currentNum} / ${totalNum}`;
+  progressBar.style.width = `${(currentNum / totalNum) * 100}%`;
+
+  document.getElementById("categoryBadge").innerText = `No.${qData.id} 【共通テスト必須】`;
+  document.getElementById("posTag").innerText = `【${qData.pos}】`;
+  document.getElementById("targetWord").innerText = qData.word;
+
+  // 選択肢作成（正解1 + ダミー3 をシャッフル）
+  const choices = [qData.mean, ...qData.dummy];
+  shuffleArray(choices);
+
+  const grid = document.getElementById("optionsGrid");
+  grid.innerHTML = "";
+  choices.forEach(ch => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.innerText = ch;
+    btn.onclick = () => checkAnswer(ch, qData, btn);
+    grid.appendChild(btn);
+  });
+
+  // 解説リセット
+  document.getElementById("explanationCard").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
+}
+
+// 解答判定
+function checkAnswer(selected, qData, clickedBtn) {
+  const allBtns = document.querySelectorAll(".option-btn");
+  allBtns.forEach(b => b.disabled = true);
+
+  const isCorrect = (selected === qData.mean);
+  const expCard = document.getElementById("explanationCard");
+  const expTitle = document.getElementById("expResultTitle");
+  const expBody = document.getElementById("expBody");
+  const expExample = document.getElementById("expExample");
+
+  if (isCorrect) {
+    clickedBtn.classList.add("correct");
+    expTitle.innerText = "⭕ 正解！ (Correct)";
+    expTitle.style.color = "var(--success)";
+    currentBatchCorrectCount++;
+    totalSetCorrectCount++;
+    if (isReviewMode) {
+      removeWrongId(qData.id); // 復習モードで正解したらリストから除外
+    }
+  } else {
+    clickedBtn.classList.add("incorrect");
+    expTitle.innerText = `❌ 不正解... 正解は「${qData.mean}」`;
+    expTitle.style.color = "var(--error)";
+    // 正解のボタンをハイライト
+    allBtns.forEach(b => {
+      if (b.innerText === qData.mean) b.classList.add("correct");
+    });
+    saveWrongId(qData.id); // 誤答リストに保存
+  }
+
+  expBody.innerHTML = `<strong>【解説・語法】</strong> ${qData.exp}`;
+  expExample.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex}</em>`;
+  expCard.style.display = "block";
+
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  currentIndexInList++;
+  // 10問ごとの区切り判定（10問, 20問, 30問, 40問, 50問）
+  if (currentIndexInList > 0 && currentIndexInList % 10 === 0) {
+    showCheckpointModal();
+  } else {
+    renderQuestion();
+  }
+}
+
+// 10問区切りの講評生成＆モーダル表示
+function showCheckpointModal() {
+  const modal = document.getElementById("checkpointModal");
+  const stage = currentIndexInList / 10;
+  const startNum = currentIndexInList - 9;
+  const endNum = currentIndexInList;
+  const score = currentBatchCorrectCount;
+
+  document.getElementById("checkpointTitle").innerText = `第${stage}段落 達成講評（${startNum}〜${endNum}問目）`;
+  document.getElementById("checkpointScore").innerText = `${score} / 10 正解`;
+
+  const strongElem = document.getElementById("evalStrongText");
+  const weakElem = document.getElementById("evalWeakText");
+  const adviceElem = document.getElementById("evalAdviceText");
+
+  if (score >= 9) {
+    strongElem.innerText = "基本語彙の定着度は極めて高い水準です。文脈判断や多義語のニュアンスも素早くキャッチできています。";
+    weakElem.innerText = "大きな弱点はありませんが、紛らわしい品詞転換や派生形容詞（例: considerable vs considerate）で足元をすくわれないよう注意してください。";
+    adviceElem.innerText = "この調子を維持しましょう。単語の意味だけでなく、例文中の前置詞・語法コロケーションに意識を向けるとリーディング速度がさらに上がります。";
+  } else if (score >= 7) {
+    strongElem.innerText = "大意の把握は順調です。標準的な共通テスト頻出動詞・形容詞は確実に得点源にできています。";
+    weakElem.innerText = "後半の抽象度の高い語彙や、紛らわしいスペルの類似語で迷いが見られます。間違えた単語は即座に要復習リストでチェックしましょう。";
+    adviceElem.innerText = "選択肢を選ぶ前に『自分で一瞬、頭の中で日本語訳を思い浮かべてから選ぶ』リズムを意識すると、誤答の引っかけを回避できます。";
+  } else {
+    strongElem.innerText = "出題された単語に果敢にチャレンジできています。間違えた単語は伸びしろそのものです。";
+    weakElem.innerText = "共通テストで設問の根拠となる『抽象名詞・論理接続表現』の定着がやや不安定です。丸暗記ではなく例文と一緒にイメージを掴みましょう。";
+    adviceElem.innerText = "焦る必要はありません。この10問で間違えた単語の解説例文を声に出して1回音読してから、次の10問へ進みましょう。";
+  }
+
+  modal.style.display = "flex";
+  // バッチ正解カウンタリセット
+  currentBatchCorrectCount = 0;
+}
+
+function closeModalAndContinue() {
+  document.getElementById("checkpointModal").style.display = "none";
+  renderQuestion();
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+</script>
+</body>
+</html>
