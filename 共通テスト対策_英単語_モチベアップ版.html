@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>共通テスト対策　英単語　フルブースト版title>
+<title>共通テスト対策　英単語　モチベアップ版</title>
 <style>
   :root {
     --primary: #1e3a8a;
@@ -370,7 +370,7 @@
   .exp-judge {
     font-size: 1.35rem;
     font-weight: 900;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .exp-scroll-area {
     flex: 1;
@@ -438,7 +438,7 @@
   }
   .btn-next-large:active { background: var(--primary-light); }
 
-  /* モーダル共通スタイル */
+  /* モーダル */
   .modal-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -535,7 +535,7 @@
   input:checked + .slider { background-color: var(--primary); }
   input:checked + .slider:before { transform: translateX(22px); }
 
-  /* バッジ図鑑グリッド */
+  /* バッジ図鑑 */
   .badge-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -584,11 +584,10 @@
 </head>
 <body>
 
-<!-- 紙吹雪描画 Canvas -->
 <canvas id="confettiCanvas"></canvas>
 
 <div class="app-wrap">
-  <!-- 上部ヘッダー -->
+  <!-- ヘッダー -->
   <header>
     <div class="header-left">
       <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
@@ -667,7 +666,7 @@
   </div>
 </div>
 
-<!-- 設定モーダル（サウンド・紙吹雪・ストリークのON/OFF） -->
+<!-- 設定モーダル -->
 <div class="modal-bg" id="settingsModal">
   <div class="modal-box">
     <h3>⚙️ 学習演出 ＆ サウンド設定</h3>
@@ -792,7 +791,6 @@
       </div>
     </div>
 
-    <!-- 実績バッジ図鑑 -->
     <div style="font-size:0.9rem; font-weight:bold; color:var(--primary); margin:8px 0 4px;">🏆 実績バッジ図鑑</div>
     <div class="badge-gallery" id="badgeGallery"></div>
 
@@ -810,7 +808,7 @@ function returnToLauncher() {
   window.location.href = "index.html";
 }
 
-// --- ユーザー設定管理（LocalStorage） ---
+// ユーザー設定管理
 const STORAGE_CONFIG = "ctest_app_settings_v1";
 let appSettings = {
   sound: true,
@@ -827,17 +825,22 @@ function loadSettings() {
 }
 
 function saveSettings() {
-  localStorage.setItem(STORAGE_CONFIG, JSON.stringify(appSettings));
+  try {
+    localStorage.setItem(STORAGE_CONFIG, JSON.stringify(appSettings));
+  } catch(e){}
   applySettingsUI();
 }
 
 function applySettingsUI() {
-  document.getElementById("toggleSound").checked = appSettings.sound;
-  document.getElementById("toggleConfetti").checked = appSettings.confetti;
-  document.getElementById("toggleStreak").checked = appSettings.streak;
+  const ts = document.getElementById("toggleSound");
+  const tc = document.getElementById("toggleConfetti");
+  const tk = document.getElementById("toggleStreak");
+  if (ts) ts.checked = appSettings.sound;
+  if (tc) tc.checked = appSettings.confetti;
+  if (tk) tk.checked = appSettings.streak;
 
   const banner = document.getElementById("gamifyBanner");
-  banner.style.display = appSettings.streak ? "flex" : "none";
+  if (banner) banner.style.display = appSettings.streak ? "flex" : "none";
 }
 
 function onSettingToggle() {
@@ -852,15 +855,17 @@ function openSettingsModal() {
   document.getElementById("settingsModal").style.display = "flex";
 }
 
-// --- Web Audio API 効果音エンジン（シンセサイザー合成波・外部ファイル不要） ---
+// Web Audio API
 let audioCtx = null;
 function initAudioContext() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
+  try {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  } catch(e){}
 }
 
 function playSound(type) {
@@ -868,55 +873,55 @@ function playSound(type) {
   initAudioContext();
   if (!audioCtx) return;
 
-  const now = audioCtx.currentTime;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
+  try {
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
 
-  if (type === "correct") {
-    // 正解音：ピロリン♪（明るい2音アルペジオ）
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(587.33, now); // D5
-    osc.frequency.setValueAtTime(880.00, now + 0.08); // A5
-    gain.gain.setValueAtTime(0.15, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-    osc.start(now);
-    osc.stop(now + 0.35);
-  } else if (type === "incorrect") {
-    // 不正解音：ブブー（低音ソートゥース）
-    osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(160, now);
-    osc.frequency.setValueAtTime(120, now + 0.12);
-    gain.gain.setValueAtTime(0.18, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-    osc.start(now);
-    osc.stop(now + 0.35);
-  } else if (type === "fanfare") {
-    // 満点ファンファーレ♪
-    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
-    notes.forEach((freq, idx) => {
-      const o = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      o.connect(g);
-      g.connect(audioCtx.destination);
-      o.type = "triangle";
-      o.frequency.setValueAtTime(freq, now + idx * 0.1);
-      g.gain.setValueAtTime(0.18, now + idx * 0.1);
-      g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
-      o.start(now + idx * 0.1);
-      o.stop(now + idx * 0.1 + 0.4);
-    });
-  }
+    if (type === "correct") {
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(587.33, now);
+      osc.frequency.setValueAtTime(880.00, now + 0.08);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === "incorrect") {
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(160, now);
+      osc.frequency.setValueAtTime(120, now + 0.12);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === "fanfare") {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.type = "triangle";
+        o.frequency.setValueAtTime(freq, now + idx * 0.1);
+        g.gain.setValueAtTime(0.18, now + idx * 0.1);
+        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
+        o.start(now + idx * 0.1);
+        o.stop(now + idx * 0.1 + 0.4);
+      });
+    }
+  } catch(e){}
 }
 
-// --- Canvas 紙吹雪アニメーション ---
+// Canvas 紙吹雪
 let confettiParticles = [];
 let confettiAnimId = null;
 
 function triggerConfetti() {
   if (!appSettings.confetti) return;
   const canvas = document.getElementById("confettiCanvas");
+  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const ctx = canvas.getContext("2d");
@@ -948,7 +953,7 @@ function animateConfetti(ctx, canvas) {
   confettiParticles.forEach(p => {
     p.x += p.vx;
     p.y += p.vy;
-    p.vy += 0.4; // 重力
+    p.vy += 0.4;
     p.tiltAngle += p.tiltSpeed;
     p.tilt = Math.sin(p.tiltAngle) * 10;
 
@@ -970,7 +975,7 @@ function animateConfetti(ctx, canvas) {
   }
 }
 
-// --- 連続学習ストリーク計算 ---
+// ストリーク計算
 const STORAGE_STREAK = "ctest_streak_info_v1";
 
 function updateStreak() {
@@ -987,20 +992,23 @@ function updateStreak() {
     const diffDays = Math.round((curr - last) / (1000 * 60 * 60 * 24));
 
     if (diffDays === 1) {
-      streakData.count++; // 連続達成！
+      streakData.count++;
     } else if (diffDays > 1) {
-      streakData.count = 1; // 途切れたのでリセット
+      streakData.count = 1;
     }
     streakData.lastDate = today;
-    localStorage.setItem(STORAGE_STREAK, JSON.stringify(streakData));
+    try {
+      localStorage.setItem(STORAGE_STREAK, JSON.stringify(streakData));
+    } catch(e){}
   }
 
-  document.getElementById("streakCount").innerText = streakData.count;
+  const sc = document.getElementById("streakCount");
+  if (sc) sc.innerText = streakData.count;
   if (streakData.count >= 3) unlockBadge("streak3");
   if (streakData.count >= 7) unlockBadge("streak7");
 }
 
-// --- タイムアタック計測 ---
+// タイムアタック計測
 let questionStartTime = 0;
 let timerInterval = null;
 
@@ -1009,7 +1017,8 @@ function startQuestionTimer() {
   if (timerInterval) clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     const sec = ((Date.now() - questionStartTime) / 1000).toFixed(1);
-    document.getElementById("timeElapsedText").innerText = `${sec}s`;
+    const el = document.getElementById("timeElapsedText");
+    if (el) el.innerText = `${sec}s`;
   }, 100);
 }
 
@@ -1018,7 +1027,7 @@ function stopQuestionTimer() {
   return ((Date.now() - questionStartTime) / 1000);
 }
 
-// --- アチーブメント・実績バッジシステム ---
+// 実績バッジ
 const STORAGE_BADGES = "ctest_badges_unlocked_v1";
 const BADGES_CONFIG = [
   { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
@@ -1039,12 +1048,15 @@ function unlockBadge(id) {
   let list = getUnlockedBadges();
   if (!list.includes(id)) {
     list.push(id);
-    localStorage.setItem(STORAGE_BADGES, JSON.stringify(list));
+    try {
+      localStorage.setItem(STORAGE_BADGES, JSON.stringify(list));
+    } catch(e){}
   }
 }
 
 function renderBadgeGallery() {
   const container = document.getElementById("badgeGallery");
+  if (!container) return;
   container.innerHTML = "";
   const unlocked = getUnlockedBadges();
 
@@ -1061,14 +1073,15 @@ function renderBadgeGallery() {
   });
 }
 
-// --- Web Speech API 音声合成 ---
 function playSpeech(text, lang = "en-US", rate = 0.9) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const uttr = new SpeechSynthesisUtterance(text);
-  uttr.lang = lang;
-  uttr.rate = rate;
-  window.speechSynthesis.speak(uttr);
+  try {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const uttr = new SpeechSynthesisUtterance(text);
+    uttr.lang = lang;
+    uttr.rate = rate;
+    window.speechSynthesis.speak(uttr);
+  } catch(e){}
 }
 
 function speakCurrentWord() {
@@ -1098,7 +1111,7 @@ const PRIORITY_MODES = [
 ];
 
 const VOCAB_DATABASE = [
-  // --- Sランク（最優先：超頻出コア語彙） ---
+  // --- Sランク ---
   {
     id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞",
     mean: "を提供する，供給する，養う",
@@ -1180,7 +1193,7 @@ const VOCAB_DATABASE = [
     ex: "Survey results strongly suggest that consumers prefer eco-friendly packaging."
   },
 
-  // --- Aランク（高得点：差がつく重要語彙） ---
+  // --- Aランク ---
   {
     id: 11, rank: "A", cat: "形容詞・副詞", word: "particular", pos: "形容詞",
     mean: "特定の，特別な，好みがうるさい",
@@ -1262,7 +1275,7 @@ const VOCAB_DATABASE = [
     ex: "Rigorous thermal insulation is crucial for maintaining vehicle battery health in winter."
   },
 
-  // --- Bランク（難関突破：論説・抽象語彙） ---
+  // --- Bランク ---
   {
     id: 21, rank: "B", cat: "抽象・社会", word: "implication", pos: "名詞",
     mean: "意味あい，暗示するもの，影響・余波",
@@ -1366,18 +1379,24 @@ function saveWrongId(id) {
   let list = getWrongIds();
   if (!list.includes(id)) {
     list.push(id);
-    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+    try {
+      localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+    } catch(e){}
   }
   let counts = {};
   try { counts = JSON.parse(localStorage.getItem(STORAGE_WRONG_COUNTS)) || {}; } catch(e){}
   counts[id] = (counts[id] || 0) + 1;
-  localStorage.setItem(STORAGE_WRONG_COUNTS, JSON.stringify(counts));
+  try {
+    localStorage.setItem(STORAGE_WRONG_COUNTS, JSON.stringify(counts));
+  } catch(e){}
 
   updateWrongBadge();
 }
 function removeWrongId(id) {
   let list = getWrongIds().filter(i => i !== id);
-  localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  try {
+    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  } catch(e){}
   updateWrongBadge();
   if (list.length === 0) unlockBadge("wrong_zero");
 }
@@ -1395,7 +1414,9 @@ function saveProgress() {
     isReview: isReviewMode,
     isRound2: isAdaptiveRound2Mode
   };
-  localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
+  } catch(e){}
 }
 
 function recordStats(isCorrect) {
@@ -1403,7 +1424,9 @@ function recordStats(isCorrect) {
   try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
   stats.totalAnswered = (stats.totalAnswered || 0) + 1;
   if (isCorrect) stats.totalCorrect = (stats.totalCorrect || 0) + 1;
-  localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
+  try {
+    localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
+  } catch(e){}
 }
 
 window.onload = function() {
@@ -1411,13 +1434,15 @@ window.onload = function() {
   updateStreak();
 
   const sel = document.getElementById("prioritySelector");
-  sel.innerHTML = "";
-  PRIORITY_MODES.forEach(m => {
-    const opt = document.createElement("option");
-    opt.value = m.id;
-    opt.innerText = m.name;
-    sel.appendChild(opt);
-  });
+  if (sel) {
+    sel.innerHTML = "";
+    PRIORITY_MODES.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m.id;
+      opt.innerText = m.name;
+      sel.appendChild(opt);
+    });
+  }
   updateWrongBadge();
 
   const saved = localStorage.getItem(STORAGE_RESUME);
@@ -1430,7 +1455,7 @@ window.onload = function() {
       totalScore = s.totalScore || 0;
       isReviewMode = !!s.isReview;
       isAdaptiveRound2Mode = !!s.isRound2;
-      sel.value = currentModeId;
+      if (sel) sel.value = currentModeId;
     } catch(e){}
   }
 
@@ -1743,7 +1768,7 @@ function showCheckpointModal() {
   if (score >= 10) {
     unlockBadge("perfect10");
     playSound("fanfare");
-    triggerConfetti(); // 満点時に紙吹雪演出！
+    triggerConfetti();
   }
 
   if (score >= 9) {
@@ -1811,4 +1836,3 @@ function shuffleArray(arr) {
 </script>
 </body>
 </html>
-
