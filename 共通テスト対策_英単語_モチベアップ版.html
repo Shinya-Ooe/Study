@@ -213,7 +213,8 @@
   .target-meta {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
     font-size: 0.88rem;
     font-weight: 800;
     margin-bottom: 2px;
@@ -227,6 +228,17 @@
   .rank-s { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
   .rank-a { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
   .rank-b { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+
+  /* 1週間経過リフレッシュ出題専用バッジ */
+  .recall-badge {
+    background: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #d8b4fe;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
 
   .cat-tag { color: var(--accent); }
   .pos-tag { color: var(--text-sub); }
@@ -658,6 +670,7 @@
   <div class="target-area">
     <div class="target-meta">
       <span class="rank-badge rank-s" id="rankBadge">最優先★Sランク</span>
+      <span class="recall-badge" id="recallBadge" style="display:none;">🔄 1週間ぶり！思い出し</span>
       <span class="cat-tag" id="categoryBadge">最頻出コア動詞</span>
       <span class="pos-tag" id="posTag">【動詞】</span>
     </div>
@@ -736,7 +749,7 @@
     <div class="resume-choice-grid">
       <button class="btn-resume-opt" onclick="executeNormalResume()">
         <strong>▶ 直前の中断位置から再開</strong>
-        <span id="resumePositionLabel">現在のセクションの中断箇所から解き進めます</span>
+        <span id="resumePositionLabel">未出題単語の【第1問】からそのまま再開します</span>
       </button>
       <button class="btn-resume-opt" onclick="executeWeaknessResume()">
         <strong style="color:var(--error);">🔥 間違えた問題（弱点）から再開</strong>
@@ -747,7 +760,7 @@
   </div>
 </div>
 
-<!-- 10問ごとの講評モーダル（次の10問 / 2周目 / 保存して終了） -->
+<!-- 10問ごとの講評モーダル -->
 <div class="modal-bg" id="checkpointModal">
   <div class="modal-box">
     <h3 id="checkpointTitle">第1段落 達成講評</h3>
@@ -765,7 +778,6 @@
       <span id="evalAdviceText"></span>
     </div>
 
-    <!-- 3大選択ボタン -->
     <div class="checkpoint-btn-group">
       <button class="btn-choice-primary" id="btnNextBatch" onclick="continueToNextBatch()">▶ 次の10問へ進む</button>
       <button class="btn-choice-round2" onclick="startRound2FromCheckpoint()">🔥 2周目特訓（弱点＆重要度優先）へ</button>
@@ -774,13 +786,13 @@
   </div>
 </div>
 
-<!-- カテゴリー完走 ＆ 次のカテゴリーへ進むモーダル -->
+<!-- カテゴリー完走モーダル -->
 <div class="modal-bg" id="categoryCompleteModal">
   <div class="modal-box">
     <h3 style="color:var(--primary);">🎉 カテゴリー完走！</h3>
     <div class="modal-score" id="catCompleteScore">10 / 10</div>
     <div class="eval-item eval-s">
-      <strong id="catCompleteTitle">最優先★Sランク を完全制覇！</strong>
+      <strong id="catCompleteTitle">カテゴリー を完全制覇！</strong>
       間違えた問題（要復習ストック）は保持したまま、次のカテゴリーへ進みます。
     </div>
     <div class="checkpoint-btn-group">
@@ -817,7 +829,7 @@
     <div class="badge-gallery" id="badgeGallery"></div>
     <div class="eval-item" style="margin-top:10px;">
       <strong>【学習アドバイス】</strong>
-      <span id="statsGlobalAdvice">最優先Sランクから順に固め、1周終わったら「2周目特訓」で弱点を潰すサイクルが最も高い学習効果を生みます！</span>
+      <span id="statsGlobalAdvice">正解した単語も1週間経過すると自動でリフレッシュ出題（10問中2問）されます。長期記憶への定着を実感してください！</span>
     </div>
     <button class="btn-next-large" style="margin-top:12px;" onclick="closeModal('statsModal')">演習に戻る</button>
   </div>
@@ -830,7 +842,7 @@ function returnToLauncher() {
 }
 
 // ユーザー設定
-const STORAGE_CONFIG = "ctest_app_settings_v5";
+const STORAGE_CONFIG = "ctest_app_settings_v7";
 let appSettings = { sound: true, confetti: true, streak: true };
 
 function loadSettings() {
@@ -992,7 +1004,7 @@ function animateConfetti(ctx, canvas) {
 }
 
 // ストリーク
-const STORAGE_STREAK = "ctest_streak_info_v5";
+const STORAGE_STREAK = "ctest_streak_info_v7";
 
 function updateStreak() {
   const today = new Date().toISOString().slice(0, 10);
@@ -1044,7 +1056,7 @@ function stopQuestionTimer() {
 }
 
 // 実績バッジ
-const STORAGE_BADGES = "ctest_badges_unlocked_v5";
+const STORAGE_BADGES = "ctest_badges_unlocked_v7";
 const BADGES_CONFIG = [
   { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
   { id: "streak3", icon: "🔥", title: "3日連続達成", desc: "3日連続で学習を継続した" },
@@ -1383,10 +1395,46 @@ let totalScore = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-const STORAGE_WRONG = "ctest_vocab_round2_wrong_v15";
-const STORAGE_RESUME = "ctest_vocab_round2_resume_v15";
-const STORAGE_STATS = "ctest_vocab_round2_stats_v15";
-const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v15";
+const STORAGE_WRONG = "ctest_vocab_round2_wrong_v17";
+const STORAGE_RESUME = "ctest_vocab_round2_resume_v17";
+const STORAGE_STATS = "ctest_vocab_round2_stats_v17";
+const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v17";
+const STORAGE_SEEN_IDS = "ctest_vocab_seen_ids_v17";
+const STORAGE_CORRECT_TIMESTAMPS = "ctest_vocab_correct_timestamps_v17"; // 正解日時記録（タイムスタンプ）
+
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000; // 7日間のミリ秒（604,800,000ms）
+
+function getCorrectTimestamps() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_CORRECT_TIMESTAMPS)) || {}; } catch(e){ return {}; }
+}
+function recordCorrectTimestamp(id) {
+  let map = getCorrectTimestamps();
+  map[id] = Date.now();
+  try {
+    localStorage.setItem(STORAGE_CORRECT_TIMESTAMPS, JSON.stringify(map));
+  } catch(e){}
+}
+
+function getSeenIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_SEEN_IDS)) || []; } catch(e){ return []; }
+}
+function markAsSeen(id) {
+  let list = getSeenIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    try {
+      localStorage.setItem(STORAGE_SEEN_IDS, JSON.stringify(list));
+    } catch(e){}
+  }
+}
+function resetSeenForCurrentCategory() {
+  let list = getSeenIds();
+  const currentCatIds = getCategoryPool().map(item => item.id);
+  list = list.filter(id => !currentCatIds.includes(id));
+  try {
+    localStorage.setItem(STORAGE_SEEN_IDS, JSON.stringify(list));
+  } catch(e){}
+}
 
 function getWrongIds() {
   try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
@@ -1481,6 +1529,18 @@ function initApp() {
 
 window.addEventListener("DOMContentLoaded", initApp);
 
+function getCategoryPool() {
+  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
+  if (!mode || mode.cat === "総合") {
+    return [...VOCAB_DATABASE];
+  } else if (mode.rank) {
+    return VOCAB_DATABASE.filter(item => item.rank === mode.rank);
+  } else if (mode.cat) {
+    return VOCAB_DATABASE.filter(item => item.cat === mode.cat);
+  }
+  return [...VOCAB_DATABASE];
+}
+
 function setupCurrentList() {
   if (isReviewMode) {
     const wIds = getWrongIds();
@@ -1498,23 +1558,81 @@ function setupCurrentList() {
   }
 }
 
+/**
+ * 1週間経過した既正解単語を10問中2問の比率で自動インジェクション（合流）させる出題ロジック
+ */
 function filterListByMode() {
-  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
-  if (!mode || mode.cat === "総合") {
-    currentList = [...VOCAB_DATABASE];
-  } else if (mode.rank) {
-    currentList = VOCAB_DATABASE.filter(item => item.rank === mode.rank);
-  } else if (mode.cat) {
-    currentList = VOCAB_DATABASE.filter(item => item.cat === mode.cat);
+  const pool = getCategoryPool();
+  const seenIds = getSeenIds();
+  const timestamps = getCorrectTimestamps();
+  const now = Date.now();
+
+  // 1. 未出題の新しい単語を抽出
+  let unseenWords = pool.filter(item => !seenIds.includes(item.id));
+
+  // 2. 正解してから1週間以上経過した「思い出し」単語を抽出
+  let recallWords = pool.filter(item => {
+    const t = timestamps[item.id];
+    return t && (now - t >= ONE_WEEK_MS);
+  });
+
+  // もし未出題単語がゼロの場合はリフレッシュ
+  if (unseenWords.length === 0 && recallWords.length === 0) {
+    resetSeenForCurrentCategory();
+    unseenWords = [...pool];
   }
-  shuffleArray(currentList);
+
+  shuffleArray(unseenWords);
+  shuffleArray(recallWords);
+
+  // 10問ブロックごとに「未出題8問 ＋ 1週間経過2問」で合成
+  let interleavedList = [];
+  let uIdx = 0;
+  let rIdx = 0;
+
+  while (uIdx < unseenWords.length || rIdx < recallWords.length) {
+    let block = [];
+    
+    // 1週間経過単語から最大2問
+    let rCount = 0;
+    while (rCount < 2 && rIdx < recallWords.length) {
+      let rItem = Object.assign({}, recallWords[rIdx++]);
+      rItem.isRecall = true; // 1週間経過フラグ
+      block.push(rItem);
+      rCount++;
+    }
+
+    // 未出題単語から最大8問（または枠が余っていれば10問まで埋める）
+    const targetUCount = 10 - block.length;
+    let uCount = 0;
+    while (uCount < targetUCount && uIdx < unseenWords.length) {
+      block.push(unseenWords[uIdx++]);
+      uCount++;
+    }
+
+    // もし未出題が足りず10問に満たない場合、残りの1週間経過単語で埋める
+    while (block.length < 10 && rIdx < recallWords.length) {
+      let rItem = Object.assign({}, recallWords[rIdx++]);
+      rItem.isRecall = true;
+      block.push(rItem);
+    }
+
+    shuffleArray(block); // 10問ブロック内をランダム配置
+    interleavedList.push(...block);
+
+    // 未出題も思い出しも尽きたら終了
+    if (uIdx >= unseenWords.length && rIdx >= recallWords.length) break;
+  }
+
+  currentList = interleavedList.length > 0 ? interleavedList : [...pool];
 }
 
 function buildRound2List() {
   let counts = {};
   try { counts = JSON.parse(localStorage.getItem(STORAGE_WRONG_COUNTS)) || {}; } catch(e){}
+  const pool = getCategoryPool();
 
-  currentList = [...VOCAB_DATABASE].sort((a, b) => {
+  currentList = [...pool].sort((a, b) => {
     const countA = counts[a.id] || 0;
     const countB = counts[b.id] || 0;
     const rankWeightA = a.rank === "S" ? 3 : (a.rank === "A" ? 2 : 1);
@@ -1548,7 +1666,7 @@ function onTapResume() {
   const saved = localStorage.getItem(STORAGE_RESUME);
 
   if (!saved && wrongIds.length === 0) {
-    alert("保存された前回の進捗がありません。新しいシャッフル順で開始します。");
+    alert("保存された前回の進捗がありません。未出題・思い出し単語から開始します。");
     startCurrentMode();
     return;
   }
@@ -1610,7 +1728,7 @@ function startWeaknessReview() {
 
 function startAdaptiveRound2() {
   initAudioContext();
-  if (confirm("重要度ランク（S/A）と、これまでの間違えやすいウィークポイントを優先した『2周目アダプティブ特訓』を開始しますか？")) {
+  if (confirm("重要度ランク（S/A）と、これまでの間違えやすいウィークポイントを優先した『2周目アダプティブ特訓』を開始しますか？（※既出単語も対象になります）")) {
     isAdaptiveRound2Mode = true;
     isReviewMode = false;
     unlockBadge("round2_runner");
@@ -1623,9 +1741,22 @@ function startAdaptiveRound2() {
   }
 }
 
+function startAdaptiveRound2FromModal() {
+  closeModal('completionRoundModal');
+  isAdaptiveRound2Mode = true;
+  isReviewMode = false;
+  unlockBadge("round2_runner");
+  setupCurrentList();
+  currentIndex = 0;
+  batchScore = 0;
+  totalScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
 function confirmResetToStart() {
   initAudioContext();
-  if (confirm("新しく問題をシャッフルして、最初（問1）から解き直しますか？")) {
+  if (confirm("問題を新しくシャッフルして、最初（問1）から解き直しますか？")) {
     startCurrentMode();
   }
 }
@@ -1637,6 +1768,7 @@ function renderQuestion() {
     return;
   }
 
+  markAsSeen(qData.id);
   saveProgress();
 
   const currentNum = currentIndex + 1;
@@ -1651,6 +1783,14 @@ function renderQuestion() {
   const rankBadge = document.getElementById("rankBadge");
   rankBadge.className = `rank-badge rank-${qData.rank.toLowerCase()}`;
   rankBadge.innerText = qData.rank === "S" ? "最優先★Sランク" : (qData.rank === "A" ? "高得点★Aランク" : "難関★Bランク");
+
+  // 1週間経過リフレッシュ出題バッジの表示制御
+  const recallBadge = document.getElementById("recallBadge");
+  if (qData.isRecall) {
+    recallBadge.style.display = "inline-block";
+  } else {
+    recallBadge.style.display = "none";
+  }
 
   document.getElementById("categoryBadge").innerText = qData.cat;
   document.getElementById("posTag").innerText = `【${qData.pos}】`;
@@ -1701,6 +1841,7 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
   if (isCorrect) {
     unlockBadge("first_correct");
     if (timeSec < 1.2) unlockBadge("speed_god");
+    recordCorrectTimestamp(qData.id); // 正解日時（タイムスタンプ）を記録！
     playSound("correct");
   } else {
     playSound("incorrect");
@@ -1714,7 +1855,8 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
 
   if (isCorrect) {
     clickedBtn.classList.add("correct");
-    judge.innerText = `⭕ 正解！ マーク完了（${timeSec.toFixed(1)}秒）`;
+    const recallMsg = qData.isRecall ? "（1週間ぶりの思い出し成功！🎉）" : "";
+    judge.innerText = `⭕ 正解！ マーク完了（${timeSec.toFixed(1)}秒）${recallMsg}`;
     judge.style.color = "var(--success)";
     batchScore++;
     totalScore++;
@@ -1746,7 +1888,6 @@ function nextQuestion() {
   currentIndex++;
   saveProgress();
 
-  // 10問ごとに講評モーダルを開く
   if (currentIndex > 0 && currentIndex % 10 === 0) {
     showCheckpointModal();
   } else {
@@ -1773,7 +1914,6 @@ function showCheckpointModal() {
     btnNextBatch.innerText = `▶ 次の10問へ進む（${nextStart}〜${nextEnd}問目）`;
     btnNextBatch.style.display = "block";
   } else {
-    // このカテゴリーの全問を解き終えた場合
     btnNextBatch.style.display = "none";
   }
 
@@ -1788,12 +1928,12 @@ function showCheckpointModal() {
   }
 
   if (score >= 9) {
-    sText.innerText = "この分類の語彙は音声・語義ともに完璧に定着しています！瞬時に情景が浮かぶレベルです。";
+    sText.innerText = "この分類の語彙は音声・語義ともに完璧に定着しています！1週間後のリフレッシュ問題も即答できています。";
     wText.innerText = "弱点は皆無です。共通テストの長文読解速度が確実に向上しています。";
     aText.innerText = "この調子で次の10問へ進みましょう！解説の「連語イディオム」を1回声に出すとさらに定着します。";
   } else if (score >= 7) {
     sText.innerText = "重要語の意味はしっかり頭に入っています。安定した正答率です。";
-    wText.innerText = "単語単体は分かっていても、後ろに続く前置詞との組み合わせ（連語）で少し迷いが生じています。";
+    wText.innerText = "久しぶりに出題された単語や、前置詞との組み合わせ（連語）で少し迷いが生じています。";
     aText.innerText = "間違えた単語は「要復習ストック」で再確認し、解説の「🔗 連語・必須イディオム」を声に出して音読しましょう！";
   } else {
     sText.innerText = "優先度の高い最重要単語に果敢にチャレンジできています！伸びしろは十分です。";
@@ -1823,11 +1963,10 @@ function startRound2FromCheckpoint() {
 function saveAndExitFromCheckpoint() {
   closeModal('checkpointModal');
   saveProgress();
-  alert("進捗を保存しました。次回は「つづきから」でこの位置から再開できます。");
+  alert("進捗を保存しました。次回は未出題・思い出し単語から再開できます。");
   returnToLauncher();
 }
 
-// カテゴリーを一通り終了したときの自動遷移処理
 function onCompleteCategory() {
   const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
   const modeName = mode ? mode.name : "カテゴリー";
@@ -1835,7 +1974,6 @@ function onCompleteCategory() {
   document.getElementById("catCompleteTitle").innerText = `${modeName} を完全制覇！`;
   document.getElementById("catCompleteScore").innerText = `${totalScore} / ${currentList.length} 問 正解`;
 
-  // 次のカテゴリー名を特定
   let nextId = currentModeId + 1;
   if (nextId > PRIORITY_MODES.length) nextId = 1;
   const nextMode = PRIORITY_MODES.find(m => m.id === nextId);
@@ -1859,7 +1997,7 @@ function proceedToNextCategory() {
 
   isReviewMode = false;
   isAdaptiveRound2Mode = false;
-  startCurrentMode(); // 次のカテゴリーへ自動遷移してランダム出題開始！
+  startCurrentMode();
 }
 
 function startRound2FromCatComplete() {
