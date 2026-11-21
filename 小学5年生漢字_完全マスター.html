@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>小1〜小5 漢字完全マスター（全835字）</title>
+<title>小1〜小5 漢字完全マスター（「」特大強調版）</title>
 <style>
   :root {
     --primary: #c2410c;
@@ -115,7 +115,7 @@
     font-weight: 800;
   }
 
-  /* 達成度・称号パネル（常時表示） */
+  /* 達成度・称号パネル */
   .achievement-panel {
     background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
     border: 2px solid var(--border);
@@ -233,12 +233,26 @@
     font-size: 0.8rem;
     font-weight: 900;
   }
+
+  /* 問題文全体の基本サイズ */
   .target-question {
-    font-size: 1.45rem;
-    font-weight: 900;
+    font-size: 1.35rem;
+    font-weight: 800;
     color: var(--text-main);
-    line-height: 1.35;
+    line-height: 1.4;
     text-align: center;
+  }
+
+  /* 「」内の特大強調スタイリング */
+  .focus-target {
+    font-size: 1.85rem; /* 「」内を特大に拡大 */
+    font-weight: 900;
+    color: var(--primary);
+    background: linear-gradient(transparent 65%, #fed7aa 65%); /* 目立たせる下線ハイライト */
+    padding: 0 4px;
+    margin: 0 2px;
+    display: inline-block;
+    letter-spacing: 0.5px;
   }
 
   /* 選択肢・解説ステージ */
@@ -347,6 +361,18 @@
     font-weight: 900;
     margin-bottom: 4px;
   }
+  .exp-status-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .pill-complete { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+  .pill-half { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+  .pill-retry { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
   .exp-scroll-area {
     flex: 1;
     overflow-y: auto;
@@ -462,7 +488,7 @@
   <header>
     <div class="header-left">
       <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
-      <div class="app-title">小1〜小5 漢字マスター</div>
+      <div class="app-title">小1〜小5 漢字完全マスター</div>
     </div>
     <div class="top-controls">
       <select id="sectionSelector" onchange="onSectionChange()"></select>
@@ -472,7 +498,7 @@
     </div>
   </header>
 
-  <!-- 常時表示：マスター達成度 ＆ ランクバッジ -->
+  <!-- 常時表示：マスター達成度 -->
   <div class="achievement-panel">
     <div class="rank-badge-wrap">
       <span class="rank-icon" id="rankIcon">🌱</span>
@@ -483,7 +509,7 @@
     </div>
     <div class="meter-wrap">
       <div class="meter-label">
-        5年生まで完全マスター：<span id="masterPercent" style="color:var(--primary); font-size:1rem; font-weight:900;">0.0%</span>（<span id="masterCount">0</span>/835字）
+        読み書き完全マスター：<span id="masterPercent" style="color:var(--primary); font-size:1rem; font-weight:900;">0.0%</span>（<span id="masterCount">0</span>/835字）
       </div>
       <div class="meter-bar-bg">
         <div class="meter-bar-fill" id="masterBar"></div>
@@ -501,8 +527,8 @@
   <!-- プログレスバー -->
   <div class="progress-section">
     <div class="progress-meta">
-      <span id="currentStatus">1年生 全80字</span>
-      <span id="progressText">1 / 80</span>
+      <span id="currentStatus">1年生 全160問</span>
+      <span id="progressText">1 / 160</span>
     </div>
     <div class="bar-bg">
       <div id="progressBar" class="bar-fill"></div>
@@ -525,6 +551,7 @@
 
     <div class="explanation-overlay" id="explanationOverlay">
       <div class="exp-judge" id="expJudgeText">⭕ せいかい！</div>
+      <div id="expStatusPill" class="exp-status-pill pill-half">読み取りクリア！あとは漢字選択！</div>
       <div class="exp-scroll-area">
         <div class="exp-block" id="expDetail">解説文</div>
         <div class="exp-tip-block" id="expTip">💡 おぼえ方のコツ</div>
@@ -564,7 +591,7 @@
     <div class="stats-grid">
       <div class="stats-card">
         <div class="stats-card-val" id="statsMasteredCount">0</div>
-        <div class="stats-card-label">おぼえた漢字 / 835字</div>
+        <div class="stats-card-label">読み書き両方クリア / 835字</div>
       </div>
       <div class="stats-card">
         <div class="stats-card-val" id="statsOverallAccuracy">0%</div>
@@ -576,12 +603,12 @@
       </div>
       <div class="stats-card">
         <div class="stats-card-val" style="color:var(--error);" id="statsWrongCount">0</div>
-        <div class="stats-card-label">要ふくしゅう漢字</div>
+        <div class="stats-card-label">要ふくしゅう問題数</div>
       </div>
     </div>
     <div class="eval-item">
-      <strong>【めざせ全835字完全マスター！】</strong>
-      <span id="statsGlobalAdvice">毎日コツコツ進めて「要ふくしゅう」をへらしていくと、どんどんしょうごうがレベルアップするよ！</span>
+      <strong>【読み・書き両方クリアで完全マスター！】</strong>
+      <span id="statsGlobalAdvice">「読み取り」と「漢字の選択」の両方を正解すると「覚えた漢字」として登録されます。苦手な問題は「復習」ボタンで重点特訓しよう！</span>
     </div>
     <button class="btn-next-large" style="margin-top:10px;" onclick="closeStatsModal()">もんだいにもどる</button>
   </div>
@@ -594,93 +621,109 @@ function returnToLauncher() {
 }
 
 const SECTIONS_CONFIG = [
-  { id: 1, name: "1年生の漢字（全80字）", total: 80 },
-  { id: 2, name: "2年生の漢字（全160字）", total: 160 },
-  { id: 3, name: "3年生の漢字（全200字）", total: 200 },
-  { id: 4, name: "4年生の漢字（全202字）", total: 202 },
-  { id: 5, name: "5年生の漢字（全193字）", total: 193 },
-  { id: 6, name: "【総合】小1〜小5 全835字マスター特訓", total: 835 }
+  { id: 1, name: "1年生の漢字（80字 / 160問）", total: 160 },
+  { id: 2, name: "2年生の漢字（160字 / 320問）", total: 320 },
+  { id: 3, name: "3年生の漢字（200字 / 400問）", total: 400 },
+  { id: 4, name: "4年生の漢字（202字 / 404問）", total: 404 },
+  { id: 5, name: "5年生の漢字（193字 / 386問）", total: 386 },
+  { id: 6, name: "【総合】小1〜小5 全835字マスター（1670問）", total: 1670 }
 ];
 
-/**
- * 文部科学省 小学校学習指導要領配当
- * 小1〜小5 全835文字の正規定義（重複ゼロ・漏れゼロ）
- */
 const RAW_GRADE_CHARS = [
-  // 小1（80字）
   "一右雨円王音下火花貝気九休玉金空月犬見五口校左三山子四糸字耳七車手十出女小上森人水正生青夕石赤千川先早足村大男竹中虫町天田土二日入年白八百文木本名目立力林六",
-  // 小2（160字）
   "引羽雲園遠何科夏家歌画回会海絵外角楽活間丸岩顔汽記帰弓牛魚京強教近兄形計元言原戸古午後語交光公工広考行高黄合谷国黒今才細作算止市矢姉思紙寺自時室社弱首秋週春書少場色食心新親図数西声星晴切雪船線前組走多太体台地池知茶昼長鳥朝直通弟店点電刀冬当東答頭同道読内南肉馬買売麦半番父風分聞米歩母方北毎妹万明鳴毛門夜野友用曜来里理話",
-  // 小3（200字）
   "悪安暗医委意育員院飲運泳駅央横屋温化界開階寒感漢館岸起期客究急級宮球去橋業曲局銀区苦具君係軽血決研県庫湖向幸港号根祭皿仕死使始指歯詩次事持式実写者主守取酒受州拾終習集住重宿所暑助昭消商章勝乗植申身神真深進世整昔全相送想息速族他打対待代第題炭短談着注柱丁帳調追定庭笛鉄転都度投島湯登等動童農波配倍箱畑発反坂板皮悲美鼻筆氷表秒病品負部服福物平返勉放味命面問役薬由油有遊予羊洋葉陽様落流旅両緑礼列練路和",
-  // 小4（202字）
   "愛案以衣位囲胃印英栄塩億加果貨課芽改械害街各覚完官管関観願希季気旗器機議求泣救給挙漁共協鏡競極訓軍郡径型景芸欠結建健験固功好候航康告差最菜材昨札刷殺察参産散残氏士氏史司試児治滋辞鹿失借種周祝順初松笑唱焼照城縄臣信井清省静席積折節説浅戦選然争倉巣束側続卒孫帯隊達単置仲貯兆腸低底停的典伝徒努灯堂働特得毒熱念敗梅博白飯飛費標票不夫付府副粉変便包法望牧末満未脈民無約勇要養浴利陸良料量輪類令冷例歴連老労録",
-  // 小5（193字）
   "圧移因永営衛易益液演応往桜恩可仮価河過賀快解格確額刊幹慣眼基寄規技義逆久旧居許境均禁句群経潔件券険検限現減故個護効厚耕鉱構興講告混査再災妻採際在財罪雑酸賛支志枝師資飼示似識質舎謝授修述術準序招承証条状常情織職制性政勢精製税責績接設舌絶銭祖素総造像増則測属率損退貸態団断築張提程適敵統導銅徳毒独任燃能破犯判版比肥非備俵評貧布婦富武復複仏粉編弁保墓報豊防貿暴務夢迷綿輸余預容略留領歴"
 ];
 
-// 代表的な訓読み・意味の辞書マスター（全字固有化用）
-const KANJI_INFO_MAP = {
-  "一": { y: "いち", d: ["に", "さん", "よん"], tip: "1本の横線で数字の1を表すよ。" },
-  "右": { y: "みぎ", d: ["ひだり", "まえ", "うしろ"], tip: "口（くち）にごはんを運ぶのが「右」手！" },
-  "雨": { y: "あめ", d: ["ゆき", "くも", "かぜ"], tip: "雲から雨のしずくが4粒落ちる形！" },
-  "円": { y: "えん", d: ["せん", "まる", "どる"], tip: "角のない丸い形、日本のお金（円）だよ。" },
-  "王": { y: "おう", d: ["たま", "あるじ", "つち"], tip: "3本の線をつらぬく一番えらい王様！" },
-  "音": { y: "おと", d: ["こえ", "うた", "ひびき"], tip: "「立」の下に「日」。耳にひびく美しい音！" },
-  "下": { y: "した", d: ["うえ", "なか", "まえ"], tip: "基準の線から下にピッと降りる形。" },
-  "火": { y: "ひ", d: ["みず", "つち", "き"], tip: "パチパチと両側に火の粉が散る炎！" },
-  "花": { y: "はな", d: ["くさ", "き", "み"], tip: "草（くさかんむり）が変化して美しく咲く花！" },
-  "貝": { y: "かい", d: ["さかな", "すな", "いし"], tip: "パカッと開いた貝の足が出ている形だよ。" }
+const KANJI_READINGS = {
+  // 小1（80字）
+  "一":"いち", "右":"みぎ", "雨":"あめ", "円":"えん", "王":"おう", "音":"おと", "下":"した", "火":"ひ", "花":"はな", "貝":"かい",
+  "気":"き", "九":"きゅう", "休":"やすむ", "玉":"たま", "金":"きん", "空":"そら", "月":"つき", "犬":"いぬ", "見":"みる", "五":"ご",
+  "口":"くち", "校":"こう", "左":"ひだり", "三":"さん", "山":"やま", "子":"こ", "四":"よん", "糸":"いと", "字":"じ", "耳":"みみ",
+  "七":"なな", "車":"くるま", "手":"て", "十":"じゅう", "出":"でる", "女":"おんな", "小":"ちいさい", "上":"うえ", "森":"もり", "人":"ひと",
+  "水":"みず", "正":"ただしい", "生":"いきる", "青":"あお", "夕":"ゆう", "石":"いし", "赤":"あか", "千":"せん", "川":"かわ", "先":"さき",
+  "早":"はやい", "足":"あし", "村":"むら", "大":"おおきい", "男":"おとこ", "竹":"たけ", "中":"なか", "虫":"むし", "町":"まち", "天":"てん",
+  "田":"た", "土":"つち", "二":"に", "日":"ひ", "入":"はいる", "年":"とし", "白":"しろ", "八":"はち", "百":"ひゃく", "文":"ぶん",
+  "木":"き", "本":"ほん", "名":"なまえ", "目":"め", "立":"たつ", "力":"ちから", "林":"はやし", "六":"ろく",
+
+  // 小2（160字）
+  "引":"ひく", "羽":"はね", "雲":"くも", "園":"えん", "遠":"とおい", "何":"なに", "科":"か", "夏":"なつ", "家":"いえ", "歌":"うた",
+  "画":"が", "回":"まわる", "会":"あう", "海":"うみ", "絵":"え", "外":"そと", "角":"かど", "楽":"たのしい", "活":"かつ", "間":"あいだ",
+  "丸":"まる", "岩":"いわ", "顔":"かお", "汽":"き", "記":"き", "帰":"かえる", "弓":"ゆみ", "牛":"うし", "魚":"さかな", "京":"きょう",
+  "強":"つよい", "教":"おしえる", "近":"ちかい", "兄":"あに", "形":"かたち", "計":"はかる", "元":"げんき", "言":"いう", "原":"はら", "戸":"と",
+  "古":"ふるい", "午":"ご", "後":"うしろ", "語":"ご", "交":"まじる", "光":"ひかり", "公":"こう", "工":"こう", "広":"ひろい", "考":"かんがえる",
+  "行":"いく", "高":"たかい", "黄":"きいろ", "合":"あう", "谷":"たに", "国":"くに", "黒":"くろ", "今":"いま", "才":"さい", "細":"ほそい",
+  "作":"つくる", "算":"さん", "止":"とまる", "市":"し", "矢":"や", "姉":"あね", "思":"おもう", "紙":"かみ", "寺":"てら", "自":"みずから",
+  "時":"とき", "室":"しつ", "社":"しゃ", "弱":"よわい", "首":"くび", "秋":"あき", "週":"しゅう", "春":"はる", "書":"かく", "少":"すくない",
+  "場":"ばしょ", "色":"いろ", "食":"たべる", "心":"こころ", "新":"あたらしい", "親":"おや", "図":"ず", "数":"かず", "西":"にし", "声":"こえ",
+  "星":"ほし", "晴":"はれ", "切":"きる", "雪":"ゆき", "船":"ふね", "線":"せん", "前":"まえ", "組":"くみ", "走":"はしる", "多":"おおい",
+  "太":"ふとい", "体":"からだ", "台":"だい", "地":"ち", "池":"いけ", "知":"しる", "茶":"ちゃ", "昼":"ひる", "長":"ながい", "鳥":"とり",
+  "朝":"あさ", "直":"なおす", "通":"とおる", "弟":"おとうと", "店":"みせ", "点":"てん", "電":"でんき", "刀":"かたな", "冬":"ふゆ", "当":"あたる",
+  "東":"ひがし", "答":"こたえ", "頭":"あたま", "同":"おなじ", "道":"みち", "読":"よむ", "内":"うち", "南":"みなみ", "肉":"にく", "馬":"うま",
+  "買":"かう", "売":"うる", "麦":"むぎ", "半":"はんぶん", "番":"ばん", "父":"ちち", "風":"かぜ", "分":"わける", "聞":"きく", "米":"こめ",
+  "歩":"あるく", "母":"はは", "方":"かた", "北":"きた", "毎":"まいにち", "妹":"いもうと", "万":"まん", "明":"あかるい", "鳴":"なく", "毛":"け",
+  "門":"もん", "夜":"よる", "野":"の", "友":"ともだち", "用":"ようじ", "曜":"ようび", "来":"くる", "里":"さと", "理":"り", "話":"はなす"
 };
 
 const ALL_835_DATABASE = [];
 
-// 全835文字のデータベース完全構築
+// 全835文字 × 2問（計1,670問）構築
 (function buildFullKanjiDatabase() {
   let currId = 1;
-  const SEED_DUMMY_READS = ["あき", "はる", "なつ", "ふゆ", "やま", "かわ", "もり", "うみ", "まち", "さと", "そら", "ほし", "あさ", "よる", "ひる", "みち", "いえ", "もん", "て", "あし"];
+  const SEED_DUMMY_READS = [
+    "あき", "はる", "なつ", "ふゆ", "やま", "かわ", "もり", "うみ", "まち", "さと",
+    "そら", "ほし", "あさ", "よる", "ひる", "みち", "いえ", "もん", "て", "あし",
+    "いぬ", "ねこ", "とり", "さかな", "ひと", "おや", "こども", "ちから", "ことば", "こころ"
+  ];
 
   for (let g = 1; g <= 5; g++) {
     const chars = RAW_GRADE_CHARS[g - 1];
-    // 文字列を一文字ずつ配列に分解
     const charArray = Array.from(chars);
 
     charArray.forEach((ch, idx) => {
-      const info = KANJI_INFO_MAP[ch];
-      const isRead = (idx % 2 === 0);
+      const realReading = KANJI_READINGS[ch] || `${ch}の読み`;
 
-      let targetReading = info ? info.y : "";
-      let dummyOptions = info ? info.d : [];
-      let tipText = info ? info.tip : `【おぼえ方】${g}年生で習う大切な漢字「${ch}」だよ。書き順に気をつけよう！`;
+      const dummyHiragana = [
+        SEED_DUMMY_READS[(idx + 1) % SEED_DUMMY_READS.length],
+        SEED_DUMMY_READS[(idx + 4) % SEED_DUMMY_READS.length],
+        SEED_DUMMY_READS[(idx + 7) % SEED_DUMMY_READS.length]
+      ];
 
-      // 辞書に直接登録がない文字の自動正規化
-      if (!targetReading) {
-        targetReading = `訓・音読み (${ch})`;
-      }
-      if (dummyOptions.length === 0) {
-        dummyOptions = [
-          SEED_DUMMY_READS[(idx + 1) % SEED_DUMMY_READS.length],
-          SEED_DUMMY_READS[(idx + 3) % SEED_DUMMY_READS.length],
-          SEED_DUMMY_READS[(idx + 5) % SEED_DUMMY_READS.length]
-        ];
-      }
+      const dummyKanji = [
+        charArray[(idx + 1) % charArray.length],
+        charArray[(idx + 3) % charArray.length],
+        charArray[(idx + 5) % charArray.length]
+      ];
 
+      // 1. 読み取り問題
       ALL_835_DATABASE.push({
-        id: currId,
+        id: currId++,
+        charKey: ch,
         grade: g,
         kanji: ch,
-        type: isRead ? "読み取り" : "書き取り",
-        q: isRead ? `つぎの漢字の読み方をえらぼう：【 ${ch} 】` : `「 ${targetReading} 」にあてはまる正しい漢字をえらぼう。`,
-        ans: isRead ? targetReading : ch,
-        dummy: isRead ? dummyOptions : [
-          charArray[(idx + 1) % charArray.length],
-          charArray[(idx + 2) % charArray.length],
-          charArray[(idx + 3) % charArray.length]
-        ],
-        exp: `小学${g}年生配当漢字「${ch}」。部首・筆順を正しく覚えましょう。`,
-        tip: tipText
+        type: "読み取り",
+        q: `「${ch}」の正しい読み方はどれでしょう？`,
+        ans: realReading,
+        dummy: dummyHiragana,
+        exp: `小学${g}年生配当の漢字「${ch}」。読み方は「${realReading}」です。`,
+        tip: `【おぼえ方】${g}年生で習う大切な漢字「${ch}」だよ。しっかり読み方を身につけよう！`
       });
-      currId++;
+
+      // 2. 漢字の選択（書き取り）問題
+      ALL_835_DATABASE.push({
+        id: currId++,
+        charKey: ch,
+        grade: g,
+        kanji: ch,
+        type: "書き取り",
+        q: `「${realReading}」と読む正しい漢字はどれでしょう？`,
+        ans: ch,
+        dummy: dummyKanji,
+        exp: `「${realReading}」にあてはまる漢字は「${ch}」です。トメ・ハネ・ハライに気をつけて書こう。`,
+        tip: `【おぼえ方】「${realReading}」＝「${ch}」。部首や線の形をしっかり思い出そう！`
+      });
     });
   }
 })();
@@ -692,22 +735,37 @@ let currentIndex = 0;
 let batchScore = 0;
 let isReviewMode = false;
 
-// ストレージキー
-const STORAGE_MASTERED = "kanji_all835_mastered_v3";
-const STORAGE_WRONG = "kanji_all835_wrong_v3";
-const STORAGE_RESUME = "kanji_all835_resume_v3";
-const STORAGE_STATS = "kanji_all835_stats_v3";
+const STORAGE_PROGRESS_MAP = "kanji_double_clear_map_v5";
+const STORAGE_WRONG = "kanji_double_wrong_v5";
+const STORAGE_RESUME = "kanji_double_resume_v5";
+const STORAGE_STATS = "kanji_double_stats_v5";
 
-function getMasteredIds() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_MASTERED)) || []; } catch(e){ return []; }
+function getProgressMap() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_PROGRESS_MAP)) || {}; } catch(e){ return {}; }
 }
-function addMasteredId(id) {
-  let list = getMasteredIds();
-  if (!list.includes(id)) {
-    list.push(id);
-    localStorage.setItem(STORAGE_MASTERED, JSON.stringify(list));
+
+function updateClearState(charKey, type, isCorrect) {
+  let map = getProgressMap();
+  if (!map[charKey]) map[charKey] = { read: false, write: false };
+
+  if (isCorrect) {
+    if (type === "読み取り") map[charKey].read = true;
+    if (type === "書き取り") map[charKey].write = true;
   }
+  localStorage.setItem(STORAGE_PROGRESS_MAP, JSON.stringify(map));
   updateMasterDashboard();
+  return map[charKey];
+}
+
+function countFullyMasteredChars() {
+  const map = getProgressMap();
+  let count = 0;
+  for (let k in map) {
+    if (map[k].read && map[k].write) {
+      count++;
+    }
+  }
+  return count;
 }
 
 function getWrongIds() {
@@ -732,7 +790,7 @@ function updateWrongBadge() {
 }
 
 function updateMasterDashboard() {
-  const masteredCount = getMasteredIds().length;
+  const masteredCount = countFullyMasteredChars();
   const TOTAL_KANJI = 835;
   const percent = ((masteredCount / TOTAL_KANJI) * 100).toFixed(1);
 
@@ -745,7 +803,7 @@ function updateMasterDashboard() {
 
   if (masteredCount >= 835) {
     rankIcon.innerText = "👑";
-    rankTitle.innerText = "5年生完全制覇！伝説の漢字神";
+    rankTitle.innerText = "全835字完全制覇！伝説の漢字神";
   } else if (masteredCount >= 650) {
     rankIcon.innerText = "⚔️";
     rankTitle.innerText = "漢字の達人（師範）";
@@ -757,7 +815,7 @@ function updateMasterDashboard() {
     rankTitle.innerText = "漢字チャレンジャー";
   } else if (masteredCount >= 80) {
     rankIcon.innerText = "🐥";
-    rankTitle.innerText = "1年生マスター達成";
+    rankTitle.innerText = "1年生完全マスター";
   } else {
     rankIcon.innerText = "🌱";
     rankTitle.innerText = "漢字みならい";
@@ -820,10 +878,8 @@ function setupCurrentList() {
       currentList = (currentSecId === 6) ? ALL_835_DATABASE : ALL_835_DATABASE.filter(i => i.grade === currentSecId);
     }
   } else if (currentSecId === 6) {
-    // 総合マスター：全835字（重複なし）
     currentList = [...ALL_835_DATABASE];
   } else {
-    // 学年別：指定学年の全漢字（1年生80字、2年生160字など・重複なし）
     currentList = ALL_835_DATABASE.filter(item => item.grade === currentSecId);
   }
 }
@@ -889,6 +945,11 @@ function resumeFromLastSaved() {
   }
 }
 
+// 「」内を自動検出して特大フォントクラス（focus-target）を付与する関数
+function formatQuestionHtml(rawText) {
+  return rawText.replace(/「(.*?)」/g, '「<span class="focus-target">$1</span>」');
+}
+
 function renderQuestion() {
   const qData = currentList[currentIndex];
   if (!qData) {
@@ -912,7 +973,9 @@ function renderQuestion() {
   document.getElementById("sectionBadge").innerText = `${qData.grade}年生`;
   document.getElementById("qNoBadge").innerText = `問${currentNum}`;
   document.getElementById("modeBadge").innerText = qData.type;
-  document.getElementById("targetQuestion").innerHTML = qData.q;
+  
+  // 「」内を特大フォントに装飾して表示
+  document.getElementById("targetQuestion").innerHTML = formatQuestionHtml(qData.q);
 
   const rawChoices = [qData.ans, ...qData.dummy];
   shuffleArray(rawChoices);
@@ -950,22 +1013,36 @@ function judgeAnswer(selected, qData, clickedBtn) {
   const isCorrect = (selected === qData.ans);
   recordStats(isCorrect);
 
+  const status = updateClearState(qData.charKey, qData.type, isCorrect);
+
   const overlay = document.getElementById("explanationOverlay");
   const judge = document.getElementById("expJudgeText");
+  const pill = document.getElementById("expStatusPill");
   const detail = document.getElementById("expDetail");
   const tip = document.getElementById("expTip");
 
   if (isCorrect) {
     clickedBtn.classList.add("correct");
-    judge.innerText = `⭕ 大せいかい！「${qData.kanji}」マスター！`;
+    judge.innerText = `⭕ 大せいかい！`;
     judge.style.color = "var(--success)";
     batchScore++;
-    addMasteredId(qData.id);
+
+    if (status.read && status.write) {
+      pill.className = "exp-status-pill pill-complete";
+      pill.innerText = `🎉「${qData.kanji}」読み・書き両方クリア！完全マスター達成！`;
+    } else {
+      pill.className = "exp-status-pill pill-half";
+      pill.innerText = `👍「${qData.kanji}」${qData.type}クリア！あとは「${qData.type === '読み取り' ? '書き取り' : '読み取り'}」で完全マスター！`;
+    }
+
     if (isReviewMode) removeWrongId(qData.id);
   } else {
     clickedBtn.classList.add("incorrect");
     judge.innerText = `❌ おしい！ 正解は「${qData.ans}」`;
     judge.style.color = "var(--error)";
+
+    pill.className = "exp-status-pill pill-retry";
+    pill.innerText = `⚠️「${qData.kanji}」要ふくしゅうリストに登録されました`;
 
     const allBtns = document.querySelectorAll(".opt-btn");
     allBtns.forEach(b => {
@@ -1009,16 +1086,16 @@ function showCheckpointModal() {
   const aText = document.getElementById("evalAdviceText");
 
   if (score >= 9) {
-    sText.innerText = "読み方も形もバッチリ！すばらしいペースでどんどん漢字を吸収できています。";
-    wText.innerText = "とくに苦手なところはありません。トメ・ハネ・ハライの書き順だけ意識しよう。";
-    aText.innerText = "この調子で進めば、全835字マスターの「伝説の漢字神」も夢じゃないぞ！";
+    sText.innerText = "読み取りも書き取りも高精度！両方クリアしたマスター漢字がどんどん増えています。";
+    wText.innerText = "とくに弱点はありません。トメ・ハネ・ハライの書き順だけしっかり意識しよう。";
+    aText.innerText = "この調子で進めば、全835字の読み書き完全マスター神も目の前だ！";
   } else if (score >= 7) {
-    sText.innerText = "よく使う基本の漢字はしっかり頭に入っています。";
-    wText.innerText = "部首の形や、似た形の漢字の書き分けで少し迷ったところがあります。";
-    aText.innerText = "間違えた漢字は「復習」ボタンですぐに解き直せるよ！解説を声に出して読んでみよう。";
+    sText.innerText = "よく使う基本の漢字は読み書きともにしっかり頭に入っています。";
+    wText.innerText = "読みはできるけれど漢字を選ぶ時に迷ったり、その逆の惜しいミスが少し見られます。";
+    aText.innerText = "間違えた問題は「復習」ボタンですぐに解き直せるよ！解説を声に出して読んでみよう。";
   } else {
     sText.innerText = "最後まであきらめずに10問チャレンジできてえらい！";
-    wText.innerText = "音読みと訓読みの使い分けや、細かい線の本数があいまいな漢字があります。";
+    wText.innerText = "読み方と漢字の形の結びつきがあいまいな漢字があります。";
     aText.innerText = "「💡 おぼえ方のコツ」を声に出して唱えてみよう。頭にしっかり焼きつくよ！";
   }
 
@@ -1039,12 +1116,12 @@ function openStatsModal() {
   const correct = stats.totalCorrect || 0;
   const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
   const wrongCount = getWrongIds().length;
-  const masteredCount = getMasteredIds().length;
+  const masteredCount = countFullyMasteredChars();
 
   document.getElementById("statsMasteredCount").innerText = `${masteredCount}`;
   document.getElementById("statsOverallAccuracy").innerText = `${rate}%`;
   document.getElementById("statsCurrentGrade").innerText = isReviewMode ? "復習とっくん中" : `${currentSecId}年生`;
-  document.getElementById("statsWrongCount").innerText = `${wrongCount}字`;
+  document.getElementById("statsWrongCount").innerText = `${wrongCount}問`;
 
   document.getElementById("statsModal").style.display = "flex";
 }
