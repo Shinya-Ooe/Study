@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>中2歴史 2学期期末対策「江戸時代」パーフェクト演習</title>
+<style>
+  :root {
+    --primary: #854d0e;       /* 江戸・歴史をイメージした深みのある黄茶/金茶 */
+    --primary-light: #ca8a04;
+    --accent: #b45309;
+    --bg: #fefce8;
+    --card-bg: #ffffff;
+    --text-main: #1c1917;
+    --text-sub: #57534e;
+    --success: #15803d;
+    --success-bg: #dcfce7;
+    --error: #b91c1c;
+    --error-bg: #fee2e2;
+    --border: #e7e5e4;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    color: var(--text-main);
+  }
+
+  .app-wrap {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: var(--card-bg);
+  }
+
+  /* 上部ヘッダー */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-back-launcher {
+    background: #57534e;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-back-launcher:active { background: #292524; }
+
+  .app-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .top-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  select {
+    font-size: 0.92rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fbfbfa;
+    font-weight: bold;
+    color: var(--text-main);
+  }
+  .btn-review {
+    font-size: 0.88rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    background: #ea580c;
+    color: #fff;
+    cursor: pointer;
+  }
+  .badge-count {
+    background: #fff;
+    color: #ea580c;
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 0.78rem;
+    margin-left: 3px;
+    font-weight: 800;
+  }
+
+  /* ツールバー */
+  .nav-toolbar {
+    display: flex;
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .nav-btn {
+    flex: 1;
+    background: #f5f5f4;
+    color: #292524;
+    border: 1px solid var(--border);
+    padding: 7px 4px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+  }
+  .nav-btn:active { background: #e7e5e4; }
+  .nav-btn.primary { background: #fef08a; color: #854d0e; border-color: #fde047; }
+
+  /* プログレスバー */
+  .progress-section { margin: 2px 0 4px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-sub);
+    margin-bottom: 2px;
+  }
+  .bar-bg {
+    height: 8px;
+    background: #e7e5e4;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-light);
+    transition: width 0.25s;
+  }
+
+  /* 問題文エリア */
+  .target-area {
+    padding: 6px 8px 8px;
+    border-bottom: 2px dashed var(--border);
+    text-align: center;
+  }
+  .target-meta {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .cat-tag { color: var(--accent); }
+  .scope-tag { color: var(--text-sub); }
+  .target-question {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  /* 選択肢・解説ステージ */
+  .interactive-stage {
+    position: relative;
+    flex: 1;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* 4択ボタン */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    height: 100%;
+  }
+  .opt-btn {
+    width: 100%;
+    flex: 1;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--border);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .opt-btn:active { background: #fafaf9; }
+  .opt-btn.correct {
+    background: var(--success-bg) !important;
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+    font-weight: 800;
+  }
+  .opt-btn.incorrect {
+    background: var(--error-bg) !important;
+    border-color: var(--error) !important;
+    color: var(--error) !important;
+  }
+
+  /* 解説オーバーレイ */
+  .explanation-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    border: 2.5px solid var(--primary-light);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    animation: popIn 0.15s ease-out;
+    z-index: 10;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .exp-judge {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .exp-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .exp-block {
+    background: #fdfdfd;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border-left: 4px solid var(--accent);
+  }
+  .exp-tip-block {
+    background: #fefce8;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1.5px dashed #ca8a04;
+    font-size: 0.95rem;
+    color: #713f12;
+  }
+  .btn-next-large {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 900;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(133, 77, 14, 0.3);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-next-large:active { background: var(--primary-light); }
+
+  /* モーダル */
+  .modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(28, 25, 23, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    z-index: 100;
+  }
+  .modal-box {
+    background: #fff;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .modal-box h3 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .modal-score {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .eval-item {
+    font-size: 0.95rem;
+    background: #fafaf9;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .eval-item strong { display: block; margin-bottom: 2px; font-size: 0.98rem; }
+  .eval-s strong { color: var(--success); }
+  .eval-w strong { color: var(--error); }
+  .eval-a strong { color: var(--accent); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stats-card {
+    background: #f5f5f4;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stats-card-val {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+  }
+  .stats-card-label {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-wrap">
+  <!-- 上部ヘッダー -->
+  <header>
+    <div class="header-left">
+      <button class="btn-back-launcher" onclick="returnToLauncher()">◀ リストへ</button>
+      <div class="app-title">中2歴史 江戸時代演習</div>
+    </div>
+    <div class="top-controls">
+      <select id="sectionSelector" onchange="onSectionChange()"></select>
+      <button class="btn-review" onclick="startWeaknessReview()">
+        復習<span id="wrongCount" class="badge-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ツールバー -->
+  <div class="nav-toolbar">
+    <button class="nav-btn" onclick="confirmResetToStart()">最初にもどる</button>
+    <button class="nav-btn primary" onclick="resumeFromLastSaved()">続きからやる</button>
+    <button class="nav-btn" onclick="openStatsModal()">達成率・成績</button>
+  </div>
+
+  <!-- プログレスバー -->
+  <div class="progress-section">
+    <div class="progress-meta">
+      <span id="currentStatus">第1段落</span>
+      <span id="progressText">1 / 10</span>
+    </div>
+    <div class="bar-bg">
+      <div id="progressBar" class="bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- 問題文エリア -->
+  <div class="target-area">
+    <div class="target-meta">
+      <span class="cat-tag" id="sectionBadge">第1段落</span>
+      <span class="scope-tag" id="qNoBadge">問1</span>
+    </div>
+    <div class="target-question" id="targetQuestion">問題文</div>
+  </div>
+
+  <!-- 選択肢 ＆ 重なる解説ステージ -->
+  <div class="interactive-stage">
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="explanation-overlay" id="explanationOverlay">
+      <div class="exp-judge" id="expJudgeText">⭕ 正解！</div>
+      <div class="exp-scroll-area">
+        <div class="exp-block" id="expDetail">解説文</div>
+        <div class="exp-tip-block" id="expTip">💡 覚え方のコツ・語呂合わせ</div>
+      </div>
+      <button class="btn-next-large" onclick="nextQuestion()">次の問題へ ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- 10問ごとの講評モーダル -->
+<div class="modal-bg" id="checkpointModal">
+  <div class="modal-box">
+    <h3 id="checkpointTitle">第1段落 達成講評</h3>
+    <div class="modal-score" id="checkpointScore">8 / 10</div>
+
+    <div class="eval-item eval-s">
+      <strong>【得意・よく覚えている点】</strong>
+      <span id="evalStrongText"></span>
+    </div>
+    <div class="eval-item eval-w">
+      <strong>【注意・間違えやすい弱点】</strong>
+      <span id="evalWeakText"></span>
+    </div>
+    <div class="eval-item eval-a">
+      <strong>【テスト直前アドバイス】</strong>
+      <span id="evalAdviceText"></span>
+    </div>
+
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeModalAndContinue()">次の段落へ進む</button>
+  </div>
+</div>
+
+<!-- 成績・進捗モーダル -->
+<div class="modal-bg" id="statsModal">
+  <div class="modal-box">
+    <h3>2学期期末テスト対策 学習成績</h3>
+    <div class="stats-grid">
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsTotalAnswered">0</div>
+        <div class="stats-card-label">累計解答数 / 50</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsOverallAccuracy">0%</div>
+        <div class="stats-card-label">全体正答率</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" id="statsCurrentSection">第1段落</div>
+        <div class="stats-card-label">学習中の範囲</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card-val" style="color:var(--error);" id="statsWrongCount">0</div>
+        <div class="stats-card-label">要復習ストック</div>
+      </div>
+    </div>
+    <div class="eval-item">
+      <strong>【期末テスト攻略ポイント】</strong>
+      <span id="statsGlobalAdvice">江戸時代は「誰が・何のために・どんな政策を行ったか」の因果関係が頻出です。特に各大名の配置、四大改革の主導者と目的の区別を確実にしましょう！</span>
+    </div>
+    <button class="btn-next-large" style="margin-top:10px;" onclick="closeStatsModal()">演習に戻る</button>
+  </div>
+</div>
+
+<script>
+function returnToLauncher() {
+  saveProgress();
+  window.location.href = "index.html";
+}
+
+/**
+ * 東京書籍『新編 新しい社会 歴史』中2 2学期期末範囲（江戸時代）
+ * 10問ずつ5段落（全50問・重要頻出テーマ網羅）
+ */
+const SECTIONS_CONFIG = [
+  { id: 1, name: "第1段落：江戸幕府の成立と支配" },
+  { id: 2, name: "第2段落：鎖国の完成と4つの窓口" },
+  { id: 3, name: "第3段落：産業の発達と元禄文化" },
+  { id: 4, name: "第4段落：幕府の三大改革と田沼" },
+  { id: 5, name: "第5段落：化政文化と新しい学問" }
+];
+
+const HIST_DATABASE = [
+  // --- 第1段落：江戸幕府の成立と支配 (1〜10) ---
+  {
+    id: 1, sec: 1,
+    q: "1603年、徳川家康が朝廷から任じられて江戸に幕府を開いた役職は何ですか？",
+    ans: "征夷大将軍（せいいたいしょうぐん）",
+    dummy: ["太政大臣（だいじょうだいじん）", "関白（かんぱく・豊臣秀吉の役職）", "執権（しっけん・鎌倉北条氏の役職）"],
+    exp: "徳川家康は1600年の関ヶ原の戦いに勝利し、1603年に征夷大将軍に任命されて江戸幕府を開きました。",
+    tip: "【覚え方語呂合わせ】「ヒーローおっさん（1603年）江戸幕府」。秀吉は『関白』、家康は『征夷大将軍』です！"
+  },
+  {
+    id: 2, sec: 1,
+    q: "関ヶ原の戦い以前から徳川氏に従っていた、幕府の要職に就く大名を何といいますか？",
+    ans: "譜代大名（ふだいだいみょう）",
+    dummy: ["親藩（しんぱん・徳川一族の大名）", "外様大名（とざま・戦後従った大名）", "旗本（はたもと・将軍直属の武士）"],
+    exp: "親藩（徳川一族）、譜代（古くからの家臣）、外様（関ヶ原以降に従った大名）に分類され、譜代は要所に置かれ幕府の役職を担当しました。",
+    tip: "【覚え方のコツ】親藩＝親戚、譜代＝古株の部下（政治担当）、外様＝遠く（外）に置かれた新入り、と整理！"
+  },
+  {
+    id: 3, sec: 1,
+    q: "江戸幕府が大名を統制するために定めた法律で、城の新築や無断婚姻を禁止したものは何ですか？",
+    ans: "武家諸法度（ぶけしょはっと）",
+    dummy: ["禁中並公家諸法度（天皇・公家用）", "御成敗式目（鎌倉時代の法典）", "慶安の御触書（農民向けの心得）"],
+    exp: "2代将軍・徳川秀忠のときに出され、3代家光のときに参勤交代が付け加えられました。大名の力を抑えるための法律です。",
+    tip: "【覚え方のコツ】大名には「武家」、朝廷・貴族には「公家諸法度」。ターゲットで名前を区別しましょう！"
+  },
+  {
+    id: 4, sec: 1,
+    q: "3代将軍・徳川家光が武家諸法度に加え、大名に1年おきに領地と江戸を往復させた制度は何ですか？",
+    ans: "参勤交代（さんきんこうたい）",
+    dummy: ["知行制（ちぎょうせい・給与制度）", "門前払い（町奉行の訴訟制度）", "検地・刀狩（安土桃山時代の政策）"],
+    exp: "大名は妻子を江戸に人質として住まわせ、1年おきに江戸と領地を行き来しました。多額の旅費を使わせることで反乱の力を奪いました。",
+    tip: "【覚え方語呂合わせ】「人参（1635年）持参で参勤交代（家光が制度化）」。大名の財布を空にする作戦！"
+  },
+  {
+    id: 5, sec: 1,
+    q: "江戸時代、領地を持つ大名がそれぞれ治めた独自の支配組織（領地）を何といいますか？",
+    ans: "藩（はん）",
+    dummy: ["国（くに・令制国の行政単位）", "荘園（しょうえん・荘園制の領地）", "郡（ぐん・地方行政の単位）"],
+    exp: "幕府と藩が全国の土地と人民を支配する政治の仕組みを「幕藩体制（ばくはんたいせい）」と呼びます。",
+    tip: "【覚え方のコツ】幕府 ＋ 藩 ＝「幕藩体制」。テストの穴埋め・記述でも超頻出用語です！"
+  },
+  {
+    id: 6, sec: 1,
+    q: "村の農民に対し、年貢の納入や犯罪防止について連帯責任を負わせた5戸1組の制度は何ですか？",
+    ans: "五人組（ごにんぐみ）",
+    dummy: ["十人組（都市の自衛組織）", "結（ゆい・農作業の相互扶助）", "講（こう・信仰を中心とする集まり）"],
+    exp: "年貢の未納や逃亡、キリスト教の信仰などを防ぐため、近隣の5戸を1グループにして連帯責任を負わせました。",
+    tip: "【覚え方のコツ】「1人がサボると全員連帯責任！」＝五人組。テストで目的（年貢確保・治安維持）も聞かれます。"
+  },
+  {
+    id: 7, sec: 1,
+    q: "田畑の売買や作物の制限など、農民が守るべき生活規範を示したとされる文書は何ですか？",
+    ans: "慶安の御触書（けいあんのおふれがき）",
+    dummy: ["公事方御定書（裁判の判例集）", "分国法（戦国大名が定めた法）", "武家諸法度（大名を取り締まる法）"],
+    exp: "早起きをして農作業に励むことや、麦・雑穀を食べ米を節約することなど、細かく生活が規定されました。",
+    tip: "【覚え方のコツ】大名は武家諸法度、農民は慶安の御触書。「朝早く起きて野良仕事」のフレーズが目印！"
+  },
+  {
+    id: 8, sec: 1,
+    q: "城下町に住み、商売や手工業に従事していた商人と職人を合わせた呼び名は何ですか？",
+    ans: "町人（ちょうにん）",
+    dummy: ["町名主（ちょうなぬし・町役人）", "問屋（といや・卸売の専門業者）", "豪農（ごうのう・富裕な地主農民）"],
+    exp: "江戸幕府の身分制では武士が支配層となり、農民や町人（職人・商人）から年貢や税を徴収しました。",
+    tip: "【覚え方のコツ】「町に住む商人＋職人＝町人」。元禄・化政の主役となる文化の担い手です。"
+  },
+  {
+    id: 9, sec: 1,
+    q: "江戸時代、士農工商の枠外に置かれ、住居や職業、服装などに厳しい差別を受けた身分は何ですか？",
+    ans: "「えた」身分・「ひにん」身分",
+    dummy: ["公家身分（朝廷の貴族階級）", "地主階級（土地を持つ富裕層）", "僧侶・神職（寺社の宗教関係者）"],
+    exp: "幕府や藩は身分を固定し、皮革の加工や警備などを担わせながら、生活全般にわたって不当な差別を行いました。",
+    tip: "【テスト記述のコツ】教科書の表記に沿って正確に答えること。差別による支配の分断策として出題されます。"
+  },
+  {
+    id: 10, sec: 1,
+    q: "江戸幕府が朝廷や天皇の行動を厳しく制限するために定めた法令は何ですか？",
+    ans: "禁中並公家諸法度（きんちゅうならびに〜）",
+    dummy: ["武家諸法度（全国の大名用）", "寺院諸法度（寺院や僧侶用）", "王政復古の大号令（幕末の宣言）"],
+    exp: "「天子諸芸能の事、第一御学問の事」とされ、天皇には政治ではなく学問に専念するよう義務付けました。",
+    tip: "【覚え方のコツ】「禁中＝天皇の御所」「公家＝貴族」。名前そのものに対象が入っています！"
+  },
+
+  // --- 第2段落：鎖国の完成と4つの窓口 (11〜20) ---
+  {
+    id: 11, sec: 2,
+    q: "徳川家康が海外渡航を許可する朱印状を与えて奨励した、東南アジアとの貿易は何ですか？",
+    ans: "朱印船貿易（しゅいんせんぼうえき）",
+    dummy: ["南蛮貿易（ポルトガル等との貿易）", "勘合貿易（室町時代の対明貿易）", "日宋貿易（平清盛が進めた貿易）"],
+    exp: "朱印状（許可証）を持つ船がベトナムやタイなどへ渡航し、現地の各地に「日本町（にほんまち）」が作られました。",
+    tip: "【覚え方のコツ】家康の赤い判こ付き手紙＝朱印状。船に赤い旗を立てて東南アジアへ！"
+  },
+  {
+    id: 12, sec: 2,
+    q: "幕府がキリスト教徒を発見するために、キリストや聖母マリアの銅板を踏ませた行事は何ですか？",
+    ans: "絵踏（えぶみ）※踏ませた板は踏絵",
+    dummy: ["宗門改（宗派を帳簿に調べること）", "寺請制度（寺の檀家にする制度）", "一揆（農民による集団抗議）"],
+    exp: "金属板の「踏絵（ふみえ）」を踏ませる行為を行事名として「絵踏（えぶみ）」と呼びます。",
+    tip: "【テスト注意点】道具は「踏絵」、行為・行事は「絵踏」。テストでの書き分けに要注意！"
+  },
+  {
+    id: 13, sec: 2,
+    q: "キリシタンへの激しい弾圧と重い年貢に耐えかね、天草四郎を総大将として九州でおきた一揆は何ですか？",
+    ans: "島原・天草一揆（しまばら・あまくさいっき）",
+    dummy: ["一向一揆（浄土真宗信徒の一揆）", "山城の国一揆（室町期の武士一揆）", "大塩平八郎の乱（大坂でおきた蜂起）"],
+    exp: "1637年に起こり、幕府に大きな衝撃を与えました。この一揆の鎮圧後、キリスト教の禁止がより徹底されました。",
+    tip: "【覚え方語呂合わせ】「広い皆（1637年）で島原の乱」。10代の少年・天草四郎がリーダー！"
+  },
+  {
+    id: 14, sec: 2,
+    q: "民衆全員を近くの寺の檀家（寺請）にさせ、キリスト教徒でないことを証明させた制度は何ですか？",
+    ans: "宗門改（しゅうもんあらため）",
+    dummy: ["人別改（戸籍や人口の調査制度）", "五人組（近隣農民の連帯責任制）", "寺子屋（町民教育の民間施設）"],
+    exp: "寺院に「宗門改帳（しゅうもんあらためちょう）」を作らせ、全住民の宗教を監視しました。",
+    tip: "【覚え方のコツ】「寺に所属させてキリシタンゼロ運動」＝宗門改（寺請制度）。"
+  },
+  {
+    id: 15, sec: 2,
+    q: "1639年に来航を禁止された、カトリック布教を進めていたヨーロッパの国はどこですか？",
+    ans: "ポルトガル",
+    dummy: ["オランダ（プロテスタントで通商継続）", "イギリス（商館を閉じて自ら撤退）", "スペイン（1624年に先立って禁止）"],
+    exp: "1639年ポルトガル船来航禁止、1641年オランダ商館を出島に移転したことで、いわゆる「鎖国」が完成しました。",
+    tip: "【覚え方語呂合わせ】「色気（1624）なくすスペイン、色々咲く（1639）ポルトガル禁止」で年号も完璧！"
+  },
+  {
+    id: 16, sec: 2,
+    q: "鎖国体制のもとで、長崎の出島に商館を置くことを唯一許されたヨーロッパの国はどこですか？",
+    ans: "オランダ",
+    dummy: ["イギリス（競争に負けて自ら撤退）", "フランス（通商関係を結ばず）", "ロシア（幕末まで来航できず）"],
+    exp: "オランダはキリスト教の布教をせず、貿易のみを望んだため出島での通商が認められました。",
+    tip: "【覚え方のコツ】「布教はしない、商売だけ！」と約束したのがオランダです。"
+  },
+  {
+    id: 17, sec: 2,
+    q: "オランダ商館長が幕府に提出した、ヨーロッパや海外の情勢を知らせる報告書を何といいますか？",
+    ans: "オランダ風説書（ふうせつがき）",
+    dummy: ["解体新書（西洋解剖書の翻訳本）", "海国兵談（海防の危機を訴えた本）", "鎖国令（幕府が発令した一連の禁令）"],
+    exp: "幕府は鎖国中でもオランダ風説書によって海外の最新情勢を正確に把握していました。",
+    tip: "【テスト頻出ポイント】「日本は完全に世界から孤立していたわけではない」証拠として出題されます！"
+  },
+  {
+    id: 18, sec: 2,
+    q: "将軍の代替わりごとに朝鮮から日本にやってきた、公式の外交使節団を何といいますか？",
+    ans: "朝鮮通信使（ちょうせんつうしんし）",
+    dummy: ["遣唐使（古代中国への使節団）", "日明使節（勘合貿易の使節団）", "慶賀使（琉球から将軍就任を祝う使節）"],
+    exp: "秀吉の朝鮮侵略で断絶した国交を対馬藩の仲介で回復し、将軍の就任ごとに訪れました。",
+    tip: "【覚え方のコツ】信（まこと）を通じる使者＝通信使。対馬の宗氏（そうし）が窓口！"
+  },
+  {
+    id: 19, sec: 2,
+    q: "薩摩藩（島津氏）に征服されながらも、清（中国）と日本両方に朝貢・従属していた王国は何ですか？",
+    ans: "琉球王国（りゅうきゅうおうこく）",
+    dummy: ["蝦夷地（アイヌの人々の居住地）", "高麗（中世の朝鮮半島国家）", "台湾（東南アジアの海洋貿易拠点）"],
+    exp: "1609年に薩摩藩に従属しましたが、中国（清）との朝貢貿易を続けさせ、幕府はその利益を吸い上げました。",
+    tip: "【覚え方のコツ】鎖国の4つの窓口：長崎（蘭・清）、対馬（朝鮮）、薩摩（琉球）、松前（アイヌ）！"
+  },
+  {
+    id: 20, sec: 2,
+    q: "松前藩による不当な交易制限や圧迫に対し、1669年に蜂起したアイヌ民族の首長は誰ですか？",
+    ans: "シャクシャイン",
+    dummy: ["コシャマイン（室町時代の蜂起）", "アテルイ（平安初期の蝦夷の指導者）", "天草四郎（島原の一揆の指導者）"],
+    exp: "松前藩はアイヌの人々との交易独占権を持っていましたが、不公平な取引に反発してシャクシャインが蜂起しました。",
+    tip: "【覚え方語呂合わせ】「一路報復（1669年）シャクシャイン」。松前藩＝アイヌ・シャクシャイン！"
+  },
+
+  // --- 第3段落：産業の発達と元禄文化 (21〜30) ---
+  {
+    id: 21, sec: 3,
+    q: "江戸時代に普及した、土を深く耕して反転させることができる改良農具は何ですか？",
+    ans: "備中ぐわ（びっちゅうぐわ）",
+    dummy: ["千歯こき（脱穀を高速化する農具）", "唐箕（風で籾殻と実を選別する器具）", "千石どおし（網目で米粒を選別する枠）"],
+    exp: "刃が数本に分かれており、深く耕せるため作物の根がよく伸びて収穫量が増加しました。",
+    tip: "【農具の覚え方のコツ】深く耕す＝備中ぐわ／脱穀＝千歯こき／風で選別＝唐箕（とうみ）。セットで暗記！"
+  },
+  {
+    id: 22, sec: 3,
+    q: "稲や麦の脱穀作業を、従来のこき箸に比べて飛躍的に効率化させた鉄の歯が並んだ農具は何ですか？",
+    ans: "千歯こき（せんばこき）",
+    dummy: ["備中ぐわ（深く耕すためのクワ）", "唐箕（風力でゴミを吹き飛ばす具）", "水車（精米や揚水に使う施設）"],
+    exp: "後家（未亡人）の仕事を奪うほど早いという意味で「後家倒し」とも呼ばれました。",
+    tip: "【覚え方のコツ】「千本の歯で一気に稲穂をしごく」＝千歯こき。写真資料問題で一番出ます！"
+  },
+  {
+    id: 23, sec: 3,
+    q: "綿花（わた）や菜種、藍など、自家消費ではなく市場で売ることを主目的に栽培された作物を何といいますか？",
+    ans: "商品作物（しょうひんさくもつ）",
+    dummy: ["主食穀物（米や麦など毎日の主食）", "救荒作物（飢饉の非常食となる芋類）", "年貢米（幕府へ納めるための米）"],
+    exp: "肥料として干鰯（ほしか・イワシを干した肥料）や油かすが使われ、農村に貨幣経済が浸透しました。",
+    tip: "【覚え方のコツ】「売って商品にする作物」＝商品作物。干鰯（金肥）を買うために貨幣が必要に！"
+  },
+  {
+    id: 24, sec: 3,
+    q: "全国の物資が集まる経済の中心地として「天下の台所」と呼ばれた都市はどこですか？",
+    ans: "大坂（おおさか）",
+    dummy: ["江戸（将軍のおひざもと・消費都市）", "京都（伝統工芸・朝廷のある都市）", "長崎（海外貿易の玄関口）"],
+    exp: "諸藩が米や特産物を保管・換金する「蔵屋敷（くらやしき）」が大坂に立ち並びました。",
+    tip: "【三都の覚え方】江戸＝将軍のおひざもと／大坂＝天下の台所／京都＝千年の都（伝統工芸）。"
+  },
+  {
+    id: 25, sec: 3,
+    q: "大坂と江戸を結び、木綿や油、酒などの生活物資を大量に運んだ定期船を何といいますか？",
+    ans: "菱垣廻船・樽廻船（ひがきかいせん・たる〜）",
+    dummy: ["北前船（日本海回りの西廻り航路）", "朱印船（東南アジア渡航用の船）", "黒船（幕末に来航した蒸気船）"],
+    exp: "酒専用の「樽廻船」や日用品を運ぶ「菱垣廻船」が太平洋ルート（東廻り航路・南回り）で物資を大量輸送しました。",
+    tip: "【覚え方のコツ】大坂から江戸へ送られる「下りもの」。樽に入った酒＝樽廻船！"
+  },
+  {
+    id: 26, sec: 3,
+    q: "幕府が整備した日本橋を起点とする五街道の中で、最も重要視された東海道以外の街道でないものはどれですか？",
+    ans: "山陽道（五街道には含まれない）",
+    dummy: ["中山道（五街道の1つ）", "甲州街道（五街道の1つ）", "奥州街道（日光街道と並ぶ五街道）"],
+    exp: "五街道は「東海道・中山道・甲州街道・日光街道・奥州街道」の5つです。要所に関所が置かれました。",
+    tip: "【覚え方語呂合わせ】「東・中・甲・日・奥（とう・ちゅう・こう・にっ・おう）」。日本橋から伸びる5本！"
+  },
+  {
+    id: 27, sec: 3,
+    q: "5代将軍・徳川綱吉の時代、京都や大坂の上方（かみがた）を中心に栄えた町人文化は何ですか？",
+    ans: "元禄文化（げんろくぶんか）",
+    dummy: ["化政文化（19世紀初め・江戸中心）", "東山文化（室町時代・銀閣や水墨画）", "桃山文化（秀吉の時代・豪華絢爛）"],
+    exp: "5代綱吉の治世。上方（関西）中心で、現実に生きる町人の感情を生き生きと描く明るい文化です。",
+    tip: "【文化の区別のコツ】元禄＝上方（関西）・5代綱吉の頃／化政＝江戸・11代家斉の頃。超頻出！"
+  },
+  {
+    id: 28, sec: 3,
+    q: "『日本永代蔵』や『世間胸算用』などを著し、町人の浮世や経済活動をリアルに描いた小説家は誰ですか？",
+    ans: "井原西鶴（いはらさいかく）",
+    dummy: ["近松門左衛門（人形浄瑠璃の脚本）", "松尾芭蕉（『おくのほそ道』の俳諧）", "十返舎一九（化政期の『東海道中膝栗毛』）"],
+    exp: "「浮世草子（うきよぞうし）」と呼ばれる小説ジャンルを確立し、商人の成功や失敗を描きました。",
+    tip: "【元禄の3大巨頭】小説＝井原西鶴／浄瑠璃＝近松門左衛門／俳諧＝松尾芭蕉！"
+  },
+  {
+    id: 29, sec: 3,
+    q: "『曽根崎心中』など実際の心中事件を題材にし、義理と人情の板挟みを描いた人形浄瑠璃・歌舞伎の作者は誰ですか？",
+    ans: "近松門左衛門（ちかまつもんざえもん）",
+    dummy: ["井原西鶴（浮世草子の作家）", "竹本義太夫（浄瑠璃の語り手）", "世阿弥（室町時代に能を大成）"],
+    exp: "人形浄瑠璃や歌舞伎の脚本を書き、庶民の圧倒的な人気を集めました。",
+    tip: "【覚え方のコツ】心中（恋愛の悲劇）＝近松門左衛門。人形浄瑠璃の黄金期を築きました。"
+  },
+  {
+    id: 30, sec: 3,
+    q: "「閑さや岩にしみ入る蝉の声」など、新しいスタイルの俳諧（蕉風俳諧）を大成した人物は誰ですか？",
+    ans: "松尾芭蕉（まつおばしょう）",
+    dummy: ["与謝蕪村（化政期の俳人・画家）", "小林一茶（化政期の庶民派俳人）", "千利休（安土桃山時代の茶人）"],
+    exp: "東北や北陸を旅して紀行文『おくのほそ道』を著し、芸術性の高い俳諧を完成させました。",
+    tip: "【俳人の時代分け】元禄＝松尾芭蕉（おくのほそ道）／化政＝与謝蕪村・小林一茶（雀の子そこのけ〜）。"
+  },
+
+  // --- 第4段落：幕府の三大改革と田沼 (31〜40) ---
+  {
+    id: 31, sec: 4,
+    q: "「米将軍」と呼ばれた8代将軍・徳川吉宗が行った、質素倹約と新田開発を中心とする政治改革は何ですか？",
+    ans: "享保の改革（きょうほうのかいかく）",
+    dummy: ["寛政の改革（松平定信の厳しい改革）", "天保の改革（水野忠邦の物価抑制策）", "田沼の政治（商業重視・株仲間公認）"],
+    exp: "1716年開始。新田開発、足高の制、上米の制（参勤交代緩和の代わりに米納入）などを進めました。",
+    tip: "【覚え方語呂合わせ】「いいな色（1716年）男、吉宗の享保の改革」。米将軍といえば吉宗！"
+  },
+  {
+    id: 32, sec: 4,
+    q: "徳川吉宗が庶民の意見や訴えを直接聞くために、評定所の門前に設置した投書箱は何ですか？",
+    ans: "目安箱（めやすばこ）",
+    dummy: ["目安状（裁判の訴状）", "制札（幕府が掲げた高札）", "箱館奉行（幕末の北方防備役職）"],
+    exp: "目安箱への投書から、貧民を救済する医療施設「小石川養生所」や「町火消」が創設されました。",
+    tip: "【覚え方のコツ】目安箱＝小石川養生所（医療）＋町火消（消防）。セットでテストに出ます！"
+  },
+  {
+    id: 33, sec: 4,
+    q: "徳川吉宗が公平な裁判を行うため、過去の判例をもとに定めた裁判と刑罰の基準法は何ですか？",
+    ans: "公事方御定書（くじがたおさだめがき）",
+    dummy: ["御成敗式目（鎌倉時代の武家法）", "武家諸法度（大名統制の基本法）", "慶安の御触書（農民の生活規範）"],
+    exp: "これによって身分に応じた刑罰や裁判の基準が明確になり、裁判が迅速化しました。",
+    tip: "【覚え方のコツ】「公事（裁判）を定める書」＝公事方御定書。裁判の基準！"
+  },
+  {
+    id: 34, sec: 4,
+    q: "商工業者の同業者組織である「株仲間」を公認し、営業税（運上・冥加物）を取って財政を潤そうとした老中は誰ですか？",
+    ans: "田沼意次（たぬまおきつぐ）",
+    dummy: ["松平定信（寛政の改革の主導者）", "水野忠邦（天保の改革の主導者）", "柳沢吉保（5代綱吉を補佐した側用人）"],
+    exp: "米に頼る財政から商業重視へ転換し、蝦夷地の開発や印旛沼の干拓も試みましたが、賄賂が横行して失脚しました。",
+    tip: "【覚え方のコツ】「株仲間公認・商業利用・賄賂（わいろ）」のキーワードが出たら100％田沼意次！"
+  },
+  {
+    id: 35, sec: 4,
+    q: "田沼意次の失脚後、白河藩主から老中となり、吉宗の享保の改革を手本として厳しい政治を行った人物は誰ですか？",
+    ans: "松平定信（まつだいらさだのぶ）",
+    dummy: ["水野忠邦（天保の改革を実施）", "徳川斉昭（水戸藩主・幕末の志士）", "井伊直弼（幕末の大老）"],
+    exp: "吉宗の孫にあたり、1787年から「寛政の改革」を行いました。厳しすぎて庶民から反発を受けました。",
+    tip: "【覚え方のコツ】定信の「信」は白河藩主。「白河の清きに魚も棲みかねて」と落首（狂歌）で皮肉られました。"
+  },
+  {
+    id: 36, sec: 4,
+    q: "松平定信が幕府の学問所（湯島聖堂）で、幕政にふさわしい学問として朱子学以外の講義を禁止した命令は何ですか？",
+    ans: "寛政異学の禁（かんせいいがくのきん）",
+    dummy: ["異国船打払令（外国船を砲撃する令）", "生類憐みの令（動物愛護の悪法）", "棄捐令（旗本・御家人の借金帳消し令）"],
+    exp: "幕府の正統な学問を「朱子学」と定め、他の儒教思想を排除して武士の統制を図りました。",
+    tip: "【覚え方のコツ】「寛政の改革＝朱子学オンリー令（寛政異学の禁）」。朱子学を暗記！"
+  },
+  {
+    id: 37, sec: 4,
+    q: "1837年、飢饉で苦しむ庶民を救うため、元大坂町奉行所の役人が大坂で門弟とともに起こした反乱は何ですか？",
+    ans: "大塩平八郎の乱（おおしおへいはちろうのらん）",
+    dummy: ["島原・天草一揆（九州のキリシタン一揆）", "生野の変（幕末の尊攘派挙兵）", "天誅組の変（幕末の討幕派挙兵）"],
+    exp: "天保の大飢饉の最中、元幕府の役人（陽明学者）が幕府のお膝元である大坂で起こしたため、全国に衝撃を与えました。",
+    tip: "【覚え方のコツ】「元お役人（警察官）が幕府に反乱！」＝大塩平八郎。幕府の権威がガタ落ちした事件。"
+  },
+  {
+    id: 38, sec: 4,
+    q: "大塩平八郎の乱の直後、物価高騰の原因とみなして「株仲間の解散」を命じた天保の改革の老中は誰ですか？",
+    ans: "水野忠邦（みずのただくに）",
+    dummy: ["田沼意次（株仲間を公認した老中）", "松平定信（寛政の改革を行った老中）", "阿部正弘（日米和親条約を結んだ老中）"],
+    exp: "1841年開始。株仲間の解散、上知令（江戸・大坂周辺の幕府直轄地化）を断行しましたが、大混乱を招き2年余りで失脚しました。",
+    tip: "【対比で覚える！】田沼意次＝株仲間を「公認」 ⇔ 水野忠邦＝株仲間を「解散」！真逆の政策です。"
+  },
+  {
+    id: 40, sec: 4,
+    q: "農村の荒廃を防ぐため、江戸に流入した農民を強制的に故郷の村へ帰らせた水野忠邦の政策は何ですか？",
+    ans: "人返しの法（ひとかえしのほう）",
+    dummy: ["旧里帰農令（定信が出した自発的な帰村奨励）", "刀狩（農民から武器を取り上げる令）", "地租改正（明治政府の税制改革）"],
+    exp: "松平定信の「旧里帰農令（奨励金付きの自発的）」に対し、水野忠邦は強制的に帰村させました。",
+    tip: "【覚え方のコツ】寛政（定信）＝帰りたい人はお金あげる（奨励）／天保（忠邦）＝全員強制送還（人返し）！"
+  },
+  {
+    id: 39, sec: 4,
+    q: "水野忠邦が江戸・大坂周辺の肥沃な大名・旗本領を幕府直轄地にしようとして、猛反発を受け失脚の原因となった命令は何ですか？",
+    ans: "上知令（あげちれい／上知令）",
+    dummy: ["棄捐令（借金棒引き令）", "武家諸法度（大名の取り締まり法）", "相対済し令（金銭訴訟不受理令）"],
+    exp: "江戸や大坂の警備強化と財政安定を狙いましたが、大名や旗本だけでなく農民からも大反対され撤回に追い込まれました。",
+    tip: "【覚え方のコツ】「土地を上に差し上げろ」＝上知令。忠邦さんの退陣打となった政策です。"
+  },
+
+  // --- 第5段落：化政文化と新しい学問 (41〜50) ---
+  {
+    id: 41, sec: 5,
+    q: "19世紀初め、11代将軍・徳川家斉の時代に、江戸を中心に庶民の間で花開いた皮肉やユーモアあふれる文化は何ですか？",
+    ans: "化政文化（かせいぶんか）",
+    dummy: ["元禄文化（5代綱吉の頃・上方中心）", "桃山文化（戦国末期・大名中心）", "南蛮文化（戦国時代・キリスト教影響）"],
+    exp: "文化・文政年間の頃の文化。出版業が発展し、浮世絵や滑稽本、川柳、狂歌など江戸の庶民文化が爛熟しました。",
+    tip: "【覚え方のコツ】「元禄＝上方（関西・上品・人形浄瑠璃）」⇔「化政＝江戸（庶民・笑い・浮世絵・小説）」！"
+  },
+  {
+    id: 42, sec: 5,
+    q: "仏教や儒教の影響を受ける前の日本固有の精神を求め、『古事記伝』を著して本居宣長が大成した学問は何ですか？",
+    ans: "国学（こくがく）",
+    dummy: ["蘭学（オランダ語を通じた西洋学術）", "朱子学（幕府公認の儒教道徳学問）", "陽明学（行動を重視する実践的儒学）"],
+    exp: "本居宣長は伊勢（三重県）松阪の人。約30年かけて『古事記伝』を完成させ、幕末の尊皇攘夷思想に影響を与えました。",
+    tip: "【覚え方のコツ】「日本の古典を研究＝国学」「本居宣長＝古事記伝（35年かけた執念の研究）」。"
+  },
+  {
+    id: 43, sec: 5,
+    q: "オランダ語の解剖書『ターヘル・アナトミア』を杉田玄白や前野良沢らが苦心して翻訳・出版した書物は何ですか？",
+    ans: "『解体新書』（かいたいしんしょ）",
+    dummy: ["『蘭学事始』（翻訳の苦労を回想した本）", "『古事記伝』（日本古典の注釈書）", "『海国兵談』（林子平の海防論書）"],
+    exp: "死体の解剖に立ち会い、オランダ語の人体図の正確さに驚いた杉田玄白らが1774年に刊行しました。",
+    tip: "【覚え方語呂合わせ】「いい波（1774年）乗って解体新書」。杉田玄白＆前野良沢！"
+  },
+  {
+    id: 44, sec: 5,
+    q: "全国の沿岸を自分の足で歩いて測量し、きわめて精密な『大日本沿海輿地全図』を作った人物は誰ですか？",
+    ans: "伊能忠敬（いのうただたか）",
+    dummy: ["間宮林蔵（樺太が島であることを発見）", "最上徳内（千島列島を探検調査）", "杉田玄白（解体新書を著した蘭学者）"],
+    exp: "50歳を過ぎてから天文学を本格的に学び、17年間歩き続けて現代の衛星写真とほぼ一致する日本地図を完成させました。",
+    tip: "【覚え方のコツ】「日本中を歩いて正確な日本地図を作ったおじいちゃん」＝伊能忠敬！"
+  },
+  {
+    id: 45, sec: 5,
+    q: "長崎の出島にあるオランダ商館の医師として来日し、鳴滝塾（なるたきじゅく）を開いて日本の若者に医学を教えたドイツ人は誰ですか？",
+    ans: "シーボルト",
+    dummy: ["ペリー（浦賀に来航したアメリカ提督）", "タウンゼント・ハリス（初代駐日総領事）", "フランシスコ・ザビエル（キリスト教伝来）"],
+    exp: "高野長英ら多くの門弟を育てましたが、日本地図を国外へ持ち出そうとした「シーボルト事件」で国外追放されました。",
+    tip: "【覚え方のコツ】「鳴滝塾＝シーボルト（ドイツ人医師）」「適塾＝緒方洪庵」。塾の名前とセットで！"
+  },
+  {
+    id: 46, sec: 5,
+    q: "『富嶽三十六景』で知られ、富士山と庶民の暮らしを大胆な構図で描いた化政文化の浮世絵師は誰ですか？",
+    ans: "葛飾北斎（かつしかほくさい）",
+    dummy: ["歌川広重（『東海道五十三次』の作者）", "喜多川歌麿（元禄〜化政の美人画）", "東洲斎写楽（個性的な役者絵の作者）"],
+    exp: "海外でも「Hokusai」として熱狂的な人気があり、大波の絵（神奈川沖浪裏）が特に有名です。",
+    tip: "【浮世絵師の覚え方】北斎＝富士山（富嶽三十六景）／広重＝東海道の宿場町（東海道五十三次）。"
+  },
+  {
+    id: 47, sec: 5,
+    q: "遠近法を取り入れ、雨や雪など旅情豊かな風景を描いた『東海道五十三次』で有名な浮世絵師は誰ですか？",
+    ans: "歌川広重（うたがわひろしげ・安藤広重）",
+    dummy: ["葛飾北斎（『富嶽三十六景』の作者）", "菱川師宣（元禄期『見返り美人図』）", "尾形光琳（元禄期の蒔絵・工芸家）"],
+    exp: "日本橋から京都までの53の宿場町の風景を描き、旅ブームの火付け役となりました。",
+    tip: "【風景画コンビ】富士山なら「北斎」、旅の街道風景なら「広重」！"
+  },
+  {
+    id: 48, sec: 5,
+    q: "弥次さん・喜多さんの2人が東海道を旅しながら騒動を巻き起こす、十返舎一九が書いた滑稽本は何ですか？",
+    ans: "『東海道中膝栗毛』（とうかいどうちゅうひざくりげ）",
+    dummy: ["『南総里見八犬伝』（滝沢馬琴の読本）", "『日本永代蔵』（井原西鶴の浮世草子）", "『おくのほそ道』（松尾芭蕉の紀行文）"],
+    exp: "庶民の旅行ブームを反映した大ベストセラー小説で、笑いとダジャレが満載の作品です。",
+    tip: "【小説の区別のコツ】十返舎一九＝膝栗毛（笑い）／滝沢馬琴＝八犬伝（長編大作）。"
+  },
+  {
+    id: 49, sec: 5,
+    q: "「雀の子そこのけそこのけ御馬が通る」など、子どもや小動物への愛着を素朴に詠んだ化政期の俳人は誰ですか？",
+    ans: "小林一茶（こばやしいっさ）",
+    dummy: ["与謝蕪村（絵画的な情景を詠んだ俳人）", "松尾芭蕉（元禄期に蕉風俳諧を大成）", "近松門左衛門（人形浄瑠璃の脚本家）"],
+    exp: "信濃（長野県）出身で、生活の苦しみの中にも温かい庶民の眼差しを持った俳句を多く残しました。",
+    tip: "【化政の2大俳人】「菜の花や月は東に日は西に」＝与謝蕪村／「雀の子〜」「やせ蛙〜」＝小林一茶！"
+  },
+  {
+    id: 50, sec: 5,
+    q: "江戸の町や農村に急速に広まり、庶民の子どもたちに「読み・書き・そろばん」の実用的な知識を教えた施設は何ですか？",
+    ans: "寺子屋（てらこや）",
+    dummy: ["藩校（藩士の子弟が通う学校）", "昌平坂学問所（幕府直轄の最高教育機関）", "適塾（蘭学を学ぶ私塾）"],
+    exp: "寺子屋の普及により、当時の日本の庶民の識字率は世界でもトップクラスの高さでした。",
+    tip: "【学校の区別】武士の子＝藩校・昌平坂学問所／庶民の子＝寺子屋（読み書きそろばん）！"
+  }
+];
+
+// アプリ状態
+let currentSecId = 1;
+let currentList = [];
+let currentIndex = 0;
+let batchScore = 0;
+let totalScore = 0;
+let isReviewMode = false;
+
+const STORAGE_WRONG = "chugaku2_edo_wrong_v1";
+const STORAGE_RESUME = "chugaku2_edo_resume_v1";
+const STORAGE_STATS = "chugaku2_edo_stats_v1";
+
+function getWrongIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
+}
+function saveWrongId(id) {
+  let list = getWrongIds();
+  if (!list.includes(id)) {
+    list.push(id);
+    localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  }
+  updateWrongBadge();
+}
+function removeWrongId(id) {
+  let list = getWrongIds().filter(i => i !== id);
+  localStorage.setItem(STORAGE_WRONG, JSON.stringify(list));
+  updateWrongBadge();
+}
+function updateWrongBadge() {
+  const el = document.getElementById("wrongCount");
+  if (el) el.innerText = getWrongIds().length;
+}
+
+function saveProgress() {
+  const state = {
+    secId: currentSecId,
+    index: currentIndex,
+    batchScore: batchScore,
+    totalScore: totalScore,
+    isReview: isReviewMode
+  };
+  localStorage.setItem(STORAGE_RESUME, JSON.stringify(state));
+}
+
+function recordStats(isCorrect) {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
+  if (isCorrect) stats.totalCorrect = (stats.totalCorrect || 0) + 1;
+  localStorage.setItem(STORAGE_STATS, JSON.stringify(stats));
+}
+
+window.onload = function() {
+  const sel = document.getElementById("sectionSelector");
+  sel.innerHTML = "";
+  SECTIONS_CONFIG.forEach(sec => {
+    const opt = document.createElement("option");
+    opt.value = sec.id;
+    opt.innerText = sec.name;
+    sel.appendChild(opt);
+  });
+  updateWrongBadge();
+
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      currentSecId = s.secId || 1;
+      currentIndex = s.index || 0;
+      batchScore = s.batchScore || 0;
+      totalScore = s.totalScore || 0;
+      isReviewMode = !!s.isReview;
+      sel.value = currentSecId;
+    } catch(e){}
+  }
+
+  if (isReviewMode) {
+    const wIds = getWrongIds();
+    currentList = HIST_DATABASE.filter(item => wIds.includes(item.id));
+    if (currentList.length === 0) { isReviewMode = false; currentList = HIST_DATABASE.filter(i => i.sec === currentSecId); }
+  } else {
+    currentList = HIST_DATABASE.filter(item => item.sec === currentSecId);
+  }
+
+  renderQuestion();
+};
+
+function onSectionChange() {
+  currentSecId = parseInt(document.getElementById("sectionSelector").value);
+  startCurrentSection();
+}
+
+function startCurrentSection() {
+  isReviewMode = false;
+  currentList = HIST_DATABASE.filter(item => item.sec === currentSecId);
+  currentIndex = 0;
+  batchScore = 0;
+  totalScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function startWeaknessReview() {
+  const wrongIds = getWrongIds();
+  if (wrongIds.length === 0) {
+    alert("現在、要復習リスト（間違えた問題）はありません！期末テスト準備は万全です。");
+    return;
+  }
+  isReviewMode = true;
+  currentList = HIST_DATABASE.filter(item => wrongIds.includes(item.id));
+  currentIndex = 0;
+  batchScore = 0;
+  totalScore = 0;
+  saveProgress();
+  renderQuestion();
+}
+
+function confirmResetToStart() {
+  if (confirm("現在の段落の最初（問1）からやり直しますか？")) {
+    currentIndex = 0;
+    batchScore = 0;
+    saveProgress();
+    renderQuestion();
+  }
+}
+
+function resumeFromLastSaved() {
+  const saved = localStorage.getItem(STORAGE_RESUME);
+  if (!saved) {
+    alert("保存された前回の進捗がありません。第1段落から開始します。");
+    startCurrentSection();
+    return;
+  }
+  try {
+    const s = JSON.parse(saved);
+    currentSecId = s.secId || 1;
+    currentIndex = s.index || 0;
+    batchScore = s.batchScore || 0;
+    totalScore = s.totalScore || 0;
+    isReviewMode = !!s.isReview;
+    document.getElementById("sectionSelector").value = currentSecId;
+
+    if (isReviewMode) {
+      const wIds = getWrongIds();
+      currentList = HIST_DATABASE.filter(item => wIds.includes(item.id));
+      if (currentList.length === 0) { isReviewMode = false; currentList = HIST_DATABASE.filter(i => i.sec === currentSecId); }
+    } else {
+      currentList = HIST_DATABASE.filter(item => item.sec === currentSecId);
+    }
+
+    if (currentIndex >= currentList.length) currentIndex = 0;
+    renderQuestion();
+    alert(`第${currentSecId}段落の【問${currentIndex + 1}】から再開しました！`);
+  } catch(e) {
+    startCurrentSection();
+  }
+}
+
+function renderQuestion() {
+  const qData = currentList[currentIndex];
+  if (!qData) {
+    alert(`この段落の全問演習が完了しました！\n正解数: ${batchScore} / ${currentList.length}`);
+    currentIndex = 0;
+    saveProgress();
+    return;
+  }
+
+  saveProgress();
+
+  const currentNum = currentIndex + 1;
+  const totalNum = currentList.length;
+  document.getElementById("currentStatus").innerText = isReviewMode ? "要復習演習" : `第${currentSecId}段落`;
+  document.getElementById("progressText").innerText = `${currentNum} / ${totalNum}`;
+  document.getElementById("progressBar").style.width = `${(currentNum / totalNum) * 100}%`;
+
+  document.getElementById("sectionBadge").innerText = isReviewMode ? "苦手克服" : `第${currentSecId}段落`;
+  document.getElementById("qNoBadge").innerText = `問${currentNum}`;
+  document.getElementById("targetQuestion").innerText = qData.q;
+
+  const choices = [qData.ans, ...qData.dummy];
+  shuffleArray(choices);
+
+  const grid = document.getElementById("optionsGrid");
+  grid.innerHTML = "";
+  choices.forEach(ch => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.innerText = ch;
+    btn.onclick = () => checkAnswer(ch, qData, btn);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById("explanationOverlay").style.display = "none";
+}
+
+function checkAnswer(selected, qData, clickedBtn) {
+  const allBtns = document.querySelectorAll(".opt-btn");
+  allBtns.forEach(b => b.disabled = true);
+
+  const isCorrect = (selected === qData.ans);
+  recordStats(isCorrect);
+
+  const overlay = document.getElementById("explanationOverlay");
+  const judge = document.getElementById("expJudgeText");
+  const detail = document.getElementById("expDetail");
+  const tip = document.getElementById("expTip");
+
+  if (isCorrect) {
+    clickedBtn.classList.add("correct");
+    judge.innerText = "⭕ 正解！ (Great!)";
+    judge.style.color = "var(--success)";
+    batchScore++;
+    totalScore++;
+    if (isReviewMode) removeWrongId(qData.id);
+  } else {
+    clickedBtn.classList.add("incorrect");
+    judge.innerText = `❌ 不正解... 正解は「${qData.ans}」`;
+    judge.style.color = "var(--error)";
+    saveWrongId(qData.id);
+  }
+
+  detail.innerHTML = `<strong>【解説・重要ポイント】</strong><br>${qData.exp}`;
+  tip.innerHTML = `${qData.tip}`;
+
+  saveProgress();
+  overlay.style.display = "flex";
+}
+
+function nextQuestion() {
+  currentIndex++;
+  saveProgress();
+  // 10問で段落終了の判定
+  if (currentIndex > 0 && currentIndex % 10 === 0) {
+    showCheckpointModal();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showCheckpointModal() {
+  const modal = document.getElementById("checkpointModal");
+  const score = batchScore;
+  const currentSecName = SECTIONS_CONFIG.find(s => s.id === currentSecId)?.name || `第${currentSecId}段落`;
+
+  document.getElementById("checkpointTitle").innerText = `${currentSecName} 達成講評`;
+  document.getElementById("checkpointScore").innerText = `${score} / 10 問 正解`;
+
+  const sText = document.getElementById("evalStrongText");
+  const wText = document.getElementById("evalWeakText");
+  const aText = document.getElementById("evalAdviceText");
+
+  if (score >= 9) {
+    sText.innerText = "この単元の基本用語・人物名・年号の因果関係が完璧に頭に入っています！";
+    wText.innerText = "ケアレスミス以外に目立った弱点はありません。漢字指定で間違えないよう漢字表記を再確認しましょう。";
+    aText.innerText = "この調子で次の段落へ進みましょう。期末テストで90点以上を狙える素晴らしい理解度です！";
+  } else if (score >= 7) {
+    sText.innerText = "教科書の重要太字用語はしっかりと覚えられています。";
+    wText.innerText = "人物名と政策の組み合わせ（例：吉宗・意次・定信・忠邦の区別）で少し迷いが生じています。";
+    aText.innerText = "「誰が・何のために・何をやったか」を整理し、間違えた問題は復習ボタンでチェックしておきましょう。";
+  } else {
+    sText.innerText = "まずは問題にしっかり挑戦できたことが素晴らしいです！";
+    wText.innerText = "用語の名前だけでなく、その時代の背景や理由の理解があやふやな部分があります。";
+    aText.innerText = "解説カードに出る「💡 覚え方のコツ」を口に出して唱えてみてください。記憶への残り方が劇的に変わります！";
+  }
+
+  modal.style.display = "flex";
+  batchScore = 0;
+  saveProgress();
+}
+
+function closeModalAndContinue() {
+  document.getElementById("checkpointModal").style.display = "none";
+  if (!isReviewMode && currentSecId < SECTIONS_CONFIG.length) {
+    currentSecId++;
+    document.getElementById("sectionSelector").value = currentSecId;
+    startCurrentSection();
+  } else {
+    renderQuestion();
+  }
+}
+
+function openStatsModal() {
+  let stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STORAGE_STATS)) || {}; } catch(e){}
+  const answered = stats.totalAnswered || 0;
+  const correct = stats.totalCorrect || 0;
+  const rate = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+  const wrongCount = getWrongIds().length;
+
+  document.getElementById("statsTotalAnswered").innerText = `${answered}`;
+  document.getElementById("statsOverallAccuracy").innerText = `${rate}%`;
+  document.getElementById("statsCurrentSection").innerText = isReviewMode ? "復習中" : `第${currentSecId}段落`;
+  document.getElementById("statsWrongCount").innerText = `${wrongCount}問`;
+
+  document.getElementById("statsModal").style.display = "flex";
+}
+
+function closeStatsModal() {
+  document.getElementById("statsModal").style.display = "none";
+}
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+</script>
+</body>
+</html>
