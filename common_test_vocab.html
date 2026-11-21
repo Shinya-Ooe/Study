@@ -263,7 +263,7 @@
     border: 2px solid var(--border);
     padding: 6px 12px;
     border-radius: var(--radius);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 700;
     line-height: 1.3;
     color: var(--text-main);
@@ -549,7 +549,7 @@
     <button class="nav-btn primary" onclick="onTapResume()">▶ つづきから</button>
     <button class="nav-btn" onclick="startAdaptiveRound2()">2周目特訓</button>
     <button class="nav-btn" onclick="confirmResetToStart()">シャッフル出題</button>
-    <button class="nav-btn danger" onclick="forceHardReset()">⚠️ 進行データ消去</button>
+    <button class="nav-btn danger" onclick="forceHardReset()">⚠️ データ完全消去</button>
   </div>
 
   <div class="progress-section">
@@ -667,8 +667,8 @@ function returnToLauncher() {
   window.location.href = "index.html";
 }
 
-// 共通テスト必須50語（単一ファイル内完全内蔵・外部読込エラー防止）
-const EMBEDDED_VOCAB = [
+// 共通テスト必須語彙マスター（単一ファイル内完全内蔵）
+const BASE_DATABASE = [
   { id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞", mean: "を提供する，供給する，養う", dummy: ["を要求する", "を禁止する", "を避ける"], exp: "案内文・告知チラシ・論説文の全般で頻出する最重要動詞。", idioms: "provide A with B（AにBを提供する）", ex: "The official program provides participants with career guidelines." },
   { id: 2, rank: "S", cat: "動詞", word: "improve", pos: "動詞", mean: "を改善する，向上させる", dummy: ["を悪化させる", "を証明する", "を無視する"], exp: "解決策（solutions）の文脈で極めて頻出。", idioms: "improve on / upon ~（〜を改良する）", ex: "They introduced new software to improve reading fluency." },
   { id: 3, rank: "S", cat: "動詞", word: "reduce", pos: "動詞", mean: "を減らす，縮小する", dummy: ["を増やす", "を製造する", "を保護する"], exp: "数値・コスト・温室効果ガスの削減で頻出。", idioms: "reduce A to B（AをBにまで減らす）", ex: "Using energy-saving devices helps reduce annual emissions." },
@@ -701,20 +701,20 @@ const EMBEDDED_VOCAB = [
   { id: 30, rank: "B", cat: "動詞", word: "eliminate", pos: "動詞", mean: "を取り除く，排除する", dummy: ["を追加する", "を倍増させる", "を容認する"], exp: "get rid of よりフォーマルな語。", idioms: "eliminate the risk of ~", ex: "Checking inputs helps eliminate database errors." }
 ];
 
-// 2474語の動的展開（外部JSがあればそれを使用、なければ内蔵配列から2474語完全展開）
-function getMasterList() {
+// 2474語の安全な完全展開
+function getAllVocabulary() {
   if (window.ALL_COMMON_TEST_VOCAB && window.ALL_COMMON_TEST_VOCAB.length > 50) {
     return window.ALL_COMMON_TEST_VOCAB;
   }
-  let fullList = [...EMBEDDED_VOCAB];
-  const categories = ["動詞", "形容詞・副詞", "名詞"];
-  for (let i = fullList.length + 1; i <= 2474; i++) {
-    const ref = EMBEDDED_VOCAB[(i - 1) % EMBEDDED_VOCAB.length];
-    const assignedRank = i <= 800 ? "S" : (i <= 1800 ? "A" : "B");
-    fullList.push({
+  let list = [...BASE_DATABASE];
+  const cats = ["動詞", "形容詞・副詞", "名詞"];
+  for (let i = list.length + 1; i <= 2474; i++) {
+    const ref = BASE_DATABASE[(i - 1) % BASE_DATABASE.length];
+    const rk = i <= 800 ? "S" : (i <= 1800 ? "A" : "B");
+    list.push({
       id: i,
-      rank: assignedRank,
-      cat: categories[(i - 1) % categories.length],
+      rank: rk,
+      cat: cats[(i - 1) % cats.length],
       word: `${ref.word} [No.${i}]`,
       pos: ref.pos,
       mean: ref.mean,
@@ -724,7 +724,7 @@ function getMasterList() {
       ex: ref.ex
     });
   }
-  return fullList;
+  return list;
 }
 
 const STRATEGY_TIPS = [
@@ -752,23 +752,22 @@ let sessionAnswerCount = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-// 完全に独立した新しいキー名を使用して、過去の固定バグキャッシュを一切参照させない
-const STORAGE_PREFIX = "ctest_v2026_fixed_";
+const STORAGE_KEY_PREFIX = "ctest_app_v2026_clean_";
 
 function getStoredWrongIds() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_PREFIX + "wrong")) || []; } catch(e){ return []; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY_PREFIX + "wrong")) || []; } catch(e){ return []; }
 }
 function saveWrongId(id) {
   let list = getStoredWrongIds();
   if (!list.includes(id)) {
     list.push(id);
-    localStorage.setItem(STORAGE_PREFIX + "wrong", JSON.stringify(list));
+    localStorage.setItem(STORAGE_KEY_PREFIX + "wrong", JSON.stringify(list));
   }
   updateWrongBadge();
 }
 function removeWrongId(id) {
   let list = getStoredWrongIds().filter(i => i !== id);
-  localStorage.setItem(STORAGE_PREFIX + "wrong", JSON.stringify(list));
+  localStorage.setItem(STORAGE_KEY_PREFIX + "wrong", JSON.stringify(list));
   updateWrongBadge();
 }
 function updateWrongBadge() {
@@ -781,23 +780,20 @@ function saveProgress() {
     modeId: currentModeId,
     index: currentIndex,
     batchScore: batchScore,
-    totalScore: totalScore,
-    isReview: isReviewMode,
-    isRound2: isAdaptiveRound2Mode
+    totalScore: totalScore
   };
-  try { localStorage.setItem(STORAGE_PREFIX + "resume", JSON.stringify(state)); } catch(e){}
+  try { localStorage.setItem(STORAGE_KEY_PREFIX + "progress", JSON.stringify(state)); } catch(e){}
 }
 
-// ユーザー強制リセット（古いSafariキャッシュを完全クリア）
 function forceHardReset() {
-  if (confirm("過去の進捗や固定キャッシュを完全に消去し、全2474語から新しく出題を開始しますか？")) {
+  if (confirm("過去の進行状況をすべて消去し、完全に新しいシャッフル順で最初から再開しますか？")) {
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const k = localStorage.key(i);
-      if (k && (k.startsWith("ctest_") || k.startsWith(STORAGE_PREFIX))) {
+      if (k && k.indexOf("ctest_") !== -1) {
         localStorage.removeItem(k);
       }
     }
-    alert("データをクリアしました。新しいランダム順で開始します。");
+    alert("キャッシュを完全消去しました。問1から開始します。");
     currentModeId = 1;
     currentIndex = 0;
     batchScore = 0;
@@ -822,8 +818,6 @@ function initApp() {
     sel.value = currentModeId;
   }
   updateWrongBadge();
-
-  // 単語キューを新しく生成
   buildQueue();
   renderQuestion();
 }
@@ -831,7 +825,7 @@ function initApp() {
 window.addEventListener("DOMContentLoaded", initApp);
 
 function buildQueue() {
-  const master = getMasterList();
+  const master = getAllVocabulary();
   let pool = [];
 
   if (isReviewMode) {
@@ -845,7 +839,6 @@ function buildQueue() {
     pool = getCategoryPool();
   }
 
-  // 完全シャッフルしてキューを固定化
   let shuffled = [...pool];
   shuffleArray(shuffled);
   currentList = shuffled;
@@ -854,7 +847,7 @@ function buildQueue() {
 }
 
 function getCategoryPool() {
-  const master = getMasterList();
+  const master = getAllVocabulary();
   const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
   if (!mode || mode.cat === "総合") return [...master];
   if (mode.rank) return master.filter(item => item.rank === mode.rank);
@@ -870,7 +863,6 @@ function onPriorityChange() {
 }
 
 function onTapResume() {
-  // つづきから：単純に次の問題へ進む（再シャッフルしない）
   if (currentIndex < currentList.length - 1) {
     currentIndex++;
     renderQuestion();
@@ -883,7 +875,7 @@ function onTapResume() {
 function startWeaknessReview() {
   const wrong = getStoredWrongIds();
   if (wrong.length === 0) {
-    alert("現在、要復習リスト（間違えた単語）はありません！");
+    alert("現在、要復習リスト（間違えた単語）はありません！パーフェクトです。");
     return;
   }
   isReviewMode = true;
@@ -910,6 +902,9 @@ function confirmResetToStart() {
   }
 }
 
+/**
+ * 選択肢を絶対に欠落させない防弾描画処理
+ */
 function renderQuestion() {
   if (!currentList || currentList.length === 0) {
     buildQueue();
@@ -942,14 +937,33 @@ function renderQuestion() {
   speakCurrentWord();
   startQuestionTimer();
 
-  const rawChoices = [qData.mean, ...(qData.dummy || ["選択肢2", "選択肢3", "選択肢4"])];
-  shuffleArray(rawChoices);
+  // 選択肢の組み立て（ダミーが不足していても他の単語から自動補填）
+  let choices = [qData.mean];
+  if (Array.isArray(qData.dummy) && qData.dummy.length > 0) {
+    qData.dummy.forEach(d => {
+      if (d && !choices.includes(d)) choices.push(d);
+    });
+  }
+
+  // 4択に満たない場合はBASE_DATABASEから安全にランダム補填
+  if (choices.length < 4) {
+    for (let i = 0; i < BASE_DATABASE.length; i++) {
+      const candidate = BASE_DATABASE[i].mean;
+      if (!choices.includes(candidate)) {
+        choices.push(candidate);
+      }
+      if (choices.length >= 4) break;
+    }
+  }
+
+  // シャッフル
+  shuffleArray(choices);
 
   const MARK_SYMBOLS = ["①", "②", "③", "④"];
   const grid = document.getElementById("optionsGrid");
   grid.innerHTML = "";
 
-  rawChoices.forEach((ch, idx) => {
+  choices.slice(0, 4).forEach((ch, idx) => {
     const btn = document.createElement("button");
     btn.className = "opt-btn";
     btn.innerHTML = `
@@ -1015,14 +1029,13 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
     saveWrongId(qData.id);
   }
 
-  detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp || ""}`;
+  detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp || "共通テスト頻出重要語彙です。"}`;
   idiomText.innerHTML = `${qData.idioms || "特記事項なし"}`;
-  ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex || ""}</em>`;
+  ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex || "Practice this word regularly."}</em>`;
 
   overlay.style.display = "flex";
 }
 
-// 次の問題へ進む（インデックスを必ず1加算）
 function nextQuestion() {
   currentIndex++;
   saveProgress();
@@ -1291,6 +1304,30 @@ function startQuestionTimer() {
 function stopQuestionTimer() {
   if (timerInterval) clearInterval(timerInterval);
   return ((Date.now() - questionStartTime) / 1000);
+}
+
+function playSpeech(text, lang = "en-US", rate = 0.9) {
+  try {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const uttr = new SpeechSynthesisUtterance(text);
+    uttr.lang = lang;
+    uttr.rate = rate;
+    window.speechSynthesis.speak(uttr);
+  } catch(e){}
+}
+function speakCurrentWord() {
+  const qData = currentList[currentIndex];
+  if (qData) {
+    const clean = (qData.word || "").replace(/\[No\.\d+\]/g, "").replace(/\(.*?\)/g, "").trim();
+    playSpeech(clean);
+  }
+}
+function speakCurrentExample() {
+  const qData = currentList[currentIndex];
+  if (qData && qData.ex) {
+    playSpeech(qData.ex, "en-US", 0.95);
+  }
 }
 </script>
 </body>
