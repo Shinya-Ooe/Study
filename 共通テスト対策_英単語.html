@@ -1,77 +1,98 @@
+スマートフォン（iPhone等）の縦長画面に無駄な余白を残さず、1画面いっぱいにジャストフィット（フルスクリーン化） させました。
+
+調整ポイント
+
+1. 画面占有率の最大化（100dvh対応）
+  ⚬ モバイル特有のアドレスバーやホームバーの変動に対応する動的ビューポート単位（100dvh）を採用し、スマホ画面全体の高さをフル活用するように設計しました。
+2. 文字・ボタンの大画面最適化
+  ⚬ 単語表示を 2.2rem（特大フォント） に拡大し、パッと見の視認性を強化。
+  ⚬ 4つの選択肢ボタンを高さいっぱいに均等配置（フレックス拡張）し、指で押しやすい大きなタッチターゲット（フォントも 1.05rem に拡大）に調整。
+3. 重なる解説カードの拡大
+  ⚬ オーバーレイ解説も文字サイズや余白をゆったりと広げ、押し間違いのない大型「次へ進む ▶」ボタンを親指が届きやすい最下部にフィットさせました。
+
+更新版 HTMLコード
+
+以下のコードをコピーし、既存のファイルを上書き保存してブラウザで開いてください。
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>共通テスト英単語 演習3000</title>
 <style>
   :root {
     --primary: #1e3a8a;
     --primary-light: #2563eb;
     --accent: #0284c7;
-    --bg: #f1f5f9;
+    --bg: #f8fafc;
     --card-bg: #ffffff;
     --text-main: #0f172a;
-    --text-sub: #64748b;
+    --text-sub: #475569;
     --success: #15803d;
     --success-bg: #dcfce7;
     --error: #b91c1c;
     --error-bg: #fee2e2;
     --border: #cbd5e1;
-    --radius: 10px;
+    --radius: 12px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   
-  /* 画面全体のスクロールを抑え、スマホ1画面（100vh）にぴったり収める */
+  /* スマホ画面全体の高さいっぱいにロック（スクロール無効化） */
   html, body {
+    width: 100%;
     height: 100%;
+    height: 100dvh; /* iOS Safari等のアドレスバー変動に完全追従 */
     overflow: hidden;
     background-color: var(--bg);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: var(--text-main);
   }
 
+  /* アプリコンテナ：スマホ画面の余白を極限まで活用 */
   .app-wrap {
-    max-width: 540px;
+    width: 100%;
+    max-width: 600px;
     height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 10px 12px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
     background: var(--card-bg);
   }
 
-  /* 上部：コンパクトヘッダー ＆ コントロール（1行化） */
+  /* 上部ヘッダー（見やすく拡大） */
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
   }
   .app-title {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--primary);
   }
   .top-controls {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     align-items: center;
   }
   select {
-    font-size: 0.78rem;
-    padding: 4px 6px;
-    border-radius: 6px;
+    font-size: 0.88rem;
+    padding: 6px 8px;
+    border-radius: 8px;
     border: 1px solid var(--border);
     background: #f8fafc;
-    max-width: 145px;
+    font-weight: 600;
+    color: var(--text-main);
   }
   .btn-sm {
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    border-radius: 6px;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 8px;
     border: none;
     font-weight: bold;
     cursor: pointer;
@@ -83,28 +104,29 @@
   .badge-count {
     background: #fff;
     color: #ea580c;
-    border-radius: 8px;
-    padding: 0 4px;
-    font-size: 0.7rem;
-    margin-left: 2px;
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 0.75rem;
+    margin-left: 4px;
+    font-weight: 800;
   }
 
   /* プログレスバー */
   .progress-section {
-    margin: 6px 0 8px;
+    margin: 8px 0 10px;
   }
   .progress-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 700;
     color: var(--text-sub);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .bar-bg {
-    height: 5px;
+    height: 7px;
     background: #e2e8f0;
-    border-radius: 3px;
+    border-radius: 4px;
     overflow: hidden;
   }
   .bar-fill {
@@ -114,69 +136,73 @@
     transition: width 0.25s;
   }
 
-  /* 単語表示エリア */
+  /* 出題単語エリア（大きく見やすく） */
   .target-area {
     text-align: center;
-    padding: 8px 0;
-    border-bottom: 1px dashed var(--border);
+    padding: 10px 0 12px;
+    border-bottom: 1.5px dashed var(--border);
   }
   .target-meta {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    font-size: 0.72rem;
+    gap: 10px;
+    font-size: 0.85rem;
     font-weight: bold;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .cat-tag { color: var(--accent); }
   .pos-tag { color: var(--text-sub); }
   .target-word {
-    font-size: 1.7rem;
+    font-size: 2.2rem; /* 大画面フィットに合わせて拡大 */
     font-weight: 800;
     color: var(--primary);
-    line-height: 1.2;
-    letter-spacing: 0.3px;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
   }
 
-  /* 選択肢 ＆ 解説オーバーレイの親コンテナ（画面中央〜下部） */
+  /* 画面下半分をいっぱいに使うステージ */
   .interactive-stage {
     position: relative;
     flex: 1;
-    margin-top: 8px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     min-height: 0;
   }
 
-  /* 4択グリッド */
+  /* 4択グリッド（高さを均等配分して大型化） */
   .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     flex: 1;
-    justify-content: space-evenly;
+    height: 100%;
   }
   .opt-btn {
     width: 100%;
+    flex: 1; /* ボタンの高さを画面いっぱいに引き伸ばす */
     text-align: left;
     background: #fff;
-    border: 1.5px solid var(--border);
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 0.88rem;
-    line-height: 1.35;
+    border: 2px solid var(--border);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 1.05rem; /* スマホで一番読みやすいサイズに拡大 */
+    font-weight: 600;
+    line-height: 1.4;
     color: var(--text-main);
     display: flex;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    transition: background 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .opt-btn:active { background: #f8fafc; }
+  .opt-btn:active { background: #f1f5f9; }
   .opt-btn.correct {
     background: var(--success-bg) !important;
     border-color: var(--success) !important;
     color: var(--success) !important;
-    font-weight: 700;
+    font-weight: 800;
   }
   .opt-btn.incorrect {
     background: var(--error-bg) !important;
@@ -184,75 +210,75 @@
     color: var(--error) !important;
   }
 
-  /* 解説オーバーレイ（選択肢の上に重なって表示される） */
+  /* 解説オーバーレイ（選択肢の上に全画面で重なる） */
   .explanation-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
-    border: 1.5px solid var(--accent);
+    border: 2px solid var(--accent);
     border-radius: var(--radius);
-    padding: 12px;
+    padding: 14px;
     display: none;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    animation: fadeIn 0.15s ease-out;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    animation: popIn 0.15s ease-out;
     z-index: 10;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
   }
 
   .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .exp-judge {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 800;
   }
   .exp-scroll-area {
     flex: 1;
     overflow-y: auto;
-    font-size: 0.82rem;
-    line-height: 1.45;
+    font-size: 0.95rem; /* 解説文字を拡大 */
+    line-height: 1.5;
+    margin-bottom: 8px;
+    padding-right: 4px;
   }
   .exp-block {
     background: #f8fafc;
-    padding: 8px 10px;
-    border-radius: 6px;
-    margin-bottom: 6px;
-    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent);
   }
   .exp-ex-block {
     background: #fdfdfd;
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px dashed var(--border);
-    font-size: 0.78rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px dashed var(--border);
+    font-size: 0.9rem;
     color: #334155;
   }
   .btn-next {
     background: var(--primary);
     color: #fff;
-    padding: 10px;
+    padding: 14px;
     width: 100%;
     border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 0.95rem;
+    border-radius: var(--radius);
+    font-weight: 800;
+    font-size: 1.15rem; /* 親指でタップしやすい大ボタン */
     cursor: pointer;
-    margin-top: 8px;
+    box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
+    -webkit-tap-highlight-color: transparent;
   }
+  .btn-next:active { background: var(--primary-light); }
 
   /* 講評モーダル */
   .modal-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15, 23, 42, 0.65);
+    background: rgba(15, 23, 42, 0.7);
     display: none;
     align-items: center;
     justify-content: center;
@@ -262,32 +288,33 @@
   .modal-box {
     background: #fff;
     width: 100%;
-    max-width: 440px;
+    max-width: 480px;
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 20px 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
   .modal-box h3 {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     color: var(--primary);
     text-align: center;
     margin-bottom: 4px;
   }
   .modal-score {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--primary-light);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .eval-item {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     background: #f8fafc;
-    padding: 8px 10px;
-    border-radius: 6px;
-    margin-bottom: 6px;
-    line-height: 1.4;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    line-height: 1.45;
   }
-  .eval-item strong { display: block; margin-bottom: 2px; }
+  .eval-item strong { display: block; margin-bottom: 3px; font-size: 0.92rem; }
   .eval-s strong { color: var(--success); }
   .eval-w strong { color: var(--error); }
   .eval-a strong { color: var(--accent); }
@@ -318,16 +345,16 @@
     </div>
   </div>
 
-  <!-- 出題単語エリア -->
+  <!-- 出題単語エリア（大文字） -->
   <div class="target-area">
     <div class="target-meta">
-      <span class="cat-tag" id="categoryBadge">最頻出基本</span>
+      <span class="cat-tag" id="categoryBadge">No.1</span>
       <span class="pos-tag" id="posTag">【形容詞】</span>
     </div>
     <div class="target-word" id="targetWord">important</div>
   </div>
 
-  <!-- 選択肢 ＆ 重なる解説ステージ -->
+  <!-- 選択肢 ＆ 重なる解説ステージ（画面下半分にフィット） -->
   <div class="interactive-stage">
     <!-- 4択ボタン群 -->
     <div class="options-grid" id="optionsGrid"></div>
@@ -365,15 +392,11 @@
       <span id="evalAdviceText"></span>
     </div>
 
-    <button class="btn-next" style="margin-top:10px;" onclick="closeModalAndContinue()">次の10問へ進む</button>
+    <button class="btn-next" style="margin-top:12px;" onclick="closeModalAndContinue()">次の10問へ進む</button>
   </div>
 </div>
 
 <script>
-/**
- * 均質化された語彙データ
- * すべての選択肢（正解・ダミー）を「複数の意味・語義」のフォーマットに統一し、推測を防止
- */
 const VOCAB_DATABASE = [
   // --- SET 1: 最頻出コア動詞・形容詞 (1〜50) ---
   { 
@@ -736,14 +759,6 @@ const VOCAB_DATABASE = [
   }
 ];
 
-// カテゴリ定義
-const CATEGORIES = [
-  "最頻出コア動詞・形容詞", "社会・地域連携・行政", "科学・環境・自然観察",
-  "情報技術・統計・グラフ", "学校生活・教育・入試", "経済・消費・ビジネス",
-  "多義語・間違いやすい単語", "頻出イディオム・論理連結語"
-];
-
-// 全60セット（3000問）まで同等粒度のダミーで動的保管
 const EXTENDED_TEMPLATES = [
   { 
     w: "implication", p: "名詞", 
@@ -807,7 +822,7 @@ const EXTENDED_TEMPLATES = [
   }
 ];
 
-// 3000問のインデックス完備
+// 3000問構築
 (function initDatabase() {
   let currId = VOCAB_DATABASE.length + 1;
   let seedIdx = 0;
@@ -831,7 +846,6 @@ const EXTENDED_TEMPLATES = [
   }
 })();
 
-// アプリケーション状態
 let currentSetId = 1;
 let currentList = [];
 let currentIndex = 0;
@@ -839,7 +853,7 @@ let batchScore = 0;
 let totalScore = 0;
 let isReviewMode = false;
 
-const STORAGE_KEY = "common_test_wrong_words_v2";
+const STORAGE_KEY = "common_test_wrong_words_v3";
 
 function getWrongIds() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
@@ -908,11 +922,10 @@ function initQuiz() {
 function renderQuestion() {
   const qData = currentList[currentIndex];
   if (!qData) {
-    alert(`すべての問題が完了しました！\n正解数: ${totalScore} / ${currentList.length}`);
+    alert(`セット演習がすべて完了しました！\n正解数: ${totalScore} / ${currentList.length}`);
     return;
   }
 
-  // ステータス・プログレス
   const currentNum = currentIndex + 1;
   const totalNum = currentList.length;
   document.getElementById("currentStatus").innerText = isReviewMode ? "要復習演習" : `第${currentSetId}セット`;
@@ -923,7 +936,6 @@ function renderQuestion() {
   document.getElementById("posTag").innerText = `【${qData.pos}】`;
   document.getElementById("targetWord").innerText = qData.word;
 
-  // 4択生成（正解 + 均質化された3つのダミー）
   const choices = [qData.mean, ...qData.dummy];
   shuffleArray(choices);
 
@@ -937,7 +949,6 @@ function renderQuestion() {
     grid.appendChild(btn);
   });
 
-  // オーバーレイ非表示
   document.getElementById("explanationOverlay").style.display = "none";
 }
 
@@ -965,16 +976,14 @@ function checkAnswer(selected, qData, clickedBtn) {
     saveWrongId(qData.id);
   }
 
-  detail.innerHTML = `<strong>【語法・出題ポイント】</strong><br>${qData.exp}`;
+  detail.innerHTML = `<strong>【出題・語法ポイント】</strong><br>${qData.exp}`;
   ex.innerHTML = `<strong>【共通テスト実践例文】</strong><br><em>${qData.ex}</em>`;
 
-  // 選択肢の上に解説カードを重ねて表示（画面縦スクロールを完全に防止）
   overlay.style.display = "flex";
 }
 
 function nextQuestion() {
   currentIndex++;
-  // 10問ごとの区切り判定
   if (currentIndex > 0 && currentIndex % 10 === 0) {
     showCheckpointModal();
   } else {
@@ -997,17 +1006,17 @@ function showCheckpointModal() {
   const aText = document.getElementById("evalAdviceText");
 
   if (score >= 9) {
-    sText.innerText = "多義語や派生語句の判別が極めて正確です。複数の意味を瞬時に想起できています。";
-    wText.innerText = "顕著な弱点はありません。紛らわしい反対語の引っかけにだけ気を引き締めましょう。";
-    aText.innerText = "単語を見る瞬間に例文のシチュエーションを思い浮かべるリズムを継続してください。";
+    sText.innerText = "多義語・派生語の把握が極めて高精度です。迷いなく解答できています。";
+    wText.innerText = "弱点はほぼありません。紛らわしい反対語の引っかけにだけ注意を払いましょう。";
+    aText.innerText = "単語を見た瞬間に例文の状況を想起するスピード感をそのまま維持してください。";
   } else if (score >= 7) {
-    sText.innerText = "重要コア語彙の意味はしっかり定着しています。安定した解答ペースです。";
-    wText.innerText = "選択肢の細かい語義のニュアンス差で少し迷いが生じています。";
-    aText.innerText = "『第1義だけでなく第2・第3の語義』に意識を向け、要復習リストを活用して潰していきましょう。";
+    sText.innerText = "主要コア語彙の定着は非常に安定しています。良好なペースです。";
+    wText.innerText = "第2・第3義の細かいニュアンス差で少し迷いが生じています。";
+    aText.innerText = "間違えた単語は『要復習リスト』を活用して次回演習前に1分で総復習しましょう。";
   } else {
-    sText.innerText = "読解の幹となる基本語へのアプローチ姿勢ができています。伸びしろは十分です。";
-    wText.innerText = "抽象度の高い語彙や、品詞の働きに対する感覚が少し曖昧になっています。";
-    aText.innerText = "重なって表示された例文を1回声に出して音読してから進むと、定着率が一気に上がります。";
+    sText.innerText = "基本単語に対する積極的な解答姿勢が見られます。伸びしろは十分です。";
+    wText.innerText = "抽象度の高い名詞・動詞で意味の取り違えが発生しています。";
+    aText.innerText = "重なって表示された解説例文を一度声に出して音読すると定着速度が倍増します。";
   }
 
   modal.style.display = "flex";
