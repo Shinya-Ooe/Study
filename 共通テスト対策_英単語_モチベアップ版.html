@@ -426,7 +426,7 @@
   .modal-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(15, 23, 42, 0.7);
+    background: rgba(15, 23, 42, 0.75);
     display: none;
     align-items: center;
     justify-content: center;
@@ -468,6 +468,53 @@
   .eval-s strong { color: var(--success); }
   .eval-w strong { color: var(--error); }
   .eval-a strong { color: var(--accent); }
+
+  .checkpoint-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .btn-choice-primary {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 900;
+    font-size: 1.05rem;
+    cursor: pointer;
+  }
+  .btn-choice-next-cat {
+    background: #15803d;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 900;
+    font-size: 1.05rem;
+    cursor: pointer;
+  }
+  .btn-choice-round2 {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1.5px solid #fde68a;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  .btn-choice-save {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid var(--border);
+    padding: 9px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
 
   .resume-choice-grid {
     display: flex;
@@ -700,7 +747,7 @@
   </div>
 </div>
 
-<!-- 10問ごとの講評モーダル -->
+<!-- 10問ごとの講評モーダル（次の10問 / 2周目 / 保存して終了） -->
 <div class="modal-bg" id="checkpointModal">
   <div class="modal-box">
     <h3 id="checkpointTitle">第1段落 達成講評</h3>
@@ -717,22 +764,29 @@
       <strong>【次の10問への戦略】</strong>
       <span id="evalAdviceText"></span>
     </div>
-    <button class="btn-next-large" style="margin-top:12px;" onclick="closeModalAndContinue()">次の10問へ進む</button>
+
+    <!-- 3大選択ボタン -->
+    <div class="checkpoint-btn-group">
+      <button class="btn-choice-primary" id="btnNextBatch" onclick="continueToNextBatch()">▶ 次の10問へ進む</button>
+      <button class="btn-choice-round2" onclick="startRound2FromCheckpoint()">🔥 2周目特訓（弱点＆重要度優先）へ</button>
+      <button class="btn-choice-save" onclick="saveAndExitFromCheckpoint()">💾 進捗を保存して終了（トップへ）</button>
+    </div>
   </div>
 </div>
 
-<!-- 1周完走 ＆ 2周目突入モーダル -->
-<div class="modal-bg" id="completionRoundModal">
+<!-- カテゴリー完走 ＆ 次のカテゴリーへ進むモーダル -->
+<div class="modal-bg" id="categoryCompleteModal">
   <div class="modal-box">
-    <h3 style="color:var(--primary);">🎉 1周目 完走おめでとうございます！</h3>
-    <div class="modal-score" id="roundScore">45 / 50</div>
-    <div class="eval-item eval-a">
-      <strong>【2周目アダプティブ特訓のご案内】</strong>
-      あなたの誤答履歴と「重要度ランク（S/A）」を自動解析し、最も対策効果の高い単語を優先順位順に再編成しました。このまま2周目に挑戦して記憶を完全定着させましょう！
+    <h3 style="color:var(--primary);">🎉 カテゴリー完走！</h3>
+    <div class="modal-score" id="catCompleteScore">10 / 10</div>
+    <div class="eval-item eval-s">
+      <strong id="catCompleteTitle">最優先★Sランク を完全制覇！</strong>
+      間違えた問題（要復習ストック）は保持したまま、次のカテゴリーへ進みます。
     </div>
-    <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
-      <button class="btn-next-large" onclick="startAdaptiveRound2FromModal()">🔥 弱点＆重要度 優先の「2周目」を始める</button>
-      <button class="nav-btn" onclick="closeModal('completionRoundModal')">現在の結果を保存して終了</button>
+    <div class="checkpoint-btn-group">
+      <button class="btn-choice-next-cat" id="btnNextCategoryAction" onclick="proceedToNextCategory()">▶ 次のカテゴリーへ進む</button>
+      <button class="btn-choice-round2" onclick="startRound2FromCatComplete()">🔥 このカテゴリーの2周目をやる</button>
+      <button class="btn-choice-save" onclick="closeModal('categoryCompleteModal')">閉じる</button>
     </div>
   </div>
 </div>
@@ -776,7 +830,7 @@ function returnToLauncher() {
 }
 
 // ユーザー設定
-const STORAGE_CONFIG = "ctest_app_settings_v3";
+const STORAGE_CONFIG = "ctest_app_settings_v5";
 let appSettings = { sound: true, confetti: true, streak: true };
 
 function loadSettings() {
@@ -938,7 +992,7 @@ function animateConfetti(ctx, canvas) {
 }
 
 // ストリーク
-const STORAGE_STREAK = "ctest_streak_info_v3";
+const STORAGE_STREAK = "ctest_streak_info_v5";
 
 function updateStreak() {
   const today = new Date().toISOString().slice(0, 10);
@@ -990,7 +1044,7 @@ function stopQuestionTimer() {
 }
 
 // 実績バッジ
-const STORAGE_BADGES = "ctest_badges_unlocked_v3";
+const STORAGE_BADGES = "ctest_badges_unlocked_v5";
 const BADGES_CONFIG = [
   { id: "first_correct", icon: "🌱", title: "はじめの一歩", desc: "初めて問題に正解した" },
   { id: "streak3", icon: "🔥", title: "3日連続達成", desc: "3日連続で学習を継続した" },
@@ -1073,6 +1127,7 @@ const PRIORITY_MODES = [
 ];
 
 const VOCAB_DATABASE = [
+  // --- Sランク ---
   {
     id: 1, rank: "S", cat: "動詞", word: "provide", pos: "動詞",
     mean: "を提供する，供給する，養う",
@@ -1328,10 +1383,10 @@ let totalScore = 0;
 let isReviewMode = false;
 let isAdaptiveRound2Mode = false;
 
-const STORAGE_WRONG = "ctest_vocab_round2_wrong_v13";
-const STORAGE_RESUME = "ctest_vocab_round2_resume_v13";
-const STORAGE_STATS = "ctest_vocab_round2_stats_v13";
-const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v13";
+const STORAGE_WRONG = "ctest_vocab_round2_wrong_v15";
+const STORAGE_RESUME = "ctest_vocab_round2_resume_v15";
+const STORAGE_STATS = "ctest_vocab_round2_stats_v15";
+const STORAGE_WRONG_COUNTS = "ctest_vocab_round2_counts_v15";
 
 function getWrongIds() {
   try { return JSON.parse(localStorage.getItem(STORAGE_WRONG)) || []; } catch(e){ return []; }
@@ -1434,7 +1489,7 @@ function setupCurrentList() {
       isReviewMode = false;
       filterListByMode();
     } else {
-      shuffleArray(currentList); // 復習モードもランダム出題
+      shuffleArray(currentList);
     }
   } else if (isAdaptiveRound2Mode) {
     buildRound2List();
@@ -1443,7 +1498,6 @@ function setupCurrentList() {
   }
 }
 
-// カテゴリ内完全ランダム化の実装
 function filterListByMode() {
   const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
   if (!mode || mode.cat === "総合") {
@@ -1453,7 +1507,6 @@ function filterListByMode() {
   } else if (mode.cat) {
     currentList = VOCAB_DATABASE.filter(item => item.cat === mode.cat);
   }
-  // どのカテゴリを選んでも、そのグループ内の単語を完全にシャッフル！
   shuffleArray(currentList);
 }
 
@@ -1467,7 +1520,6 @@ function buildRound2List() {
     const rankWeightA = a.rank === "S" ? 3 : (a.rank === "A" ? 2 : 1);
     const rankWeightB = b.rank === "S" ? 3 : (b.rank === "A" ? 2 : 1);
 
-    // 弱点スコア（同点の場合はランダム要素を入れて順序を入れ替え）
     const scoreA = countA * 2 + rankWeightA + (Math.random() * 0.5);
     const scoreB = countB * 2 + rankWeightB + (Math.random() * 0.5);
     return scoreB - scoreA;
@@ -1571,23 +1623,9 @@ function startAdaptiveRound2() {
   }
 }
 
-function startAdaptiveRound2FromModal() {
-  closeModal('completionRoundModal');
-  isAdaptiveRound2Mode = true;
-  isReviewMode = false;
-  unlockBadge("round2_runner");
-  setupCurrentList();
-  currentIndex = 0;
-  batchScore = 0;
-  totalScore = 0;
-  saveProgress();
-  renderQuestion();
-}
-
 function confirmResetToStart() {
   initAudioContext();
   if (confirm("新しく問題をシャッフルして、最初（問1）から解き直しますか？")) {
-    // リセット時にも新しく配列をランダム化
     startCurrentMode();
   }
 }
@@ -1595,7 +1633,7 @@ function confirmResetToStart() {
 function renderQuestion() {
   const qData = currentList[currentIndex];
   if (!qData) {
-    onCompleteRound();
+    onCompleteCategory();
     return;
   }
 
@@ -1707,7 +1745,9 @@ function judgeAnswer(selected, qData, clickedBtn, timeSec) {
 function nextQuestion() {
   currentIndex++;
   saveProgress();
-  if (currentIndex > 0 && currentIndex % 10 === 0 && currentIndex < currentList.length) {
+
+  // 10問ごとに講評モーダルを開く
+  if (currentIndex > 0 && currentIndex % 10 === 0) {
     showCheckpointModal();
   } else {
     renderQuestion();
@@ -1725,6 +1765,17 @@ function showCheckpointModal() {
 
   document.getElementById("checkpointTitle").innerText = `${modeTitle} 第${stage}段落講評（${startNum}〜${endNum}問）`;
   document.getElementById("checkpointScore").innerText = `${score} / 10 問 マーク正解`;
+
+  const btnNextBatch = document.getElementById("btnNextBatch");
+  if (currentIndex < currentList.length) {
+    const nextStart = currentIndex + 1;
+    const nextEnd = Math.min(currentIndex + 10, currentList.length);
+    btnNextBatch.innerText = `▶ 次の10問へ進む（${nextStart}〜${nextEnd}問目）`;
+    btnNextBatch.style.display = "block";
+  } else {
+    // このカテゴリーの全問を解き終えた場合
+    btnNextBatch.style.display = "none";
+  }
 
   const sText = document.getElementById("evalStrongText");
   const wText = document.getElementById("evalWeakText");
@@ -1755,17 +1806,65 @@ function showCheckpointModal() {
   saveProgress();
 }
 
-function closeModalAndContinue() {
+function continueToNextBatch() {
   closeModal('checkpointModal');
-  renderQuestion();
+  if (currentIndex < currentList.length) {
+    renderQuestion();
+  } else {
+    onCompleteCategory();
+  }
 }
 
-function onCompleteRound() {
-  document.getElementById("roundScore").innerText = `${totalScore} / ${currentList.length} 問 正解`;
-  document.getElementById("completionRoundModal").style.display = "flex";
-  if (currentModeId === 1 && totalScore === currentList.length) unlockBadge("master_s");
-  currentIndex = 0;
+function startRound2FromCheckpoint() {
+  closeModal('checkpointModal');
+  startAdaptiveRound2();
+}
+
+function saveAndExitFromCheckpoint() {
+  closeModal('checkpointModal');
   saveProgress();
+  alert("進捗を保存しました。次回は「つづきから」でこの位置から再開できます。");
+  returnToLauncher();
+}
+
+// カテゴリーを一通り終了したときの自動遷移処理
+function onCompleteCategory() {
+  const mode = PRIORITY_MODES.find(m => m.id === currentModeId);
+  const modeName = mode ? mode.name : "カテゴリー";
+
+  document.getElementById("catCompleteTitle").innerText = `${modeName} を完全制覇！`;
+  document.getElementById("catCompleteScore").innerText = `${totalScore} / ${currentList.length} 問 正解`;
+
+  // 次のカテゴリー名を特定
+  let nextId = currentModeId + 1;
+  if (nextId > PRIORITY_MODES.length) nextId = 1;
+  const nextMode = PRIORITY_MODES.find(m => m.id === nextId);
+
+  const btnNext = document.getElementById("btnNextCategoryAction");
+  btnNext.innerText = `▶ 次の【${nextMode.name}】へ進む`;
+
+  document.getElementById("categoryCompleteModal").style.display = "flex";
+
+  if (currentModeId === 1 && totalScore === currentList.length) unlockBadge("master_s");
+}
+
+function proceedToNextCategory() {
+  closeModal('categoryCompleteModal');
+  let nextId = currentModeId + 1;
+  if (nextId > PRIORITY_MODES.length) nextId = 1;
+
+  currentModeId = nextId;
+  const sel = document.getElementById("prioritySelector");
+  if (sel) sel.value = currentModeId;
+
+  isReviewMode = false;
+  isAdaptiveRound2Mode = false;
+  startCurrentMode(); // 次のカテゴリーへ自動遷移してランダム出題開始！
+}
+
+function startRound2FromCatComplete() {
+  closeModal('categoryCompleteModal');
+  startAdaptiveRound2();
 }
 
 function openStatsModal() {
@@ -1792,7 +1891,6 @@ function closeModal(id) {
   if (el) el.style.display = "none";
 }
 
-// 完全にバラバラにするフィッシャー・イェーツ・シャッフルアルゴリズム
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
