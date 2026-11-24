@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>共通テスト対策 地理</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --sub: #334155;
+      --pri: #0f766e;
+      --pri-bg: #ccfbf1;
+      --bdr: #cbd5e1;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --ng: #b91c1c;
+      --ng-bg: #fee2e2;
+      --warn: #b45309;
+      --warn-bg: #fef3c7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #071112;
+        --card: #102022;
+        --text: #f0fdfa;
+        --sub: #cbd5e1;
+        --pri: #2dd4bf;
+        --pri-bg: rgba(45, 212, 191, 0.16);
+        --bdr: #264246;
+        --ok: #4ade80;
+        --ok-bg: rgba(74, 222, 128, 0.16);
+        --ng: #f87171;
+        --ng-bg: rgba(248, 113, 113, 0.16);
+        --warn: #fbbf24;
+        --warn-bg: rgba(251, 191, 36, 0.16);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+    #app {
+      display: flex; flex-direction: column; width: 100%;
+      height: 100vh; height: 100dvh; max-width: 720px; margin: 0 auto;
+      padding-top: max(6px, env(safe-area-inset-top));
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+      padding-bottom: max(14px, env(safe-area-inset-bottom));
+      gap: 6px;
+    }
+    header { display: flex; align-items: center; justify-content: space-between; min-height: 38px; gap: 6px; flex-shrink: 0; }
+    .hbtn {
+      font-size: 13px; font-weight: 800; color: var(--pri); background: var(--card);
+      border: 2px solid var(--bdr); padding: 5px 9px; border-radius: 9px;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+    }
+    .htitle { font-size: 16px; font-weight: 900; text-align: center; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    main { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; }
+    .view { display: none; flex-direction: column; width: 100%; height: 100%; min-height: 0; gap: 6px; }
+    .view.active { display: flex; }
+
+    /* ローディング・エラー画面 */
+    .status-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 20px; flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; gap: 12px;
+    }
+    .status-msg { font-size: 16px; font-weight: 800; line-height: 1.5; color: var(--sub); }
+
+    /* ホーム画面 */
+    .home-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 10px 12px; display: flex; flex-direction: column;
+      justify-content: space-between; flex: 1; min-height: 0; gap: 6px;
+    }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; flex-shrink: 0; }
+    .stat-box { background: var(--pri-bg); color: var(--pri); border-radius: 10px; padding: 5px 4px; text-align: center; font-weight: 800; }
+    .stat-box b { display: block; font-size: 19px; line-height: 1.15; }
+    .stat-box span { font-size: 11px; }
+    .field { flex-shrink: 0; }
+    .field label { display: block; font-size: 12px; font-weight: 800; color: var(--sub); margin-bottom: 2px; }
+    select {
+      width: 100%; height: 40px; padding: 4px 10px; font-size: 15px; font-weight: 700;
+      border-radius: 10px; border: 2px solid var(--bdr); background: var(--card); color: var(--text);
+    }
+    .btn {
+      width: 100%; flex: 1; min-height: 42px; max-height: 52px; border-radius: 12px;
+      font-size: 16px; font-weight: 900; cursor: pointer; border: 2px solid transparent;
+      display: flex; align-items: center; justify-content: center; text-decoration: none; gap: 6px;
+    }
+    .btn-pri { background: var(--pri); color: #ffffff; }
+    @media (prefers-color-scheme: dark) { .btn-pri { color: #071112; } }
+    .btn-sec { background: var(--card); color: var(--text); border-color: var(--bdr); font-size: 15px; }
+    .btn-rev { background: var(--ng-bg); color: var(--ng); border-color: var(--ng); }
+    .btn-link { background: var(--pri-bg); color: var(--pri); border-color: var(--pri); font-size: 14px; max-height: 42px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; min-height: 40px; max-height: 48px; }
+
+    /* 出題画面 */
+    .pbar { height: 7px; background: var(--bdr); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+    .pfill { height: 100%; width: 0%; background: var(--pri); transition: width 0.25s ease; }
+    .meta-bar { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-shrink: 0; }
+    .badge { font-size: 12px; font-weight: 800; padding: 3px 8px; border-radius: 8px; background: var(--pri-bg); color: var(--pri); }
+    .badge.s { background: var(--warn-bg); color: var(--warn); }
+
+    .q-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 14px;
+      padding: 8px 11px; flex: 0 1 auto; max-height: 50%; overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
+    }
+    .q-text { font-size: 17px; font-weight: 800; line-height: 1.38; }
+    .q-hl { color: var(--pri); font-weight: 900; background: var(--pri-bg); padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid var(--pri); }
+    .q-foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sub); }
+    .tts-btn { font-size: 12px; font-weight: 800; color: var(--pri); background: var(--pri-bg); border: none; border-radius: 8px; padding: 4px 9px; cursor: pointer; }
+
+    /* 読める大きさの図表サムネイル（タップで拡大） */
+    .thumb-card {
+      display: none; position: relative; width: 100%;
+      background: #ffffff; border: 2px solid var(--pri); border-radius: 10px;
+      overflow: hidden; cursor: pointer; flex-shrink: 0;
+    }
+    .thumb-card.active { display: block; }
+    .thumb-media {
+      width: 100%; height: 118px;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff; padding: 3px;
+    }
+    .thumb-media img, .thumb-media svg {
+      max-width: 100%; max-height: 100%; width: auto; height: auto;
+      object-fit: contain; display: block;
+    }
+    .thumb-badge {
+      position: absolute; right: 6px; bottom: 6px;
+      background: rgba(15, 23, 42, 0.78); color: #ffffff;
+      font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 999px;
+      pointer-events: none;
+    }
+    .thumb-cap-mini {
+      background: var(--pri-bg); color: var(--pri);
+      font-size: 11px; font-weight: 800; padding: 3px 8px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .opts { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
+    .opt-btn {
+      flex: 1; min-height: 0; width: 100%; background: var(--card);
+      border: 2px solid var(--bdr); border-radius: 12px; padding: 6px 12px;
+      font-size: 16px; font-weight: 800; line-height: 1.25; color: var(--text);
+      text-align: left; cursor: pointer; display: flex; align-items: center; overflow: hidden;
+    }
+    .opt-btn.ok { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+    .opt-btn.ng { background: var(--ng-bg); border-color: var(--ng); color: var(--ng); }
+
+    /* 解説ボトムシート */
+    .exp-sheet {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      background: var(--card); border: 2px solid var(--pri); border-radius: 16px;
+      padding: 12px; display: none; flex-direction: column; gap: 7px;
+      max-height: 76%; overflow-y: auto; z-index: 30;
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.28);
+    }
+    .exp-sheet.active { display: flex; }
+    .exp-head { font-size: 20px; font-weight: 900; }
+    .exp-ans { font-size: 17px; font-weight: 900; background: var(--ok-bg); color: var(--ok); padding: 6px 10px; border-radius: 10px; }
+    .exp-body { font-size: 15px; font-weight: 700; line-height: 1.45; color: var(--sub); }
+    .exp-sheet .btn, .exp-sheet .row2 { flex: 0 0 auto; max-height: none; }
+
+    /* きくだけモード */
+    .listen-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 14px; flex: 1; min-height: 0; display: flex; flex-direction: column;
+      justify-content: space-between; text-align: center; gap: 10px;
+    }
+    .listen-badge { font-size: 14px; font-weight: 900; color: var(--pri); background: var(--pri-bg); padding: 5px 12px; border-radius: 999px; align-self: center; }
+    .listen-main { font-size: 19px; font-weight: 800; line-height: 1.45; overflow-y: auto; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .listen-card .btn { flex: 0 0 auto; max-height: 48px; }
+
+    /* モーダル＆拡大ライトボックス */
+    .modal {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.78);
+      display: none; align-items: center; justify-content: center;
+      padding: 10px max(10px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      z-index: 60;
+    }
+    .modal.active { display: flex; }
+    .mbox {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 14px; width: 100%; max-width: 640px; max-height: 94dvh; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 9px; text-align: center;
+    }
+    .mbox .btn, .mbox .row2 { flex: 0 0 auto; max-height: none; }
+    .mtitle { font-size: 17px; font-weight: 900; }
+    .mscore { font-size: 32px; font-weight: 900; color: var(--pri); }
+    .mtext { font-size: 14px; font-weight: 700; line-height: 1.45; color: var(--sub); text-align: left; }
+
+    .zoom-body {
+      background: #ffffff; border: 1.5px solid var(--bdr); border-radius: 12px;
+      padding: 6px; width: 100%; max-height: 62dvh; overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .zoom-body img, .zoom-body svg {
+      width: 100%; height: auto; display: block; transition: width 0.2s ease;
+    }
+    .zoom-body.zoomed img, .zoom-body.zoomed svg {
+      width: 210%; max-width: none;
+    }
+
+    .thumb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .thumb-tile { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 6px; cursor: pointer; text-align: center; }
+    .thumb-tile .tile-img { height: 74px; background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px; }
+    .thumb-tile img, .thumb-tile svg { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+    .thumb-tile span { display: block; font-size: 11px; font-weight: 800; color: var(--pri); margin-top: 4px; }
+  </style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <a class="hbtn" href="index.html">‹ 一覧</a>
+    <div class="htitle">共通テスト対策 地理</div>
+    <button class="hbtn" onclick="openSummary()">🗺️ 図解</button>
+    <button class="hbtn" onclick="openStats()">成績</button>
+  </header>
+
+  <main>
+    <!-- データ読込中／エラー表示 -->
+    <div id="v-loading" class="view active">
+      <div class="status-card">
+        <div style="font-size:28px;" id="load-icon">⏳</div>
+        <div class="status-msg" id="load-msg">問題データ（chiri_data.json）を読み込んでいます...</div>
+        <button class="btn btn-pri" id="btn-retry" style="display:none;max-width:240px;" onclick="loadDatabase()">再読み込み</button>
+      </div>
+    </div>
+
+    <!-- ホーム -->
+    <div id="v-home" class="view">
+      <div class="home-card">
+        <div class="stat-row">
+          <div class="stat-box"><span>収録問題</span><b id="s-tot">0</b></div>
+          <div class="stat-box"><span>学習済み</span><b id="s-lrn">0</b></div>
+          <div class="stat-box"><span>要復習</span><b id="s-rev">0</b></div>
+        </div>
+        <div class="field">
+          <label for="f-cat">学習グループ（分野別）</label>
+          <select id="f-cat">
+            <option value="ALL">全分野（バランス出題）</option>
+            <option value="TOPO">① 地形（大地形・小地形・プレート）</option>
+            <option value="CLIM">② 気候（ケッペン・大気大循環・雨温図）</option>
+            <option value="AGRI">③ 農業・食料（地域区分・主要作物）</option>
+            <option value="IND">④ 資源・エネルギー・工業立地</option>
+            <option value="POP">⑤ 人口・都市・民族宗教・地誌</option>
+            <option value="SOGO">⑥ 地理総合（地図・GIS・防災・覚え方）</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-pri">重要度</label>
+          <select id="f-pri">
+            <option value="ALL">すべて</option>
+            <option value="S">★ 最重要（最優先・波及効果大）</option>
+            <option value="A">● 重要（定番・応用）</option>
+          </select>
+        </div>
+        <button class="btn btn-pri" onclick="startQuiz('NORMAL')">🚀 10問テストを始める</button>
+        <button class="btn btn-rev" id="b-rev" style="display:none;" onclick="startQuiz('REVIEW')">
+          ⚠️ 間違えた問題を復習（<span id="rev-n">0</span>問）
+        </button>
+        <button class="btn btn-link" onclick="openSummary()">🗺️ 図解ギャラリー＆覚えることまとめ</button>
+        <button class="btn btn-sec" onclick="startListen()">🎧 きくだけモード（誤答優先）</button>
+        <div class="row2">
+          <button class="btn btn-sec" onclick="exportProg()">進捗エクスポート</button>
+          <button class="btn btn-sec" onclick="importProg()">進捗インポート</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 出題画面 -->
+    <div id="v-quiz" class="view">
+      <div class="pbar"><div class="pfill" id="p-fill"></div></div>
+      <div class="meta-bar">
+        <span class="badge" id="q-cat">分野</span>
+        <span class="badge s" id="q-pri">★ 最重要</span>
+        <span id="q-num" style="font-size:15px;font-weight:900;">1 / 10</span>
+      </div>
+      <div class="q-card">
+        <div class="q-text" id="q-txt"></div>
+        <!-- 読める大きさの図表サムネイル（タップで拡大） -->
+        <div class="thumb-card" id="q-thumb" onclick="openCurrentFigure()">
+          <div class="thumb-media" id="q-thumb-media"></div>
+          <div class="thumb-badge">🔍 タップで拡大</div>
+          <div class="thumb-cap-mini" id="q-thumb-cap"></div>
+        </div>
+        <div class="q-foot">
+          <span id="q-id">ID</span>
+          <button class="tts-btn" onclick="speak(curList[idx].q)">🔊 問題を聞く</button>
+        </div>
+      </div>
+      <div class="opts" id="opts"></div>
+
+      <div class="exp-sheet" id="sheet">
+        <div class="exp-head" id="sh-head"></div>
+        <div class="exp-ans" id="sh-ans"></div>
+        <div class="exp-body" id="sh-exp"></div>
+        <div class="thumb-card" id="sh-thumb" onclick="openCurrentFigure()">
+          <div class="thumb-media" id="sh-thumb-media" style="height:92px;"></div>
+          <div class="thumb-badge">🔍 タップで拡大</div>
+          <div class="thumb-cap-mini" id="sh-thumb-cap"></div>
+        </div>
+        <div class="row2">
+          <a id="sh-ref" class="btn btn-link" href="#" target="_blank" rel="noopener noreferrer">📖 解説記事 ↗</a>
+          <button class="btn btn-sec" onclick="openSummary()">🗺️ 図解一覧</button>
+        </div>
+        <div class="row2">
+          <button class="btn btn-sec" onclick="speak(curList[idx].options[curList[idx].ans] + '。' + curList[idx].exp)">🔊 解説を聞く</button>
+          <button class="btn btn-pri" onclick="nextQ()">次の問題へ ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- きくだけモード -->
+    <div id="v-listen" class="view">
+      <div class="listen-card">
+        <div class="listen-badge" id="l-badge">きくだけモード</div>
+        <div class="listen-main" id="l-main">音声を準備しています...</div>
+        <button class="btn btn-sec" onclick="stopListen()">停止して戻る</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- モーダル類 -->
+<div class="modal" id="m-res">
+  <div class="mbox">
+    <div class="mtitle">10問セッション終了</div>
+    <div class="mscore" id="r-sc">0 / 10</div>
+    <div class="mtext" id="r-msg" style="text-align:center;"></div>
+    <button class="btn btn-pri" onclick="closeRes('NEXT')">次の10問へ進む</button>
+    <button class="btn btn-rev" id="r-rev" onclick="closeRes('REV')">間違えた問題を復習する</button>
+    <button class="btn btn-sec" onclick="closeRes('HOME')">メニューに戻る</button>
+  </div>
+</div>
+
+<div class="modal" id="m-adv">
+  <div class="mbox">
+    <div class="mtitle">💡 30問達成！優先順位と覚え方</div>
+    <div class="mtext" id="adv-txt"></div>
+    <button class="btn btn-pri" onclick="document.getElementById('m-adv').classList.remove('active')">学習を続ける</button>
+  </div>
+</div>
+
+<div class="modal" id="m-st">
+  <div class="mbox">
+    <div class="mtitle">学習成績・進捗状況</div>
+    <div class="mtext" id="st-body"></div>
+    <button class="btn btn-sec" onclick="document.getElementById('m-st').classList.remove('active')">閉じる</button>
+    <button class="btn btn-sec" style="color:var(--ng);border-color:var(--ng);font-size:14px;" onclick="resetProg()">進捗データをリセット</button>
+  </div>
+</div>
+
+<div class="modal" id="m-sum">
+  <div class="mbox">
+    <div class="mtitle">🗺️ 図解サムネイル一覧（タップで拡大）</div>
+    <div class="thumb-grid" id="sum-grid"></div>
+    <a class="btn btn-link" href="https://jukukounohitorigoto.com/daigaku-juken-chiri-oboerukoto/" target="_blank" rel="noopener noreferrer">📖 元塾講師「覚えることまとめ」記事 ↗</a>
+    <div class="row2">
+      <a class="btn btn-sec" href="https://maps.gsi.go.jp/" target="_blank" rel="noopener noreferrer">🗺️ 地理院地図 ↗</a>
+      <a class="btn btn-sec" href="https://disaportal.gsi.go.jp/" target="_blank" rel="noopener noreferrer">⚠️ ハザードマップ ↗</a>
+    </div>
+    <button class="btn btn-pri" onclick="document.getElementById('m-sum').classList.remove('active')">閉じる</button>
+  </div>
+</div>
+
+<!-- 拡大ライトボックス（2倍ズーム切替＆元画像リンク付き） -->
+<div class="modal" id="m-zoom" onclick="if(event.target===this) closeZoom()">
+  <div class="mbox">
+    <div class="mtitle" id="zoom-title">図表拡大</div>
+    <div class="zoom-body" id="zoom-body"></div>
+    <div class="mtext" id="zoom-cap" style="font-size:13px;"></div>
+    <div class="row2">
+      <button class="btn btn-sec" id="btn-zoom-toggle" onclick="toggleZoomScale()">🔍 2倍に拡大</button>
+      <a class="btn btn-link" id="zoom-orig-link" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">元画像を別タブ ↗</a>
+    </div>
+    <button class="btn btn-pri" onclick="closeZoom()">閉じる</button>
+  </div>
+</div>
+
+<script>
+const DATA_URL = "./chiri_data.json";
+const APP_ID = "common_test_chiri.html";
+const STORAGE_KEY = "ct_chiri_split_v1";
+
+let BANK = [];
+let prog = loadProg();
+let curList = [];
+let idx = 0;
+let score = 0;
+let wrongList = [];
+let isReviewSession = false;
+let listening = false;
+let listenTimer = null;
+
+// Wikimedia Commons 実画像直リンク＋内蔵SVG図解（ギャラリー＆フォールバック兼用）
+const FIGURES = {
+  plate: {
+    title: "世界のプレート境界（日本語図）",
+    cap: "広がる境界＝海嶺・地溝帯、せばまる境界＝海溝・褶曲山脈、ずれる境界＝サンアンドレアス断層など。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tectonic_plates-ja.png?width=1000",
+    svg: `<svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="110" height="124" rx="10" fill="#ecfeff" stroke="#0f766e" stroke-width="2"/><text x="61" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">広がる境界</text><text x="61" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">海嶺・地溝帯</text><rect x="125" y="8" width="110" height="124" rx="10" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/><text x="180" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">せばまる境界</text><text x="180" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">海溝・褶曲山脈</text><rect x="244" y="8" width="110" height="124" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="299" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">ずれる境界</text><text x="299" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">断層帯</text></svg>`
+  },
+  circulation: {
+    title: "大気大循環のしくみ（日本語図）",
+    cap: "赤道＝熱帯収束帯(上昇気流・多雨)、緯度20〜30°＝亜熱帯高圧帯(下降気流・乾燥)、中緯度＝偏西風帯。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Atmospheric_circulation_ja.png?width=900",
+    svg: `<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="344" height="28" rx="6" fill="#dbeafe"/><text x="180" y="27" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">高緯度：寒帯・冷帯（極高圧帯）</text><rect x="8" y="42" width="344" height="28" rx="6" fill="#dcfce7"/><text x="180" y="61" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">中緯度：偏西風帯 → Cfb / Cs冬雨</text><rect x="8" y="76" width="344" height="28" rx="6" fill="#fef3c7"/><text x="180" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">緯度20〜30°：亜熱帯高圧帯 → 砂漠(BW)</text><rect x="8" y="110" width="344" height="28" rx="6" fill="#fee2e2"/><text x="180" y="129" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">赤道：熱帯収束帯 → 熱帯雨林(Af)</text></svg>`
+  },
+  koppen: {
+    title: "ケッペンの気候区分 世界地図",
+    cap: "熱帯(A)・乾燥帯(B)・温帯(C)・冷帯(D)・寒帯(E)の世界分布図。2倍ズームで各地域の色分けを確認できます。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/World_K%C3%B6ppen_Map.png?width=1100",
+    svg: ""
+  },
+  currents: {
+    title: "世界の海流図（暖流・寒流）",
+    cap: "北大西洋海流(暖流)と偏西風が西ヨーロッパを温暖に、ペルー海流・ベンゲラ海流(寒流)が大陸西岸に海岸砂漠を形成します。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Corrientes-oceanicas.png?width=1000",
+    svg: ""
+  },
+  fan: {
+    title: "扇状地（航空写真＋等高線）",
+    cap: "谷口（扇頂）から扇状に広がる堆積地形。扇央は水はけが良く果樹園、扇端は湧水帯で集落が立地します。（出典: Wikimedia Commons / USGS）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Alluvial_Fan.jpg?width=1000",
+    svg: `<svg viewBox="0 0 360 13
