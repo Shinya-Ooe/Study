@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>問題集ランチャ</title>
+<title>みんなの問題集</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="みんなの問題集">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f5f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131715" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" href="./apple-touch-icon.png">
 <style>
 :root{
   --bg:#f5f6f2;--fg:#1f2421;--card:#fff;--ac:#2f7d5b;--ac-bg:#dcfce7;
@@ -121,7 +128,7 @@ h1{font-size:21px;margin:4px 0;letter-spacing:.01em}
 <div id="ptr"></div>
 <div id="wrap">
   <header>
-    <h1>📚 問題集ランチャ</h1>
+    <h1>📚 みんなの問題集</h1>
     <button id="re" onclick="scan()">🔄 更新</button>
   </header>
 
@@ -255,7 +262,6 @@ function renderDashboard(files,progMap){
   const goal=getGoal();
   const td=todayStr();
 
-  // 各アプリから今日の合算と過去タイムスタンプを集計
   let todaySum=0;
   const scannedDates={};
   (files||[]).forEach(f=>{
@@ -267,7 +273,6 @@ function renderDashboard(files,progMap){
     });
   });
 
-  // 日別ログを更新（今日の合計＋過去分の補完）
   const log=loadDailyLog();
   if(todaySum>0||log[td]){
     log[td]=Math.max(Number(log[td]||0),todaySum);
@@ -277,7 +282,6 @@ function renderDashboard(files,progMap){
       log[ds]=Math.max(Number(log[ds]||0),cnt);
     }
   });
-  // 古いログ（60日超）を整理
   const cutoff=fmtDate(new Date(Date.now()-60*86400000));
   Object.keys(log).forEach(k=>{if(k<cutoff)delete log[k]});
   saveDailyLog(log);
@@ -294,7 +298,6 @@ function renderDashboard(files,progMap){
     todayBtn.textContent=`🎯 今日の合計 ${todayCount} / ${goal}問`;
   }
 
-  // 連続学習日数の算出（今日から遡る。今日0問でも昨日学習していれば継続中）
   let streak=0;
   const startOffset=Number(log[td]||0)>0?0:1;
   for(let i=startOffset;i<60;i++){
@@ -306,7 +309,6 @@ function renderDashboard(files,progMap){
   streakEl.textContent=`🔥 連続 ${streak}日`;
   streakEl.classList.toggle('ok',streak>=3);
 
-  // 直近14日間のスタンプ描画
   const cells=[];
   let activeDays=0;
   for(let i=13;i>=0;i--){
@@ -412,7 +414,6 @@ $('list').addEventListener('click',e=>{
   toggleFav(btn.dataset.name);
 });
 
-/* 各HTMLからタイトル・STORAGE_KEY・DATA_URL・アクセントカラー・収録問題数を自動取得 */
 async function inspectHtml(name,prev){
   const info={
     name,
@@ -483,7 +484,6 @@ async function scan(){
   addEventListener('touchend',()=>{p.classList.remove('on');if(y0!==null&&d>100)scan();y0=null;d=0});
 })();
 
-/* 問題集から戻ってきた時に即座に進捗・スタンプを再描画 */
 document.addEventListener('visibilitychange',()=>{
   if(!document.hidden){
     const c=load();
