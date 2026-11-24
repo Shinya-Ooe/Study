@@ -32,7 +32,10 @@
     "exp": "ヨーロッパ、アジアを合わせた巨大な大陸 それが、ユーラシア大陸！",
     "imgUrl": "",
     "imgUrls": [],
-    "expImgUrls": [],
+    "expImgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
@@ -50,7 +53,10 @@
     "exp": "正解は「オーストラリア大陸」です。（単元：地球のすがたと世界の地域区分）",
     "imgUrl": "",
     "imgUrls": [],
-    "expImgUrls": [],
+    "expImgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
@@ -68,7 +74,10 @@
     "exp": "太平洋の『太』 大西洋の『大』 この２つは漢字ミスが多いから注意だったね！",
     "imgUrl": "",
     "imgUrls": [],
-    "expImgUrls": [],
+    "expImgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
@@ -104,7 +113,10 @@
     "exp": "赤道よりも北が北半球、南が南半球だね",
     "imgUrl": "",
     "imgUrls": [],
-    "expImgUrls": [],
+    "expImgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
@@ -212,7 +224,10 @@
     "exp": "正解は「ウラル山脈」です。（単元：地球のすがたと世界の地域区分）",
     "imgUrl": "",
     "imgUrls": [],
-    "expImgUrls": [],
+    "expImgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
@@ -252,9 +267,9 @@
     "refUrl": "https://social-line.com/chiri-chikyuq/"
   },
   {
-    "id": "SOC-H-27515a69",
+    "id": "SOC-H-73650ca0",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "アジア州の東部と南部に吹く、夏と冬で向きの変わる風を何というか。",
     "options": [
       "季節風（モンスーン）",
@@ -270,9 +285,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-3d7ac00d",
+    "id": "SOC-H-7667e831",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "中国の人口の9割以上をしめる民族を何というか。",
     "options": [
       "漢族（漢民族）",
@@ -288,9 +303,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-b63fa443",
+    "id": "SOC-H-1c6d6439",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "中国から海外に移住し、その国籍を取得して定住している中国系の人々を何というか。",
     "options": [
       "華人",
@@ -306,9 +321,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-f3905ffd",
+    "id": "SOC-H-fa7c0f7e",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "中国で人口増加を抑えるために進めていった政策を何というか。",
     "options": [
       "一人っ子政策",
@@ -324,9 +339,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-eb895f42",
+    "id": "SOC-H-b24c928f",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "中国で、海外企業を受け入れるために設けた中国沿岸部の地域を何というか。",
     "options": [
       "経済特区",
@@ -342,9 +357,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-d69514db",
+    "id": "SOC-H-c15db811",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "農家が土地を借りて耕作し、契約したものを超えて生産したものは農家の収入になるという中国の制度を何というか。",
     "options": [
       "生産責任制",
@@ -360,9 +375,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-40d28765",
+    "id": "SOC-H-7211dbb8",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "韓国やシンガポール、台湾など、1970年代以降に急速に工業化を進めた国と地域のことをまとめて何というか。",
     "options": [
       "アジアNIES（新興工業経済地域）",
@@ -378,9 +393,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-a55d6bb8",
+    "id": "SOC-H-1e7c740e",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "東南アジアに先進国が開いた、特定の作物を輸出向けに栽培する大規模な農園を何というか。",
     "options": [
       "プランテーション",
@@ -396,9 +411,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-ab798472",
+    "id": "SOC-H-f86560a3",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "インドで最も信仰されている宗教は何か。",
     "options": [
       "ヒンドゥー教",
@@ -407,16 +422,16 @@
       "生産責任制"
     ],
     "ans": 0,
-    "exp": "正解は「ヒンドゥー教」です。（単元：アジア州の）",
+    "exp": "正解は「ヒンドゥー教」です。（単元：アジア州）",
     "imgUrl": "",
     "imgUrls": [],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-5bcaa867",
+    "id": "SOC-H-f9acc245",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "世界三大宗教の１つで、インド発祥であり日本にも6世紀ごろ伝えられた宗教は何か。",
     "options": [
       "仏教",
@@ -425,16 +440,16 @@
       "漢族（漢民族）"
     ],
     "ans": 0,
-    "exp": "正解は「仏教」です。（単元：アジア州の）",
+    "exp": "正解は「仏教」です。（単元：アジア州）",
     "imgUrl": "",
     "imgUrls": [],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-0ce6640d",
+    "id": "SOC-H-ed608237",
     "subject": "GEO",
-    "unit": "アジア州の",
+    "unit": "アジア州",
     "q": "ペルシャ湾岸は世界最大の何の産出地か。",
     "options": [
       "原油（石油）",
@@ -450,9 +465,9 @@
     "refUrl": "https://social-line.com/chiri-asia-q/"
   },
   {
-    "id": "SOC-H-b03d9abc",
+    "id": "SOC-H-c0a5090d",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ヨーロッパで、1年中ほぼ同じ方向に吹く西からの風を何というか。",
     "options": [
       "偏西風",
@@ -468,9 +483,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-483224bb",
+    "id": "SOC-H-0e9bb435",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "地図中の半島の北西岸に見られる、氷河の浸食によってつくられた谷に海水が入り込んでできた細長い湾を何というか。",
     "options": [
       "フィヨルド",
@@ -480,15 +495,18 @@
     ],
     "ans": 0,
     "exp": "氷河の侵食力が強くて深い谷ができるので、両側には断崖がそびえています。一般的な山が沈水したリアス式海岸と区別しよう。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-05f78a60",
+    "id": "SOC-H-6a695942",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "地図中の川を何というか。",
     "options": [
       "ライン川",
@@ -498,15 +516,18 @@
     ],
     "ans": 0,
     "exp": "アルプス山脈に源を発し、途中ドイツなどを流れてオランダのロッテルダム付近で北海に注ぐ川で、水上交通の大動脈になっています。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-d8cd50b9",
+    "id": "SOC-H-7dd8512a",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ヨーロッパの沖合を流れる暖流を何というか。",
     "options": [
       "北大西洋海流",
@@ -522,9 +543,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-44921f1e",
+    "id": "SOC-H-2ba94c35",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "偏西風と北大西洋海流の影響で、ヨーロッパの大西洋岸などは、緯度が高いわりに温暖で夏と冬の気温の差や降水量の差が小さい。この気候を何というか。",
     "options": [
       "西岸海洋性気候",
@@ -540,9 +561,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-9c205cbf",
+    "id": "SOC-H-339fcda5",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ヨーロッパ南部に見られる、夏に気温が高く乾燥する温帯の気候を何というか。",
     "options": [
       "地中海性気候",
@@ -558,9 +579,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-0667c5ba",
+    "id": "SOC-H-537d6ce8",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ライン川やドナウ川のように複数の国を流れる川を何というか。",
     "options": [
       "国際河川",
@@ -576,9 +597,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-d9169422",
+    "id": "SOC-H-9ed1b466",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ヨーロッパでいちばん多くの人が信仰している宗教は何か。",
     "options": [
       "キリスト教",
@@ -594,9 +615,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-7b5e27ce",
+    "id": "SOC-H-7856d196",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "1993年、ヨーロッパの政治的、経済的な結びつきを強化するためにできた組織を何というか。",
     "options": [
       "EU（ヨーロッパ連合）",
@@ -612,9 +633,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-8717ad98",
+    "id": "SOC-H-cb8464e3",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "EUの加盟国間で流通している共通通貨を何というか。",
     "options": [
       "ユーロ",
@@ -630,9 +651,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-c1f97232",
+    "id": "SOC-H-722d6a41",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "夏には乾燥に強いぶどうやオリーブ、冬には小麦などを栽培する農業を何というか。",
     "options": [
       "地中海式農業",
@@ -648,9 +669,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-7d3999ae",
+    "id": "SOC-H-71acbf2b",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "小麦やライ麦の栽培と、豚や牛の飼育を組み合わせた農業を何というか。",
     "options": [
       "混合農業",
@@ -666,9 +687,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-6f48f990",
+    "id": "SOC-H-38d12259",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "乳牛を飼い、乳やチーズ、バターなどの乳製品を作る農業を何というか。",
     "options": [
       "酪農",
@@ -684,9 +705,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-1370d76c",
+    "id": "SOC-H-d397f79f",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ドイツのライン川流域に発達した工業地域を何というか。",
     "options": [
       "ルール工業地域",
@@ -702,9 +723,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-32b3a6b3",
+    "id": "SOC-H-669ca084",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "オランダのロッテルダム郊外につくられた世界有数の貿易港を何というか。",
     "options": [
       "ユーロポート",
@@ -720,9 +741,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-b7e66663",
+    "id": "SOC-H-00c7709d",
     "subject": "GEO",
-    "unit": "ヨーロッパ州の",
+    "unit": "ヨーロッパ州",
     "q": "ロシアの面積は日本の約何倍か。",
     "options": [
       "45倍",
@@ -738,9 +759,9 @@
     "refUrl": "https://social-line.com/chiri-europe-q/"
   },
   {
-    "id": "SOC-H-19e279d7",
+    "id": "SOC-H-451b5d78",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "アフリカ大陸を流れる世界最長の川を何というか。",
     "options": [
       "ナイル川",
@@ -756,9 +777,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-5e28fcf6",
+    "id": "SOC-H-e79716d0",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "北回帰線付近に広がる、世界最大の砂漠を何というか。",
     "options": [
       "サハラ砂漠",
@@ -774,9 +795,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-7a4a8774",
+    "id": "SOC-H-72c9a7e1",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "19世紀後半から、アフリカの国々はヨーロッパ諸国に産業や政治を支配されるようになった。このように支配された地域を何というか。",
     "options": [
       "植民地",
@@ -792,9 +813,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-4cab7a49",
+    "id": "SOC-H-280940ed",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "アフリカには直線的な国境線が見られるが、これは何を利用して国境線を引いたからか。",
     "options": [
       "緯線、経線",
@@ -810,9 +831,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-6fa27834",
+    "id": "SOC-H-d90793d9",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "特定の作物を輸出向けに栽培する大規模な農園を何というか。",
     "options": [
       "プランテーション",
@@ -828,9 +849,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-0d3ff406",
+    "id": "SOC-H-f2089051",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "コートジボワールやガーナなどで栽培がさかんな、チョコレートの原料となる作物は何か。",
     "options": [
       "カカオ",
@@ -846,9 +867,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-51c0ab60",
+    "id": "SOC-H-336e3001",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "ケニアで生産がさかんな農作物は何か。",
     "options": [
       "茶",
@@ -864,9 +885,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-5bea70e8",
+    "id": "SOC-H-436dba96",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "アフリカで最も原油の生産が多く、国の輸出のほとんどを原油に頼っている国はどこか。",
     "options": [
       "ナイジェリア",
@@ -882,9 +903,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-92c04d46",
+    "id": "SOC-H-5fe4be65",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "埋蔵量が少なかったり、純粋なものを取り出すのが難しい希少金属を何というか。",
     "options": [
       "レアメタル",
@@ -900,9 +921,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-6077d7e0",
+    "id": "SOC-H-6fcf6813",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "アフリカの国々に多く見られる、輸出額の多くがわずかな種類の商品作物や鉱山資源で占められている経済を何というか。",
     "options": [
       "モノカルチャー経済",
@@ -918,9 +939,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-0bd1b7fe",
+    "id": "SOC-H-9efa114e",
     "subject": "GEO",
-    "unit": "アフリカ州の",
+    "unit": "アフリカ州",
     "q": "南アフリカ共和国で1991年までとられていた人種隔離政策を何というか。",
     "options": [
       "アパルトヘイト",
@@ -936,9 +957,9 @@
     "refUrl": "https://social-line.com/chiri-africa-q/"
   },
   {
-    "id": "SOC-H-379efaec",
+    "id": "SOC-H-b952329e",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "地図中の山脈を何というか。",
     "options": [
       "ロッキー山脈",
@@ -948,15 +969,18 @@
     ],
     "ans": 0,
     "exp": "環太平洋造山帯に属する新しく険しい山脈で、アメリカ合衆国では西海岸から少し離れて内陸部を通り、沿岸部には別の山脈があります。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-c1c19877",
+    "id": "SOC-H-74ed30a8",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "ロッキー山脈の東側に広がる大規模な放牧がおこなわれている草原を何というか。",
     "options": [
       "グレートプレーンズ",
@@ -972,9 +996,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-e2570502",
+    "id": "SOC-H-96bf13ce",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "グレートプレーンズの東側に平行してのびており、グレートプレーンズより降水量が多い草原を何というか。",
     "options": [
       "プレーリー",
@@ -990,9 +1014,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-9664e1b9",
+    "id": "SOC-H-5139206d",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "地図中の湖をまとめて何というか。",
     "options": [
       "五大湖",
@@ -1002,15 +1026,18 @@
     ],
     "ans": 0,
     "exp": "成因的には氷河湖に分類され、東側から順にオンタリオ湖、エリー湖、ヒューロン湖、ミシガン湖、スペリオル湖と並んでいます。 アメリカの五大湖、覚え方はこれだ！語呂合わせも紹介！",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-dffe8271",
+    "id": "SOC-H-4e007566",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "国際連合の本部があるアメリカの都市はどこか。",
     "options": [
       "ニューヨーク",
@@ -1026,9 +1053,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-4da5e475",
+    "id": "SOC-H-4b54d67b",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "20世紀に、自動車の生産によって盛んになったアメリカの都市はどこか。",
     "options": [
       "デトロイト",
@@ -1044,9 +1071,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-45c5e67f",
+    "id": "SOC-H-183d0047",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "工業が発展している北緯37度以南の地域を何というか。",
     "options": [
       "サンベルト",
@@ -1062,9 +1089,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-6ab3b35a",
+    "id": "SOC-H-2b3f8a50",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "サンフランシスコ郊外にある、コンピュータなどの先端技術産業が集中している地域を何というか。",
     "options": [
       "シリコンバレー",
@@ -1080,9 +1107,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-d510e429",
+    "id": "SOC-H-1fc3593e",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "巨大な資本をもとに、世界の国々で活動する企業を何というか。",
     "options": [
       "多国籍企業",
@@ -1098,9 +1125,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-e5bc265c",
+    "id": "SOC-H-a7b92af4",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "アメリカ大陸の先住民はなんと呼ばれているか。",
     "options": [
       "ネイティブアメリカン",
@@ -1116,9 +1143,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-d70d097c",
+    "id": "SOC-H-aa3cae7e",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "スペイン語を話すメキシコなど中南アメリカからアメリカに移り住んだ移民を何というか。",
     "options": [
       "ヒスパニック",
@@ -1134,9 +1161,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-bb1a5517",
+    "id": "SOC-H-53ef05af",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "その土地に気候や土壌に適した農作物を栽培することを何というか。",
     "options": [
       "適地適作",
@@ -1152,9 +1179,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-9818e707",
+    "id": "SOC-H-0b478d16",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "アメリカのプレーリーの中央部では春小麦、冬小麦のどちらの栽培がさかんであるか。",
     "options": [
       "冬小麦",
@@ -1170,9 +1197,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-e7f7d58a",
+    "id": "SOC-H-c1015a2d",
     "subject": "GEO",
-    "unit": "北アメリカ州の",
+    "unit": "北アメリカ州",
     "q": "アメリカでは、とうもろこし、大豆、小麦などの輸出量が世界最大なので何と呼ばれているか。",
     "options": [
       "世界の食料庫",
@@ -1188,9 +1215,9 @@
     "refUrl": "https://social-line.com/chiri-america-q/"
   },
   {
-    "id": "SOC-H-7ef91cc7",
+    "id": "SOC-H-a5ed7140",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "地図中の山脈を何というか。",
     "options": [
       "アンデス山脈",
@@ -1200,15 +1227,18 @@
     ],
     "ans": 0,
     "exp": "環太平洋造山帯に属する新しく険しい山脈で、全長7000kmにおよぶ世界最長の山脈。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-2bb7e24b",
+    "id": "SOC-H-c948d33e",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "赤道付近を流れる、流域面積が世界一の川を何というか。",
     "options": [
       "アマゾン川",
@@ -1224,9 +1254,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-c2141416",
+    "id": "SOC-H-492e80cc",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "アマゾン川の流域に広がる熱帯雨林を何というか。",
     "options": [
       "セルバ",
@@ -1242,9 +1272,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-6d38a4c3",
+    "id": "SOC-H-5156fb33",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "ブラジルでは、どんな農作物の生産量が世界一か。",
     "options": [
       "コーヒー",
@@ -1260,9 +1290,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-740aa50d",
+    "id": "SOC-H-3a9b06c1",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "ブラジルを含めた経済発展がいちじるしい国々の名称を何というか。",
     "options": [
       "BRICS",
@@ -1278,9 +1308,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-afe1c82f",
+    "id": "SOC-H-577d73a6",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "オーストラリアに住む先住民を何というか。",
     "options": [
       "アボリジニ",
@@ -1296,9 +1326,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-737e3f93",
+    "id": "SOC-H-1dedba4e",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "ニュージーランドの先住民を何というか。",
     "options": [
       "マオリ",
@@ -1314,9 +1344,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-fdabe8d3",
+    "id": "SOC-H-844b9eae",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "地図中の盆地を何というか。",
     "options": [
       "グレートアーテジアン盆地（大鑽井盆地）",
@@ -1326,15 +1356,18 @@
     ],
     "ans": 0,
     "exp": "鑽井と呼ばれる掘り抜き井戸から得られる、深層の地下水を羊や肉牛の飲料水として利用し、大規模な放牧が行われています。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-9476b48a",
+    "id": "SOC-H-3ac3f93c",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "オーストラリアで、毛を利用するために飼育されている家畜は何か。",
     "options": [
       "羊",
@@ -1350,9 +1383,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-4745efa7",
+    "id": "SOC-H-e7eceb70",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "かつて、オーストラリアが行っていた非白人の移民を制限する政策を何というか。",
     "options": [
       "白豪主義",
@@ -1368,9 +1401,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-a508f7e7",
+    "id": "SOC-H-9667dd34",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "オーストラリアにある世界最大のサンゴ礁帯を何というか。",
     "options": [
       "グレートバリアリーフ（大堡礁）",
@@ -1386,9 +1419,9 @@
     "refUrl": "https://social-line.com/chiri-ameoce-q/"
   },
   {
-    "id": "SOC-H-8d6a242a",
+    "id": "SOC-H-7f74c56a",
     "subject": "GEO",
-    "unit": "南アメリカ、オセアニア州の",
+    "unit": "南アメリカ、オセアニア州",
     "q": "石炭や鉄鉱石は、地面を直接削っていく大規模で効率の良い採掘方法がとられている。この方法を何というか。",
     "options": [
       "露天掘り",
@@ -2070,9 +2103,9 @@
     "refUrl": "https://social-line.com/chiri-nihonsangyou-q/"
   },
   {
-    "id": "SOC-H-c0d19113",
+    "id": "SOC-H-e226f75a",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "地図中の山地を何というか。",
     "options": [
       "九州山地",
@@ -2082,15 +2115,18 @@
     ],
     "ans": 0,
     "exp": "九州中央部に150kmの長さで続く険しい山地。最高峰は大分、宮崎県境にある祖母山の1756m。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-48f42989",
+    "id": "SOC-H-63d63602",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "阿蘇山に見られる、火山の噴火による陥没によってできた大きなくぼ地を何というか。",
     "options": [
       "カルデラ",
@@ -2106,9 +2142,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-5b4997a6",
+    "id": "SOC-H-e0705c31",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "地図中の川を何というか。",
     "options": [
       "筑後川",
@@ -2118,15 +2154,18 @@
     ],
     "ans": 0,
     "exp": "九州一長い川で長さ143km。有明海に流れ込みます。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-cd1984d0",
+    "id": "SOC-H-8ab20666",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "筑後川の下流に広がる、九州最大の平野を何というか。",
     "options": [
       "筑紫平野",
@@ -2142,9 +2181,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-0a14fac5",
+    "id": "SOC-H-683459b8",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "九州南部に広がる、火山活動にともなう噴出物でできた台地を何というか。",
     "options": [
       "シラス台地",
@@ -2160,9 +2199,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-3afa91bc",
+    "id": "SOC-H-eedc028a",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "世界遺産に登録されている鹿児島県の島を何というか。",
     "options": [
       "屋久島",
@@ -2178,9 +2217,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-09261a41",
+    "id": "SOC-H-ad8ba6cc",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "火山などの地下にある高温の熱水や水蒸気を利用して行う発電を何というか。",
     "options": [
       "地熱発電",
@@ -2196,9 +2235,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-e1e9ad19",
+    "id": "SOC-H-8de62c3c",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "宮崎平野などでさかんな、温暖な気候を利用し出荷時期を早める栽培方法を何というか。",
     "options": [
       "促成栽培",
@@ -2214,9 +2253,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-dc0f0c90",
+    "id": "SOC-H-94cabbd7",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "年に2回異なった作物を栽培することを何というか。",
     "options": [
       "二毛作",
@@ -2232,9 +2271,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-f6293301",
+    "id": "SOC-H-812d1a6f",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "九州南部でさかんな、牛や豚、鶏などの家畜を飼育する農業を何というか。",
     "options": [
       "畜産",
@@ -2250,9 +2289,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-8b53c486",
+    "id": "SOC-H-e74269e5",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "福岡県に建設された日本初の本格的な製鉄所を何というか。",
     "options": [
       "八幡製鉄所",
@@ -2268,9 +2307,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-d55264fc",
+    "id": "SOC-H-920f1c72",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "北九州市を中心に広がっている工業地帯を何というか。",
     "options": [
       "北九州工業地帯",
@@ -2286,9 +2325,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-9d60af81",
+    "id": "SOC-H-d6015d50",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "九州地方各地の高速道路、空港の近くにつくられたのは何の工場か。",
     "options": [
       "IC（集積回路）",
@@ -2304,9 +2343,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-bd870283",
+    "id": "SOC-H-02574d01",
     "subject": "GEO",
-    "unit": "九州地方の",
+    "unit": "九州地方",
     "q": "有機水銀が原因で公害病が発生した熊本県の都市を何というか。",
     "options": [
       "水俣市",
@@ -2322,9 +2361,9 @@
     "refUrl": "https://social-line.com/chiri-kyushu-q/"
   },
   {
-    "id": "SOC-H-aed36f0a",
+    "id": "SOC-H-3b8a818a",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "地図中の山地を何というか。",
     "options": [
       "中国山地",
@@ -2334,15 +2373,18 @@
     ],
     "ans": 0,
     "exp": "山口県東部から兵庫県西部まで500kmにもおよぶ長さで、1000m級の山が続くなだらか山地。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-7161178a",
+    "id": "SOC-H-1704aa64",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "中国山地よりも北側の地域を何というか。",
     "options": [
       "山陰",
@@ -2358,9 +2400,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-0f2cb92b",
+    "id": "SOC-H-a72e0681",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "中国山地と四国山地にはさまれた地域を何というか。",
     "options": [
       "瀬戸内",
@@ -2376,9 +2418,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-e43cef39",
+    "id": "SOC-H-c3e1d166",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "四国山地の南側の地域を何というか。",
     "options": [
       "南四国",
@@ -2394,9 +2436,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-2403a623",
+    "id": "SOC-H-2a8fb598",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "瀬戸内の地域は降水量が少ないので、何を作って水を確保しているか。",
     "options": [
       "ため池",
@@ -2412,9 +2454,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-6f3ef819",
+    "id": "SOC-H-f5a9d91e",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "高知平野でかつて行われていた、年に同じ作物を2回つくることを何というか。",
     "options": [
       "二期作",
@@ -2430,9 +2472,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-c4755039",
+    "id": "SOC-H-03bbc107",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "らっきょう、メロンなどの栽培がさかんな山陰の砂丘を何というか。",
     "options": [
       "鳥取砂丘",
@@ -2448,9 +2490,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-bf61a91d",
+    "id": "SOC-H-b4916bd2",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "瀬戸内海沿岸に広がる、臨海型の工業地域を何というか。",
     "options": [
       "瀬戸内工業地域",
@@ -2466,9 +2508,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-2a2a20ca",
+    "id": "SOC-H-1dbe1eef",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "倉敷や周南などにつくられた、石油関連工場の集まりを何というか。",
     "options": [
       "石油化学コンビナート",
@@ -2484,9 +2526,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-86f9674f",
+    "id": "SOC-H-048b1fb7",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "本州と四国を橋で結ぶ３つのルートをまとめて何というか。",
     "options": [
       "本州四国連絡橋",
@@ -2502,9 +2544,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-1ea2c1bf",
+    "id": "SOC-H-fc72f43b",
     "subject": "GEO",
-    "unit": "中国・四国地方の",
+    "unit": "中国・四国地方",
     "q": "世界遺産である島根県にある鉱山の遺跡を何というか。",
     "options": [
       "石見銀山",
@@ -2520,9 +2562,9 @@
     "refUrl": "https://social-line.com/chiri-chushikoku-q/"
   },
   {
-    "id": "SOC-H-8a37a029",
+    "id": "SOC-H-3d4d8ae2",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "地図中の山地を何というか。",
     "options": [
       "紀伊山地",
@@ -2532,15 +2574,18 @@
     ],
     "ans": 0,
     "exp": "紀伊半島にある険しい山地で、南部は日本有数の降水量の多い地域になっています。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-b8e598b0",
+    "id": "SOC-H-ae316b5a",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "滋賀県にある日本最大の湖を何というか。",
     "options": [
       "琵琶湖",
@@ -2556,9 +2601,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-1fc5eb56",
+    "id": "SOC-H-81ad76d5",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "明石海峡大橋で本州と結ばれた、近郊農業がさかんな島を何というか。",
     "options": [
       "淡路島",
@@ -2574,9 +2619,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-031b5388",
+    "id": "SOC-H-4c4a2c4c",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "京都、大阪、神戸を中心に広がる人口の集中している地域を何というか。",
     "options": [
       "京阪神大都市圏",
@@ -2592,9 +2637,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-a1abfdd5",
+    "id": "SOC-H-355e4cf2",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "都市化が進展してくると、住宅不足を解消するために開発された、大都市郊外につくられた大規模な住宅地を何というか。",
     "options": [
       "ニュータウン",
@@ -2610,9 +2655,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-b5807e52",
+    "id": "SOC-H-f84eb5c2",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "大阪湾につくられた、24時間運営されている空港を何というか。",
     "options": [
       "関西国際空港",
@@ -2628,9 +2673,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-52918751",
+    "id": "SOC-H-5d434b5a",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "志摩半島の英虞湾では、海岸地形を利用して何の養殖がさかんか。",
     "options": [
       "真珠",
@@ -2646,9 +2691,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-01c17fd2",
+    "id": "SOC-H-aac9a9a5",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "市場となる大都市への近さを生かし、大都市周辺で行われる農業を何というか。",
     "options": [
       "近郊農業",
@@ -2664,9 +2709,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-28a51571",
+    "id": "SOC-H-03ce371b",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "大阪から神戸にかけて広がる工業地帯を何というか。",
     "options": [
       "阪神工業地帯",
@@ -2682,9 +2727,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-775242cc",
+    "id": "SOC-H-d1add70d",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "寺院や神社、祭礼など、歴史的に価値のある有形、無形の遺産を何というか。",
     "options": [
       "文化財",
@@ -2700,9 +2745,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-e415cec8",
+    "id": "SOC-H-28352b57",
     "subject": "GEO",
-    "unit": "近畿地方の",
+    "unit": "近畿地方",
     "q": "江戸時代、大阪は商業の中心地としてさかえ、何と呼ばれたか。",
     "options": [
       "天下の台所",
@@ -2718,9 +2763,9 @@
     "refUrl": "https://social-line.com/chiri-kinki-q/"
   },
   {
-    "id": "SOC-H-7aecc991",
+    "id": "SOC-H-ba527994",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "飛騨、木曽、赤石山脈の総称を何というか。",
     "options": [
       "日本アルプス",
@@ -2736,9 +2781,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-aa47d79a",
+    "id": "SOC-H-ea42e0cb",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "日本アルプスの東側にあり、日本列島を東西に分ける帯状の地域を何というか。",
     "options": [
       "フォッサマグナ",
@@ -2754,9 +2799,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-3686e9b3",
+    "id": "SOC-H-f60bb267",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "長野県から新潟県にかけて流れる日本最長の川を何というか。",
     "options": [
       "信濃川",
@@ -2772,9 +2817,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-d22ff87b",
+    "id": "SOC-H-84699d9a",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "中部地方の太平洋側にあり、工業生産が盛んな地域を何というか。",
     "options": [
       "東海",
@@ -2790,9 +2835,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-b10a057b",
+    "id": "SOC-H-57dc4951",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "長野県、山梨県を中心とした高い山で涼しい気候を利用した農業や観光がさかんな地域を何というか。",
     "options": [
       "中央高地",
@@ -2808,9 +2853,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-5b37c30b",
+    "id": "SOC-H-2e280512",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "中部地方の日本海側の地域を何というか。",
     "options": [
       "北陸",
@@ -2826,9 +2871,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-f7cc8931",
+    "id": "SOC-H-46611d7d",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "木曽川の河川が合流するところにあり、堤防に囲まれた土地を何というか。",
     "options": [
       "輪中",
@@ -2844,9 +2889,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-a90a581e",
+    "id": "SOC-H-77737147",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "静岡県が全国一の生産地となっている農作物は何か。",
     "options": [
       "茶",
@@ -2862,9 +2907,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-28a665ad",
+    "id": "SOC-H-66aba05b",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "ぶどうやももの栽培がさかんな、山梨県の盆地を何というか。",
     "options": [
       "甲府盆地",
@@ -2880,9 +2925,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-1f72c7fb",
+    "id": "SOC-H-4db1a25f",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "愛知県を中心に広がる、出荷額が日本一の工業地帯を何というか。",
     "options": [
       "中京工業地帯",
@@ -2898,9 +2943,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-73f36c03",
+    "id": "SOC-H-e5663ace",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "静岡県の太平洋側に広がる工業地域を何というか。",
     "options": [
       "東海工業地域",
@@ -2916,9 +2961,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-73f28e47",
+    "id": "SOC-H-23c13b4f",
     "subject": "GEO",
-    "unit": "中部地方の",
+    "unit": "中部地方",
     "q": "農家の副業から発達した産業を何というか。",
     "options": [
       "地場産業",
@@ -2934,9 +2979,9 @@
     "refUrl": "https://social-line.com/chiri-chubu-q/"
   },
   {
-    "id": "SOC-H-f6847121",
+    "id": "SOC-H-080d4167",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "関東にある日本最大の平野を何というか。",
     "options": [
       "関東平野",
@@ -2952,9 +2997,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-1a36b1e9",
+    "id": "SOC-H-b9d4b2ad",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "関東平野をおおっている火山灰からできた土の層を何というか。",
     "options": [
       "関東ローム",
@@ -2970,9 +3015,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-27d82ed1",
+    "id": "SOC-H-68828a0b",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "関東にある流域面積が日本最大の川を何というか。",
     "options": [
       "利根川",
@@ -2988,9 +3033,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-bde2adc2",
+    "id": "SOC-H-956da3f9",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "千葉県にある輸出や輸入の貿易額が日本最大の空港を何というか。",
     "options": [
       "成田国際空港",
@@ -3006,9 +3051,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-e487b7cb",
+    "id": "SOC-H-fc9ba4f2",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "東京湾岸にあり、利用する空港旅客数が全国一である空港は何というか。",
     "options": [
       "東京国際空港（羽田空港）",
@@ -3024,9 +3069,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-89d4cc45",
+    "id": "SOC-H-043fede1",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "群馬県の嬬恋村では、高原野菜であるどんな野菜の栽培がさかんか。",
     "options": [
       "キャベツ",
@@ -3042,9 +3087,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-89158710",
+    "id": "SOC-H-f95e042c",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "埼玉、茨城、千葉などの県で、大都市向けに農作物をつくる農業を何というか。",
     "options": [
       "近郊農業",
@@ -3060,9 +3105,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-054768c0",
+    "id": "SOC-H-6612cf33",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "東京、神奈川、埼玉、千葉にわたる工業地帯を何というか。",
     "options": [
       "京浜工業地帯",
@@ -3078,9 +3123,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-44526021",
+    "id": "SOC-H-9cf5617d",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "東京には情報が集中するので、これを発信するため、東京の中心にはどんな産業が集まっているか。",
     "options": [
       "印刷、出版業",
@@ -3096,9 +3141,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-d52c90de",
+    "id": "SOC-H-4ac9dd9d",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "東京から千葉の沿岸部にかけて広がる工業地域を何というか。",
     "options": [
       "京葉工業地域",
@@ -3114,9 +3159,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-563ef8ea",
+    "id": "SOC-H-7364da65",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "茨城、栃木、群馬に広がっている工業地域を何というか。",
     "options": [
       "北関東工業地域",
@@ -3132,9 +3177,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-f793c685",
+    "id": "SOC-H-a3b347b6",
     "subject": "GEO",
-    "unit": "関東地方の",
+    "unit": "関東地方",
     "q": "都心で人口が減少し、周辺の郊外で人口が増加する現象を何というか。",
     "options": [
       "ドーナツ化現象",
@@ -3150,9 +3195,9 @@
     "refUrl": "https://social-line.com/chiri-kanto-q/"
   },
   {
-    "id": "SOC-H-7089929d",
+    "id": "SOC-H-d6b8de68",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "地図中の山脈を何というか。",
     "options": [
       "奥羽山脈",
@@ -3162,15 +3207,18 @@
     ],
     "ans": 0,
     "exp": "東北地方の中央部を南北に走る山脈で、長さは500kmに及び、東北地方を太平洋側と日本海側に分けています。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-c93095e3",
+    "id": "SOC-H-41a32429",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "日本有数の穀物地帯となっている地図中の平野を何というか。",
     "options": [
       "庄内平野",
@@ -3180,15 +3228,18 @@
     ],
     "ans": 0,
     "exp": "山形県の日本海側にある平野で、最上川の下流域に当たります。中心都市は港町の酒田市。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-6cda440a",
+    "id": "SOC-H-32d7d3da",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "リアス式海岸で有名な、岩手から宮城にかけての海岸を何というか。",
     "options": [
       "三陸海岸",
@@ -3204,9 +3255,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-9b711035",
+    "id": "SOC-H-3d190e53",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "夏に東北地方の太平洋側にふいてくる冷たく湿った東北の風を何というか。",
     "options": [
       "やませ",
@@ -3222,9 +3273,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-5d94ce26",
+    "id": "SOC-H-d3b0e202",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "やませによる冷害を克服するため、寒さに強い品種の米を開発することを何というか。",
     "options": [
       "品種改良",
@@ -3240,9 +3291,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-c0ae1c4a",
+    "id": "SOC-H-5d52d648",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "青森県で生産が盛んで、全国の生産量の半分以上をしめる果物は何か。",
     "options": [
       "りんご",
@@ -3258,9 +3309,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-05ccfc4e",
+    "id": "SOC-H-697fa64c",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "山形県で生産が盛んで、全国有数の生産をあげている果物は何か。",
     "options": [
       "さくらんぼ",
@@ -3276,9 +3327,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-fc154252",
+    "id": "SOC-H-f28b8797",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "地図中の平野を何というか。",
     "options": [
       "石狩平野",
@@ -3288,15 +3339,18 @@
     ],
     "ans": 0,
     "exp": "石狩川の中流、下流域に広がる北海道で最も広い平野。泥炭地を土地改良して、現在は米の産地として知られます。",
-    "imgUrl": "",
-    "imgUrls": [],
+    "imgUrl": "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+    "imgUrls": [
+      "https://social-line.com/wp-content/plugins/lazy-load/images/1x1.trans.gif",
+      "https://social-line.com/wp-content/plugins/a3-lazy-load/assets/images/lazy_placeholder.gif"
+    ],
     "expImgUrls": [],
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-1a3c27d0",
+    "id": "SOC-H-af15eb46",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "北海道で酪農がさかんな大地を何というか。",
     "options": [
       "根釧台地",
@@ -3312,9 +3366,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-79b6425b",
+    "id": "SOC-H-1c08bcbe",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "卵をふ化して稚魚にまで育てて放流し、自然の中で大きくしてからとる漁業を何というか。",
     "options": [
       "栽培漁業",
@@ -3330,9 +3384,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-ef0fcc5f",
+    "id": "SOC-H-47090021",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "魚や貝を人工的に育てて増やす漁業を何というか。",
     "options": [
       "養殖",
@@ -3348,9 +3402,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-fd6d0443",
+    "id": "SOC-H-56741bdf",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "オホーツク海や北太平洋、ベーリング海でおこなわれている漁業を何というか。",
     "options": [
       "北洋漁業",
@@ -3366,9 +3420,9 @@
     "refUrl": "https://social-line.com/chiri-tohokuhokkaido-q/"
   },
   {
-    "id": "SOC-H-a0806703",
+    "id": "SOC-H-5675e742",
     "subject": "GEO",
-    "unit": "東北・北海道地方の",
+    "unit": "東北・北海道地方",
     "q": "北海道の先住民を何というか。",
     "options": [
       "アイヌ",
@@ -7434,9 +7488,9 @@
     "refUrl": "https://social-line.com/rekishi-edometsubo-q/"
   },
   {
-    "id": "SOC-H-b5d7a231",
+    "id": "SOC-H-a195d24f",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "1868年に発布された、明治政府の新しい政治の方針を明らかにしたものを何というか。",
     "options": [
       "五箇条の御誓文",
@@ -7452,9 +7506,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-3a6f918b",
+    "id": "SOC-H-09e31e0a",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "政府が大名に領地と領民を朝廷に返させたことを何というか。",
     "options": [
       "版籍奉還",
@@ -7470,9 +7524,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-f00adcde",
+    "id": "SOC-H-21c871ae",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "藩にかえて全国に府、県を設置し、府知事、県令を派遣して治めさせるようにした改革を何というか。",
     "options": [
       "廃藩置県",
@@ -7488,9 +7542,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-5c853cf9",
+    "id": "SOC-H-87f9099f",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "欧米諸国に対抗するため、近代工業を育て軍備を強化していこうというスローガンを何というか。",
     "options": [
       "富国強兵",
@@ -7506,9 +7560,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-fd3cb0fb",
+    "id": "SOC-H-35557136",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "1872年、近代的な学校制度の基本を定めた法令を何というか。",
     "options": [
       "学制",
@@ -7524,9 +7578,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-73faa19a",
+    "id": "SOC-H-38962140",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "1873年に出され、満20歳になった男子に兵役が課せされた義務を何というか。",
     "options": [
       "徴兵令",
@@ -7542,9 +7596,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-ad2d34ed",
+    "id": "SOC-H-f6778f31",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "政府が収入を安定させ、財政の基礎を固めるために実施した税制改革を何というか。",
     "options": [
       "地租改正",
@@ -7560,9 +7614,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-f91b9f0c",
+    "id": "SOC-H-80ba5c78",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "明治政府が富国強兵の一環として、近代的な産業を育てることを目指した政策を何というか。",
     "options": [
       "殖産興業",
@@ -7578,9 +7632,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-442f332a",
+    "id": "SOC-H-fe2b2bd4",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "西洋の思想や生活様式を積極的に取り入れた生活の変化を何というか。",
     "options": [
       "文明開化",
@@ -7596,9 +7650,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-0b427f7a",
+    "id": "SOC-H-61d9721f",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "「学問のすゝめ」を著した人物は誰か。",
     "options": [
       "福沢諭吉",
@@ -7614,9 +7668,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-c58477f6",
+    "id": "SOC-H-8bc14ca7",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "軍隊を送ってでも朝鮮を開国させ、国交を結ばせようとする主張を何というか。",
     "options": [
       "征韓論",
@@ -7632,9 +7686,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-c5dca3a2",
+    "id": "SOC-H-c30294dc",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "1875年、日本とロシアの間で国境を定めた条約を何というか。",
     "options": [
       "樺太・千島交換条約",
@@ -7650,9 +7704,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-09239ce8",
+    "id": "SOC-H-cf17e6a1",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "岩倉使節団に参加した後、征韓論に反対した人物は誰か。",
     "options": [
       "大久保利通",
@@ -7668,9 +7722,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-771ade07",
+    "id": "SOC-H-40668648",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "西郷隆盛を中心として1877年におきた反乱を何というか。",
     "options": [
       "西南戦争",
@@ -7686,9 +7740,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-8f4239b3",
+    "id": "SOC-H-ab11467e",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "民撰議院設立の建白書提出のあと高まった、国会開設などをめざした運動を何というか。",
     "options": [
       "自由民権運動",
@@ -7704,9 +7758,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-88148d74",
+    "id": "SOC-H-38cac257",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "ヨーロッパで憲法を学び、これをもとに憲法草案を作成したのは誰か。",
     "options": [
       "伊藤博文",
@@ -7722,9 +7776,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-fa92018f",
+    "id": "SOC-H-f9736a5c",
     "subject": "HIS",
-    "unit": "明治維新の",
+    "unit": "明治維新",
     "q": "1889年に制定された近代憲法を何というか。",
     "options": [
       "大日本帝国憲法",
@@ -7740,9 +7794,9 @@
     "refUrl": "https://social-line.com/rekishi-meiji-q/"
   },
   {
-    "id": "SOC-H-82ff94cc",
+    "id": "SOC-H-a33301a2",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "欧米諸国が、軍事力をもって植民地を獲得しようとする動きを何というか。",
     "options": [
       "帝国主義",
@@ -7758,9 +7812,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-ec5185cc",
+    "id": "SOC-H-c7cead88",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1894年、朝鮮南部で朝鮮の政治革命をめざして起きた反乱を何というか。",
     "options": [
       "甲午農民戦争",
@@ -7776,9 +7830,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-b9a758a5",
+    "id": "SOC-H-e5ea1c69",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "甲午農民戦争をきっかけに始まった日本と清との戦争を何というか。",
     "options": [
       "日清戦争",
@@ -7794,9 +7848,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-171268b8",
+    "id": "SOC-H-21a35040",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "日清戦争の講和条約名は何か。",
     "options": [
       "下関条約",
@@ -7812,9 +7866,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-4d58d31b",
+    "id": "SOC-H-f4e86f56",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "日清戦争の後、イギリスとの間で領事裁判権の撤廃を実現した外務大臣は誰か。",
     "options": [
       "陸奥宗光",
@@ -7830,9 +7884,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-610a890c",
+    "id": "SOC-H-b6e0b281",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "下関条約に反対したロシアなどが、遼東半島を清に返還するよう要求してきた出来事を何というか。",
     "options": [
       "三国干渉",
@@ -7848,9 +7902,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-27c28b0b",
+    "id": "SOC-H-3755ab8b",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1902年、ロシアの南下に対抗するため、イギリスが日本と結んだ同盟を何というか。",
     "options": [
       "日英同盟",
@@ -7866,9 +7920,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-9cd29a06",
+    "id": "SOC-H-823230dd",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1904年、ロシアとの間に起こった戦争を何というか。",
     "options": [
       "日露戦争",
@@ -7884,9 +7938,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-61d83547",
+    "id": "SOC-H-4464a6f1",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "戦場にいる弟の身を案じ「君死にたまふことなかれ」という詩を発表した人物は誰か。",
     "options": [
       "与謝野晶子",
@@ -7902,9 +7956,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-962c962f",
+    "id": "SOC-H-2d0a33d6",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1905年、アメリカの仲立ちで結ばれた日露戦争の講和条約を何というか。",
     "options": [
       "ポーツマス条約",
@@ -7920,9 +7974,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-3cacb63e",
+    "id": "SOC-H-cdc39121",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1911年、条約改正を完全に実現した外務大臣は誰か。",
     "options": [
       "小村寿太郎",
@@ -7938,9 +7992,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-3635d400",
+    "id": "SOC-H-a460468b",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "日露戦争の勝利で韓国での優位を得た日本が、その後韓国に対してとった政策を何というか。",
     "options": [
       "韓国併合",
@@ -7956,9 +8010,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-7374105f",
+    "id": "SOC-H-57b41827",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "1912年、南京を首都として、アジアで初めて共和国憲法を制定した国を何というか。",
     "options": [
       "中華民国",
@@ -7974,9 +8028,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-2c0a1064",
+    "id": "SOC-H-ded1e82d",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "清からの賠償金で北九州に建てられた、筑豊炭田の石炭を燃料にした官営の工場を何というか。",
     "options": [
       "八幡製鉄所",
@@ -7992,9 +8046,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-8f461948",
+    "id": "SOC-H-c4033d37",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "貿易や金融などの多角経営を行い、一族で結びついた資本家による企業の集まりを何というか。",
     "options": [
       "財閥",
@@ -8010,9 +8064,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-1f2381e3",
+    "id": "SOC-H-4e44f05a",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "足尾銅山鉱毒事件を帝国議会で取り上げるなど、解決に尽力した人物は誰か。",
     "options": [
       "田中正造",
@@ -8028,9 +8082,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-33396981",
+    "id": "SOC-H-cf862a6f",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "ドイツに留学し、破傷風の血清療法を発見した人物は誰か。",
     "options": [
       "北里柴三郎",
@@ -8046,9 +8100,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-565659ed",
+    "id": "SOC-H-ec7083ad",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "アメリカに渡り、黄熱病の研究など医学の分野で多くの業績を残した人物は誰か。",
     "options": [
       "野口英世",
@@ -8064,9 +8118,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-10a41f8b",
+    "id": "SOC-H-a9db2e81",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "「坊ちゃん」「吾輩は猫である」などを著した人物は誰か。",
     "options": [
       "夏目漱石",
@@ -8082,9 +8136,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-5c6f0c5d",
+    "id": "SOC-H-7a4b226a",
     "subject": "HIS",
-    "unit": "帝国主義の",
+    "unit": "帝国主義",
     "q": "「舞姫」などを著した人物は誰か。",
     "options": [
       "森鴎外",
@@ -8100,9 +8154,9 @@
     "refUrl": "https://social-line.com/rekishi-teikoku-q/"
   },
   {
-    "id": "SOC-H-c6d9943b",
+    "id": "SOC-H-d039cea3",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "ドイツ、オーストリア、イタリアの間で結ばれた軍事同盟を何というか。",
     "options": [
       "三国同盟",
@@ -8118,9 +8172,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-a8469289",
+    "id": "SOC-H-f8ff88b9",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "イギリス、フランス、ロシアの間で結ばれた軍事同盟を何というか。",
     "options": [
       "三国協商",
@@ -8136,9 +8190,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-4422cf62",
+    "id": "SOC-H-19974abe",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "オーストリア皇太子夫妻がセルビアの青年に暗殺された事件を何というか。",
     "options": [
       "サラエボ事件",
@@ -8154,9 +8208,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-3396a1d8",
+    "id": "SOC-H-b90f2cd9",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "サラエボ事件をきっかけに始まった世界大戦を何というか。",
     "options": [
       "第一次世界大戦",
@@ -8172,9 +8226,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-ef613793",
+    "id": "SOC-H-cf5de262",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "日本は第一次世界大戦の中、中国に対して何を突きつけたか。",
     "options": [
       "二十一か条の要求",
@@ -8190,9 +8244,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-e082ffb8",
+    "id": "SOC-H-1787b63e",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "ロシア革命を指導した中心人物は誰か。",
     "options": [
       "レーニン",
@@ -8208,9 +8262,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-fc78b238",
+    "id": "SOC-H-af5bab0c",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "ロシア革命によって建国された、世界初の社会主義国の名前は何か。",
     "options": [
       "ソビエト社会主義共和国連邦（ソ連）",
@@ -8226,9 +8280,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-71396e31",
+    "id": "SOC-H-3b2ddb65",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "ドイツと連合国の間で結ばれた、第一次世界大戦の講和条約を何というか。",
     "options": [
       "ベルサイユ条約",
@@ -8244,9 +8298,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-7b2e7b70",
+    "id": "SOC-H-f107d4dd",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "1920年、アメリカのウィルソン大統領の提案にもとづきつくられた、国際的な平和機構を何というか。",
     "options": [
       "国際連盟",
@@ -8262,9 +8316,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-7d5d6518",
+    "id": "SOC-H-23277ab5",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "アメリカのよびかけで開かれ、中国の独立と領土保全などが決められた会議を何というか。",
     "options": [
       "ワシントン会議",
@@ -8280,9 +8334,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-16e534e7",
+    "id": "SOC-H-30cb31cf",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "ソウルで日本からの独立宣言が発表されたことがきっかけで起こった運動を何というか。",
     "options": [
       "三・一独立運動",
@@ -8298,9 +8352,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-d2530c29",
+    "id": "SOC-H-82bd32c3",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "中国の北京で始まった排日、反帝国主義運動を何というか。",
     "options": [
       "五・四運動",
@@ -8316,9 +8370,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-0ac8c5da",
+    "id": "SOC-H-a50f9517",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "非暴力・日服従を唱え、民族独立運動を展開したインドの人物は誰か。",
     "options": [
       "ガンディー",
@@ -8334,9 +8388,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-321d5dba",
+    "id": "SOC-H-93524390",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "1912年ごろに高まった、自由主義・民主主義的な風潮や運動を何というか。",
     "options": [
       "大正デモクラシー",
@@ -8352,9 +8406,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-867f5398",
+    "id": "SOC-H-775a304d",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "米価が高騰したため、米の安売りなどを求める運動を何というか。",
     "options": [
       "米騒動",
@@ -8370,9 +8424,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-2026111e",
+    "id": "SOC-H-d7a9bc26",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "米騒動のあと、首相となり内閣を組織した人物は誰か。",
     "options": [
       "原敬",
@@ -8388,9 +8442,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-e2d946aa",
+    "id": "SOC-H-efcb69fb",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "原敬が所属していた政党を何というか。",
     "options": [
       "立憲政友会",
@@ -8406,9 +8460,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-127b3442",
+    "id": "SOC-H-7500b7c3",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "1925年に制定された普通選挙法によって選挙権を得たのはどのような人々か。",
     "options": [
       "満25歳以上のすべての男子",
@@ -8424,9 +8478,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-41d20c92",
+    "id": "SOC-H-15834cb4",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "社会主義運動などを取り締まるために制定された法律を何というか。",
     "options": [
       "治安維持法",
@@ -8442,9 +8496,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-ccf8980f",
+    "id": "SOC-H-5621f4ec",
     "subject": "HIS",
-    "unit": "第一次世界大戦の",
+    "unit": "第一次世界大戦",
     "q": "女性の政治活動への参加などを求めて、新婦人協会を結成した人物は誰か。",
     "options": [
       "平塚らいてう",
@@ -8460,9 +8514,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar1-q/"
   },
   {
-    "id": "SOC-H-a1746dfd",
+    "id": "SOC-H-f166552f",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1929年にアメリカで発生し、ヨーロッパや日本などに広がった不景気を何というか。",
     "options": [
       "世界恐慌",
@@ -8478,9 +8532,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-3316b742",
+    "id": "SOC-H-6a515552",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "世界恐慌に対し、イギリスやフランスの取った排他的な保護貿易政策を何というか。",
     "options": [
       "ブロック経済",
@@ -8496,9 +8550,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-87458d88",
+    "id": "SOC-H-447ff8b9",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "アメリカのルーズベルト大統領が行った経済統制策を何というか。",
     "options": [
       "ニューディール政策",
@@ -8514,9 +8568,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-f5d0410e",
+    "id": "SOC-H-9aecb861",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "ソ連が世界恐慌の影響を受けなかったのは、何計画を進めていたからか。",
     "options": [
       "五か年計画",
@@ -8532,9 +8586,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-db2584ff",
+    "id": "SOC-H-fb3f8929",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "ナチスを率いて独裁政治を行ったドイツの人物は誰か。",
     "options": [
       "ヒトラー",
@@ -8550,9 +8604,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-5ca9925e",
+    "id": "SOC-H-f2c04296",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "ファシスト党を率いて独裁政治を行ったイタリアの人物は誰か。",
     "options": [
       "ムッソリーニ",
@@ -8568,9 +8622,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-3d5db23e",
+    "id": "SOC-H-357b67c8",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "満州にいた日本軍が、満州鉄道を爆破し、満州全域を占領したことを何というか。",
     "options": [
       "満州事変",
@@ -8586,9 +8640,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-168359fd",
+    "id": "SOC-H-87ef285d",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1932年、海軍の青年将校らに内閣総理大臣の犬養毅が暗殺された出来事を何というか。",
     "options": [
       "五・一五事件",
@@ -8604,9 +8658,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-eada6955",
+    "id": "SOC-H-6c89da21",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1936年、陸軍の青年将校らが率いる部隊が首相官邸などを襲撃した事件を何というか。",
     "options": [
       "二・二六事件",
@@ -8622,9 +8676,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-9a6342c5",
+    "id": "SOC-H-f1067efb",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1937年、北京郊外で日本軍と中国軍が衝突し始まった戦争を何というか。",
     "options": [
       "日中戦争",
@@ -8640,9 +8694,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-4b90394a",
+    "id": "SOC-H-366f5f94",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1938年、産業から国民生活のすべてにわたり、戦争のために資金や物資などを統制できるようにした法律は何か。",
     "options": [
       "国家総動員法",
@@ -8658,9 +8712,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-7fc51eff",
+    "id": "SOC-H-450ca427",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1939年、ドイツのポーランド侵攻をきっかけに始めった戦争を何というか。",
     "options": [
       "第二次世界大戦",
@@ -8676,9 +8730,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-d2924ae7",
+    "id": "SOC-H-c09f8854",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1940年、日本がドイツ、イタリアと結んだ同盟を何というか。",
     "options": [
       "日独伊三国同盟",
@@ -8694,9 +8748,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-5b87f638",
+    "id": "SOC-H-66ba69d4",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "真珠湾の奇襲攻撃とマレー半島への上陸をきっかけに始まった戦争を何というか。",
     "options": [
       "太平洋戦争",
@@ -8712,9 +8766,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-5a6cba39",
+    "id": "SOC-H-21a8dcee",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1943年、これまで兵役を猶予されていた学生も戦場に送られたことを何というか。",
     "options": [
       "学徒出陣",
@@ -8730,9 +8784,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-b430b648",
+    "id": "SOC-H-ecdd6222",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1945年8月6日、世界で初めて原子爆弾が落とされた都市がある県はどこか。",
     "options": [
       "広島県",
@@ -8748,9 +8802,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-432f31cc",
+    "id": "SOC-H-f8db22e5",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "日本の降伏を勧告する宣言を何というか。",
     "options": [
       "ポツダム宣言",
@@ -8766,9 +8820,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-d3181d26",
+    "id": "SOC-H-779a15d1",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "連合国が日本占領のために東京に設けた総司令部を何というか。",
     "options": [
       "連合国軍最高司令官総司令部（ＧＨＱ）",
@@ -8784,9 +8838,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-ac5409da",
+    "id": "SOC-H-a94a8a36",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "ＧＨＱの最高司令官は誰か。",
     "options": [
       "マッカーサー",
@@ -8802,9 +8856,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-df73352b",
+    "id": "SOC-H-0cab1430",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "政府が地主から土地を強制的に買い上げて小作人に安く売り渡し、自作農を増やした政策を何というか。",
     "options": [
       "農地改革",
@@ -8820,9 +8874,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-cd7dea72",
+    "id": "SOC-H-51e50d48",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1946年に公布され、1947年に施行された新しい憲法を何というか。",
     "options": [
       "日本国憲法",
@@ -8838,9 +8892,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-502673ee",
+    "id": "SOC-H-62e9a1a7",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "第二次世界大戦後に始まった資本主義陣営と社会主義陣営の国際的緊張状態を何というか。",
     "options": [
       "冷戦",
@@ -8856,9 +8910,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-de2d81dd",
+    "id": "SOC-H-01026d5b",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1950年、朝鮮民主主義人民共和国と大韓民国との間で始まった戦争を何というか。",
     "options": [
       "朝鮮戦争",
@@ -8874,9 +8928,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-e960c5e6",
+    "id": "SOC-H-0adae273",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1951年、日本と連合国との間で調印された講和条約を何というか。",
     "options": [
       "サンフランシスコ平和条約",
@@ -8892,9 +8946,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-245cd1c8",
+    "id": "SOC-H-3ef2f1b7",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "日本の防衛をするためにアメリカ軍の駐留を認める条約は何か。",
     "options": [
       "日米安全保障条約",
@@ -8910,9 +8964,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-acf4e055",
+    "id": "SOC-H-cb5ffb43",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "1956年、日本はソ連との間で、ある宣言に調印して国交を回復した。この宣言を何というか。",
     "options": [
       "日ソ共同宣言",
@@ -8928,9 +8982,9 @@
     "refUrl": "https://social-line.com/rekishi-worldwar2-q/"
   },
   {
-    "id": "SOC-H-3c9a75b0",
+    "id": "SOC-H-643770cc",
     "subject": "HIS",
-    "unit": "第二次世界大戦の",
+    "unit": "第二次世界大戦",
     "q": "日本の高度経済成長を終わらせた経済混乱を何というか。",
     "options": [
       "石油危機",
