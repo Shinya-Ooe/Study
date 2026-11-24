@@ -52,13 +52,13 @@
       padding-bottom: max(14px, env(safe-area-inset-bottom));
       gap: 6px;
     }
-    header { display: flex; align-items: center; justify-content: space-between; min-height: 38px; gap: 6px; flex-shrink: 0; }
+    header { display: flex; align-items: center; justify-content: space-between; min-height: 36px; gap: 5px; flex-shrink: 0; }
     .hbtn {
-      font-size: 13px; font-weight: 800; color: var(--pri); background: var(--card);
-      border: 2px solid var(--bdr); padding: 5px 9px; border-radius: 9px;
+      font-size: 12px; font-weight: 800; color: var(--pri); background: var(--card);
+      border: 2px solid var(--bdr); padding: 5px 8px; border-radius: 9px;
       text-decoration: none; cursor: pointer; white-space: nowrap;
     }
-    .htitle { font-size: 16px; font-weight: 900; text-align: center; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .htitle { font-size: 15px; font-weight: 900; text-align: center; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     main { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; }
     .view { display: none; flex-direction: column; width: 100%; height: 100%; min-height: 0; gap: 6px; }
     .view.active { display: flex; }
@@ -74,37 +74,58 @@
     /* ホーム */
     .home-card {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
-      padding: 10px 12px; display: flex; flex-direction: column;
+      padding: 9px 11px; display: flex; flex-direction: column;
       justify-content: space-between; flex: 1; min-height: 0; gap: 6px;
     }
+    .moti-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      background: var(--warn-bg); color: var(--warn); border-radius: 10px;
+      padding: 5px 9px; font-size: 12px; font-weight: 800; flex-shrink: 0;
+    }
+    .moti-bar.done { background: var(--ok-bg); color: var(--ok); }
+    .overall-box {
+      background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px;
+      padding: 6px 9px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px;
+    }
+    .overall-top {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 6px;
+      font-size: 12px; font-weight: 800;
+    }
+    .overall-pct { font-size: 17px; font-weight: 900; color: var(--pri); }
+    .overall-rank { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--pri-bg); color: var(--pri); }
+    .overall-track { height: 8px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
+    .overall-fill { height: 100%; width: 0%; background: var(--pri); transition: width 0.35s ease; }
+    .overall-sub { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--sub); }
+
     .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; flex-shrink: 0; }
-    .stat-box { background: var(--pri-bg); color: var(--pri); border-radius: 10px; padding: 5px 4px; text-align: center; font-weight: 800; }
-    .stat-box b { display: block; font-size: 19px; line-height: 1.15; }
-    .stat-box span { font-size: 11px; }
+    .stat-box { background: var(--pri-bg); color: var(--pri); border-radius: 10px; padding: 4px 4px; text-align: center; font-weight: 800; }
+    .stat-box b { display: block; font-size: 17px; line-height: 1.15; }
+    .stat-box span { font-size: 10px; }
+
     .field { flex-shrink: 0; }
-    .field label { display: block; font-size: 12px; font-weight: 800; color: var(--sub); margin-bottom: 2px; }
+    .field label { display: block; font-size: 11px; font-weight: 800; color: var(--sub); margin-bottom: 2px; }
     select {
-      width: 100%; height: 40px; padding: 4px 10px; font-size: 15px; font-weight: 700;
+      width: 100%; height: 38px; padding: 4px 10px; font-size: 14px; font-weight: 700;
       border-radius: 10px; border: 2px solid var(--bdr); background: var(--card); color: var(--text);
     }
     .btn {
-      width: 100%; flex: 1; min-height: 42px; max-height: 52px; border-radius: 12px;
-      font-size: 16px; font-weight: 900; cursor: pointer; border: 2px solid transparent;
+      width: 100%; flex: 1; min-height: 38px; max-height: 48px; border-radius: 12px;
+      font-size: 15px; font-weight: 900; cursor: pointer; border: 2px solid transparent;
       display: flex; align-items: center; justify-content: center; text-decoration: none; gap: 6px;
     }
     .btn-pri { background: var(--pri); color: #ffffff; }
     @media (prefers-color-scheme: dark) { .btn-pri { color: #090d16; } }
-    .btn-sec { background: var(--card); color: var(--text); border-color: var(--bdr); font-size: 15px; }
+    .btn-sec { background: var(--card); color: var(--text); border-color: var(--bdr); font-size: 14px; }
     .btn-rev { background: var(--ng-bg); color: var(--ng); border-color: var(--ng); }
-    .btn-link { background: var(--pri-bg); color: var(--pri); border-color: var(--pri); font-size: 14px; max-height: 42px; }
-    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; min-height: 40px; max-height: 48px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; min-height: 38px; max-height: 44px; }
 
     /* 出題画面 */
     .pbar { height: 7px; background: var(--bdr); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
     .pfill { height: 100%; width: 0%; background: var(--pri); transition: width 0.25s ease; }
-    .meta-bar { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-shrink: 0; }
-    .badge { font-size: 12px; font-weight: 800; padding: 3px 8px; border-radius: 8px; background: var(--pri-bg); color: var(--pri); }
+    .meta-bar { display: flex; align-items: center; justify-content: space-between; gap: 5px; flex-shrink: 0; }
+    .badge { font-size: 11px; font-weight: 800; padding: 3px 7px; border-radius: 8px; background: var(--pri-bg); color: var(--pri); white-space: nowrap; }
     .badge.s { background: var(--warn-bg); color: var(--warn); }
+    .badge.combo { background: var(--ok-bg); color: var(--ok); display: none; }
 
     .q-card {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 14px;
@@ -116,12 +137,8 @@
       font-size: clamp(26px, 7.5vw, 38px); font-weight: 900; line-height: 1.2;
       color: var(--text); word-break: break-word;
     }
-    .q-word.is-sentence {
-      font-size: 19px; text-align: left; line-height: 1.45; font-weight: 800;
-    }
-    .q-word.is-ja {
-      font-size: clamp(20px, 5.5vw, 26px); line-height: 1.35;
-    }
+    .q-word.is-sentence { font-size: 19px; text-align: left; line-height: 1.45; font-weight: 800; }
+    .q-word.is-ja { font-size: clamp(20px, 5.5vw, 26px); line-height: 1.35; }
     .q-hl { color: var(--pri); background: var(--pri-bg); padding: 1px 5px; border-radius: 5px; border-bottom: 2px solid var(--pri); }
     .q-spell { font-size: 13px; color: var(--sub); letter-spacing: 0.14em; display: none; font-weight: 700; }
     .q-foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sub); }
@@ -146,7 +163,7 @@
       box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.28);
     }
     .exp-sheet.active { display: flex; }
-    .exp-head { font-size: 20px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
+    .exp-head { font-size: 19px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
     .exp-ans { font-size: 18px; font-weight: 900; background: var(--ok-bg); color: var(--ok); padding: 7px 10px; border-radius: 10px; }
     .exp-box { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 8px 10px; text-align: left; }
     .exp-en { font-size: 15px; font-weight: 800; line-height: 1.4; color: var(--text); }
@@ -174,19 +191,34 @@
     .modal.active { display: flex; }
     .mbox {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
-      padding: 14px; width: 100%; max-width: 520px; max-height: 92dvh; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 10px; text-align: center;
+      padding: 14px; width: 100%; max-width: 540px; max-height: 92dvh; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 9px; text-align: center;
     }
-    .mbox .btn { flex: 0 0 auto; max-height: none; }
-    .mtitle { font-size: 18px; font-weight: 900; }
-    .mscore { font-size: 32px; font-weight: 900; color: var(--pri); }
-    .mtext { font-size: 15px; font-weight: 700; line-height: 1.5; color: var(--sub); text-align: left; }
+    .mbox .btn, .mbox .row2 { flex: 0 0 auto; max-height: none; }
+    .mtitle { font-size: 17px; font-weight: 900; }
+    .mscore { font-size: 30px; font-weight: 900; color: var(--pri); }
+    .mtext { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--sub); text-align: left; }
+
+    /* 分野別成績カード */
+    .st-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 4px; }
+    .st-chip { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 6px 4px; text-align: center; }
+    .st-chip b { display: block; font-size: 16px; color: var(--pri); }
+    .st-chip span { font-size: 10px; font-weight: 800; color: var(--sub); }
+    .st-list { display: flex; flex-direction: column; gap: 7px; text-align: left; }
+    .st-item { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 7px 9px; }
+    .st-item-head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+    .st-item-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--sub); margin-top: 3px; }
+    .st-bar { height: 6px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
+    .st-bar-fill { height: 100%; background: var(--pri); }
+
+    .growth-box { background: var(--ok-bg); color: var(--ok); border-radius: 10px; padding: 7px 10px; font-size: 13px; font-weight: 800; text-align: center; }
   </style>
 </head>
 <body>
 <div id="app">
   <header>
     <a class="hbtn" href="index.html">‹ 一覧</a>
+    <button class="hbtn" id="btn-back-home" style="display:none;" onclick="backToHome()">🏠 ホーム</button>
     <div class="htitle">英検準2級対策 英単語</div>
     <button class="hbtn" onclick="openStats()">成績</button>
   </header>
@@ -204,6 +236,25 @@
     <!-- ホーム -->
     <div id="v-home" class="view">
       <div class="home-card">
+        <!-- 連続学習日数＆今日の目標 -->
+        <div class="moti-bar" id="moti-bar">
+          <span id="m-streak">🔥 連続 0日</span>
+          <span id="m-today">🎯 今日 0 / 20問</span>
+        </div>
+
+        <!-- 全体進捗（％）＋ランク＋次のマイルストーン -->
+        <div class="overall-box">
+          <div class="overall-top">
+            <span>全体進捗 <span class="overall-pct" id="ov-pct">0%</span></span>
+            <span class="overall-rank" id="ov-rank">🌱 ビギナー</span>
+          </div>
+          <div class="overall-track"><div class="overall-fill" id="ov-fill"></div></div>
+          <div class="overall-sub">
+            <span id="ov-count">0 / 0 問習得</span>
+            <span id="ov-next">次の目標まであと 1問</span>
+          </div>
+        </div>
+
         <div class="stat-row">
           <div class="stat-box"><span>収録問題</span><b id="s-tot">0</b></div>
           <div class="stat-box"><span>学習済み</span><b id="s-lrn">0</b></div>
@@ -248,7 +299,8 @@
       <div class="meta-bar">
         <span class="badge" id="q-cat">グループ</span>
         <span class="badge s" id="q-pri">★ S</span>
-        <span id="q-num" style="font-size:15px;font-weight:900;">1 / 10</span>
+        <span class="badge combo" id="q-combo">🔥 2連続</span>
+        <span id="q-num" style="font-size:14px;font-weight:900;">1 / 10</span>
       </div>
 
       <div class="q-card">
@@ -268,7 +320,10 @@
       <div class="exp-sheet" id="sheet">
         <div class="exp-head">
           <span id="sh-head">⭕ 正解！</span>
-          <button class="tts-btn" onclick="speakEn(curList[idx].word)">🔊 単語</button>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span id="sh-combo" style="font-size:13px;font-weight:900;color:var(--ok);"></span>
+            <button class="tts-btn" onclick="speakEn(curList[idx].word)">🔊 単語</button>
+          </div>
         </div>
         <div class="exp-ans" id="sh-ans"></div>
         <div class="exp-box">
@@ -290,7 +345,7 @@
           <div id="l-en">準備中...</div>
           <div class="listen-sub" id="l-ja"></div>
         </div>
-        <button class="btn btn-sec" onclick="stopListen()">停止して戻る</button>
+        <button class="btn btn-sec" onclick="stopListen()">停止してホームへ戻る</button>
       </div>
     </div>
   </main>
@@ -301,10 +356,14 @@
   <div class="mbox">
     <div class="mtitle">10問セッション終了</div>
     <div class="mscore" id="r-sc">0 / 10</div>
+    <div class="growth-box" id="r-growth"></div>
     <div class="mtext" id="r-msg" style="text-align:center;"></div>
     <button class="btn btn-pri" onclick="closeRes('NEXT')">次の10問へ進む</button>
     <button class="btn btn-rev" id="r-rev" onclick="closeRes('REV')">間違えた問題を復習する</button>
-    <button class="btn btn-sec" onclick="closeRes('HOME')">メニューに戻る</button>
+    <div class="row2">
+      <button class="btn btn-sec" onclick="closeRes('STATS')">成績を見る</button>
+      <button class="btn btn-sec" onclick="closeRes('HOME')">ホームへ戻る</button>
+    </div>
   </div>
 </div>
 
@@ -317,13 +376,14 @@
   </div>
 </div>
 
-<!-- 成績モーダル -->
+<!-- 成績モーダル（全体＋分野別達成率＆正答率） -->
 <div class="modal" id="m-st">
   <div class="mbox">
-    <div class="mtitle">学習成績・進捗状況</div>
-    <div class="mtext" id="st-body"></div>
-    <button class="btn btn-sec" onclick="document.getElementById('m-st').classList.remove('active')">閉じる</button>
-    <button class="btn btn-sec" style="color:var(--ng);border-color:var(--ng);font-size:14px;" onclick="resetProg()">進捗データをリセット</button>
+    <div class="mtitle">📊 学習成績・分野別達成率</div>
+    <div class="st-summary" id="st-summary"></div>
+    <div class="st-list" id="st-body"></div>
+    <button class="btn btn-pri" onclick="document.getElementById('m-st').classList.remove('active')">閉じる</button>
+    <button class="btn btn-sec" style="color:var(--ng);border-color:var(--ng);font-size:13px;" onclick="resetProg()">進捗データをリセット</button>
   </div>
 </div>
 
@@ -331,6 +391,7 @@
 const DATA_URL = "./eiken_jun2_data.json";
 const APP_ID = "eiken_jun2_vocab.html";
 const STORAGE_KEY = "eiken_jun2_split_v1";
+const DAILY_GOAL = 20;
 
 let BANK = [];
 let prog = loadProg();
@@ -342,12 +403,34 @@ let isReviewSession = false;
 let currentDir = "EN2JA";
 let listening = false;
 let listenTimer = null;
+let combo = 0;
+let sessionBestCombo = 0;
+let sessionNewMastered = 0;
+let sessionOvercame = 0;
 
 const ADVICES = [
   "【大問1のコツ①】選択肢を見る前に空所に入る品詞や意味の方向（プラスかマイナスか）を予測すると、紛らわしい選択肢に引っかかりにくくなります。",
   "【大問1のコツ②】熟語・句動詞は単語をバラバラにせず、前置詞まで含めたかたまり（例：take part in, come up with）で音読して覚えましょう。",
   "【合格ラインの目安】英検準2級は大問1がリーディングの約半分を占めます。新しい単語を増やすより、間違えた単語を復習して正答率90%以上を目指しましょう。"
 ];
+
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function yesterdayStr() {
+  const d = new Date(Date.now() - 86400000);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function getRankLabel(pct) {
+  if (pct >= 100) return "👑 完全制覇";
+  if (pct >= 80) return "🏆 合格圏マスター";
+  if (pct >= 50) return "🥇 語彙エキスパート";
+  if (pct >= 25) return "📘 着実に前進中";
+  if (pct >= 10) return "✨ ウォームアップ完了";
+  return "🌱 ビギナー";
+}
 
 function fallbackStableId(kind, keyText) {
   const str = `${kind}||${String(keyText || "").trim().toLowerCase()}`;
@@ -359,7 +442,6 @@ function fallbackStableId(kind, keyText) {
   return "EJ2-F-" + (h >>> 0).toString(16).padStart(8, "0");
 }
 
-// 8秒タイムアウト＋Safariキャッシュ対策付き読み込み
 async function loadDatabase() {
   const icon = document.getElementById("load-icon");
   const msg = document.getElementById("load-msg");
@@ -373,10 +455,7 @@ async function loadDatabase() {
   const timer = setTimeout(() => controller.abort(), 8000);
 
   try {
-    const res = await fetch(`${DATA_URL}?t=${Date.now()}`, {
-      cache: "no-store",
-      signal: controller.signal
-    });
+    const res = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store", signal: controller.signal });
     clearTimeout(timer);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -412,33 +491,93 @@ function loadProg() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const p = JSON.parse(raw);
-      return { items: p.items || {}, solved: p.solved || 0 };
+      return {
+        items: p.items || {},
+        solved: p.solved || 0,
+        streak: p.streak || 0,
+        lastDate: p.lastDate || "",
+        todayDate: p.todayDate || "",
+        todayCount: p.todayCount || 0,
+        bestCombo: p.bestCombo || 0
+      };
     }
   } catch (e) {}
-  return { items: {}, solved: 0 };
+  return { items: {}, solved: 0, streak: 0, lastDate: "", todayDate: "", todayCount: 0, bestCombo: 0 };
 }
 function saveProg() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(prog)); } catch (e) {} }
+
+function recordActivity() {
+  const td = todayStr();
+  const yd = yesterdayStr();
+  if (prog.todayDate !== td) {
+    prog.todayDate = td;
+    prog.todayCount = 0;
+  }
+  prog.todayCount += 1;
+
+  if (prog.lastDate !== td) {
+    prog.streak = (prog.lastDate === yd) ? (prog.streak || 0) + 1 : 1;
+    prog.lastDate = td;
+  }
+}
 
 function showView(id) {
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+  const backBtn = document.getElementById("btn-back-home");
+  backBtn.style.display = (id === "v-quiz" || id === "v-listen") ? "inline-block" : "none";
   if (id === "v-home") refreshHome();
 }
 
+function backToHome() {
+  if (listening) { stopListen(); return; }
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  showView("v-home");
+}
+
 function refreshHome() {
-  document.getElementById("s-tot").textContent = BANK.length;
-  let lrn = 0, rev = 0;
+  const total = BANK.length;
+  let lrn = 0, mastered = 0, rev = 0;
   BANK.forEach(q => {
     const p = prog.items[q.id];
     if (p && p.n > 0) {
       lrn++;
+      if (!p.ng && (p.ok / p.n) >= 0.7) mastered++;
       if (p.ng || (p.ok / p.n) < 0.7) rev++;
     }
   });
+
+  const pct = total > 0 ? Math.round((lrn / total) * 100) : 0;
+  document.getElementById("s-tot").textContent = total;
   document.getElementById("s-lrn").textContent = lrn;
   document.getElementById("s-rev").textContent = rev;
   document.getElementById("rev-n").textContent = rev;
   document.getElementById("b-rev").style.display = rev > 0 ? "flex" : "none";
+
+  document.getElementById("ov-pct").textContent = `${pct}%`;
+  document.getElementById("ov-fill").style.width = `${pct}%`;
+  document.getElementById("ov-rank").textContent = getRankLabel(pct);
+  document.getElementById("ov-count").textContent = `学習済 ${lrn} / ${total} 問（定着 ${mastered}問）`;
+
+  const nextMilestonePct = Math.min(100, Math.floor(pct / 5) * 5 + 5);
+  const nextTargetCount = Math.ceil((total * nextMilestonePct) / 100);
+  const remain = Math.max(0, nextTargetCount - lrn);
+  document.getElementById("ov-next").textContent =
+    pct >= 100 ? "🎉 全問学習達成！" : `${nextMilestonePct}%到達まであと ${Math.max(1, remain)}問`;
+
+  const td = todayStr();
+  const yd = yesterdayStr();
+  const activeStreak = (prog.lastDate === td || prog.lastDate === yd) ? (prog.streak || 0) : 0;
+  const todayCnt = prog.todayDate === td ? (prog.todayCount || 0) : 0;
+  const motiBar = document.getElementById("moti-bar");
+  document.getElementById("m-streak").textContent = `🔥 連続 ${activeStreak}日`;
+  if (todayCnt >= DAILY_GOAL) {
+    motiBar.classList.add("done");
+    document.getElementById("m-today").textContent = `✅ 今日の目標達成（${todayCnt}問）`;
+  } else {
+    motiBar.classList.remove("done");
+    document.getElementById("m-today").textContent = `🎯 今日 ${todayCnt} / ${DAILY_GOAL}問`;
+  }
 }
 
 function forgettingScore(q, now) {
@@ -472,7 +611,6 @@ function startQuiz(mode) {
     const now = Date.now();
     const unseen = pool.filter(q => !prog.items[q.id] || prog.items[q.id].n === 0).sort(() => Math.random() - 0.5);
     const seen = pool.filter(q => prog.items[q.id] && prog.items[q.id].n > 0).sort((a, b) => forgettingScore(b, now) - forgettingScore(a, now));
-    // 未出題優先＋忘却曲線に基づき既出から10問中2問程度を出題
     const targetRev = seen.length > 0 ? Math.min(2, seen.length) : 0;
     let combined = [...unseen.slice(0, 10 - targetRev), ...seen.slice(0, targetRev)];
     if (combined.length < Math.min(10, pool.length)) {
@@ -486,6 +624,7 @@ function startQuiz(mode) {
   }
 
   idx = 0; score = 0; wrongList = [];
+  combo = 0; sessionBestCombo = 0; sessionNewMastered = 0; sessionOvercame = 0;
   showView("v-quiz");
   renderQ();
 }
@@ -515,6 +654,15 @@ function renderQ() {
   const priEl = document.getElementById("q-pri");
   priEl.textContent = q.priority === "S" ? "★ S" : (q.priority === "A" ? "● A" : "○ B");
   priEl.className = q.priority === "S" ? "badge s" : "badge";
+
+  const comboEl = document.getElementById("q-combo");
+  if (combo >= 2) {
+    comboEl.textContent = `🔥 ${combo}連続`;
+    comboEl.style.display = "inline-block";
+  } else {
+    comboEl.style.display = "none";
+  }
+
   document.getElementById("q-num").textContent = `${idx + 1} / ${curList.length}`;
   document.getElementById("q-id").textContent = `No.${q.no || "-"} / ${q.id}`;
 
@@ -525,8 +673,8 @@ function renderQ() {
 
   if (q.type === "DAIMON1") {
     wEl.className = "q-word is-sentence";
-    const esc = (q.q || "").replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">");
-    wEl.innerHTML = esc.replace(/\(\s* +\s*\)|\(\s+\)/g, '<span class="q-hl">(  )</span>');
+    const esc = (q.q || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    wEl.innerHTML = esc.replace(/\(\s*　+\s*\)|\(\s+\)/g, '<span class="q-hl">(　　)</span>');
     spBtn.style.display = "none";
   } else if (currentDir === "JA2EN") {
     wEl.className = "q-word is-ja";
@@ -563,20 +711,33 @@ function checkAnswer(selectedIdx, btn) {
   document.querySelectorAll(".opt-btn").forEach(b => b.disabled = true);
   const q = curList[idx];
   const isOk = selectedIdx === q._curAns;
-  const p = prog.items[q.id] || { n: 0, ok: 0, ng: false, t: 0 };
+  const prev = prog.items[q.id];
+  const wasUnseen = !prev || prev.n === 0;
+  const wasNg = Boolean(prev && prev.ng);
+
+  const p = prev || { n: 0, ok: 0, ng: false, t: 0 };
   p.n += 1; p.t = Date.now();
-  if (isOk) { score += 1; p.ok += 1; p.ng = false; btn.classList.add("ok"); }
-  else {
+  if (isOk) {
+    score += 1; p.ok += 1; p.ng = false; btn.classList.add("ok");
+    combo += 1;
+    if (combo > sessionBestCombo) sessionBestCombo = combo;
+    if (combo > (prog.bestCombo || 0)) prog.bestCombo = combo;
+    if (wasUnseen) sessionNewMastered += 1;
+    if (wasNg) sessionOvercame += 1;
+  } else {
+    combo = 0;
     p.ng = true; wrongList.push(q); btn.classList.add("ng");
     document.querySelectorAll(".opt-btn").forEach(b => { if (Number(b.dataset.optIdx) === q._curAns) b.classList.add("ok"); });
   }
   prog.items[q.id] = p;
   prog.solved = (prog.solved || 0) + 1;
+  recordActivity();
   saveProg();
 
   const head = document.getElementById("sh-head");
   head.textContent = isOk ? "⭕ 正解！" : "❌ 不正解";
   head.style.color = isOk ? "var(--ok)" : "var(--ng)";
+  document.getElementById("sh-combo").textContent = (isOk && combo >= 2) ? `🔥 ${combo}連続！` : "";
   document.getElementById("sh-ans").textContent = `${q.word} ＝ ${q.mean}`;
   document.getElementById("sh-en").textContent = q.ex || q.word;
   document.getElementById("sh-ja").textContent = q.exJa || (q.paraphrase ? `言い換え: ${q.paraphrase}` : "");
@@ -598,9 +759,18 @@ function nextQ() {
   else {
     document.getElementById("p-fill").style.width = "100%";
     document.getElementById("r-sc").textContent = `${score} / ${curList.length} 問正解`;
+
+    const growthParts = [];
+    if (sessionNewMastered > 0) growthParts.push(`✨ 初見正解 +${sessionNewMastered}問`);
+    if (sessionOvercame > 0) growthParts.push(`💪 苦手克服 +${sessionOvercame}問`);
+    if (sessionBestCombo >= 2) growthParts.push(`🔥 最大${sessionBestCombo}連続`);
+    const tdCnt = prog.todayDate === todayStr() ? prog.todayCount : 0;
+    growthParts.push(`🎯 今日 ${tdCnt}/${DAILY_GOAL}問`);
+    document.getElementById("r-growth").textContent = growthParts.join("  /  ");
+
     const allClear = wrongList.length === 0;
     document.getElementById("r-msg").textContent = allClear
-      ? "全問正解達成！次の10問へ進めます。"
+      ? "全問正解達成！この調子で次の10問へ進みましょう。"
       : (isReviewSession ? "復習モードでは間違えた問題を全問正解すると次へ進めます。" : "間違えた単語を復習して、確実に定着させましょう。");
     document.getElementById("r-rev").style.display = allClear ? "none" : "flex";
     document.getElementById("m-res").classList.add("active");
@@ -609,38 +779,79 @@ function nextQ() {
 
 function closeRes(action) {
   document.getElementById("m-res").classList.remove("active");
-  if (action === "REV") { curList = [...wrongList]; idx = 0; score = 0; wrongList = []; isReviewSession = true; showView("v-quiz"); renderQ(); }
-  else if (action === "NEXT") {
+  if (action === "REV") {
+    curList = [...wrongList]; idx = 0; score = 0; wrongList = [];
+    combo = 0; sessionBestCombo = 0; sessionNewMastered = 0; sessionOvercame = 0;
+    isReviewSession = true; showView("v-quiz"); renderQ();
+  } else if (action === "NEXT") {
     if (isReviewSession && wrongList.length > 0) {
       alert("復習モードでは間違えた問題をすべて正解すると通常モードの次へ進めます。");
       document.getElementById("m-res").classList.add("active");
       return;
     }
     startQuiz("NORMAL");
-  } else showView("v-home");
+  } else if (action === "STATS") {
+    showView("v-home");
+    openStats();
+  } else {
+    showView("v-home");
+  }
 }
 
 function openStats() {
   const groups = [
-    ["大問1 穴埋め", q => q.type === "DAIMON1"],
-    ["重要度S（超頻出）", q => q.type === "VOCAB" && q.priority === "S"],
-    ["重要度A（頻出）", q => q.type === "VOCAB" && q.priority === "A"],
-    ["重要度B（合格固め）", q => q.type === "VOCAB" && q.priority === "B"],
-    ["熟語・イディオム", q => q.cat === "IDIOM"]
+    ["📝 大問1 穴埋め", q => q.type === "DAIMON1"],
+    ["★ 重要度S（超頻出）", q => q.type === "VOCAB" && q.priority === "S"],
+    ["● 重要度A（頻出）", q => q.type === "VOCAB" && q.priority === "A"],
+    ["○ 重要度B（合格固め）", q => q.type === "VOCAB" && q.priority === "B"],
+    ["🔗 熟語・イディオム", q => q.cat === "IDIOM"]
   ];
-  let lines = [`累計解答数：<b>${prog.solved || 0}</b> 回<br><br>`];
-  groups.forEach(([label, fn]) => {
-    const sub = BANK.filter(fn);
-    const done = sub.filter(q => prog.items[q.id] && prog.items[q.id].n > 0).length;
-    lines.push(`${label}：${done} / ${sub.length} 問学習済<br>`);
+
+  let totalDone = 0, totalN = 0, totalOk = 0;
+  BANK.forEach(q => {
+    const p = prog.items[q.id];
+    if (p && p.n > 0) { totalDone++; totalN += p.n; totalOk += p.ok; }
   });
-  document.getElementById("st-body").innerHTML = lines.join("");
+  const ovAchieve = BANK.length > 0 ? Math.round((totalDone / BANK.length) * 100) : 0;
+  const ovAcc = totalN > 0 ? Math.round((totalOk / totalN) * 100) : 0;
+
+  document.getElementById("st-summary").innerHTML = `
+    <div class="st-chip"><b>${ovAchieve}%</b><span>全体達成率</span></div>
+    <div class="st-chip"><b>${ovAcc}%</b><span>総合正答率</span></div>
+    <div class="st-chip"><b>${prog.solved || 0}回</b><span>累計解答 / 🔥${prog.bestCombo || 0}連続</span></div>
+  `;
+
+  const rows = groups.map(([label, fn]) => {
+    const sub = BANK.filter(fn);
+    let done = 0, nSum = 0, okSum = 0;
+    sub.forEach(q => {
+      const p = prog.items[q.id];
+      if (p && p.n > 0) { done++; nSum += p.n; okSum += p.ok; }
+    });
+    const ach = sub.length > 0 ? Math.round((done / sub.length) * 100) : 0;
+    const acc = nSum > 0 ? `${Math.round((okSum / nSum) * 100)}%` : "--";
+    return `
+      <div class="st-item">
+        <div class="st-item-head">
+          <span>${label}</span>
+          <span style="color:var(--pri);">達成率 ${ach}%</span>
+        </div>
+        <div class="st-bar"><div class="st-bar-fill" style="width:${ach}%;"></div></div>
+        <div class="st-item-meta">
+          <span>学習済：${done} / ${sub.length} 問</span>
+          <span>正答率：${acc}（${okSum}/${nSum}）</span>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById("st-body").innerHTML = rows.join("");
   document.getElementById("m-st").classList.add("active");
 }
 
 function resetProg() {
   if (confirm("これまでの学習進捗をすべて削除しますか？")) {
-    prog = { items: {}, solved: 0 }; saveProg(); refreshHome();
+    prog = { items: {}, solved: 0, streak: 0, lastDate: "", todayDate: "", todayCount: 0, bestCombo: 0 };
+    saveProg(); refreshHome();
     document.getElementById("m-st").classList.remove("active");
   }
 }
@@ -706,11 +917,27 @@ function applyImportedPayload(rawText) {
       if (!curItem) { mergedItems[qid] = inItem; addedCount++; }
       else if ((inItem.t || 0) > (curItem.t || 0)) { mergedItems[qid] = inItem; updatedCount++; }
     });
-    prog = { items: mergedItems, solved: Math.max(prog.solved || 0, incoming.solved || 0) };
+    prog = {
+      items: mergedItems,
+      solved: Math.max(prog.solved || 0, incoming.solved || 0),
+      streak: Math.max(prog.streak || 0, incoming.streak || 0),
+      lastDate: (incoming.lastDate || "") > (prog.lastDate || "") ? incoming.lastDate : prog.lastDate,
+      todayDate: prog.todayDate || incoming.todayDate || "",
+      todayCount: Math.max(prog.todayCount || 0, incoming.todayCount || 0),
+      bestCombo: Math.max(prog.bestCombo || 0, incoming.bestCombo || 0)
+    };
     saveProg(); refreshHome();
     alert(`統合完了（新規反映：${addedCount}件 / 最新更新：${updatedCount}件）`);
   } else {
-    prog = { items: incoming.items, solved: incoming.solved || 0 };
+    prog = {
+      items: incoming.items,
+      solved: incoming.solved || 0,
+      streak: incoming.streak || 0,
+      lastDate: incoming.lastDate || "",
+      todayDate: incoming.todayDate || "",
+      todayCount: incoming.todayCount || 0,
+      bestCombo: incoming.bestCombo || 0
+    };
     saveProg(); refreshHome();
     alert(`「${parsed.exportName || "進捗データ"}」で進捗を上書きしました。`);
   }
@@ -754,7 +981,7 @@ function speakJa(text, onDone) { speakText(text, "ja-JP", onDone); }
 function speakCurrentPrompt() {
   const q = curList[idx];
   if (!q) return;
-  if (q.type === "DAIMON1") speakEn((q.q || "").replace(/\(\s* +\s*\)|\(\s+\)/g, " blank "));
+  if (q.type === "DAIMON1") speakEn((q.q || "").replace(/\(\s*　+\s*\)|\(\s+\)/g, " blank "));
   else if (currentDir === "JA2EN") speakJa(q.mean);
   else speakEn(q.word);
 }
