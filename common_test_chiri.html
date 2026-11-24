@@ -69,7 +69,7 @@
       padding: 20px; flex: 1; display: flex; flex-direction: column;
       align-items: center; justify-content: center; text-align: center; gap: 12px;
     }
-    .status-msg { font-size: 16px; font-weight: 800; line-height: 1.5; color: var(--sub); }
+    .status-msg { font-size: 15px; font-weight: 800; line-height: 1.55; color: var(--sub); }
 
     /* ホーム画面 */
     .home-card {
@@ -285,7 +285,6 @@
       </div>
       <div class="q-card">
         <div class="q-text" id="q-txt"></div>
-        <!-- 読める大きさの図表サムネイル（タップで拡大） -->
         <div class="thumb-card" id="q-thumb" onclick="openCurrentFigure()">
           <div class="thumb-media" id="q-thumb-media"></div>
           <div class="thumb-badge">🔍 タップで拡大</div>
@@ -430,4 +429,557 @@ const FIGURES = {
     title: "扇状地（航空写真＋等高線）",
     cap: "谷口（扇頂）から扇状に広がる堆積地形。扇央は水はけが良く果樹園、扇端は湧水帯で集落が立地します。（出典: Wikimedia Commons / USGS）",
     url: "https://commons.wikimedia.org/wiki/Special:FilePath/Alluvial_Fan.jpg?width=1000",
-    svg: `<svg viewBox="0 0 360 13
+    svg: `<svg viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg"><path d="M10,24 L95,58 L235,92 L350,104 L350,122 L10,122 Z" fill="#ccfbf1" stroke="#0f766e" stroke-width="2.5"/><text x="72" y="48" font-size="13" font-weight="bold" fill="#0f766e">扇頂</text><text x="124" y="66" font-size="12" font-weight="bold" fill="#b45309">扇央(果樹園)</text><text x="242" y="82" font-size="12" font-weight="bold" fill="#2563eb">扇端(湧水・集落)</text></svg>`
+  },
+  delta: {
+    title: "三角州・デルタ（ナイル川衛星写真）",
+    cap: "河口付近で流れが緩やかになり微細な砂泥が堆積して形成される扇形・三角形の低地。（出典: Wikimedia Commons / NASA）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Nile_River_and_delta_from_orbit.jpg?width=900",
+    svg: ""
+  },
+  fjord: {
+    title: "フィヨルド（ノルウェー・ガイランゲル）",
+    cap: "氷河によって深く削られたU字谷に海水が浸入して形成された急崖の入り江。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Geiranger_fjord.jpg?width=900",
+    svg: ""
+  },
+  pyramid: {
+    title: "日本の人口ピラミッド（つぼ型・日本語）",
+    cap: "少子高齢化が進んだ先進国の典型的な「つぼ型」人口ピラミッド。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Population_pyramid_of_Japan.svg?width=900",
+    svg: `<svg viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg"><polygon points="60,20 20,100 100,100" fill="#fde68a" stroke="#b45309" stroke-width="2"/><text x="60" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">富士山型</text><path d="M150,100 L150,55 Q180,15 210,55 L210,100 Z" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/><text x="180" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">釣鐘型</text><path d="M282,100 L268,55 Q300,18 332,55 L318,100 Z" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/><text x="300" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">つぼ型</text></svg>`
+  },
+  dtm: {
+    title: "人口転換モデル（出生率・死亡率の推移）",
+    cap: "多産多死（第1段階）→ 多産少死・人口爆発（第2・3段階）→ 少産少死（第4・5段階）への変化。（出典: Wikimedia Commons / OWID）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Demographic-TransitionOWID.png?width=1000",
+    svg: ""
+  },
+  mercator: {
+    title: "メルカトル図法（正角図法）",
+    cap: "角度と方位が正確で航海用海図に使われるが、高緯度ほど面積が著しく拡大して描かれる。（出典: Wikimedia Commons）",
+    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Mercator_Projection.svg?width=1000",
+    svg: ""
+  },
+  topo_res: {
+    title: "大地形 × 資源分布の直結図",
+    cap: "安定陸塊＝鉄鉱石、古期造山帯＝石炭、新期造山帯＝石油（褶曲構造）と地形段階でセット暗記します。",
+    url: "",
+    svg: `<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="110" height="130" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="61" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">安定陸塊</text><text x="61" y="56" text-anchor="middle" font-size="11" fill="#334155">楯状地・卓状地</text><rect x="18" y="76" width="86" height="44" rx="8" fill="#1d4ed8"/><text x="61" y="103" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">鉄鉱石</text><rect x="125" y="10" width="110" height="130" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="180" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">古期造山帯</text><text x="180" y="56" text-anchor="middle" font-size="11" fill="#334155">アパラチア・ウラル</text><rect x="137" y="76" width="86" height="44" rx="8" fill="#b45309"/><text x="180" y="103" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">石炭</text><rect x="244" y="10" width="110" height="130" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="299" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">新期造山帯</text><text x="299" y="56" text-anchor="middle" font-size="11" fill="#334155">環太平洋・アルプス</text><rect x="256" y="76" width="86" height="44" rx="8" fill="#15803d"/><text x="299" y="103" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">石油(褶曲)</text></svg>`
+  },
+  weber: {
+    title: "ウェーバー工業立地論（コストで判断）",
+    cap: "一番高いコストを減らす場所へ立地。原料が重い→原料指向、製品輸送が大変→市場指向、人手が多い→労働力指向。",
+    url: "",
+    svg: `<svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="166" height="56" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/><text x="91" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">原料指向型</text><text x="91" y="52" text-anchor="middle" font-size="11" fill="#334155">セメント・製鉄(旧)</text><rect x="186" y="10" width="166" height="56" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><text x="269" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">市場指向型</text><text x="269" y="52" text-anchor="middle" font-size="11" fill="#334155">ビール・新聞・食品</text><rect x="8" y="74" width="166" height="56" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/><text x="91" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">労働力指向型</text><text x="91" y="116" text-anchor="middle" font-size="11" fill="#334155">繊維・アパレル組立</text><rect x="186" y="74" width="166" height="56" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.5"/><text x="269" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">交通(臨空)・集積型</text><text x="269" y="116" text-anchor="middle" font-size="11" fill="#334155">半導体・IC・先端技術</text></svg>`
+  }
+};
+
+const ADVICES = [
+  "【優先順位のコツ】最優先は「地形」と「気候」です。大地形と資源、気候と農業・植生を理由でつなげると、丸暗記の量が劇的に減ります。",
+  "【図解とセットで定着】サムネイルをタップして図表を拡大確認しながら、「用語・分布（どこ）・理由（なぜ）」の3点セットで記憶しましょう。",
+  "【統計の覚え方】統計は細かい数字ではなく「上位国と、なぜその国が上位なのかの理由」を最新のデータ基準で押さえるのが得点安定の近道です。"
+];
+
+function fallbackStableId(qText, ansText) {
+  const str = `${String(qText || "").trim()}||${String(ansText || "").trim()}`;
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return "GEO-F-" + (h >>> 0).toString(16).padStart(8, "0");
+}
+
+// 8秒タイムアウト＋原因表示付きJSON読み込み（Safariキャッシュ対策）
+async function loadDatabase() {
+  const icon = document.getElementById("load-icon");
+  const msg = document.getElementById("load-msg");
+  const retry = document.getElementById("btn-retry");
+  icon.textContent = "⏳";
+  msg.textContent = "問題データ（chiri_data.json）を読み込んでいます...";
+  retry.style.display = "none";
+
+  const targetUrl = new URL(DATA_URL, location.href).href;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+
+  try {
+    const res = await fetch(`${DATA_URL}?t=${Date.now()}`, {
+      cache: "no-store",
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (jsonErr) {
+      throw new Error(`JSON形式エラー: ${jsonErr.message}`);
+    }
+
+    if (!Array.isArray(data) || data.length === 0) throw new Error("問題データが空です");
+
+    const seenIds = new Set();
+    BANK = data.filter(item => item && item.q && Array.isArray(item.options) && item.options.length >= 2).map(item => {
+      const ansText = item.options[item.ans] || "";
+      let qid = (item.id && String(item.id).trim()) ? String(item.id).trim() : fallbackStableId(item.q, ansText);
+      if (seenIds.has(qid)) qid = fallbackStableId(item.q + seenIds.size, ansText);
+      seenIds.add(qid);
+      return { ...item, id: qid };
+    });
+
+    if (BANK.length === 0) throw new Error("有効な問題データがありません");
+    showView("v-home");
+  } catch (err) {
+    clearTimeout(timer);
+    icon.textContent = "⚠️";
+    const reason = err.name === "AbortError" ? "読み込みが8秒でタイムアウトしました" : err.message;
+    msg.innerHTML =
+      `読み込みに失敗しました。<br>` +
+      `<b>原因：</b>${reason}<br>` +
+      `<b>現在の環境：</b>${location.protocol}<br>` +
+      `<b>参照先：</b><span style="word-break:break-all;font-size:12px;">${targetUrl}</span>`;
+    retry.style.display = "flex";
+  }
+}
+
+function loadProg() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      return { items: p.items || {}, solved: p.solved || 0 };
+    }
+  } catch (e) {}
+  return { items: {}, solved: 0 };
+}
+function saveProg() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(prog)); } catch (e) {} }
+
+function showView(id) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  if (id === "v-home") refreshHome();
+}
+
+function refreshHome() {
+  document.getElementById("s-tot").textContent = BANK.length;
+  let lrn = 0, rev = 0;
+  BANK.forEach(q => {
+    const p = prog.items[q.id];
+    if (p && p.n > 0) {
+      lrn++;
+      if (p.ng || (p.ok / p.n) < 0.7) rev++;
+    }
+  });
+  document.getElementById("s-lrn").textContent = lrn;
+  document.getElementById("s-rev").textContent = rev;
+  document.getElementById("rev-n").textContent = rev;
+  document.getElementById("b-rev").style.display = rev > 0 ? "flex" : "none";
+}
+
+function forgettingScore(q, now) {
+  const p = prog.items[q.id];
+  if (!p || !p.n) return 0;
+  const elapsedDays = Math.max(0, (now - (p.t || 0)) / 86400000);
+  return (p.ng ? 500 : 0) + (1 - (p.ok / p.n)) * 250 + Math.min(elapsedDays * 40, 200) + Math.random() * 20;
+}
+
+function startQuiz(mode) {
+  const cat = document.getElementById("f-cat").value;
+  const pri = document.getElementById("f-pri").value;
+  let pool = BANK.filter(q => (cat === "ALL" || q.cat === cat) && (pri === "ALL" || q.priority === pri));
+  isReviewSession = (mode === "REVIEW");
+
+  if (isReviewSession) {
+    pool = pool.filter(q => { const p = prog.items[q.id]; return p && (p.ng || (p.ok / p.n) < 0.7); });
+    if (!pool.length) { alert("復習が必要な問題はありません！"); return; }
+    const now = Date.now();
+    curList = [...pool].sort((a, b) => forgettingScore(b, now) - forgettingScore(a, now)).slice(0, 10);
+  } else {
+    if (!pool.length) { alert("該当する問題がありません。条件を変更してください。"); return; }
+    const now = Date.now();
+    const unseen = pool.filter(q => !prog.items[q.id] || prog.items[q.id].n === 0).sort(() => Math.random() - 0.5);
+    const seen = pool.filter(q => prog.items[q.id] && prog.items[q.id].n > 0).sort((a, b) => forgettingScore(b, now) - forgettingScore(a, now));
+    const targetRev = seen.length > 0 ? Math.min(2, seen.length) : 0;
+    let combined = [...unseen.slice(0, 10 - targetRev), ...seen.slice(0, targetRev)];
+    if (combined.length < Math.min(10, pool.length)) {
+      const used = new Set(combined.map(q => q.id));
+      for (const q of seen) {
+        if (!used.has(q.id)) { combined.push(q); used.add(q.id); }
+        if (combined.length >= Math.min(10, pool.length)) break;
+      }
+    }
+    curList = combined.sort(() => Math.random() - 0.5);
+  }
+  idx = 0; score = 0; wrongList = [];
+  showView("v-quiz");
+  renderQ();
+}
+
+function highlightQuestionText(text) {
+  const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return escaped
+    .replace(/(［\s*[^］]+\s*］)/g, '<span class="q-hl">$1</span>')
+    .replace(/「([^」]+)」/g, '<span class="q-hl">「$1」</span>');
+}
+
+function resolveFigure(q) {
+  if (!q) return null;
+  const fig = (q.figId && FIGURES[q.figId]) ? FIGURES[q.figId] : null;
+  const url = (q.imgUrl && q.imgUrl.trim()) ? q.imgUrl.trim() : (fig && fig.url ? fig.url : "");
+  const svg = fig && fig.svg ? fig.svg : "";
+  const title = (q.imgCaption && q.imgCaption.trim()) ? q.imgCaption.trim() : (fig ? fig.title : "参考図表");
+  const cap = fig ? fig.cap : (q.imgCaption || q.exp || "");
+  if (!url && !svg) return null;
+  return { url, svg, title, cap };
+}
+
+function renderThumbCard(q, cardId, mediaId, capId) {
+  const card = document.getElementById(cardId);
+  const media = document.getElementById(mediaId);
+  const capEl = document.getElementById(capId);
+  const info = resolveFigure(q);
+  if (!info) {
+    card.classList.remove("active");
+    media.innerHTML = "";
+    return;
+  }
+  capEl.textContent = info.title;
+  if (info.url) {
+    const img = document.createElement("img");
+    img.src = info.url;
+    img.alt = info.title;
+    img.loading = "eager";
+    img.onerror = () => {
+      if (info.svg) media.innerHTML = info.svg;
+      else card.classList.remove("active");
+    };
+    media.innerHTML = "";
+    media.appendChild(img);
+  } else {
+    media.innerHTML = info.svg;
+  }
+  card.classList.add("active");
+}
+
+function openZoomModal(info) {
+  if (!info) return;
+  const body = document.getElementById("zoom-body");
+  body.classList.remove("zoomed");
+  document.getElementById("btn-zoom-toggle").textContent = "🔍 2倍に拡大";
+  document.getElementById("zoom-title").textContent = info.title;
+  document.getElementById("zoom-cap").textContent = info.cap;
+
+  const origLink = document.getElementById("zoom-orig-link");
+  if (info.url) {
+    const img = document.createElement("img");
+    img.src = info.url;
+    img.alt = info.title;
+    img.onerror = () => { if (info.svg) body.innerHTML = info.svg; };
+    body.innerHTML = "";
+    body.appendChild(img);
+    origLink.href = info.url;
+    origLink.style.display = "flex";
+  } else {
+    body.innerHTML = info.svg;
+    origLink.style.display = "none";
+  }
+  document.getElementById("m-zoom").classList.add("active");
+}
+
+function openCurrentFigure() { openZoomModal(resolveFigure(curList[idx])); }
+function openFigureById(figId) {
+  const f = FIGURES[figId];
+  if (f) openZoomModal({ url: f.url, svg: f.svg, title: f.title, cap: f.cap });
+}
+function toggleZoomScale() {
+  const body = document.getElementById("zoom-body");
+  const btn = document.getElementById("btn-zoom-toggle");
+  const isZoomed = body.classList.toggle("zoomed");
+  btn.textContent = isZoomed ? "🔎 全体表示に戻す" : "🔍 2倍に拡大";
+}
+function closeZoom() { document.getElementById("m-zoom").classList.remove("active"); }
+
+function renderQ() {
+  document.getElementById("sheet").classList.remove("active");
+  const q = curList[idx];
+  document.getElementById("p-fill").style.width = `${(idx / curList.length) * 100}%`;
+  document.getElementById("q-cat").textContent = q.catName;
+  const priEl = document.getElementById("q-pri");
+  priEl.textContent = q.priority === "S" ? "★ 最重要" : "● 重要";
+  priEl.className = q.priority === "S" ? "badge s" : "badge";
+  document.getElementById("q-num").textContent = `${idx + 1} / ${curList.length}`;
+  document.getElementById("q-id").textContent = `ID: ${q.id}`;
+  document.getElementById("q-txt").innerHTML = highlightQuestionText(q.q);
+  renderThumbCard(q, "q-thumb", "q-thumb-media", "q-thumb-cap");
+
+  const optsEl = document.getElementById("opts");
+  optsEl.innerHTML = "";
+  const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+  const labels = ["ア", "イ", "ウ", "エ"];
+  order.forEach((optIdx, pos) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.dataset.optIdx = String(optIdx);
+    btn.textContent = `${labels[pos] || (pos + 1)}. ${q.options[optIdx]}`;
+    btn.onclick = () => checkAnswer(optIdx, btn);
+    optsEl.appendChild(btn);
+  });
+}
+
+function checkAnswer(selectedIdx, btn) {
+  document.querySelectorAll(".opt-btn").forEach(b => b.disabled = true);
+  const q = curList[idx];
+  const isOk = selectedIdx === q.ans;
+  const p = prog.items[q.id] || { n: 0, ok: 0, ng: false, t: 0 };
+  p.n += 1; p.t = Date.now();
+  if (isOk) { score += 1; p.ok += 1; p.ng = false; btn.classList.add("ok"); }
+  else {
+    p.ng = true; wrongList.push(q); btn.classList.add("ng");
+    document.querySelectorAll(".opt-btn").forEach(b => { if (Number(b.dataset.optIdx) === q.ans) b.classList.add("ok"); });
+  }
+  prog.items[q.id] = p;
+  prog.solved = (prog.solved || 0) + 1;
+  saveProg();
+
+  const head = document.getElementById("sh-head");
+  head.textContent = isOk ? "⭕ 正解！" : "❌ 不正解";
+  head.style.color = isOk ? "var(--ok)" : "var(--ng)";
+  document.getElementById("sh-ans").textContent = `正解：${q.options[q.ans]}`;
+  document.getElementById("sh-exp").textContent = q.exp;
+  renderThumbCard(q, "sh-thumb", "sh-thumb-media", "sh-thumb-cap");
+
+  const refEl = document.getElementById("sh-ref");
+  refEl.href = q.refUrl || "https://jukukounohitorigoto.com/daigaku-juken-chiri-oboerukoto/";
+  refEl.textContent = `📖 ${q.refLabel || "解説記事を見る"} ↗`;
+
+  document.getElementById("sheet").classList.add("active");
+  speak(isOk ? `正解です。${q.options[q.ans]}` : `不正解です。正解は、${q.options[q.ans]}`);
+
+  if (prog.solved > 0 && prog.solved % 30 === 0) {
+    setTimeout(() => {
+      document.getElementById("adv-txt").textContent = ADVICES[(Math.floor(prog.solved / 30) - 1) % ADVICES.length];
+      document.getElementById("m-adv").classList.add("active");
+    }, 550);
+  }
+}
+
+function nextQ() {
+  idx += 1;
+  if (idx < curList.length) renderQ();
+  else {
+    document.getElementById("p-fill").style.width = "100%";
+    document.getElementById("r-sc").textContent = `${score} / ${curList.length} 問正解`;
+    const allClear = wrongList.length === 0;
+    document.getElementById("r-msg").textContent = allClear
+      ? "全問正解達成！次の10問へ進めます。"
+      : (isReviewSession ? "復習モードでは間違えた問題を全問正解すると次へ進めます。" : "間違えた問題を復習して、確実に定着させましょう。");
+    document.getElementById("r-rev").style.display = allClear ? "none" : "flex";
+    document.getElementById("m-res").classList.add("active");
+  }
+}
+
+function closeRes(action) {
+  document.getElementById("m-res").classList.remove("active");
+  if (action === "REV") { curList = [...wrongList]; idx = 0; score = 0; wrongList = []; isReviewSession = true; showView("v-quiz"); renderQ(); }
+  else if (action === "NEXT") {
+    if (isReviewSession && wrongList.length > 0) {
+      alert("復習モードでは間違えた問題をすべて正解すると通常モードの次へ進めます。");
+      document.getElementById("m-res").classList.add("active");
+      return;
+    }
+    startQuiz("NORMAL");
+  } else showView("v-home");
+}
+
+function openSummary() {
+  const grid = document.getElementById("sum-grid");
+  grid.innerHTML = "";
+  Object.keys(FIGURES).forEach(k => {
+    const f = FIGURES[k];
+    const div = document.createElement("div");
+    div.className = "thumb-tile";
+    const mediaHtml = f.url ? `<img src="${f.url}" alt="${f.title}" loading="lazy">` : f.svg;
+    div.innerHTML = `<div class="tile-img">${mediaHtml}</div><span>🔍 ${f.title}</span>`;
+    div.onclick = () => openFigureById(k);
+    grid.appendChild(div);
+  });
+  document.getElementById("m-sum").classList.add("active");
+}
+
+function openStats() {
+  const cats = [
+    ["TOPO", "① 地形"], ["CLIM", "② 気候"], ["AGRI", "③ 農業・食料"],
+    ["IND", "④ 資源・工業"], ["POP", "⑤ 人口・都市・地誌"], ["SOGO", "⑥ 地理総合・覚え方"]
+  ];
+  let lines = [`累計解答数：<b>${prog.solved || 0}</b> 回<br><br>`];
+  cats.forEach(([code, name]) => {
+    const sub = BANK.filter(q => q.cat === code);
+    const done = sub.filter(q => prog.items[q.id] && prog.items[q.id].n > 0).length;
+    lines.push(`${name}：${done} / ${sub.length} 問学習済<br>`);
+  });
+  document.getElementById("st-body").innerHTML = lines.join("");
+  document.getElementById("m-st").classList.add("active");
+}
+
+function resetProg() {
+  if (confirm("これまでの学習進捗をすべて削除しますか？")) {
+    prog = { items: {}, solved: 0 }; saveProg(); refreshHome();
+    document.getElementById("m-st").classList.remove("active");
+  }
+}
+
+function exportProg() {
+  const now = new Date();
+  const stamp =
+    now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2, "0") +
+    String(now.getDate()).padStart(2, "0") + "_" +
+    String(now.getHours()).padStart(2, "0") +
+    String(now.getMinutes()).padStart(2, "0");
+  const defaultName = `しんや_${APP_ID}_${stamp}`;
+  const customName = prompt("進捗データの保存名を入力してください：", defaultName);
+  if (!customName) return;
+
+  const cleanName = customName.trim();
+  const payload = JSON.stringify({
+    schemaVersion: 1,
+    appId: APP_ID,
+    exportName: cleanName,
+    exportedAt: now.toISOString(),
+    prog: prog
+  });
+
+  try {
+    const blob = new Blob([payload], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${cleanName}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {}
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(payload)
+      .then(() => alert(`「${cleanName}」をファイル保存＆クリップボードにコピーしました。`))
+      .catch(() => alert(`「${cleanName}.json」を保存しました。`));
+  } else {
+    prompt("以下の進捗コードをコピーしてください：", payload);
+  }
+}
+
+function applyImportedPayload(rawText) {
+  let parsed;
+  try { parsed = JSON.parse(rawText.trim()); } catch (e) {
+    alert("JSON形式の読み込みに失敗しました。");
+    return;
+  }
+  if (!parsed || parsed.appId !== APP_ID) {
+    alert(`この問題集（${APP_ID}）からエクスポートされたデータではないため取り込めません。`);
+    return;
+  }
+  if (!parsed.prog || typeof parsed.prog.items !== "object") {
+    alert("進捗データの形式が正しくありません。");
+    return;
+  }
+  const incoming = parsed.prog;
+  const shouldMerge = confirm(
+    `「${parsed.exportName || "進捗データ"}」を読み込みます。\n\n` +
+    "・OK：現在の進捗と統合（新しい解答日時を優先してマージ）\n" +
+    "・キャンセル：このデータで完全に上書き"
+  );
+  if (shouldMerge) {
+    const mergedItems = { ...prog.items };
+    let addedCount = 0, updatedCount = 0;
+    Object.entries(incoming.items).forEach(([qid, inItem]) => {
+      const curItem = mergedItems[qid];
+      if (!curItem) { mergedItems[qid] = inItem; addedCount++; }
+      else if ((inItem.t || 0) > (curItem.t || 0)) { mergedItems[qid] = inItem; updatedCount++; }
+    });
+    prog = { items: mergedItems, solved: Math.max(prog.solved || 0, incoming.solved || 0) };
+    saveProg(); refreshHome();
+    alert(`統合完了（新規反映：${addedCount}件 / 最新更新：${updatedCount}件）`);
+  } else {
+    prog = { items: incoming.items, solved: incoming.solved || 0 };
+    saveProg(); refreshHome();
+    alert(`「${parsed.exportName || "進捗データ"}」で進捗を上書きしました。`);
+  }
+}
+
+function importProg() {
+  const useFile = confirm(
+    "進捗データの読み込み方法を選んでください。\n\n" +
+    "・OK：保存したJSONファイルを選択\n" +
+    "・キャンセル：コピーした進捗コードを貼り付け"
+  );
+  if (useFile) {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json,application/json,text/plain";
+    input.onchange = (ev) => {
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => applyImportedPayload(String(reader.result || ""));
+      reader.readAsText(file, "utf-8");
+    };
+    input.click();
+  } else {
+    const txt = prompt("エクスポートした進捗コードを貼り付けてください：");
+    if (txt) applyImportedPayload(txt);
+  }
+}
+
+function speak(text, onDone) {
+  if (!("speechSynthesis" in window)) { if (onDone) onDone(); return; }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text.replace(/［[^］]+］/g, "くうらん"));
+  utter.lang = "ja-JP"; utter.rate = 1.05;
+  if (onDone) utter.onend = onDone;
+  window.speechSynthesis.speak(utter);
+}
+
+function startListen() {
+  listening = true; showView("v-listen");
+  const wrongPool = BANK.filter(q => prog.items[q.id] && prog.items[q.id].ng);
+  const pool = wrongPool.length > 0 ? wrongPool : [...BANK];
+  let i = 0;
+  const step = () => {
+    if (!listening) return;
+    const q = pool[i % pool.length];
+    document.getElementById("l-badge").textContent = `問題（${q.catName}）`;
+    document.getElementById("l-main").textContent = q.q;
+    speak(`問題。${q.q}`, () => {
+      if (!listening) return;
+      listenTimer = setTimeout(() => {
+        if (!listening) return;
+        const ans = q.options[q.ans];
+        document.getElementById("l-badge").textContent = "解答と解説";
+        document.getElementById("l-main").textContent = `【正解】${ans}\n\n${q.exp}`;
+        speak(`正解は、${ans}。${q.exp}`, () => {
+          if (!listening) return;
+          i += 1; listenTimer = setTimeout(step, 2000);
+        });
+      }, 1500);
+    });
+  };
+  step();
+}
+
+function stopListen() {
+  listening = false;
+  if (listenTimer) clearTimeout(listenTimer);
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  showView("v-home");
+}
+
+loadDatabase();
+</script>
+</body>
+</html>
