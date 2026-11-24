@@ -5,42 +5,191 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>問題集ランチャ</title>
 <style>
-:root{--bg:#f5f6f2;--fg:#1f2421;--card:#fff;--ac:#2f7d5b;--mu:#667;--bd:#dcdfd8;color-scheme:light;
- padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
-@media(prefers-color-scheme:dark){:root{--bg:#171a18;--fg:#eceeea;--card:#242825;--ac:#5fbf92;--mu:#a3aaa4;--bd:#3a403b;color-scheme:dark}}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.6}
-#wrap{max-width:680px;margin:0 auto;padding:16px}
-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
-h1{font-size:22px;margin:8px 0}
-#re{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:20px;padding:8px 14px;cursor:pointer}
-#st{font-size:13px;color:var(--mu);margin:2px 0 8px}
-a.c{display:block;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:8px 0;color:var(--fg);text-decoration:none}
-a.c b{display:block;font-size:17px}a.c span{font-size:12px;color:var(--mu);word-break:break-all}
-a.c:active{border-color:var(--ac)}
-#ptr{position:fixed;left:0;right:0;top:0;text-align:center;font-size:13px;color:var(--mu);padding:calc(env(safe-area-inset-top,0px) + 4px) 0 4px;background:var(--bg);transform:translateY(-100%);transition:transform .15s;z-index:5}
+:root{
+  --bg:#f5f6f2;--fg:#1f2421;--card:#fff;--ac:#2f7d5b;--ac-bg:#dcfce7;
+  --mu:#64748b;--bd:#dcdfd8;--track:#e2e8f0;
+  --star:#d97706;--star-bg:#fef3c7;
+  --ng:#b91c1c;--ng-bg:#fee2e2;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#131715;--fg:#eceeea;--card:#1e2320;--ac:#4ade80;--ac-bg:rgba(74,222,128,.16);
+    --mu:#94a3b8;--bd:#333a35;--track:#2a312d;
+    --star:#fbbf24;--star-bg:rgba(251,191,36,.16);
+    --ng:#f87171;--ng-bg:rgba(248,113,113,.16);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.5}
+#wrap{max-width:680px;margin:0 auto;padding:12px 14px 24px}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+h1{font-size:21px;margin:4px 0;letter-spacing:.01em}
+#re{font:inherit;font-size:13px;font-weight:700;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:20px;padding:6px 13px;cursor:pointer}
+#re:active{opacity:.75}
+
+/* ダッシュボード（全科目合算・14日間スタンプ） */
+.dash{
+  background:var(--card);border:1px solid var(--bd);border-radius:14px;
+  padding:11px 13px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;
+}
+.dash-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.dash-greet{font-size:12px;font-weight:700;color:var(--mu)}
+.dash-badges{display:flex;align-items:center;gap:6px}
+.pill{
+  font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;
+  background:var(--star-bg);color:var(--star);white-space:nowrap;
+}
+.pill.ok{background:var(--ac-bg);color:var(--ac)}
+.goal-btn{
+  font:inherit;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--bd);background:var(--bg);color:var(--fg);cursor:pointer;white-space:nowrap;
+}
+.goal-btn.done{background:var(--ac-bg);color:var(--ac);border-color:var(--ac)}
+.today-bar{height:8px;background:var(--track);border-radius:999px;overflow:hidden}
+.today-fill{height:100%;width:0%;background:var(--ac);transition:width .35s ease}
+
+/* 14日間スタンプ */
+.stamp-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;color:var(--mu)}
+.stamp-grid{display:grid;grid-template-columns:repeat(14,1fr);gap:3px}
+.st-cell{display:flex;flex-direction:column;align-items:center;gap:2px}
+.st-dot{
+  width:100%;aspect-ratio:1/1;max-width:30px;border-radius:7px;
+  background:var(--track);color:var(--mu);
+  font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid transparent;
+}
+.st-dot.lv1{background:var(--ac-bg);color:var(--ac);border-color:var(--ac)}
+.st-dot.lv2{background:var(--ac);color:#fff}
+@media(prefers-color-scheme:dark){.st-dot.lv2{color:#0b1710}}
+.st-dot.today{box-shadow:0 0 0 2px var(--star)}
+.st-day{font-size:9px;font-weight:700;color:var(--mu);line-height:1}
+.st-cell.is-today .st-day{color:var(--star);font-weight:900}
+
+#st{font-size:12px;color:var(--mu);margin:2px 2px 6px}
+.sec{font-size:12px;font-weight:800;color:var(--mu);margin:12px 2px 6px;display:flex;align-items:center;gap:4px}
+.sec.fav{color:var(--star)}
+
+/* 問題集カード */
+.item{
+  display:flex;align-items:stretch;background:var(--card);
+  border:1px solid var(--bd);border-left:5px solid var(--accent, var(--ac));
+  border-radius:12px;margin:8px 0;overflow:hidden;
+}
+.item.is-fav{border-color:var(--star);border-left-width:5px}
+.item a.c{
+  flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;
+  padding:11px 10px 11px 12px;color:var(--fg);text-decoration:none;
+}
+.item-title-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.item a.c b{display:block;font-size:16px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item-file{font-size:11px;color:var(--mu);word-break:break-all;line-height:1.2}
+
+/* カード内進捗バー＆バッジ */
+.prog-wrap{display:flex;flex-direction:column;gap:3px;margin-top:2px}
+.prog-track{height:6px;background:var(--track);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:var(--accent, var(--ac));transition:width .3s ease}
+.prog-meta{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:700;color:var(--mu)}
+.prog-badges{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.mbadge{font-size:10px;font-weight:800;padding:1px 6px;border-radius:999px;white-space:nowrap}
+.mbadge.rev{background:var(--ng-bg);color:var(--ng)}
+.mbadge.td{background:var(--ac-bg);color:var(--ac)}
+.mbadge.pct{background:var(--bg);color:var(--fg);border:1px solid var(--bd)}
+
+.item:active{opacity:.9}
+.fav-btn{
+  flex:0 0 48px;border:0;border-left:1px solid var(--bd);background:transparent;
+  color:var(--mu);font-size:21px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.item.is-fav .fav-btn{color:var(--star);background:var(--star-bg);border-left-color:var(--star)}
+.fav-btn:active{opacity:.7}
+
+#ptr{
+  position:fixed;left:0;right:0;top:0;text-align:center;font-size:13px;color:var(--mu);
+  padding:calc(env(safe-area-inset-top,0px) + 4px) 0 4px;background:var(--bg);
+  transform:translateY(-100%);transition:transform .15s;z-index:5;
+}
 #ptr.on{transform:none}
 .sp{display:inline-block;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
-.err{color:#c0392b}
+.err{color:var(--ng)}
 </style>
 </head>
 <body>
 <div id="ptr"></div>
 <div id="wrap">
- <header><h1>📚 問題集ランチャ</h1><button id="re" onclick="scan()">🔄 更新</button></header>
- <div id="st">読み込み中…</div>
- <div id="list"></div>
+  <header>
+    <h1>📚 問題集ランチャ</h1>
+    <button id="re" onclick="scan()">🔄 更新</button>
+  </header>
+
+  <!-- 全科目合算ダッシュボード＆14日間スタンプ -->
+  <section class="dash" aria-label="学習状況まとめ">
+    <div class="dash-top">
+      <span class="dash-greet" id="greet">スキマ時間に10問から！</span>
+      <div class="dash-badges">
+        <span class="pill" id="d-streak">🔥 連続 0日</span>
+        <button type="button" class="goal-btn" id="d-today" onclick="cycleGoal()" title="タップで1日の目標問数を変更">🎯 今日 0 / 20問</button>
+      </div>
+    </div>
+    <div class="today-bar"><div class="today-fill" id="d-fill"></div></div>
+    <div class="stamp-head">
+      <span>📅 直近14日間の学習スタンプ</span>
+      <span id="d-stamp-sub">0 / 14日 学習</span>
+    </div>
+    <div class="stamp-grid" id="d-stamps"></div>
+  </section>
+
+  <div id="st">読み込み中…</div>
+  <div id="list"></div>
 </div>
+
 <script>
 /* 自動判定できない場合だけ書きます（独自ドメインなど）。dir は index.html のあるフォルダ（トップなら空）*/
 const CFG={owner:'',repo:'',dir:null};
 const $=id=>document.getElementById(id);
-const KEY='launcher-simple-v1';
+const KEY='launcher-simple-v2';
+const OLD_KEY='launcher-simple-v1';
+const FAV_KEY='launcher-favs-v1';
+const LOG_KEY='launcher-daily-log-v1';
+const GOAL_KEY='launcher-daily-goal-v1';
+const GOAL_STEPS=[10,20,30];
+
 let busy=false;
+let lastData=null;
+let lastNote='';
+
+function fmtDate(d){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function todayStr(){return fmtDate(new Date())}
+
+function getGreeting(){
+  const h=new Date().getHours();
+  if(h>=5&&h<11)return '☀️ 朝の10問で頭を起こそう';
+  if(h>=11&&h<17)return '📘 スキマ時間にコツコツ積み上げよう';
+  if(h>=17&&h<22)return '🌇 今日の復習をサッと済ませよう';
+  return '🌙 寝る前の10問は記憶に残りやすいよ';
+}
+
+function getGoal(){
+  const v=Number(localStorage.getItem(GOAL_KEY)||20);
+  return GOAL_STEPS.includes(v)?v:20;
+}
+function cycleGoal(){
+  const cur=getGoal();
+  const next=GOAL_STEPS[(GOAL_STEPS.indexOf(cur)+1)%GOAL_STEPS.length];
+  try{localStorage.setItem(GOAL_KEY,String(next))}catch(e){}
+  if(lastData)render(lastData,lastNote);
+  else renderDashboard([],{});
+}
 
 function guess(){
   const m=location.hostname.match(/^(.+)\.github\.io$/);
   let p=location.pathname.split('/').filter(Boolean);
-  if(p.length&&/\.html?$/i.test(p[p.length-1]))p.pop();       // index.html を除く
+  if(p.length&&/\.html?$/i.test(p[p.length-1]))p.pop();
   const owner=CFG.owner||(m?m[1]:'');
   let repo=CFG.repo,dir;
   if(!repo&&m){
@@ -49,35 +198,272 @@ function guess(){
   dir=CFG.dir!==null?CFG.dir:p.join('/');
   return{owner,repo,dir};
 }
-function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY)||localStorage.getItem(OLD_KEY);
+    return raw?JSON.parse(raw):null;
+  }catch(e){return null}
+}
 function save(v){try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}}
+function loadFavs(){
+  try{
+    const a=JSON.parse(localStorage.getItem(FAV_KEY)||'[]');
+    return new Set(Array.isArray(a)?a:[]);
+  }catch(e){return new Set()}
+}
+function saveFavs(set){try{localStorage.setItem(FAV_KEY,JSON.stringify([...set]))}catch(e){}}
+function loadDailyLog(){
+  try{
+    const o=JSON.parse(localStorage.getItem(LOG_KEY)||'{}');
+    return (o&&typeof o==='object')?o:{};
+  }catch(e){return {}}
+}
+function saveDailyLog(o){try{localStorage.setItem(LOG_KEY,JSON.stringify(o))}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
-function render(d,note){
-  $('list').innerHTML=d.files.map(f=>`<a class="c" href="./${encodeURIComponent(f.name)}"><b>${esc(f.title||f.name.replace(/\.html?$/i,''))}</b><span>${esc(f.name)}</span></a>`).join('')||'<p>同じフォルダに html ファイルがありません。</p>';
-  const t=new Date(d.at).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
-  $('st').innerHTML=`${d.files.length}件・${t}に更新${note?'　<span class="err">'+esc(note)+'</span>':''}`;
+/* 各問題集の localStorage から進捗・要復習・今日の学習数・過去日付タイムスタンプを読み取る */
+function readAppProgress(file){
+  if(!file||!file.storageKey)return null;
+  try{
+    const raw=localStorage.getItem(file.storageKey);
+    if(!raw)return {lrn:0,rev:0,today:0,dates:{},hasData:false};
+    const p=JSON.parse(raw);
+    const items=(p&&p.items&&typeof p.items==='object')?p.items:{};
+    const td=todayStr();
+    let lrn=0,rev=0;
+    const dates={};
+    Object.values(items).forEach(it=>{
+      if(!it||typeof it!=='object')return;
+      const n=Number(it.n||0),ok=Number(it.ok||0);
+      if(n>0){
+        lrn++;
+        if(it.ng||(ok/n)<0.7)rev++;
+      }
+      if(it.t){
+        const ds=fmtDate(new Date(Number(it.t)));
+        dates[ds]=(dates[ds]||0)+1;
+      }
+    });
+    const today=(p&&p.todayDate===td)?Number(p.todayCount||0):(dates[td]||0);
+    return {lrn,rev,today,dates,hasData:lrn>0||today>0};
+  }catch(e){return null}
 }
-async function title(name,old){
+
+/* 全科目合算のダッシュボード＆14日間スタンプ描画 */
+function renderDashboard(files,progMap){
+  $('greet').textContent=getGreeting();
+  const goal=getGoal();
+  const td=todayStr();
+
+  // 各アプリから今日の合算と過去タイムスタンプを集計
+  let todaySum=0;
+  const scannedDates={};
+  (files||[]).forEach(f=>{
+    const pr=progMap[f.name];
+    if(!pr)return;
+    todaySum+=pr.today||0;
+    Object.entries(pr.dates||{}).forEach(([ds,cnt])=>{
+      scannedDates[ds]=(scannedDates[ds]||0)+cnt;
+    });
+  });
+
+  // 日別ログを更新（今日の合計＋過去分の補完）
+  const log=loadDailyLog();
+  if(todaySum>0||log[td]){
+    log[td]=Math.max(Number(log[td]||0),todaySum);
+  }
+  Object.entries(scannedDates).forEach(([ds,cnt])=>{
+    if(ds!==td&&cnt>0){
+      log[ds]=Math.max(Number(log[ds]||0),cnt);
+    }
+  });
+  // 古いログ（60日超）を整理
+  const cutoff=fmtDate(new Date(Date.now()-60*86400000));
+  Object.keys(log).forEach(k=>{if(k<cutoff)delete log[k]});
+  saveDailyLog(log);
+
+  const todayCount=Math.max(todaySum,Number(log[td]||0));
+  const todayBtn=$('d-today');
+  const pct=Math.min(100,Math.round((todayCount/goal)*100));
+  $('d-fill').style.width=`${pct}%`;
+  if(todayCount>=goal){
+    todayBtn.classList.add('done');
+    todayBtn.textContent=`✅ 今日の合計 ${todayCount} / ${goal}問`;
+  }else{
+    todayBtn.classList.remove('done');
+    todayBtn.textContent=`🎯 今日の合計 ${todayCount} / ${goal}問`;
+  }
+
+  // 連続学習日数の算出（今日から遡る。今日0問でも昨日学習していれば継続中）
+  let streak=0;
+  const startOffset=Number(log[td]||0)>0?0:1;
+  for(let i=startOffset;i<60;i++){
+    const ds=fmtDate(new Date(Date.now()-i*86400000));
+    if(Number(log[ds]||0)>0)streak++;
+    else break;
+  }
+  const streakEl=$('d-streak');
+  streakEl.textContent=`🔥 連続 ${streak}日`;
+  streakEl.classList.toggle('ok',streak>=3);
+
+  // 直近14日間のスタンプ描画
+  const cells=[];
+  let activeDays=0;
+  for(let i=13;i>=0;i--){
+    const d=new Date(Date.now()-i*86400000);
+    const ds=fmtDate(d);
+    const cnt=Number(log[ds]||0);
+    const isToday=i===0;
+    if(cnt>0)activeDays++;
+    let cls='st-dot';
+    let mark='';
+    if(cnt>=goal){cls+=' lv2';mark='★'}
+    else if(cnt>0){cls+=' lv1';mark='✓'}
+    if(isToday)cls+=' today';
+    const dayLabel=isToday?'今':String(d.getDate());
+    cells.push(
+      `<div class="st-cell${isToday?' is-today':''}" title="${ds}：${cnt}問">`+
+        `<div class="${cls}">${mark}</div>`+
+        `<div class="st-day">${dayLabel}</div>`+
+      `</div>`
+    );
+  }
+  $('d-stamps').innerHTML=cells.join('');
+  $('d-stamp-sub').textContent=`${activeDays} / 14日 学習（タップで目標変更）`;
+}
+
+function toggleFav(name){
+  const favs=loadFavs();
+  if(favs.has(name))favs.delete(name);else favs.add(name);
+  saveFavs(favs);
+  if(lastData)render(lastData,lastNote);
+}
+
+function cardHtml(f,isFav,pr){
+  const label=esc(f.title||f.name.replace(/\.html?$/i,''));
+  const safeName=esc(f.name);
+  const accentStyle=f.accent?` style="--accent:${esc(f.accent)}"`:'';
+
+  let progHtml='';
+  if(pr||f.total){
+    const total=Number(f.total||0);
+    const lrn=pr?pr.lrn:0;
+    const rev=pr?pr.rev:0;
+    const td=pr?pr.today:0;
+    const pct=total>0?Math.min(100,Math.round((lrn/total)*100)):0;
+
+    const badges=[];
+    if(total>0)badges.push(`<span class="mbadge pct">${pct}%</span>`);
+    if(rev>0)badges.push(`<span class="mbadge rev">⚠️ 要復習 ${rev}</span>`);
+    if(td>0)badges.push(`<span class="mbadge td">今日 +${td}</span>`);
+
+    const countText=total>0?`学習済 ${lrn} / ${total}問`:(lrn>0?`学習済 ${lrn}問`:'未学習');
+    progHtml=`<div class="prog-wrap">`+
+      (total>0?`<div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>`:'')+
+      `<div class="prog-meta"><span>${countText}</span><div class="prog-badges">${badges.join('')}</div></div>`+
+    `</div>`;
+  }
+
+  return `<div class="item${isFav?' is-fav':''}"${accentStyle}>`+
+    `<a class="c" href="./${encodeURIComponent(f.name)}">`+
+      `<div class="item-title-row"><b>${label}</b></div>`+
+      `<span class="item-file">${safeName}</span>`+
+      progHtml+
+    `</a>`+
+    `<button type="button" class="fav-btn" data-name="${safeName}" aria-label="${isFav?'お気に入り解除':'お気に入りに追加'}" aria-pressed="${isFav}">${isFav?'★':'☆'}</button>`+
+  `</div>`;
+}
+
+function render(d,note){
+  lastData=d;lastNote=note||'';
+  const progMap={};
+  (d.files||[]).forEach(f=>{progMap[f.name]=readAppProgress(f)});
+  renderDashboard(d.files||[],progMap);
+
+  const favs=loadFavs();
+  const favList=d.files.filter(f=>favs.has(f.name));
+  const otherList=d.files.filter(f=>!favs.has(f.name));
+
+  if(!d.files.length){
+    $('list').innerHTML='<p>同じフォルダに html ファイルがありません。</p>';
+  }else{
+    let html='';
+    if(favList.length){
+      html+=`<div class="sec fav">★ お気に入り（${favList.length}件）</div>`;
+      html+=favList.map(f=>cardHtml(f,true,progMap[f.name])).join('');
+      if(otherList.length){
+        html+=`<div class="sec">📚 その他の問題集（${otherList.length}件）</div>`;
+      }
+    }
+    html+=otherList.map(f=>cardHtml(f,false,progMap[f.name])).join('');
+    $('list').innerHTML=html;
+  }
+
+  const t=new Date(d.at).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+  const favText=favList.length?`（★${favList.length}件）`:'（☆でお気に入り固定）';
+  $('st').innerHTML=`${d.files.length}件${favText}・${t}に更新${note?'　<span class="err">'+esc(note)+'</span>':''}`;
+}
+
+$('list').addEventListener('click',e=>{
+  const btn=e.target.closest('.fav-btn');
+  if(!btn)return;
+  e.preventDefault();
+  e.stopPropagation();
+  toggleFav(btn.dataset.name);
+});
+
+/* 各HTMLからタイトル・STORAGE_KEY・DATA_URL・アクセントカラー・収録問題数を自動取得 */
+async function inspectHtml(name,prev){
+  const info={
+    name,
+    title:prev&&prev.title||name.replace(/\.html?$/i,''),
+    storageKey:prev&&prev.storageKey||'',
+    dataUrl:prev&&prev.dataUrl||'',
+    total:prev&&prev.total||0,
+    accent:prev&&prev.accent||''
+  };
   try{
     const r=await fetch('./'+encodeURIComponent(name),{cache:'no-store'});
     if(!r.ok)throw 0;
-    const m=(await r.text()).match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-    return m?m[1].trim():old;
-  }catch(e){return old}
+    const html=await r.text();
+
+    const tm=html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    if(tm)info.title=tm[1].trim();
+
+    const sk=html.match(/(?:const|let|var)\s+STORAGE_KEY\s*=\s*["']([^"']+)["']/);
+    if(sk)info.storageKey=sk[1].trim();
+
+    const du=html.match(/(?:const|let|var)\s+DATA_URL\s*=\s*["']([^"']+)["']/);
+    if(du)info.dataUrl=du[1].trim();
+
+    const ac=html.match(/--pri\s*:\s*(#[0-9a-fA-F]{3,6})/);
+    if(ac)info.accent=ac[1];
+
+    if(info.dataUrl){
+      try{
+        const jr=await fetch(info.dataUrl+(info.dataUrl.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
+        if(jr.ok){
+          const arr=await jr.json();
+          if(Array.isArray(arr))info.total=arr.length;
+        }
+      }catch(e){}
+    }
+  }catch(e){}
+  return info;
 }
+
 async function scan(){
   if(busy)return;busy=true;
   $('re').innerHTML='<span class="sp">🔄</span> 更新中';
   const old=load(),cached={};
-  (old&&old.files||[]).forEach(f=>cached[f.name]=f.title);
+  (old&&old.files||[]).forEach(f=>cached[f.name]=f);
   try{
     const{owner,repo,dir}=guess();
     if(!owner||!repo)throw new Error('リポジトリを判定できません。CFGに owner と repo を書いてください。');
     const r=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${dir.split('/').map(encodeURIComponent).join('/')}`,{cache:'no-store'});
     if(!r.ok)throw new Error(r.status==403?'GitHubの利用制限です。少し待ってから更新してください。':'一覧を取得できません（'+r.status+'）');
     const names=(await r.json()).filter(x=>x.type==='file'&&/\.html?$/i.test(x.name)&&x.name.toLowerCase()!=='index.html').map(x=>x.name).sort((a,b)=>a.localeCompare(b,'ja'));
-    const files=await Promise.all(names.map(async n=>({name:n,title:await title(n,cached[n])})));
+    const files=await Promise.all(names.map(n=>inspectHtml(n,cached[n])));
     const d={files,at:Date.now()};save(d);render(d);
   }catch(e){
     if(old)render(old,'更新に失敗：'+e.message);
@@ -85,6 +471,7 @@ async function scan(){
   }
   $('re').textContent='🔄 更新';busy=false;
 }
+
 /* 画面を下にフリックして更新 */
 (function(){
   let y0=null,d=0;const p=$('ptr');
@@ -95,9 +482,21 @@ async function scan(){
   },{passive:true});
   addEventListener('touchend',()=>{p.classList.remove('on');if(y0!==null&&d>100)scan();y0=null;d=0});
 })();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){const c=load();if(!c||Date.now()-c.at>60000)scan()}});
-const c=load();if(c)render(c);   // 前回の一覧をすぐ表示
-scan();                          // 裏で最新を検索
+
+/* 問題集から戻ってきた時に即座に進捗・スタンプを再描画 */
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden){
+    const c=load();
+    if(c)render(c);
+    if(!c||Date.now()-c.at>60000)scan();
+  }
+});
+window.addEventListener('pageshow',()=>{const c=load();if(c)render(c)});
+
+const c=load();
+if(c)render(c);
+else renderDashboard([],{});
+scan();
 </script>
 </body>
 </html>
