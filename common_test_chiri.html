@@ -63,7 +63,6 @@
     .view { display: none; flex-direction: column; width: 100%; height: 100%; min-height: 0; gap: 6px; }
     .view.active { display: flex; }
 
-    /* ローディング・エラー画面 */
     .status-card {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
       padding: 20px; flex: 1; display: flex; flex-direction: column;
@@ -71,7 +70,6 @@
     }
     .status-msg { font-size: 15px; font-weight: 800; line-height: 1.55; color: var(--sub); }
 
-    /* ホーム画面 */
     .home-card {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
       padding: 9px 11px; display: flex; flex-direction: column;
@@ -87,10 +85,7 @@
       background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px;
       padding: 6px 9px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px;
     }
-    .overall-top {
-      display: flex; align-items: baseline; justify-content: space-between; gap: 6px;
-      font-size: 12px; font-weight: 800;
-    }
+    .overall-top { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; font-size: 12px; font-weight: 800; }
     .overall-pct { font-size: 17px; font-weight: 900; color: var(--pri); }
     .overall-rank { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--pri-bg); color: var(--pri); }
     .overall-track { height: 8px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
@@ -138,7 +133,6 @@
     .q-foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sub); }
     .tts-btn { font-size: 12px; font-weight: 800; color: var(--pri); background: var(--pri-bg); border: none; border-radius: 8px; padding: 4px 9px; cursor: pointer; }
 
-    /* 読める大きさの図表サムネイル（タップで拡大） */
     .thumb-card {
       display: none; position: relative; width: 100%;
       background: #ffffff; border: 2px solid var(--pri); border-radius: 10px;
@@ -176,7 +170,6 @@
     .opt-btn.ok { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
     .opt-btn.ng { background: var(--ng-bg); border-color: var(--ng); color: var(--ng); }
 
-    /* 解説ボトムシート */
     .exp-sheet {
       position: absolute; left: 0; right: 0; bottom: 0;
       background: var(--card); border: 2px solid var(--pri); border-radius: 16px;
@@ -190,7 +183,6 @@
     .exp-body { font-size: 15px; font-weight: 700; line-height: 1.45; color: var(--sub); }
     .exp-sheet .btn, .exp-sheet .row2 { flex: 0 0 auto; max-height: none; }
 
-    /* きくだけモード */
     .listen-card {
       background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
       padding: 14px; flex: 1; min-height: 0; display: flex; flex-direction: column;
@@ -200,7 +192,7 @@
     .listen-main { font-size: 19px; font-weight: 800; line-height: 1.45; overflow-y: auto; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
     .listen-card .btn { flex: 0 0 auto; max-height: 48px; }
 
-    /* モーダル＆拡大ライトボックス */
+    /* モーダル */
     .modal {
       position: fixed; inset: 0; background: rgba(0, 0, 0, 0.78);
       display: none; align-items: center; justify-content: center;
@@ -218,7 +210,12 @@
     .mscore { font-size: 30px; font-weight: 900; color: var(--pri); }
     .mtext { font-size: 14px; font-weight: 700; line-height: 1.45; color: var(--sub); text-align: left; }
 
-    /* 分野別成績カード */
+    .inter-tip {
+      background: var(--warn-bg); color: var(--text); border: 1.5px solid var(--warn);
+      border-radius: 10px; padding: 8px 10px; text-align: left; font-size: 13px; line-height: 1.48;
+    }
+    .inter-tip b { display: block; color: var(--warn); font-size: 12px; margin-bottom: 2px; }
+
     .st-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 4px; }
     .st-chip { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 6px 4px; text-align: center; }
     .st-chip b { display: block; font-size: 16px; color: var(--pri); }
@@ -229,8 +226,24 @@
     .st-item-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--sub); margin-top: 3px; }
     .st-bar { height: 6px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
     .st-bar-fill { height: 100%; background: var(--pri); }
-
     .growth-box { background: var(--ok-bg); color: var(--ok); border-radius: 10px; padding: 7px 10px; font-size: 13px; font-weight: 800; text-align: center; }
+
+    /* まとめ＆図解タブ */
+    .sum-tabs { display: flex; gap: 5px; flex-shrink: 0; }
+    .sum-tab {
+      flex: 1; font-size: 13px; font-weight: 800; padding: 7px 8px;
+      border-radius: 10px; border: 1.5px solid var(--bdr); background: var(--bg);
+      color: var(--sub); cursor: pointer;
+    }
+    .sum-tab.active { background: var(--pri); color: #fff; border-color: var(--pri); }
+    @media (prefers-color-scheme: dark) { .sum-tab.active { color: #071112; } }
+    .sum-panel { display: none; flex-direction: column; gap: 8px; }
+    .sum-panel.active { display: flex; }
+
+    .note-card { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 8px 10px; text-align: left; }
+    .note-card h3 { font-size: 14px; font-weight: 900; color: var(--pri); margin-bottom: 4px; }
+    .note-card ul { padding-left: 1.2em; font-size: 13px; font-weight: 700; line-height: 1.5; color: var(--sub); }
+    .note-card li { margin-bottom: 2px; }
 
     .zoom-body {
       background: #ffffff; border: 1.5px solid var(--bdr); border-radius: 12px;
@@ -253,12 +266,11 @@
     <a class="hbtn" href="index.html">‹ 一覧</a>
     <button class="hbtn" id="btn-back-home" style="display:none;" onclick="backToHome()">🏠 ホーム</button>
     <div class="htitle">共通テスト対策 地理</div>
-    <button class="hbtn" onclick="openSummary()">🗺️ 図解</button>
+    <button class="hbtn" onclick="openSummary('guide')">🗺️ 攻略</button>
     <button class="hbtn" onclick="openStats()">成績</button>
   </header>
 
   <main>
-    <!-- データ読込中／エラー表示 -->
     <div id="v-loading" class="view active">
       <div class="status-card">
         <div style="font-size:28px;" id="load-icon">⏳</div>
@@ -267,16 +279,13 @@
       </div>
     </div>
 
-    <!-- ホーム -->
     <div id="v-home" class="view">
       <div class="home-card">
-        <!-- 連続学習日数＆今日の目標 -->
         <div class="moti-bar" id="moti-bar">
           <span id="m-streak">🔥 連続 0日</span>
           <span id="m-today">🎯 今日 0 / 20問</span>
         </div>
 
-        <!-- 全体進捗（％）＋ランク＋次のマイルストーン -->
         <div class="overall-box">
           <div class="overall-top">
             <span>全体進捗 <span class="overall-pct" id="ov-pct">0%</span></span>
@@ -318,7 +327,7 @@
         <button class="btn btn-rev" id="b-rev" style="display:none;" onclick="startQuiz('REVIEW')">
           ⚠️ 間違えた問題を復習（<span id="rev-n">0</span>問）
         </button>
-        <button class="btn btn-link" onclick="openSummary()">🗺️ 図解ギャラリー＆覚えることまとめ</button>
+        <button class="btn btn-link" onclick="openSummary('guide')">🗺️ 覚えること優先順位＆図解ギャラリー</button>
         <button class="btn btn-sec" onclick="startListen()">🎧 きくだけモード（誤答優先）</button>
         <div class="row2">
           <button class="btn btn-sec" onclick="exportProg()">進捗エクスポート</button>
@@ -327,7 +336,6 @@
       </div>
     </div>
 
-    <!-- 出題画面 -->
     <div id="v-quiz" class="view">
       <div class="pbar"><div class="pfill" id="p-fill"></div></div>
       <div class="meta-bar">
@@ -364,7 +372,7 @@
         </div>
         <div class="row2">
           <a id="sh-ref" class="btn btn-link" href="#" target="_blank" rel="noopener noreferrer">📖 解説記事 ↗</a>
-          <button class="btn btn-sec" onclick="openSummary()">🗺️ 図解一覧</button>
+          <button class="btn btn-sec" onclick="openSummary('figs')">🗺️ 図解一覧</button>
         </div>
         <div class="row2">
           <button class="btn btn-sec" onclick="speak(curList[idx].options[curList[idx].ans] + '。' + curList[idx].exp)">🔊 解説を聞く</button>
@@ -373,7 +381,6 @@
       </div>
     </div>
 
-    <!-- きくだけモード -->
     <div id="v-listen" class="view">
       <div class="listen-card">
         <div class="listen-badge" id="l-badge">きくだけモード</div>
@@ -390,6 +397,7 @@
     <div class="mtitle">10問セッション終了</div>
     <div class="mscore" id="r-sc">0 / 10</div>
     <div class="growth-box" id="r-growth"></div>
+    <div class="inter-tip" id="r-tip"></div>
     <div class="mtext" id="r-msg" style="text-align:center;"></div>
     <button class="btn btn-pri" onclick="closeRes('NEXT')">次の10問へ進む</button>
     <button class="btn btn-rev" id="r-rev" onclick="closeRes('REV')">間違えた問題を復習する</button>
@@ -409,7 +417,7 @@
   </div>
 </div>
 
-<!-- 成績モーダル（全体＋分野別達成率＆正答率） -->
+<!-- 成績モーダル -->
 <div class="modal" id="m-st">
   <div class="mbox">
     <div class="mtitle">📊 学習成績・分野別達成率</div>
@@ -420,12 +428,46 @@
   </div>
 </div>
 
-<!-- 図解一覧モーダル -->
+<!-- 覚えることまとめ＆図解ギャラリーモーダル（元塾講師記事コンテンツ統合） -->
 <div class="modal" id="m-sum">
   <div class="mbox">
-    <div class="mtitle">🗺️ 図解サムネイル一覧（タップで拡大）</div>
-    <div class="thumb-grid" id="sum-grid"></div>
-    <a class="btn btn-link" href="https://jukukounohitorigoto.com/daigaku-juken-chiri-oboerukoto/" target="_blank" rel="noopener noreferrer">📖 元塾講師「覚えることまとめ」記事 ↗</a>
+    <div class="mtitle">🗺️ 地理 覚えることまとめ＆図解</div>
+    <div class="sum-tabs">
+      <button class="sum-tab active" id="tab-guide" onclick="switchSumTab('guide')">📖 優先順位・覚え方</button>
+      <button class="sum-tab" id="tab-figs" onclick="switchSumTab('figs')">🗺️ 図解ギャラリー</button>
+    </div>
+
+    <!-- タブ1：元塾講師「覚えることまとめ」要点＆インフォグラフィック -->
+    <div class="sum-panel active" id="panel-guide">
+      <div class="thumb-tile" onclick="openFigureById('geo_layers')">
+        <div class="tile-img" id="info-layers-preview" style="height:104px;"></div>
+        <span>🔍 図解：地理の3層構造と最優先ルール（タップ拡大）</span>
+      </div>
+      <div class="note-card">
+        <h3>🎯 結論：最優先は「地形」と「気候」</h3>
+        <ul>
+          <li>地理は<b>系統地理＋地誌＋地理総合</b>の3層。用語は必ず<b>「用語・分布（どこ）・理由（なぜ）」</b>の3点セットで覚える。</li>
+          <li>最優先の「地形・気候」を理由で理解すると、農業・工業・地誌の暗記量が劇的に減る。</li>
+          <li>統計の数字は丸暗記せず、<b>上位国と理由</b>をセットで押さえる。</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>🔗 分野別・つながりで覚えるコツ</h3>
+        <ul>
+          <li><b>地形×資源</b>：安定陸塊＝鉄鉱石／古期造山帯＝石炭／新期造山帯＝石油（褶曲構造）。扇状地は扇央＝果樹園・扇端＝湧水＆集落。</li>
+          <li><b>気候×大気大循環</b>：記号の丸暗記はNG。「風・高圧帯・海流」から雨温図の理由を説明できるようにする。</li>
+          <li><b>農業×気候</b>：産地名を暗記する前に「作物が好む気候条件」から逆算（例：夏乾燥のCs＝オリーブ・ブドウ）。</li>
+          <li><b>工業立地</b>：「一番高いコストを減らす場所」で判断（原料指向・市場指向・労働力指向・臨空／集積型）。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- タブ2：図解ギャラリー -->
+    <div class="sum-panel" id="panel-figs">
+      <div class="thumb-grid" id="sum-grid"></div>
+    </div>
+
+    <a class="btn btn-link" href="https://jukukounohitorigoto.com/daigaku-juken-chiri-oboerukoto/" target="_blank" rel="noopener noreferrer">📖 元記事：元塾講師「大学受験の地理で覚えることまとめ」↗</a>
     <div class="row2">
       <a class="btn btn-sec" href="https://maps.gsi.go.jp/" target="_blank" rel="noopener noreferrer">🗺️ 地理院地図 ↗</a>
       <a class="btn btn-sec" href="https://disaportal.gsi.go.jp/" target="_blank" rel="noopener noreferrer">⚠️ ハザードマップ ↗</a>
@@ -469,6 +511,12 @@ let sessionNewMastered = 0;
 let sessionOvercame = 0;
 
 const FIGURES = {
+  geo_layers: {
+    title: "大学受験地理の3層構造＆優先順位マップ",
+    cap: "最優先は土台となる「地形」と「気候」。ここを「用語・分布・理由」の3点セットで押さえると、農業・資源工業・地誌・地理総合へ一気に波及します。",
+    url: "",
+    svg: `<svg viewBox="0 0 380 180" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="364" height="44" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="190" y="27" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">③ 地誌 ＋ 地理総合（地図・GIS・防災）</text><text x="190" y="44" text-anchor="middle" font-size="11" fill="#334155">系統地理の知識を地域ごとに組み合わせる</text><rect x="8" y="62" width="364" height="44" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="190" y="81" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">② 農業・資源と工業・人口と都市</text><text x="190" y="98" text-anchor="middle" font-size="11" fill="#334155">気候条件や一番高いコストから逆算して理解</text><rect x="8" y="116" width="364" height="54" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2.5"/><text x="190" y="137" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">★ 最優先の土台：① 地形 ＆ 気候</text><text x="190" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350f">「用語・分布(どこ)・理由(なぜ)」3点セットで定着</text></svg>`
+  },
   plate: {
     title: "世界のプレート境界（日本語図）",
     cap: "広がる境界＝海嶺・地溝帯、せばまる境界＝海溝・褶曲山脈、ずれる境界＝サンアンドレアス断層など。（出典: Wikimedia Commons）",
@@ -542,6 +590,15 @@ const FIGURES = {
     svg: `<svg viewBox="0 0 360 140" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="166" height="56" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/><text x="91" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">原料指向型</text><text x="91" y="52" text-anchor="middle" font-size="11" fill="#334155">セメント・製鉄(旧)</text><rect x="186" y="10" width="166" height="56" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><text x="269" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">市場指向型</text><text x="269" y="52" text-anchor="middle" font-size="11" fill="#334155">ビール・新聞・食品</text><rect x="8" y="74" width="166" height="56" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/><text x="91" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">労働力指向型</text><text x="91" y="116" text-anchor="middle" font-size="11" fill="#334155">繊維・アパレル組立</text><rect x="186" y="74" width="166" height="56" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.5"/><text x="269" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">交通(臨空)・集積型</text><text x="269" y="116" text-anchor="middle" font-size="11" fill="#334155">半導体・IC・先端技術</text></svg>`
   }
 };
+
+const INTERMISSION_TIPS = [
+  { t: "「用語・分布・理由」の3点セット", b: "地理は丸暗記科目ではありません。用語だけでなく「どこにあるか（分布）」と「なぜそこにあるか（理由）」をセットで説明できるようにしましょう。" },
+  { t: "大地形は資源分布に直結", b: "安定陸塊＝鉄鉱石、古期造山帯＝石炭、新期造山帯＝石油（褶曲構造）。地形の段階で対応を押さえると資源分野の暗記が一気に楽になります。" },
+  { t: "気候区は風・高圧帯・海流とセット", b: "ケッペンの記号だけ覚えても雨温図問題では点が取れません。「なぜ夏に乾燥するのか」を大気大循環（亜熱帯高圧帯・偏西風）から言えるようにしましょう。" },
+  { t: "農作物は気候条件から逆算", b: "産地の国名を丸暗記する前に「この作物はどんな気候を好むか」を確認。地中海性気候(Cs)の夏乾燥→オリーブ・ブドウのように逆算するのが近道です。" },
+  { t: "工業立地は「一番高いコスト」で判断", b: "原料が重い→原料産地の近く、製品輸送が大変→市場の近く、人手が多い→労働力の安い地域、というコスト視点でウェーバー工業立地論を整理しましょう。" },
+  { t: "統計は数字ではなく「上位国と理由」", b: "細かな生産量の数字は覚えなくてOK。「なぜその国が上位なのか」を最新統計とセットで理解しておくと、初見グラフでも正答できます。" }
+];
 
 const ADVICES = [
   "【優先順位のコツ】最優先は「地形」と「気候」です。大地形と資源、気候と農業・植生を理由でつなげると、丸暗記の量が劇的に減ります。",
@@ -650,7 +707,6 @@ function recordActivity() {
     prog.todayCount = 0;
   }
   prog.todayCount += 1;
-
   if (prog.lastDate !== td) {
     prog.streak = (prog.lastDate === yd) ? (prog.streak || 0) + 1 : 1;
     prog.lastDate = td;
@@ -690,7 +746,6 @@ function refreshHome() {
   document.getElementById("rev-n").textContent = rev;
   document.getElementById("b-rev").style.display = rev > 0 ? "flex" : "none";
 
-  // 全体進捗（％）とランク・次のマイルストーン
   document.getElementById("ov-pct").textContent = `${pct}%`;
   document.getElementById("ov-fill").style.width = `${pct}%`;
   document.getElementById("ov-rank").textContent = getRankLabel(pct);
@@ -702,7 +757,6 @@ function refreshHome() {
   document.getElementById("ov-next").textContent =
     pct >= 100 ? "🎉 全問学習達成！" : `${nextMilestonePct}%到達まであと ${Math.max(1, remain)}問`;
 
-  // 連続学習日数＆今日の目標
   const td = todayStr();
   const yd = yesterdayStr();
   const activeStreak = (prog.lastDate === td || prog.lastDate === yd) ? (prog.streak || 0) : 0;
@@ -792,6 +846,7 @@ function renderThumbCard(q, cardId, mediaId, capId) {
     img.src = info.url;
     img.alt = info.title;
     img.loading = "eager";
+    img.referrerPolicy = "no-referrer";
     img.onerror = () => {
       if (info.svg) media.innerHTML = info.svg;
       else card.classList.remove("active");
@@ -817,6 +872,7 @@ function openZoomModal(info) {
     const img = document.createElement("img");
     img.src = info.url;
     img.alt = info.title;
+    img.referrerPolicy = "no-referrer";
     img.onerror = () => { if (info.svg) body.innerHTML = info.svg; };
     body.innerHTML = "";
     body.appendChild(img);
@@ -943,6 +999,9 @@ function nextQ() {
     growthParts.push(`🎯 今日 ${tdCnt}/${DAILY_GOAL}問`);
     document.getElementById("r-growth").textContent = growthParts.join("  /  ");
 
+    const tipObj = INTERMISSION_TIPS[Math.floor((prog.solved || 0) / 10) % INTERMISSION_TIPS.length];
+    document.getElementById("r-tip").innerHTML = `<b>💡 ひとくち覚え方メモ：${tipObj.t}</b>${tipObj.b}`;
+
     const allClear = wrongList.length === 0;
     document.getElementById("r-msg").textContent = allClear
       ? "全問正解達成！素晴らしいペースです。"
@@ -973,18 +1032,27 @@ function closeRes(action) {
   }
 }
 
-function openSummary() {
+function switchSumTab(tabName) {
+  document.getElementById("tab-guide").classList.toggle("active", tabName === "guide");
+  document.getElementById("tab-figs").classList.toggle("active", tabName === "figs");
+  document.getElementById("panel-guide").classList.toggle("active", tabName === "guide");
+  document.getElementById("panel-figs").classList.toggle("active", tabName === "figs");
+}
+
+function openSummary(defaultTab) {
+  document.getElementById("info-layers-preview").innerHTML = FIGURES.geo_layers.svg;
   const grid = document.getElementById("sum-grid");
   grid.innerHTML = "";
   Object.keys(FIGURES).forEach(k => {
     const f = FIGURES[k];
     const div = document.createElement("div");
     div.className = "thumb-tile";
-    const mediaHtml = f.url ? `<img src="${f.url}" alt="${f.title}" loading="lazy">` : f.svg;
+    const mediaHtml = f.url ? `<img src="${f.url}" alt="${f.title}" loading="lazy" referrerpolicy="no-referrer">` : f.svg;
     div.innerHTML = `<div class="tile-img">${mediaHtml}</div><span>🔍 ${f.title}</span>`;
     div.onclick = () => openFigureById(k);
     grid.appendChild(div);
   });
+  switchSumTab(defaultTab === "figs" ? "figs" : "guide");
   document.getElementById("m-sum").classList.add("active");
 }
 
@@ -1009,7 +1077,7 @@ function openStats() {
   document.getElementById("st-summary").innerHTML = `
     <div class="st-chip"><b>${ovAchieve}%</b><span>全体達成率</span></div>
     <div class="st-chip"><b>${ovAcc}%</b><span>総合正答率</span></div>
-    <div class="st-chip"><b>${prog.solved || 0}回</b><span>累計解答 / 🔥${prog.bestCombo || 0}連続</span></div>
+    <div class="st-chip"><b>${prog.solved || 0}回</b><span>累計 / 🔥${prog.bestCombo || 0}連続</span></div>
   `;
 
   const rows = cats.map(([code, name]) => {
