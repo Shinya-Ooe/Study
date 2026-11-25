@@ -1,320 +1,1299 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>共通テスト対策 情報</title>
-<style>
-  :root { --bg:#f1f5f9; --card:#ffffff; --text:#0f172a; --sub:#334155; --pri:#1d4ed8; --pri-bg:#dbeafe; --bdr:#cbd5e1; --ok:#15803d; --ok-bg:#dcfce7; --ng:#b91c1c; --ng-bg:#fee2e2; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#090d16; --card:#111827; --text:#f8fafc; --sub:#cbd5e1; --pri:#60a5fa; --pri-bg:#1e3a8a; --bdr:#334155; --ok:#4ade80; --ok-bg:rgba(74,222,128,0.16); --ng:#f87171; --ng-bg:rgba(248,113,113,0.16); }
-  }
-  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-  html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
-  #app { display:flex; flex-direction:column; width:100%; height:100vh; max-width:720px; margin:0 auto; padding:10px 12px; gap:8px; }
-  header { display:flex; align-items:center; justify-content:space-between; min-height:46px; gap:8px; flex-shrink:0; }
-  .hbtn { font-size:15px; font-weight:800; color:var(--pri); background:var(--card); border:2px solid var(--bdr); padding:7px 12px; border-radius:10px; text-decoration:none; cursor:pointer; }
-  .htitle { font-size:18px; font-weight:900; text-align:center; flex:1; }
-  main { flex:1; min-height:0; position:relative; display:flex; flex-direction:column; }
-  .view { display:none; flex-direction:column; width:100%; height:100%; gap:8px; }
-  .view.active { display:flex; }
-  .card { background:var(--card); border:2px solid var(--bdr); border-radius:16px; padding:14px; display:flex; flex-direction:column; justify-content:space-between; flex:1; min-height:0; gap:10px; }
-  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-  .sbox { background:var(--pri-bg); color:var(--pri); border-radius:12px; padding:8px; text-align:center; font-weight:800; }
-  .sbox b { display:block; font-size:21px; }
-  select { width:100%; min-height:46px; padding:8px 10px; font-size:16px; font-weight:700; border-radius:12px; border:2px solid var(--bdr); background:var(--card); color:var(--text); }
-  .btn { width:100%; min-height:52px; border-radius:14px; font-size:17px; font-weight:900; cursor:pointer; border:2px solid transparent; display:flex; align-items:center; justify-content:center; text-decoration:none; }
-  .btn-pri { background:var(--pri); color:#fff; }
-  .btn-sec { background:var(--card); color:var(--text); border-color:var(--bdr); font-size:15px; min-height:46px; }
-  .btn-rev { background:var(--ng-bg); color:var(--ng); border-color:var(--ng); }
-  .btn-link { background:var(--pri-bg); color:var(--pri); border-color:var(--pri); font-size:15px; min-height:44px; }
-  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .bar { height:8px; background:var(--bdr); border-radius:999px; overflow:hidden; }
-  .fill { height:100%; width:0%; background:var(--pri); transition:width .25s; }
-  .meta { display:flex; justify-content:space-between; align-items:center; font-size:15px; font-weight:800; }
-  .tag { background:var(--pri-bg); color:var(--pri); padding:4px 10px; border-radius:8px; }
-  .qbox { background:var(--card); border:2px solid var(--bdr); border-radius:16px; padding:14px; font-size:20px; font-weight:800; line-height:1.45; max-height:36%; overflow-y:auto; }
-  .opts { display:flex; flex-direction:column; gap:8px; flex:1; min-height:0; }
-  .opt { flex:1; min-height:52px; width:100%; background:var(--card); border:2px solid var(--bdr); border-radius:14px; padding:10px 14px; font-size:17px; font-weight:800; color:var(--text); text-align:left; cursor:pointer; }
-  .opt.ok { background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
-  .opt.ng { background:var(--ng-bg); border-color:var(--ng); color:var(--ng); }
-  .sheet { position:absolute; left:0; right:0; bottom:0; background:var(--card); border:2px solid var(--pri); border-radius:18px; padding:16px; display:none; flex-direction:column; gap:8px; max-height:70%; overflow-y:auto; z-index:30; }
-  .sheet.active { display:flex; }
-  .modal { position:fixed; inset:0; background:rgba(0,0,0,0.65); display:none; align-items:center; justify-content:center; padding:16px; z-index:60; }
-  .modal.active { display:flex; }
-  .mbox { background:var(--card); border:2px solid var(--bdr); border-radius:18px; padding:18px; width:100%; max-width:460px; display:flex; flex-direction:column; gap:10px; text-align:center; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>共通テスト対策　情報Ⅰ</title>
+  <style>
+    :root {
+      --bg: #f0f6f8;
+      --card: #ffffff;
+      --text: #0f172a;
+      --sub: #334155;
+      --pri: #0891b2;
+      --pri-bg: #cffafe;
+      --bdr: #cbd5e1;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --ng: #b91c1c;
+      --ng-bg: #fee2e2;
+      --warn: #b45309;
+      --warn-bg: #fef3c7;
+      --code-bg: #0f172a;
+      --code-fg: #e2e8f0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #071217;
+        --card: #0f2027;
+        --text: #ecfeff;
+        --sub: #cbd5e1;
+        --pri: #22d3ee;
+        --pri-bg: rgba(34, 211, 238, 0.16);
+        --bdr: #23424f;
+        --ok: #4ade80;
+        --ok-bg: rgba(74, 222, 128, 0.16);
+        --ng: #f87171;
+        --ng-bg: rgba(248, 113, 113, 0.16);
+        --warn: #fbbf24;
+        --warn-bg: rgba(251, 191, 36, 0.16);
+        --code-bg: #040b0e;
+        --code-fg: #e0f2fe;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+    #app {
+      display: flex; flex-direction: column; width: 100%;
+      height: 100vh; height: 100dvh; max-width: 720px; margin: 0 auto;
+      padding-top: max(6px, env(safe-area-inset-top));
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+      padding-bottom: max(14px, env(safe-area-inset-bottom));
+      gap: 6px;
+    }
+    header { display: flex; align-items: center; justify-content: space-between; min-height: 36px; gap: 5px; flex-shrink: 0; }
+    .hbtn {
+      font-size: 12px; font-weight: 800; color: var(--pri); background: var(--card);
+      border: 2px solid var(--bdr); padding: 5px 8px; border-radius: 9px;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+    }
+    .htitle { font-size: 15px; font-weight: 900; text-align: center; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    main { flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; }
+    .view { display: none; flex-direction: column; width: 100%; height: 100%; min-height: 0; gap: 6px; }
+    .view.active { display: flex; }
+
+    .status-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 20px; flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; gap: 12px;
+    }
+    .status-msg { font-size: 15px; font-weight: 800; line-height: 1.55; color: var(--sub); }
+
+    /* ホーム */
+    .home-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 9px 11px; display: flex; flex-direction: column;
+      justify-content: space-between; flex: 1; min-height: 0; gap: 6px;
+    }
+    .moti-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      background: var(--warn-bg); color: var(--warn); border-radius: 10px;
+      padding: 5px 9px; font-size: 12px; font-weight: 800; flex-shrink: 0;
+    }
+    .moti-bar.done { background: var(--ok-bg); color: var(--ok); }
+    .overall-box {
+      background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px;
+      padding: 6px 9px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px;
+    }
+    .overall-top { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; font-size: 12px; font-weight: 800; }
+    .overall-pct { font-size: 17px; font-weight: 900; color: var(--pri); }
+    .overall-rank { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--pri-bg); color: var(--pri); }
+    .overall-track { height: 8px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
+    .overall-fill { height: 100%; width: 0%; background: var(--pri); transition: width 0.35s ease; }
+    .overall-sub { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--sub); }
+
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; flex-shrink: 0; }
+    .stat-box { background: var(--pri-bg); color: var(--pri); border-radius: 10px; padding: 4px 4px; text-align: center; font-weight: 800; }
+    .stat-box b { display: block; font-size: 17px; line-height: 1.15; }
+    .stat-box span { font-size: 10px; }
+
+    .field { flex-shrink: 0; }
+    .field label { display: block; font-size: 11px; font-weight: 800; color: var(--sub); margin-bottom: 2px; }
+    select {
+      width: 100%; height: 38px; padding: 4px 10px; font-size: 14px; font-weight: 700;
+      border-radius: 10px; border: 2px solid var(--bdr); background: var(--card); color: var(--text);
+    }
+    .btn {
+      width: 100%; flex: 1; min-height: 38px; max-height: 48px; border-radius: 12px;
+      font-size: 15px; font-weight: 900; cursor: pointer; border: 2px solid transparent;
+      display: flex; align-items: center; justify-content: center; text-decoration: none; gap: 6px;
+    }
+    .btn-pri { background: var(--pri); color: #ffffff; }
+    @media (prefers-color-scheme: dark) { .btn-pri { color: #071217; } }
+    .btn-sec { background: var(--card); color: var(--text); border-color: var(--bdr); font-size: 14px; }
+    .btn-rev { background: var(--ng-bg); color: var(--ng); border-color: var(--ng); }
+    .btn-link { background: var(--pri-bg); color: var(--pri); border-color: var(--pri); font-size: 13px; max-height: 40px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; min-height: 38px; max-height: 44px; }
+
+    /* 出題画面 */
+    .pbar { height: 7px; background: var(--bdr); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+    .pfill { height: 100%; width: 0%; background: var(--pri); transition: width 0.25s ease; }
+    .meta-bar { display: flex; align-items: center; justify-content: space-between; gap: 5px; flex-shrink: 0; }
+    .badge { font-size: 11px; font-weight: 800; padding: 3px 7px; border-radius: 8px; background: var(--pri-bg); color: var(--pri); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 52%; }
+    .badge.s { background: var(--warn-bg); color: var(--warn); }
+    .badge.combo { background: var(--ok-bg); color: var(--ok); display: none; }
+
+    .q-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 14px;
+      padding: 8px 11px; flex: 0 1 auto; max-height: 52%; overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
+    }
+    .q-text { font-size: 17px; font-weight: 800; line-height: 1.4; }
+    .q-hl { color: var(--pri); font-weight: 900; background: var(--pri-bg); padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid var(--pri); }
+    .q-code {
+      display: none; background: var(--code-bg); color: var(--code-fg);
+      border-radius: 9px; padding: 8px 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px; line-height: 1.45; white-space: pre-wrap; overflow-x: auto;
+    }
+    .q-code.active { display: block; }
+    .q-foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sub); }
+    .tts-btn { font-size: 12px; font-weight: 800; color: var(--pri); background: var(--pri-bg); border: none; border-radius: 8px; padding: 4px 9px; cursor: pointer; }
+
+    /* 図解サムネイル */
+    .thumb-card {
+      display: none; position: relative; width: 100%;
+      background: #ffffff; border: 2px solid var(--pri); border-radius: 10px;
+      overflow: hidden; cursor: pointer; flex-shrink: 0;
+    }
+    .thumb-card.active { display: block; }
+    .thumb-media {
+      width: 100%; height: 115px;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff; padding: 3px;
+    }
+    .thumb-media img, .thumb-media svg {
+      max-width: 100%; max-height: 100%; width: auto; height: auto;
+      object-fit: contain; display: block;
+    }
+    .thumb-badge {
+      position: absolute; right: 6px; bottom: 6px;
+      background: rgba(15, 23, 42, 0.78); color: #ffffff;
+      font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 999px;
+      pointer-events: none;
+    }
+    .thumb-cap-mini {
+      background: var(--pri-bg); color: var(--pri);
+      font-size: 11px; font-weight: 800; padding: 3px 8px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .opts { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
+    .opt-btn {
+      flex: 1; min-height: 0; width: 100%; background: var(--card);
+      border: 2px solid var(--bdr); border-radius: 12px; padding: 6px 12px;
+      font-size: 16px; font-weight: 800; line-height: 1.25; color: var(--text);
+      text-align: left; cursor: pointer; display: flex; align-items: center; overflow: hidden;
+    }
+    .opt-btn.ok { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+    .opt-btn.ng { background: var(--ng-bg); border-color: var(--ng); color: var(--ng); }
+
+    /* 解説ボトムシート */
+    .exp-sheet {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      background: var(--card); border: 2px solid var(--pri); border-radius: 16px;
+      padding: 12px; display: none; flex-direction: column; gap: 7px;
+      max-height: 78%; overflow-y: auto; z-index: 30;
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.28);
+    }
+    .exp-sheet.active { display: flex; }
+    .exp-head { font-size: 19px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
+    .exp-ans { font-size: 17px; font-weight: 900; background: var(--ok-bg); color: var(--ok); padding: 7px 10px; border-radius: 10px; }
+    .exp-body { font-size: 14px; font-weight: 700; line-height: 1.48; color: var(--sub); background: var(--bg); padding: 8px 10px; border-radius: 10px; border-left: 4px solid var(--pri); }
+    .exp-sheet .btn, .exp-sheet .row2 { flex: 0 0 auto; max-height: none; }
+
+    /* きくだけモード */
+    .listen-card {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 14px; flex: 1; min-height: 0; display: flex; flex-direction: column;
+      justify-content: space-between; text-align: center; gap: 10px;
+    }
+    .listen-badge { font-size: 14px; font-weight: 900; color: var(--pri); background: var(--pri-bg); padding: 5px 12px; border-radius: 999px; align-self: center; }
+    .listen-main { font-size: 19px; font-weight: 800; line-height: 1.48; overflow-y: auto; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; white-space: pre-line; }
+    .listen-card .btn { flex: 0 0 auto; max-height: 48px; }
+
+    /* モーダル */
+    .modal {
+      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.78);
+      display: none; align-items: center; justify-content: center;
+      padding: 10px max(10px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      z-index: 60;
+    }
+    .modal.active { display: flex; }
+    .mbox {
+      background: var(--card); border: 2px solid var(--bdr); border-radius: 16px;
+      padding: 14px; width: 100%; max-width: 640px; max-height: 94dvh; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 9px; text-align: center;
+    }
+    .mbox .btn, .mbox .row2 { flex: 0 0 auto; max-height: none; }
+    .mtitle { font-size: 17px; font-weight: 900; }
+    .mscore { font-size: 30px; font-weight: 900; color: var(--pri); }
+    .mtext { font-size: 14px; font-weight: 700; line-height: 1.48; color: var(--sub); text-align: left; }
+
+    .inter-tip {
+      background: var(--warn-bg); color: var(--text); border: 1.5px solid var(--warn);
+      border-radius: 10px; padding: 8px 10px; text-align: left; font-size: 13px; line-height: 1.48;
+    }
+    .inter-tip b { display: block; color: var(--warn); font-size: 12px; margin-bottom: 2px; }
+
+    .st-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 4px; }
+    .st-chip { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 6px 4px; text-align: center; }
+    .st-chip b { display: block; font-size: 16px; color: var(--pri); }
+    .st-chip span { font-size: 10px; font-weight: 800; color: var(--sub); }
+    .st-list { display: flex; flex-direction: column; gap: 7px; text-align: left; }
+    .st-item { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 7px 9px; }
+    .st-item-head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+    .st-item-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--sub); margin-top: 3px; }
+    .st-bar { height: 6px; background: var(--bdr); border-radius: 999px; overflow: hidden; }
+    .st-bar-fill { height: 100%; background: var(--pri); }
+    .growth-box { background: var(--ok-bg); color: var(--ok); border-radius: 10px; padding: 7px 10px; font-size: 13px; font-weight: 800; text-align: center; }
+
+    .sum-tabs { display: flex; gap: 5px; flex-shrink: 0; }
+    .sum-tab {
+      flex: 1; font-size: 13px; font-weight: 800; padding: 7px 8px;
+      border-radius: 10px; border: 1.5px solid var(--bdr); background: var(--bg);
+      color: var(--sub); cursor: pointer;
+    }
+    .sum-tab.active { background: var(--pri); color: #fff; border-color: var(--pri); }
+    @media (prefers-color-scheme: dark) { .sum-tab.active { color: #071217; } }
+    .sum-panel { display: none; flex-direction: column; gap: 8px; }
+    .sum-panel.active { display: flex; }
+
+    .note-card { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 8px 10px; text-align: left; }
+    .note-card h3 { font-size: 14px; font-weight: 900; color: var(--pri); margin-bottom: 4px; }
+    .note-card ul { padding-left: 1.2em; font-size: 13px; font-weight: 700; line-height: 1.5; color: var(--sub); }
+    .note-card li { margin-bottom: 2px; }
+
+    .zoom-body {
+      background: #ffffff; border: 1.5px solid var(--bdr); border-radius: 12px;
+      padding: 6px; width: 100%; max-height: 62dvh; overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .zoom-body img, .zoom-body svg { width: 100%; height: auto; display: block; transition: width 0.2s ease; }
+    .zoom-body.zoomed img, .zoom-body.zoomed svg { width: 210%; max-width: none; }
+
+    .thumb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .thumb-tile { background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 10px; padding: 6px; cursor: pointer; text-align: center; }
+    .thumb-tile .tile-img { height: 74px; background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2px; }
+    .thumb-tile img, .thumb-tile svg { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+    .thumb-tile span { display: block; font-size: 11px; font-weight: 800; color: var(--pri); margin-top: 4px; }
+  </style>
 </head>
 <body>
 <div id="app">
   <header>
     <a class="hbtn" href="index.html">‹ 一覧</a>
-    <div class="htitle">共通テスト対策 情報</div>
+    <button class="hbtn" id="btn-back-home" style="display:none;" onclick="backToHome()">🏠 ホーム</button>
+    <div class="htitle">共通テスト対策　情報Ⅰ</div>
+    <button class="hbtn" onclick="openSummary('guide')">💡 攻略</button>
     <button class="hbtn" onclick="openStats()">成績</button>
   </header>
+
   <main>
-    <div id="v-home" class="view active">
-      <div class="card">
-        <div class="stats">
-          <div class="sbox"><span>収録</span><b id="s-tot">0</b></div>
-          <div class="sbox"><span>学習済</span><b id="s-lrn">0</b></div>
-          <div class="sbox"><span>要復習</span><b id="s-rev">0</b></div>
+    <div id="v-loading" class="view active">
+      <div class="status-card">
+        <div style="font-size:28px;" id="load-icon">⏳</div>
+        <div class="status-msg" id="load-msg">問題データ（joho1_data.json）を読み込んでいます...</div>
+        <button class="btn btn-pri" id="btn-retry" style="display:none;max-width:240px;" onclick="loadDatabase()">再読み込み</button>
+      </div>
+    </div>
+
+    <div id="v-home" class="view">
+      <div class="home-card">
+        <div class="moti-bar" id="moti-bar">
+          <span id="m-streak">🔥 連続 0日</span>
+          <span id="m-today">🎯 今日 0 / 20問</span>
         </div>
-        <div>
-          <label style="font-size:14px;font-weight:800;color:var(--sub);">領域（データ分析・セキュリティ重点）</label>
+
+        <div class="overall-box">
+          <div class="overall-top">
+            <span>全体進捗 <span class="overall-pct" id="ov-pct">0%</span></span>
+            <span class="overall-rank" id="ov-rank">🌱 ビギナー</span>
+          </div>
+          <div class="overall-track"><div class="overall-fill" id="ov-fill"></div></div>
+          <div class="overall-sub">
+            <span id="ov-count">0 / 0 問習得</span>
+            <span id="ov-next">次の目標まであと 1問</span>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box"><span>収録問題</span><b id="s-tot">0</b></div>
+          <div class="stat-box"><span>学習済み</span><b id="s-lrn">0</b></div>
+          <div class="stat-box"><span>要復習</span><b id="s-rev">0</b></div>
+        </div>
+
+        <div class="field">
+          <label for="f-cat">学習カテゴリー（独学ゼミナール準拠・全6分野）</label>
           <select id="f-cat">
-            <option value="ALL">全領域</option>
-            <option value="DATA">【重点】データ分析・統計</option>
-            <option value="SECURITY">【重点】セキュリティ・NW</option>
-            <option value="SOCIETY">情報社会・法規</option>
-            <option value="DESIGN">情報デザイン・表現</option>
-            <option value="PROG">プログラミング・計算</option>
+            <option value="ALL">全分野（バランス出題）</option>
+            <option value="MLABO">✨ 直前チェック50問（えむ心理研究室まとめ）</option>
+            <option value="BASE">⓪ 最初に覚える土台知識</option>
+            <option value="SOC">① 情報社会とデザイン（法規・著作権・セキュリティ）</option>
+            <option value="DIG">② デジタル化とコンピュータ（2進数・音画像・論理回路）</option>
+            <option value="ALG">③ アルゴリズムとプログラミング（トレース・探索整列）</option>
+            <option value="NET">④ ネットワークとデータの活用（TCP/IP・SQL・統計）</option>
+            <option value="APP">⑤ 共通テスト形式の応用</option>
           </select>
         </div>
-        <div>
-          <label style="font-size:14px;font-weight:800;color:var(--sub);">重要度</label>
+
+        <div class="field">
+          <label for="f-pri">重要度</label>
           <select id="f-pri">
             <option value="ALL">すべて</option>
-            <option value="S">★ 最重要</option>
-            <option value="A">● 重要</option>
+            <option value="S">★ 最重要（必出・計算・トレース）</option>
+            <option value="A">● 重要（標準・応用）</option>
           </select>
         </div>
-        <button class="btn btn-pri" onclick="startQuiz('NORMAL')">10問テスト開始</button>
-        <button class="btn btn-rev" id="b-rev" style="display:none;" onclick="startQuiz('REVIEW')">間違えた問題を復習（<span id="rev-n">0</span>問）</button>
-        <button class="btn btn-sec" onclick="startListen()">きくだけモード（誤答優先）</button>
+
+        <button class="btn btn-pri" onclick="startQuiz('NORMAL')">🚀 10問テストを始める</button>
+        <button class="btn btn-rev" id="b-rev" style="display:none;" onclick="startQuiz('REVIEW')">
+          ⚠️ 間違えた問題を復習（<span id="rev-n">0</span>問）
+        </button>
+        <button class="btn btn-link" onclick="openSummary('guide')">💡 攻略ロードマップ＆図解まとめ</button>
+        <button class="btn btn-sec" onclick="startListen()">🎧 きくだけモード（誤答優先）</button>
         <div class="row2">
           <button class="btn btn-sec" onclick="exportProg()">進捗エクスポート</button>
           <button class="btn btn-sec" onclick="importProg()">進捗インポート</button>
         </div>
       </div>
     </div>
+
     <div id="v-quiz" class="view">
-      <div class="bar"><div class="fill" id="p-fill"></div></div>
-      <div class="meta">
-        <span class="tag" id="q-cat"></span>
-        <span id="q-num">1 / 10</span>
-        <button class="hbtn" style="padding:4px 10px;" onclick="speak(curList[idx].q)">🔊 読上</button>
+      <div class="pbar"><div class="pfill" id="p-fill"></div></div>
+      <div class="meta-bar">
+        <span class="badge" id="q-cat">分野</span>
+        <span class="badge s" id="q-pri">★ 最重要</span>
+        <span class="badge combo" id="q-combo">🔥 2連続</span>
+        <span id="q-num" style="font-size:14px;font-weight:900;">1 / 10</span>
       </div>
-      <div class="qbox" id="q-txt"></div>
+      <div class="q-card">
+        <div class="q-text" id="q-txt"></div>
+        <pre class="q-code" id="q-code"></pre>
+        <div class="thumb-card" id="q-thumb" onclick="openCurrentFigure()">
+          <div class="thumb-media" id="q-thumb-media"></div>
+          <div class="thumb-badge">🔍 タップで拡大</div>
+          <div class="thumb-cap-mini" id="q-thumb-cap"></div>
+        </div>
+        <div class="q-foot">
+          <span id="q-id">ID</span>
+          <button class="tts-btn" onclick="speak(curList[idx].q)">🔊 問題を聞く</button>
+        </div>
+      </div>
       <div class="opts" id="opts"></div>
-      <div class="sheet" id="sheet">
-        <div id="sh-head" style="font-size:21px;font-weight:900;"></div>
-        <div id="sh-ans" style="font-size:18px;font-weight:900;color:var(--ok);"></div>
-        <div id="sh-exp" style="font-size:16px;font-weight:700;line-height:1.45;color:var(--sub);"></div>
-        <a id="sh-ref" class="btn btn-link" href="#" target="_blank" rel="noopener noreferrer">📊 図解・解説ページを開く ↗</a>
+
+      <div class="exp-sheet" id="sheet">
+        <div class="exp-head">
+          <span id="sh-head">⭕ 正解！</span>
+          <span id="sh-combo" style="font-size:13px;font-weight:900;color:var(--ok);"></span>
+        </div>
+        <div class="exp-ans" id="sh-ans"></div>
+        <div class="exp-body" id="sh-exp"></div>
+        <div class="thumb-card" id="sh-thumb" onclick="openCurrentFigure()">
+          <div class="thumb-media" id="sh-thumb-media" style="height:92px;"></div>
+          <div class="thumb-badge">🔍 タップで拡大</div>
+          <div class="thumb-cap-mini" id="sh-thumb-cap"></div>
+        </div>
         <div class="row2">
-          <button class="btn btn-sec" onclick="speak(curList[idx].options[curList[idx].ans] + '。' + curList[idx].exp)">🔊 解説</button>
-          <button class="btn btn-pri" onclick="nextQ()">次へ ›</button>
+          <a id="sh-ref" class="btn btn-link" href="https://joho1-exam-quiz.com/" target="_blank" rel="noopener noreferrer">📖 独学ゼミナール ↗</a>
+          <button class="btn btn-sec" onclick="openSummary('figs')">📊 図解一覧</button>
+        </div>
+        <div class="row2">
+          <button class="btn btn-sec" onclick="speak(curList[idx].options[curList[idx].ans] + '。' + curList[idx].exp)">🔊 解説を聞く</button>
+          <button class="btn btn-pri" onclick="nextQ()">次の問題へ ›</button>
         </div>
       </div>
     </div>
+
     <div id="v-listen" class="view">
-      <div class="card" style="text-align:center;">
-        <div id="l-head" style="font-size:18px;font-weight:900;color:var(--pri);">きくだけモード</div>
-        <div id="l-body" style="font-size:20px;font-weight:800;line-height:1.5;flex:1;display:flex;align-items:center;justify-content:center;"></div>
-        <button class="btn btn-sec" onclick="stopListen()">停止して戻る</button>
+      <div class="listen-card">
+        <div class="listen-badge" id="l-badge">きくだけモード</div>
+        <div class="listen-main" id="l-main">音声を準備しています...</div>
+        <button class="btn btn-sec" onclick="stopListen()">停止してホームへ戻る</button>
       </div>
     </div>
   </main>
 </div>
+
+<!-- 10問終了モーダル -->
 <div class="modal" id="m-res">
   <div class="mbox">
-    <div style="font-size:20px;font-weight:900;">10問完了</div>
-    <div id="r-sc" style="font-size:32px;font-weight:900;color:var(--pri);"></div>
-    <button class="btn btn-pri" onclick="closeRes('NEXT')">次の10問へ</button>
-    <button class="btn btn-rev" id="r-rev" onclick="closeRes('REV')">間違えた問題を復習</button>
-    <button class="btn btn-sec" onclick="closeRes('HOME')">ホームへ</button>
+    <div class="mtitle">10問セッション終了</div>
+    <div class="mscore" id="r-sc">0 / 10</div>
+    <div class="growth-box" id="r-growth"></div>
+    <div class="inter-tip" id="r-tip"></div>
+    <div class="mtext" id="r-msg" style="text-align:center;"></div>
+    <button class="btn btn-pri" onclick="closeRes('NEXT')">次の10問へ進む</button>
+    <button class="btn btn-rev" id="r-rev" onclick="closeRes('REV')">間違えた問題を復習する</button>
+    <div class="row2">
+      <button class="btn btn-sec" onclick="closeRes('STATS')">成績を見る</button>
+      <button class="btn btn-sec" onclick="closeRes('HOME')">ホームへ戻る</button>
+    </div>
   </div>
 </div>
+
+<!-- 30問アドバイスモーダル -->
 <div class="modal" id="m-adv">
   <div class="mbox">
-    <div style="font-size:19px;font-weight:900;">💡 30問達成アドバイス</div>
-    <div id="adv-txt" style="font-size:16px;font-weight:700;text-align:left;line-height:1.5;color:var(--sub);"></div>
-    <button class="btn btn-pri" onclick="document.getElementById('m-adv').classList.remove('active')">続ける</button>
+    <div class="mtitle">💡 30問達成！情報Ⅰ 高得点のコツ</div>
+    <div class="mtext" id="adv-txt"></div>
+    <button class="btn btn-pri" onclick="document.getElementById('m-adv').classList.remove('active')">学習を続ける</button>
   </div>
 </div>
+
+<!-- 成績モーダル -->
 <div class="modal" id="m-st">
   <div class="mbox">
-    <div style="font-size:19px;font-weight:900;">成績サマリー</div>
-    <div id="st-body" style="font-size:16px;font-weight:700;text-align:left;line-height:1.6;"></div>
-    <button class="btn btn-sec" onclick="document.getElementById('m-st').classList.remove('active')">閉じる</button>
+    <div class="mtitle">📊 学習成績・分野別達成率</div>
+    <div class="st-summary" id="st-summary"></div>
+    <div class="st-list" id="st-body"></div>
+    <button class="btn btn-pri" onclick="document.getElementById('m-st').classList.remove('active')">閉じる</button>
+    <button class="btn btn-sec" style="color:var(--ng);border-color:var(--ng);font-size:13px;" onclick="resetProg()">進捗データをリセット</button>
   </div>
 </div>
-<script>
-const BANK = [{"id": "DATA-01", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "データ分析における「質的データ」の例として最も適切なものはどれか。", "options": ["血液型やアンケートの賛否", "試験の点数や気温", "商品の販売個数", "通学にかかる所要時間"], "ans": 0, "exp": "血液型や賛否などのカテゴリー・順位を表すデータは「質的データ」。得点・気温・個数・時間など数値を測定するデータは「量的データ」です。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集（データ分析）を見る"}, {"id": "DATA-02", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "データに極端な「外れ値」が含まれるとき、全体の中心傾向を表す指標として平均値より適しているのはどれか。", "options": ["中央値（メジアン）", "分散", "標準偏差", "範囲（最大値－最小値）"], "ans": 0, "exp": "平均値は極端な外れ値に大きく引っ張られますが、データを大きさ順に並べた中央の値である「中央値」は外れ値の影響を受けにくい特徴があります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "代表値・分布の解説を見る"}, {"id": "DATA-03", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "箱ひげ図において、箱の縦幅（長さ）が表す統計量はどれか。", "options": ["四分位範囲（IQR：第3四分位数 － 第1四分位数）", "最大値と最小値の差", "平均値と最頻値の差", "分散の平方根"], "ans": 0, "exp": "箱の下端が第1四分位数（Q1）、上端が第3四分位数（Q3）で、箱の長さはデータの中央50%の散らばりを示す「四分位範囲（IQR）」を表します。", "refUrl": "https://www.dnc.ac.jp/kyotsu/kakomondai/", "refLabel": "大学入試センター過去問ページ"}, {"id": "DATA-04", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "2つの変数間の相関係数 r について、正しい記述はどれか。", "options": ["r は -1 以上 1 以下の値をとり、0 に近いほど直線的な相関が弱い", "r は 0 以上 1 以下の値をとり、1 に近いほど因果関係が確定する", "r が正の値のとき、一方が増えるともう一方は必ず減少する", "相関係数が 0.8 なら、必ず一方が原因で他方が結果である"], "ans": 0, "exp": "相関係数 r は -1 以上 1 以下の範囲をとります。「相関関係があっても因果関係があるとは限らない」点は共通テストの頻出ポイントです。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "相関・データ活用の解説を見る"}, {"id": "DATA-05", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "直接の因果関係がない2つの事象に、共通の背景要因（潜伏変数・交絡因子）が働くことで生じる見かけ上の相関を何と呼ぶか。", "options": ["擬似相関", "過学習", "標準化", "最頻値"], "ans": 0, "exp": "気温上昇によってアイスクリームの売上と水難事故件数の両方が増えるような見かけ上の相関を「擬似相関」と呼びます。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答（データ活用）を見る"}, {"id": "DATA-06", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "各データの「平均値との差（偏差）」を2乗して平均した散らばりの指標はどれか。", "options": ["分散", "中央値", "四分位数", "相関係数"], "ans": 0, "exp": "偏差の2乗平均が「分散」です。分散の正の平方根をとると、元のデータと同じ単位の「標準偏差」になります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "分散・標準偏差の解説を見る"}, {"id": "DATA-07", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "分散の正の平方根をとり、元のデータと単位をそろえてばらつきを表す指標はどれか。", "options": ["標準偏差", "四分位範囲", "最頻値", "共分散"], "ans": 0, "exp": "標準偏差は分散の正の平方根であり、元のデータと同じ単位で散らばりの大きさを評価できます。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "分散・標準偏差の解説を見る"}, {"id": "DATA-08", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "散布図のデータ傾向を直線 y = ax + b で表し、一方の変数から他方の値を予測する分析手法はどれか。", "options": ["単回帰分析（回帰直線）", "クラスター分析", "データクレンジング", "ハッシュ化"], "ans": 0, "exp": "2つの数値変数の線形関係を直線（回帰直線）に当てはめて傾向を捉えたり予測したりする手法が単回帰分析です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答（データ活用）を見る"}, {"id": "DATA-09", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "Web画面や施策などでA案とB案をランダムに割り当てて比較し、改善効果を検証する手法はどれか。", "options": ["A/Bテスト", "パレート分析", "主成分分析", "正規化"], "ans": 0, "exp": "条件を1点だけ変えたA案・B案を並行して比較検証し、クリック率や申込率などの違いを確かめる手法がA/Bテストです。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DATA-10", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "欠損値や表記ゆれ、異常値を含む生データを分析に適した状態に整える作業を何と呼ぶか。", "options": ["データクレンジング（前処理）", "暗号化", "デジタル署名", "標本化"], "ans": 0, "exp": "全角・半角の統一、欠損値や誤入力・外れ値の確認と修正など、分析の前に行うデータ整備がデータクレンジングです。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DATA-11", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "2つの変数がそれぞれの平均値からどの程度一緒に変動するかを表す統計量はどれか。", "options": ["共分散", "中央値", "最頻値", "範囲"], "ans": 0, "exp": "2変数の「偏差の積の平均」が共分散です。共分散を各変数の標準偏差の積で割ると相関係数になります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DATA-12", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "データの分布をいくつかの階級（区間）に分け、各階級に含まれる度数（件数）を棒グラフで表したものはどれか。", "options": ["ヒストグラム", "箱ひげ図", "散布図", "レーダーチャート"], "ans": 0, "exp": "ヒストグラムは量的データの分布形状（山が1つか2つか、左右の偏りなど）を把握するのに適しています。", "refUrl": "https://www.dnc.ac.jp/kyotsu/kakomondai/", "refLabel": "大学入試センター過去問ページ"}, {"id": "DATA-13", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "相関係数 r が -0.85 であるとき、2変数間の関係として適切なものはどれか。", "options": ["強い負の相関があり、一方が増えるともう一方は減る傾向がある", "強い正の相関があり、一方が増えるともう一方も増える傾向がある", "ほとんど相関がなく、無関係である", "相関係数がマイナスなので因果関係が確定している"], "ans": 0, "exp": "r が -1 に近いほど強い負の相関を示します。なお、相関の強さだけでは因果関係を断定できません。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DATA-14", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "データを大きさ順に並べたとき、下位25%の位置にある値を何と呼ぶか。", "options": ["第1四分位数", "第2四分位数", "第3四分位数", "最頻値"], "ans": 0, "exp": "下位25%が第1四分位数、中央（50%）が第2四分位数（中央値）、上位25%が第3四分位数です。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DATA-15", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "機械学習のモデルが学習データに過剰に適合しすぎて、未知のテストデータに対する予測精度が下がる現象を何と呼ぶか。", "options": ["過学習（オーバーフィッティング）", "擬似相関", "標本化定理", "鍵配送問題"], "ans": 0, "exp": "学習データ内のノイズや例外まで覚え込みすぎて汎用性を失う現象が過学習です。交差検証やデータ量の確保などで対策します。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答を確認する"}, {"id": "DATA-16", "cat": "DATA", "catName": "データ分析・統計", "priority": "A", "q": "データを複数のグループ（クラスタ）に分ける際、グループ内の要素同士を近くし、グループ同士を離す分析手法はどれか。", "options": ["クラスター分析", "単回帰分析", "二分探索", "パリティチェック"], "ans": 0, "exp": "特徴の似たデータをまとめる手法がクラスター分析です。顧客層や地域の類型化などに用いられます。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "SEC-01", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "データの暗号化と復号に「同じ鍵」を使う暗号方式はどれか。", "options": ["共通鍵暗号方式", "公開鍵暗号方式", "デジタル署名", "DNS"], "ans": 0, "exp": "共通鍵暗号方式は処理が高速ですが、通信相手に安全に鍵を届ける「鍵配送問題」に配慮する必要があります。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-02", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "公開鍵暗号方式を用いた「デジタル署名」において、送信者が署名を作成するときに使う鍵はどれか。", "options": ["送信者の秘密鍵", "送信者の公開鍵", "受信者の秘密鍵", "受信者の公開鍵"], "ans": 0, "exp": "送信者が自分の「秘密鍵」で署名し、受信者が送信者の「公開鍵」で検証することで、送信者の本人性とデータの改ざん有無を確認できます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-03", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "公開鍵暗号方式を使って、特定の受信者だけが読める暗号文を作るとき、暗号化に用いる鍵はどれか。", "options": ["受信者の公開鍵", "受信者の秘密鍵", "送信者の公開鍵", "送信者の秘密鍵"], "ans": 0, "exp": "受信者の「公開鍵」で暗号化すると、対応する「秘密鍵」を持つ受信者本人だけが復号して読めるようになります。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-04", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "端末やファイルを勝手に暗号化して使えなくし、復元の見返りに金銭（身代金）を要求する攻撃・マルウェアはどれか。", "options": ["ランサムウェア", "フィッシング", "DNS", "ファイアウォール"], "ans": 0, "exp": "ランサムウェア被害に備えるには、OSやソフトの更新とあわせて、普段からオフライン等でバックアップをとっておくことが重要です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-05", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "実在の金融機関やサービスを装ったメールやメッセージから偽サイトへ誘導し、IDやパスワードを盗み取る手口はどれか。", "options": ["フィッシング", "ランサムウェア", "単回帰分析", "二分探索"], "ans": 0, "exp": "フィッシング対策には、送信元やURLを確認することに加え、多要素認証やパスキーなどの強固な認証を導入することが有効です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-06", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "「パスワード（知識）」と「スマートフォンや認証アプリのワンタイムコード（所持）」を組み合わせた認証はどれか。", "options": ["二要素認証（多要素認証）", "平文認証", "共通鍵暗号", "標本化"], "ans": 0, "exp": "知識・所持・生体の異なる要素を組み合わせる「多要素認証（二要素認証）」により、パスワード漏洩時の不正ログインリスクを下げられます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-07", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "インターネット上で、人間が読みやすいドメイン名とIPアドレスを対応づけて変換する仕組みはどれか。", "options": ["DNS（Domain Name System）", "HTTPS", "SQLインジェクション", "四分位範囲"], "ans": 0, "exp": "DNSはドメイン名からIPアドレスを検索・解決する仕組みです。Web通信の暗号化・改ざん防止にはHTTPS（TLS）が使われます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-08", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "Webフォームなどの入力欄に不正なSQL文を混入させ、データベースの不正閲覧や改ざんを狙う攻撃はどれか。", "options": ["SQLインジェクション", "箱ひげ図分析", "デジタル署名", "加法混色"], "ans": 0, "exp": "SQLインジェクションを防ぐには、プレースホルダ（バインド機構）の使用や適切な入力値検証・エスケープ処理が基本となります。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-09", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "共通鍵暗号方式の「鍵配送問題」と「処理速度」の両面を補うため、鍵交換に公開鍵暗号、データ暗号化に共通鍵暗号を組み合わせる方式はどれか。", "options": ["ハイブリッド暗号方式", "パリティチェック方式", "線形探索方式", "逆ポーランド記法"], "ans": 0, "exp": "HTTPS（TLS）などの実際の通信では、安全な鍵共有と高速な暗号化を両立するハイブリッド暗号方式が広く使われます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-10", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "元のデータから固定長のビット列（ハッシュ値）を計算し、元のデータを元に戻せないようにした一方向関数はどれか。", "options": ["ハッシュ関数", "共通鍵暗号", "標本化定理", "箱ひげ図"], "ans": 0, "exp": "ハッシュ関数はパスワードの安全な保管や、ダウンロードしたファイルの改ざん検知などに利用されます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-11", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "内部ネットワークと外部ネットワークの境界に置き、通信ルールに基づいて不正なアクセスの通過を防ぐ仕組みはどれか。", "options": ["ファイアウォール", "DNSサーバ", "ヒストグラム", "スタック"], "ans": 0, "exp": "ファイアウォールはIPアドレスやポート番号、通信方向などの条件をもとに外部からの不正アクセスや不要な通信を遮断します。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-12", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "多数の端末から一斉に大量の要求やパケットを送りつけ、Webサーバやネットワークを過負荷にしてサービスを停止させる攻撃はどれか。", "options": ["DDoS攻撃", "フィッシング", "データクレンジング", "A/Bテスト"], "ans": 0, "exp": "分散した複数の端末（ボットネットなど）から同時に大量の負荷をかける攻撃がDDoS攻撃（分散型サービス妨害攻撃）です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-13", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "公開鍵が本人のものであることを第三者機関が証明する電子的な証明書を発行する機関を何と呼ぶか。", "options": ["認証局（CA）", "検索エンジン", "サンプリング周波数", "中央値"], "ans": 0, "exp": "認証局（Certificate Authority）が発行するディジタル証明書により、通信相手の公開鍵の正当性やなりすましでないことを確認できます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-14", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "人間の心理的な油断や善意につけ込み、パスワードを聞き出したりIDカードを尾行して入室したりする手口はどれか。", "options": ["ソーシャルエンジニアリング", "二分探索", "回帰分析", "量子化"], "ans": 0, "exp": "技術的な脆弱性ではなく人の行動や心理を狙う手口がソーシャルエンジニアリングです。社員教育やルール徹底が重要です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "セキュリティ用語集を見る"}, {"id": "SEC-15", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "パスワードを推測して突破する攻撃のうち、辞書にある単語やよく使われる文字列を総当たりで試す手法はどれか。", "options": ["辞書攻撃", "擬似相関", "標本化", "キュー"], "ans": 0, "exp": "辞書攻撃やブルートフォース攻撃を防ぐには、推測されにくい複雑なパスワードの設定やアカウントロック、多要素認証が有効です。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SEC-16", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "A", "q": "ネットワーク上の端末を識別するために割り当てられる論理的な番号（IPv4では32ビット、IPv6では128ビット）はどれか。", "options": ["IPアドレス", "ハッシュ値", "四分位数", "XOR"], "ans": 0, "exp": "インターネット上の通信では、送信元と宛先のIPアドレスをもとにパケットが経路制御（ルーティング）されて届けられます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SOC-01", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "S", "q": "日本の著作権法における著作権の発生について、正しいものはどれか。", "options": ["著作物を創作した時点で自動的に発生する（無方式主義）", "文化庁へ申請・登録しないと発生しない", "書籍やWebで公開した時点で初めて発生する", "©マークを記載しないと保護されない"], "ans": 0, "exp": "日本の著作権法は「無方式主義」をとっており、特別な登録手続きがなくても創作した瞬間に著作権が発生します。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "情報社会用語集を見る"}, {"id": "SOC-02", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "S", "q": "他人の著作物をレポート等で適法に「引用」する際のルールとして、正しいものはどれか。", "options": ["引用部分が明確に区別され、出典（出所）を明示する", "著作者に連絡すれば出典の記載は不要である", "自分の文章より引用部分の方が長くてもよい", "改変して自分の表現に混ぜてよい"], "ans": 0, "exp": "適法な引用には、自分の文章が「主」・引用が「従」であること、引用部分が区別されていること、そして「出所の明示」が必要です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "情報社会用語集を見る"}, {"id": "SOC-03", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "S", "q": "他人のIDやパスワードを無断で入力してシステムへログインする行為などを規制する法律はどれか。", "options": ["不正アクセス禁止法", "著作権法", "特許法", "景品表示法"], "ans": 0, "exp": "不正アクセス禁止法は、他人のID・パスワードの不正入力による侵入や、他人のID・パスワードを無断で第三者に教える行為などを規制します。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "情報社会用語集を見る"}, {"id": "SOC-04", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "A", "q": "生存する個人に関する情報で、氏名や生年月日などにより特定の個人を識別できるもの（個人識別符号を含む）を何と呼ぶか。", "options": ["個人情報", "擬似相関", "共通鍵暗号", "論理積"], "ans": 0, "exp": "個人情報の取得・利用・第三者提供などについては個人情報保護法により適正な取り扱いが定められています。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SOC-05", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "A", "q": "著作者が「条件を守れば作品を自由に利用してよい」という意思表示を行うためのライセンスルールはどれか。", "options": ["クリエイティブ・コモンズ・ライセンス（CC）", "パブリックドメイン暗号", "サンプリング定理", "バイナリサーチ"], "ans": 0, "exp": "BY（表示）・NC（非営利）・ND（改変禁止）・SA（継承）などの条件を組み合わせて利用範囲を明示できます。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "情報社会用語集を見る"}, {"id": "SOC-06", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "A", "q": "情報システムやSNSなどの利用において、法令遵守だけでなく社会規範や相手への配慮を含めて適切に行動する姿勢を何と呼ぶか。", "options": ["情報モラル", "擬似相関", "量子化", "オーバーフィッティング"], "ans": 0, "exp": "情報モラルは、単なる禁止事項の暗記ではなく、情報社会の一員として安全・適切に判断し行動する態度を指します。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "SOC-07", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "A", "q": "SNSなどで根拠の不確かな噂や誤情報が急速に拡散し、社会的混乱や風評被害につながる現象はどれか。", "options": ["デマ・フェイクニュースの拡散", "単回帰分析", "共通鍵暗号化", "二分探索"], "ans": 0, "exp": "情報を発信・拡散する前に、一次情報や複数の信頼できる情報源でファクトチェックを行うことが重要です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答を確認する"}, {"id": "SOC-08", "cat": "SOCIETY", "catName": "情報社会・法規", "priority": "A", "q": "情報技術やインターネットへのアクセス・利用能力の格差によって生じる社会・経済的な格差を何と呼ぶか。", "options": ["情報格差（デジタルデバイド）", "擬似相関", "デジタル署名", "四分位範囲"], "ans": 0, "exp": "機器や通信環境、活用スキルの差による不利益や格差を解消する取り組みも情報社会の重要な課題です。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "DES-01", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "S", "q": "アナログ音声をデジタルデータに変換する3段階の正しい順序はどれか。", "options": ["標本化 → 量子化 → 符号化", "量子化 → 標本化 → 符号化", "符号化 → 量子化 → 標本化", "標本化 → 符号化 → 量子化"], "ans": 0, "exp": "一定時間ごとに値を区切る「標本化」、振幅を段階的な数値に丸める「量子化」、2進数にする「符号化」の順でデジタル化します。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "デジタル表現の解説を見る"}, {"id": "DES-02", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "S", "q": "標本化定理において、元のアナログ信号を歪みなく再現するために必要なサンプリング周波数は、最大周波数の何倍以上か。", "options": ["2倍以上", "1/2倍以上", "5倍以上", "10倍以上"], "ans": 0, "exp": "標本化定理により、扱う信号の最大周波数の2倍以上のサンプリング周波数が必要とされます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "DES-03", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "S", "q": "ディスプレイなどで用いられる光の三原色（R・G・B）をすべて最大の強さで混ぜ合わせると何色になるか。", "options": ["白", "黒", "赤紫", "黄色"], "ans": 0, "exp": "光の三原色は混ぜるほど明るくなる「加法混色」であり、R・G・Bを最大で混ぜると白になります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "色・画像表現の解説を見る"}, {"id": "DES-04", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "S", "q": "年齢や障害の有無に関わらず、すべての人が情報やサービスを利用できるようにする配慮の考え方はどれか。", "options": ["アクセシビリティ", "擬似相関", "共通鍵暗号", "線形探索"], "ans": 0, "exp": "アクセシビリティは、心身の特性や利用環境の違いに関わらず情報や機能へアクセスしやすくする視点です。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "DES-05", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "A", "q": "音声データの「量子化ビット数」を大きくすると、一般的にどのような変化が起きるか。", "options": ["振幅の段階が細かくなり音質は向上するが、データ量は増える", "時間間隔が広くなり、データ量は減る", "音質は下がるが、通信速度は速くなる", "ノイズは増えるが、ファイルサイズは小さくなる"], "ans": 0, "exp": "量子化ビット数を増やすと階調表現が細かくなり滑らかな音になりますが、1サンプルあたりのビット数が増えるためデータ量は大きくなります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DES-06", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "A", "q": "印刷物などで用いられる色表現のうち、シアン・マゼンタ・イエロー（＋黒）を混ぜるほど暗くなる混色方式はどれか。", "options": ["減法混色", "加法混色", "二進法変換", "デジタル署名"], "ans": 0, "exp": "絵の具やインクなどの色材を重ねると反射する光が減って暗くなる仕組みが減法混色です。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "DES-07", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "A", "q": "特定の利用状況において、製品やサービスがどれだけ使いやすく、目的を達成しやすいかを表す概念はどれか。", "options": ["ユーザビリティ", "擬似相関", "ハッシュ化", "排他的論理和"], "ans": 0, "exp": "ユーザビリティは「使い勝手」に関する概念です。すべての人が利用可能かという広い視点のアクセシビリティと区別して押さえましょう。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "DES-08", "cat": "DESIGN", "catName": "情報デザイン・表現", "priority": "A", "q": "文字をコンピュータで扱うために数値と対応づけた符号体系のうち、世界中の多くの文字を扱える文字コードはどれか。", "options": ["Unicode（UTF-8など）", "JPEG", "MP4", "DNS"], "ans": 0, "exp": "UTF-8はUnicodeの符号化方式の一つで、英数字や日本語、絵文字など幅広い文字を扱える標準的な文字コードです。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "PRG-01", "cat": "PROG", "catName": "プログラミング・計算", "priority": "S", "q": "あらかじめ昇順または降順に整列された配列から目的の値を探すとき、中央の要素と比べて探索範囲を毎回半分に絞る手法はどれか。", "options": ["二分探索", "線形探索", "擬似相関", "ランサムウェア"], "ans": 0, "exp": "二分探索は整列済みデータに対して有効で、探索範囲を半分ずつ減らせるためデータ量が多くても少ない比較回数で見つけられます。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答（プログラミング）を見る"}, {"id": "PRG-02", "cat": "PROG", "catName": "プログラミング・計算", "priority": "S", "q": "2つのビット入力が「異なる（0と1、または1と0）」ときだけ 1 を出力し、「同じ」ときは 0 を出力する論理演算はどれか。", "options": ["XOR（排他的論理和）", "AND（論理積）", "OR（論理和）", "NOT（論理否定）"], "ans": 0, "exp": "XORは2入力が異なるとき 1、同じとき 0 になります。2入力がともに 1 のときだけ 1 になるのがAND、どちらか一方が 1 なら 1 になるのがORです。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "論理演算・回路の解説を見る"}, {"id": "PRG-03", "cat": "PROG", "catName": "プログラミング・計算", "priority": "S", "q": "16進数の「1A」を10進数で表した値はどれか。", "options": ["26", "16", "20", "110"], "ans": 0, "exp": "16進数の A は10進数の 10 を表すため、1 × 16 + 10 × 1 = 26 になります。", "refUrl": "https://www.dnc.ac.jp/kyotsu/kakomondai/", "refLabel": "大学入試センター過去問ページ"}, {"id": "PRG-04", "cat": "PROG", "catName": "プログラミング・計算", "priority": "S", "q": "先に入れたデータから順に取り出す「先入れ先出し（FIFO）」のデータ構造はどれか。", "options": ["キュー", "スタック", "箱ひげ図", "公開鍵"], "ans": 0, "exp": "先入れ先出し（FIFO）は「キュー（待ち行列）」、後に入れたものから先に取り出す後入れ先出し（LIFO）は「スタック」です。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "PRG-05", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "配列の先頭から順番に目的の値を探していく基本的な探索アルゴリズムはどれか。", "options": ["線形探索", "二分探索", "クイックソート", "ハッシュ化"], "ans": 0, "exp": "線形探索はデータが整列されていなくても使える反面、データ数が多いと先頭から順に調べるため比較回数が多くなります。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答を確認する"}, {"id": "PRG-06", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "後に入れたデータから先に取り出す「後入れ先出し（LIFO）」のデータ構造はどれか。", "options": ["スタック", "キュー", "散布図", "ファイアウォール"], "ans": 0, "exp": "関数の呼び出し履歴やブラウザの「戻る」操作などでは、後入れ先出し（LIFO）のスタック構造が活用されます。", "refUrl": "https://e-words.jp/p/e-h1-list.html", "refLabel": "e-Words 情報Ⅰ用語集を見る"}, {"id": "PRG-07", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "2進数の「1011」を10進数で表した値はどれか。", "options": ["11", "9", "13", "7"], "ans": 0, "exp": "1×8 + 0×4 + 1×2 + 1×1 = 8 + 2 + 1 = 11 になります。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "用語集を確認する"}, {"id": "PRG-08", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "現実の事象や仕組みから本質的な要素を取り出して簡略化した表現を何と呼ぶか。", "options": ["モデル（モデル化）", "擬似相関", "ランサムウェア", "キャッシング"], "ans": 0, "exp": "複雑な対象をモデル化し、計算機上でシミュレーションを行うことで、予測や検証に役立てることができます。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "一問一答を確認する"}, {"id": "WEB-4-001", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「章ページでは全用語を通しで読めます．見出しの「アプリで見る」から，カードで1語ずつ確認できるアプリ版へ直接移動できます．用語を読んだあとは，共通テスト形式の4択ドリル「共テ情報I 知識問題1000本ノック!!」で定着を確かめられます．」", "options": ["この用語集について", "一貫したカリキュラム設計", "再現性・汎用性のある思考法の体系化", "オンデマンドでいつでも・どこでも・何度でも"], "ans": 0, "exp": "正解は「この用語集について」です。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-002", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「用語の暗記だけでなく，共通テスト形式の4択で知識の使い方を確かめられます． 共テ情報I 知識問題1000本ノック!!（全214問） へ．」", "options": ["知識を確かめる", "どれを選ぶか迷ったら，気軽にご相談ください", "この教材について", "アプリとして使う"], "ans": 0, "exp": "正解は「知識を確かめる」です。", "refUrl": "https://juken7.net/jouhou1/yougo/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-003", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「インプットからアウトプットまで，学習の流れを一貫して設計しています． 基礎理解 → 定着演習 → 実践演習 → 思考力養成 の各段階が明確で，迷わず段階的に学習を進められます．」", "options": ["一貫したカリキュラム設計", "この教材について", "DDoS攻撃", "PDCA サイクル"], "ans": 0, "exp": "正解は「一貫したカリキュラム設計」です。", "refUrl": "https://juken7.net/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-004", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「解法を「見た目のパターン」ではなく，「考え方のパターン」で整理・体系化しています． 状況に応じて適切な解法を選択できる力を養い，初見の問題にも対応できるようになります．」", "options": ["再現性・汎用性のある思考法の体系化", "アプリとして使う", "PDCA サイクル", "アクセス制御"], "ans": 0, "exp": "正解は「再現性・汎用性のある思考法の体系化」です。", "refUrl": "https://juken7.net/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-005", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「オンデマンド形式の講義なので，自分のペースで，必要な部分をくり返し学習できます． 見やすい板書と高品質な映像・音声で，対面授業を超える学習体験を提供します．」", "options": ["オンデマンドでいつでも・どこでも・何度でも", "DoS 攻撃", "Society 5.0", "サイバーセーフティ"], "ans": 0, "exp": "正解は「オンデマンドでいつでも・どこでも・何度でも」です。", "refUrl": "https://juken7.net/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-006", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「受講前のご相談を公式LINEで受付中．サービスの内容や学習の進め方など，お気軽にどうぞ．」", "options": ["どれを選ぶか迷ったら，気軽にご相談ください", "IDS/IPS", "エスクローサービス", "ディジタルタトゥー"], "ans": 0, "exp": "正解は「どれを選ぶか迷ったら，気軽にご相談ください」です。", "refUrl": "https://juken7.net/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-007", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「共通テスト「情報Ⅰ」対策に，重要用語 386 語（11章・45節・図解 318 点）と， 4択 214 問（8分野）を用意しています．記録はこの端末の中だけに保存され，登録は要りません．」", "options": ["この学習ページについて", "SMS 認証", "スパイウェア", "パブリシティ権"], "ans": 0, "exp": "正解は「この学習ページについて」です。", "refUrl": "https://juken7.net/jouhou1/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-008", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ホーム画面に追加すると全画面で開けます．」", "options": ["アプリとして使う", "SSL/TLS", "ディジタルタトゥー", "プライバシーマーク"], "ans": 0, "exp": "正解は「アプリとして使う」です。", "refUrl": "https://juken7.net/jouhou1/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-009", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「回答すると4つの選択肢すべての解説が表示され，関連する用語から用語集へ移動できます．正解した問題は通常は出題されず，誤答・ブックマークした問題は復習モードで繰り返し確認できます（記録はこの端末にだけ保存されます）．」", "options": ["この教材について", "ウイルス対策ソフトウェア", "パターンファイル", "ワーム"], "ans": 0, "exp": "正解は「この教材について」です。", "refUrl": "https://juken7.net/jouhou1/chishiki-knock/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-010", "cat": "DATA", "catName": "データ分析・統計", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「問題一覧（全214問） から，読みたい問題を選べます．順番に解くならアプリのドリルが便利です．」", "options": ["問題を選んで解く", "キーロガー", "パブリックドメイン", "公表権"], "ans": 0, "exp": "正解は「問題を選んで解く」です。", "refUrl": "https://juken7.net/jouhou1/chishiki-knock/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-013", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「AIの利用に関する道徳的な考え方」", "options": ["AI倫理", "ゼロデイ攻撃", "基本四情報", "秘密鍵暗号方式"], "ans": 0, "exp": "正解は「AI倫理」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-014", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「大量のデータを送りつけてシステムを停止させる攻撃」", "options": ["DDoS攻撃", "トロイの木馬", "産業財産権", "(3) コンピュータとプログラミング"], "ans": 0, "exp": "正解は「DDoS攻撃」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-015", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「サーバーを停止させる目的の攻撃」", "options": ["DoS 攻撃", "ハッカー", "情報システム", "オンデマンドでいつでも・どこでも・何度でも"], "ans": 0, "exp": "正解は「DoS 攻撃」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-016", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「インターネットを利用した商取引」", "options": ["e-コマース", "パブリシティ権", "情報モラル", "アプリとして使う"], "ans": 0, "exp": "正解は「e-コマース」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-017", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「オンラインで商品を販売するウェブサイト」", "options": ["EC サイト", "フィッシング詐欺", "電子マネー", "POS システム"], "ans": 0, "exp": "正解は「EC サイト」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-018", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「侵入検知システム/侵入防止システム：不正アクセスを検知・防止する仕組み」", "options": ["IDS/IPS", "フェイクニュース", "秘密鍵暗号方式", "ウイルス対策ソフトウェア"], "ans": 0, "exp": "正解は「IDS/IPS」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-019", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「業務を改善するための循環プロセス」", "options": ["PDCA サイクル", "マルウェア", "(1) 情報社会と問題解決", "サイバー攻撃"], "ans": 0, "exp": "正解は「PDCA サイクル」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-020", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「店舗での売上情報を管理する仕組み」", "options": ["POS システム", "リスクアセスメント", "この用語集について", "ディジタル証明書"], "ans": 0, "exp": "正解は「POS システム」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-021", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「公開鍵暗号方式の代表的なアルゴリズム」", "options": ["RSA 暗号方式", "暗号化", "どれを選ぶか迷ったら，気軽にご相談ください", "パブリシティ権"], "ans": 0, "exp": "正解は「RSA 暗号方式」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-022", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「携帯電話のSMSを使った認証方式」", "options": ["SMS 認証", "個人情報保護", "この学習ページについて", "プライバシーマーク"], "ans": 0, "exp": "正解は「SMS 認証」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-023", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「オンラインでつながるためのサービス」", "options": ["SNS", "産業財産権", "e-コマース", "ワンクリック詐欺"], "ans": 0, "exp": "正解は「SNS」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-024", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「デジタル技術を活用した未来社会の構想」", "options": ["Society 5.0", "商標権", "RSA 暗号方式", "産業財産権"], "ans": 0, "exp": "正解は「Society 5.0」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-025", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「安全な通信を実現するプロトコル」", "options": ["SSL/TLS", "情報セキュリティ", "ウイルス対策ソフトウェア", "情報セキュリティポリシー"], "ans": 0, "exp": "正解は「SSL/TLS」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-026", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「許可されたユーザーだけがアクセスできるようにする仕組み」", "options": ["アクセス制御", "情報の機密性", "コンピュータウイルス", "著作隣接権"], "ans": 0, "exp": "正解は「アクセス制御」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-027", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「マルウェアを検出・駆除するソフト」", "options": ["ウイルス対策ソフトウェア", "生体認証", "セキュリティポリシー", "不正アクセス"], "ans": 0, "exp": "正解は「ウイルス対策ソフトウェア」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-028", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ウィルスの特徴情報を記録したデータ」", "options": ["ウィルス定義ファイル", "電子マネー", "トロイの木馬", "(4) 情報通信ネットワークとデータの活用"], "ans": 0, "exp": "正解は「ウィルス定義ファイル」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-029", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「取引の安全性を保証する仲介サービス」", "options": ["エスクローサービス", "二要素認証", "ハッシュ値", "どれを選ぶか迷ったら，気軽にご相談ください"], "ans": 0, "exp": "正解は「エスクローサービス」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-030", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「キーボード入力を記録するマルウェア」", "options": ["キーロガー", "不正アクセス", "フィルターバブル", "AI倫理"], "ans": 0, "exp": "正解は「キーロガー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-031", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「著作物の利用を許可するためのルール」", "options": ["クリエイティブ・コモンズ", "情報社会の問題解決：共通テスト情報I用語リスト", "マルウェア", "POS システム"], "ans": 0, "exp": "正解は「クリエイティブ・コモンズ」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-032", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「自己増殖し被害を与える不正プログラム」", "options": ["コンピュータウイルス", "(3) コンピュータとプログラミング", "ワンクリック詐欺", "ウイルス対策ソフトウェア"], "ans": 0, "exp": "正解は「コンピュータウイルス」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-033", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「インターネットを安全に利用するための対策」", "options": ["サイバーセーフティ", "この用語集について", "個人情報保護法", "スパイウェア"], "ans": 0, "exp": "正解は「サイバーセーフティ」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-034", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ネットを使った不正行為や破壊活動」", "options": ["サイバー攻撃", "再現性・汎用性のある思考法の体系化", "商標権", "トロイの木馬"], "ans": 0, "exp": "正解は「サイバー攻撃」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-035", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報を盗む目的で作られたマルウェア」", "options": ["スパイウェア", "この学習ページについて", "情報の可用性", "パブリックドメイン"], "ans": 0, "exp": "正解は「スパイウェア」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-036", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ソフトウェアの脆弱性を修正する更新プログラム」", "options": ["セキュリティパッチ", "問題を選んで解く", "知的財産権", "プロバイダ責任制限法"], "ans": 0, "exp": "正解は「セキュリティパッチ」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-037", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「組織が定める情報セキュリティの指針」", "options": ["セキュリティポリシー", "AI倫理", "二要素認証", "暗号化"], "ans": 0, "exp": "正解は「セキュリティポリシー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-038", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「パッチ：システムの脆弱性を修正するソフトウェア」", "options": ["セキュリティ更新プログラム", "e-コマース", "復号", "残存性"], "ans": 0, "exp": "正解は「セキュリティ更新プログラム」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-039", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「修正されていない脆弱性を狙った攻撃」", "options": ["ゼロデイ攻撃", "PDCA サイクル", "(4) 情報通信ネットワークとデータの活用", "情報の可用性"], "ans": 0, "exp": "正解は「ゼロデイ攻撃」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-040", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ネット上に残る消せない情報や履歴」", "options": ["ディジタルタトゥー", "SMS 認証", "再現性・汎用性のある思考法の体系化", "電子マネー"], "ans": 0, "exp": "正解は「ディジタルタトゥー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-041", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「オンラインでの信頼性を保証する証明」", "options": ["ディジタル証明書", "SSL/TLS", "この教材について", "不正アクセス禁止法"], "ans": 0, "exp": "正解は「ディジタル証明書」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-042", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「正規のプログラムに偽装した不正プログラム」", "options": ["トロイの木馬", "ウィルス定義ファイル", "DDoS攻撃", "解いたら、アプリで反復トレーニング"], "ans": 0, "exp": "正解は「トロイの木馬」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-043", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「インターネットに過度に依存する状態」", "options": ["ネット依存症", "クリエイティブ・コモンズ", "PDCA サイクル", "この学習ページについて"], "ans": 0, "exp": "正解は「ネット依存症」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-044", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ウィルス対策ソフトが使用する識別データ」", "options": ["パターンファイル", "サイバー攻撃", "Society 5.0", "DDoS攻撃"], "ans": 0, "exp": "正解は「パターンファイル」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-045", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「高度な技術を持つコンピュータ専門家」", "options": ["ハッカー", "セキュリティポリシー", "エスクローサービス", "RSA 暗号方式"], "ans": 0, "exp": "正解は「ハッカー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-046", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データを固定長の値に変換する技術」", "options": ["ハッシュ化", "ディジタルタトゥー", "サイバー攻撃", "ウィルス定義ファイル"], "ans": 0, "exp": "正解は「ハッシュ化」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-047", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データを固定長の文字列に変換した値」", "options": ["ハッシュ値", "ネット依存症", "ゼロデイ攻撃", "スパイウェア"], "ans": 0, "exp": "正解は「ハッシュ値」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-048", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「有名人の名前や肖像を保護する権利」", "options": ["パブリシティ権", "ハッシュ化", "パターンファイル", "トロイの木馬"], "ans": 0, "exp": "正解は「パブリシティ権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-050", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「外部からの不正アクセスを防ぐ仕組み」", "options": ["ファイアウォール", "フィンテック", "プライバシーマーク", "マルウェア"], "ans": 0, "exp": "正解は「ファイアウォール」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-051", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「偽のサイトやメールで情報を盗む詐欺」", "options": ["フィッシング詐欺", "プロバイダ責任制限法", "リスクアセスメント", "基本四情報"], "ans": 0, "exp": "正解は「フィッシング詐欺」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-052", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「自分に偏った情報しか見えなくなる現象」", "options": ["フィルターバブル", "ランサムウェア", "共通鍵暗号方式", "氏名表示権"], "ans": 0, "exp": "正解は「フィルターバブル」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-053", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「金融とITを融合した技術やサービス」", "options": ["フィンテック", "ワンクリック詐欺", "残存性", "情報の機密性"], "ans": 0, "exp": "正解は「フィンテック」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-054", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「虚偽の情報を意図的に広めたニュース」", "options": ["フェイクニュース", "共通鍵暗号方式", "情報セキュリティ", "電子署名"], "ans": 0, "exp": "正解は「フェイクニュース」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-055", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「個人情報保護が認められた事業者に与えられるマーク」", "options": ["プライバシーマーク", "公表権", "情報公開", "復号"], "ans": 0, "exp": "正解は「プライバシーマーク」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-056", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「インターネット上のトラブルにおける責任を制限する法律」", "options": ["プロバイダ責任制限法", "氏名表示権", "電子署名", "この用語集について"], "ans": 0, "exp": "正解は「プロバイダ責任制限法」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-057", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ウイルス、スパイウェア、ランサムウェアなど悪意を持つソフトウェアの総称」", "options": ["マルウェア", "情報システム", "不正アクセス", "アプリとして使う"], "ans": 0, "exp": "正解は「マルウェア」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-058", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「システムで個人を識別するための識別子」", "options": ["ユーザ ID", "情報の可用性", "(2) コミュニケーションと情報デザイン", "DoS 攻撃"], "ans": 0, "exp": "正解は「ユーザ ID」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-059", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データを人質に金銭を要求する不正プログラム」", "options": ["ランサムウェア", "情報公開", "知識を確かめる", "SMS 認証"], "ans": 0, "exp": "正解は「ランサムウェア」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-060", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「リスクを評価して対策を検討する作業」", "options": ["リスクアセスメント", "著作隣接権", "この学習ページについて", "エスクローサービス"], "ans": 0, "exp": "正解は「リスクアセスメント」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-061", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「自己増殖して拡散するマルウェア」", "options": ["ワーム", "電子認証", "アプリとして使う", "セキュリティパッチ"], "ans": 0, "exp": "正解は「ワーム」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-062", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「クリックだけで料金を請求する詐欺」", "options": ["ワンクリック詐欺", "秘密鍵暗号方式", "EC サイト", "ネット依存症"], "ans": 0, "exp": "正解は「ワンクリック詐欺」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-063", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データを第三者に読まれないよう変換する技術」", "options": ["暗号化", "復号", "SMS 認証", "ファイアウォール"], "ans": 0, "exp": "正解は「暗号化」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-064", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「個人情報の中でも特に重要な4つの情報」", "options": ["基本四情報", "(2) コミュニケーションと情報デザイン", "ウイルス対策ソフトウェア", "マルウェア"], "ans": 0, "exp": "正解は「基本四情報」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-065", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「1つの鍵を共有してデータを暗号化する方式」", "options": ["共通鍵暗号方式", "解いたら、アプリで反復トレーニング", "コンピュータウイルス", "基本四情報"], "ans": 0, "exp": "正解は「共通鍵暗号方式」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-066", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「個人情報を安全に管理するための仕組み」", "options": ["個人情報保護", "一貫したカリキュラム設計", "セキュリティポリシー", "商標権"], "ans": 0, "exp": "正解は「個人情報保護」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-067", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「個人情報を適切に扱うための法律」", "options": ["個人情報保護法", "どれを選ぶか迷ったら，気軽にご相談ください", "トロイの木馬", "情報モラル"], "ans": 0, "exp": "正解は「個人情報保護法」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-068", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「著作物を公開するかどうかを決める権利」", "options": ["公表権", "この教材について", "ハッシュ値", "電子認証"], "ans": 0, "exp": "正解は「公表権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-069", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「産業に関連する知的財産を保護する権利」", "options": ["産業財産権", "アプリとして使う", "フィルターバブル", "情報社会の問題解決：共通テスト情報I用語リスト"], "ans": 0, "exp": "正解は「産業財産権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-070", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報が一度発信されると消えにくい性質」", "options": ["残存性", "DoS 攻撃", "マルウェア", "知識を確かめる"], "ans": 0, "exp": "正解は「残存性」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-071", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「著作物に著作者名を表示する権利」", "options": ["氏名表示権", "IDS/IPS", "ワンクリック詐欺", "この教材について"], "ans": 0, "exp": "正解は「氏名表示権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-072", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ブランド名やロゴを保護する権利」", "options": ["商標権", "RSA 暗号方式", "個人情報保護法", "e-コマース"], "ans": 0, "exp": "正解は「商標権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-073", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「自分の顔や姿を勝手に使用されない権利」", "options": ["肖像権", "Society 5.0", "商標権", "SNS"], "ans": 0, "exp": "正解は「肖像権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-074", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報を管理・利用するためのシステム」", "options": ["情報システム", "ウイルス対策ソフトウェア", "情報の機密性", "キーロガー"], "ans": 0, "exp": "正解は「情報システム」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-075", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報を守るための技術と管理方法」", "options": ["情報セキュリティ", "キーロガー", "著作隣接権", "セキュリティポリシー"], "ans": 0, "exp": "正解は「情報セキュリティ」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-076", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報を守るための組織の基本方針」", "options": ["情報セキュリティポリシー", "サイバーセーフティ", "認証", "パターンファイル"], "ans": 0, "exp": "正解は「情報セキュリティポリシー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-077", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報が必要なときに利用可能であること」", "options": ["情報の可用性", "セキュリティパッチ", "情報社会の問題解決：共通テスト情報I用語リスト", "フィッシング詐欺"], "ans": 0, "exp": "正解は「情報の可用性」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-078", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報が許可された人だけに見られること」", "options": ["情報の機密性", "ゼロデイ攻撃", "解いたら、アプリで反復トレーニング", "ユーザ ID"], "ans": 0, "exp": "正解は「情報の機密性」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-079", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「情報を正しく使うためのルールや考え方」", "options": ["情報モラル", "トロイの木馬", "オンデマンドでいつでも・どこでも・何度でも", "共通鍵暗号方式"], "ans": 0, "exp": "正解は「情報モラル」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-080", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「行政や企業が情報を公開する仕組み」", "options": ["情報公開", "ハッカー", "問題を選んで解く", "商標権"], "ans": 0, "exp": "正解は「情報公開」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-081", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「指紋認証、顔認証など：身体の特徴を利用した認証方法」", "options": ["生体認証", "パブリシティ権", "DoS 攻撃", "情報モラル"], "ans": 0, "exp": "正解は「生体認証」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-082", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「アイデアや創作物を守るための権利」", "options": ["知的財産権", "フィッシング詐欺", "POS システム", "二要素認証"], "ans": 0, "exp": "正解は「知的財産権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-083", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「著作物を伝達する人々を守る権利」", "options": ["著作隣接権", "フェイクニュース", "SSL/TLS", "(1) 情報社会と問題解決"], "ans": 0, "exp": "正解は「著作隣接権」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-084", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「事前にチャージして使うデジタル通貨」", "options": ["電子マネー", "マルウェア", "キーロガー", "一貫したカリキュラム設計"], "ans": 0, "exp": "正解は「電子マネー」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-085", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データの正当性と改ざん防止を保証する仕組み」", "options": ["電子署名", "リスクアセスメント", "スパイウェア", "問題を選んで解く"], "ans": 0, "exp": "正解は「電子署名」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-086", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「データの正当性を保証する仕組み」", "options": ["電子認証", "暗号化", "ディジタルタトゥー", "EC サイト"], "ans": 0, "exp": "正解は「電子認証」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-087", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「2FA：2種類の認証を組み合わせる仕組み」", "options": ["二要素認証", "個人情報保護", "ハッカー", "Society 5.0"], "ans": 0, "exp": "正解は「二要素認証」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-088", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ユーザーやシステムの正当性を確認する仕組み」", "options": ["認証", "産業財産権", "ファイアウォール", "クリエイティブ・コモンズ"], "ans": 0, "exp": "正解は「認証」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-089", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「1つの鍵を共有する暗号化の仕組み」", "options": ["秘密鍵暗号方式", "商標権", "プライバシーマーク", "セキュリティ更新プログラム"], "ans": 0, "exp": "正解は「秘密鍵暗号方式」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-090", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「許可なくシステムやデータに侵入する行為」", "options": ["不正アクセス", "情報セキュリティ", "リスクアセスメント", "ハッカー"], "ans": 0, "exp": "正解は「不正アクセス」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-091", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「不正なアクセスを防ぐための法律」", "options": ["不正アクセス禁止法", "情報の機密性", "共通鍵暗号方式", "フィルターバブル"], "ans": 0, "exp": "正解は「不正アクセス禁止法」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-092", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「暗号化されたデータを元に戻す操作」", "options": ["復号", "生体認証", "残存性", "ランサムウェア"], "ans": 0, "exp": "正解は「復号」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-093", "cat": "SECURITY", "catName": "セキュリティ・NW", "priority": "S", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「共通テスト「情報I」における「情報社会の問題解決」に関する重要な用語を分かりやすく解説します。基礎から応用までの語句をカバーし、試験対策に役立つ内容を提供。用語ごとに簡潔な定義と詳しい説明を用意し、理解を深められる構成となっています。高校生や受験生はもちろん、情報リテラシーを高めたい社会人にもおすすめです。このサイトで情報社会の問題解決力を身につけましょう！」", "options": ["情報社会の問題解決：共通テスト情報I用語リスト", "電子マネー", "情報セキュリティ", "個人情報保護"], "ans": 0, "exp": "正解は「情報社会の問題解決：共通テスト情報I用語リスト」です。", "refUrl": "https://it-yougo.net/%E6%83%85%E5%A0%B1i%E7%94%A8%E8%AA%9E%E9%9B%86%E2%91%A0%EF%BC%9A%E6%83%85%E5%A0%B1%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA%EF%BC%9A%E5%85%B1%E9%80%9A%E3%83%86%E3%82%B9%E3%83%88/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-094", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「法規・モラル・セキュリティの用語は「言葉の定義」を正確に覚えるだけで得点源になる分野です。」", "options": ["(1) 情報社会と問題解決", "二要素認証", "情報公開", "肖像権"], "ans": 0, "exp": "正解は「(1) 情報社会と問題解決」です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-095", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「デジタル化の計算（標本化・量子化・データ量）と、情報デザインの考え方（抽象化・可視化・構造化）の2本柱です。」", "options": ["(2) コミュニケーションと情報デザイン", "不正アクセス", "電子署名", "情報公開"], "ans": 0, "exp": "正解は「(2) コミュニケーションと情報デザイン」です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-096", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「配点が最も重い分野。用語だけでなく、後半の「プログラミング分野ページ」でプログラム表記の読み方も練習しましょう。」", "options": ["(3) コンピュータとプログラミング", "情報社会の問題解決：共通テスト情報I用語リスト", "不正アクセス", "二要素認証"], "ans": 0, "exp": "正解は「(3) コンピュータとプログラミング」です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-097", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ネットワークの仕組み・暗号の用語と、数学Iと重なる統計分野。とくに「相関と因果」の区別は毎年ねらわれます。」", "options": ["(4) 情報通信ネットワークとデータの活用", "(3) コンピュータとプログラミング", "(2) コミュニケーションと情報デザイン", "(1) 情報社会と問題解決"], "ans": 0, "exp": "正解は「(4) 情報通信ネットワークとデータの活用」です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "参照元の解説・用語ページを開く"}, {"id": "WEB-4-098", "cat": "PROG", "catName": "プログラミング・計算", "priority": "A", "q": "次の説明に該当する用語・概念として最も適切なものはどれか。\n「ウェブの一問一答は登録不要で読めます。Johoichi アプリでは問題演習とまちがえた問題の復習ができます。無料で利用できる範囲と有料プランの条件はアプリ内で確認してください。」", "options": ["解いたら、アプリで反復トレーニング", "知識を確かめる", "一貫したカリキュラム設計", "再現性・汎用性のある思考法の体系化"], "ans": 0, "exp": "正解は「解いたら、アプリで反復トレーニング」です。", "refUrl": "https://www.johoichi.com/%E4%B8%80%E5%95%8F%E4%B8%80%E7%AD%94/", "refLabel": "参照元の解説・用語ページを開く"}];
-const ADVICES = [
-  "【データ分析】相関関係があっても因果関係とは限りません。第3の要因（潜伏変数・擬似相関）と、外れ値に強い中央値・四分位範囲を確認しましょう。",
-  "【セキュリティ】暗号化は受信者の公開鍵、デジタル署名は送信者の秘密鍵を用います。誰の何の鍵かを整理しましょう。",
-  "【プログラミング・計算】共通テスト表記のプログラムは変数の値変化を1行ずつ追い、配列の添字や条件分岐を正確に確認しましょう。"
-];
-const KEY = "ct_joho1_complete_v1";
-let prog = JSON.parse(localStorage.getItem(KEY) || '{"items":{},"solved":0}');
-let curList = [], idx = 0, score = 0, wrongList = [], listening = false, timer = null;
 
-function save() { localStorage.setItem(KEY, JSON.stringify(prog)); }
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if (id === 'v-home') refreshHome();
+<!-- 攻略ロードマップ＆図解モーダル -->
+<div class="modal" id="m-sum">
+  <div class="mbox">
+    <div class="mtitle">💡 情報Ⅰ 攻略ロードマップ＆図解</div>
+    <div class="sum-tabs">
+      <button class="sum-tab active" id="tab-guide" onclick="switchSumTab('guide')">📖 学習の順番・コツ</button>
+      <button class="sum-tab" id="tab-figs" onclick="switchSumTab('figs')">📊 図解ギャラリー</button>
+    </div>
+
+    <div class="sum-panel active" id="panel-guide">
+      <div class="note-card">
+        <h3>🚀 最優先：⓪ 土台知識を最初に固める</h3>
+        <ul>
+          <li><b>2進数・16進数・データの単位（bit/Byte, K/M/G）</b>は全分野の計算の土台。1バイト＝8ビット（256通り）を反射で出せるようにする。</li>
+          <li><b>5大装置</b>（入力・出力・記憶・演算・制御）とネットワークの基本用語（IP・DNS・プロトコル）を最初に整理する。</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>💻 得点源の4大分野：計算とトレースの型</h3>
+        <ul>
+          <li><b>デジタル化</b>：標本化→量子化→符号化の3段階。音＝標本化周波数×量子化ビット数×チャンネル数×秒、画像＝画素数×色深度。</li>
+          <li><b>プログラミング</b>：変数の値の変化を表（トレース表）にして1行ずつ追う。配列の添字が「0始まりか1始まりか」を必ず確認。</li>
+          <li><b>ネットワーク＆DB</b>：TCP/IPの4階層と、共通鍵暗号／公開鍵暗号／デジタル署名の鍵の使い分けが超頻出。SQLは SELECT・FROM・WHERE・GROUP BY の順。</li>
+          <li><b>データ活用</b>：箱ひげ図（四分位数・外れ値）と散布図（相関係数 r は −1〜1、相関≠因果）の読み取りが合否を分ける。</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>✨ 直前チェック（えむ心理研究室まとめ）</h3>
+        <ul>
+          <li><b>情報の5特性</b>：残存性・伝播性・複製性・個別性・目的性。</li>
+          <li><b>メディア3分類</b>：情報（新聞/TV）・表現（文字/図）・伝達（通信：電波/回線、記録：紙/HDD）。</li>
+          <li><b>情報デザイン</b>：抽象化・可視化・構造化（順序/並列/分岐/階層）／ バリアフリー（後付け）vs UD（初期設計）／ UI（モノ）vs UX（体験）。</li>
+          <li><b>セキュリティ＆尺度</b>：トロイの木馬（偽装）・ワーム（単独増殖）・ウイルス（寄生増殖）／ 質的（名義・順序）vs 量的（間隔・比率）。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sum-panel" id="panel-figs">
+      <div class="thumb-grid" id="sum-grid"></div>
+    </div>
+
+    <a class="btn btn-link" href="https://m-labo7.com/informatics-simple-check-point/" target="_blank" rel="noopener noreferrer">📖 参考元：えむ心理研究室「情報Ⅰ 直前重要ポイントまとめ」↗</a>
+    <a class="btn btn-sec" href="https://joho1-exam-quiz.com/" target="_blank" rel="noopener noreferrer">📖 参考元：独学ゼミナール「共通テスト 情報Ⅰ対策」↗</a>
+    <button class="btn btn-pri" onclick="document.getElementById('m-sum').classList.remove('active')">閉じる</button>
+  </div>
+</div>
+
+<!-- 拡大ライトボックス -->
+<div class="modal" id="m-zoom" onclick="if(event.target===this) closeZoom()">
+  <div class="mbox">
+    <div class="mtitle" id="zoom-title">図表拡大</div>
+    <div class="zoom-body" id="zoom-body"></div>
+    <div class="mtext" id="zoom-cap" style="font-size:13px;"></div>
+    <button class="btn btn-sec" id="btn-zoom-toggle" onclick="toggleZoomScale()">🔍 2倍に拡大</button>
+    <button class="btn btn-pri" onclick="closeZoom()">閉じる</button>
+  </div>
+</div>
+
+<script>
+const DATA_URL = "./joho1_data.json";
+const APP_ID = "common_test_joho1.html";
+const STORAGE_KEY = "ct_joho1_split_v1";
+const DAILY_GOAL = 20;
+
+let BANK = [];
+let prog = loadProg();
+let curList = [];
+let idx = 0;
+let score = 0;
+let wrongList = [];
+let isReviewSession = false;
+let listening = false;
+let listenTimer = null;
+let combo = 0;
+let sessionBestCombo = 0;
+let sessionNewMastered = 0;
+let sessionOvercame = 0;
+
+const FIGURES = {
+  info_props: {
+    title: "情報の5つの特性（残存・伝播・複製・個別・目的）",
+    cap: "残存性＝半永久的に残る、伝播性＝広がりやすい、複製性＝劣化なくコピー可、個別性＝人により価値が違う、目的性＝発信者・受信者の意図がある。",
+    svg: `<svg viewBox="0 0 380 164" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="116" height="68" rx="8" fill="#cffafe" stroke="#0891b2" stroke-width="1.8"/><text x="64" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7490">残存性</text><text x="64" y="54" text-anchor="middle" font-size="11" fill="#0f172a">半永久的に残る</text><rect x="132" y="8" width="116" height="68" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/><text x="190" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">伝播性</text><text x="190" y="54" text-anchor="middle" font-size="11" fill="#0f172a">瞬時に広まりやすい</text><rect x="258" y="8" width="116" height="68" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.8"/><text x="316" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">複製性</text><text x="316" y="54" text-anchor="middle" font-size="11" fill="#0f172a">劣化なくコピー可</text><rect x="46" y="86" width="136" height="68" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/><text x="114" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">個別性</text><text x="114" y="132" text-anchor="middle" font-size="11" fill="#0f172a">人により価値が違う</text><rect x="198" y="86" width="136" height="68" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.8"/><text x="266" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">目的性</text><text x="266" y="132" text-anchor="middle" font-size="11" fill="#0f172a">発信・受信の意図あり</text></svg>`
+  },
+  media_types: {
+    title: "メディアの3分類（情報・表現・伝達）",
+    cap: "情報メディア＝伝えるツール、表現メディア＝文字・音声・図表、伝達メディア＝物質（通信メディア：電波・回線／記録メディア：紙・HDD・フラッシュメモリ）。",
+    svg: `<svg viewBox="0 0 380 162" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="116" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="64" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">情報メディア</text><text x="64" y="58" text-anchor="middle" font-size="10" fill="#334155">人に伝えるツール</text><text x="64" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">新聞・テレビ</text><text x="64" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">電話・電子書籍</text><rect x="132" y="8" width="116" height="146" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="190" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">表現メディア</text><text x="190" y="58" text-anchor="middle" font-size="10" fill="#334155">情報を表現する形式</text><text x="190" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">文字・音声</text><text x="190" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">図・表・画像</text><rect x="258" y="8" width="116" height="146" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="316" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">伝達メディア</text><text x="316" y="58" text-anchor="middle" font-size="10" fill="#334155">伝えるための物質</text><rect x="266" y="72" width="100" height="34" rx="6" fill="#fff"/><text x="316" y="87" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">通信メディア</text><text x="316" y="101" text-anchor="middle" font-size="9" fill="#0f172a">電波・回線・空気</text><rect x="266" y="112" width="100" height="34" rx="6" fill="#fff"/><text x="316" y="127" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">記録メディア</text><text x="316" y="141" text-anchor="middle" font-size="9" fill="#0f172a">紙・HDD・SSD</text></svg>`
+  },
+  info_design: {
+    title: "情報デザインの3原則（抽象化・可視化・構造化）",
+    cap: "抽象化＝要点を抜く（路線図・ピクトグラム）、可視化＝見える化（グラフ・図表）、構造化＝関係整理（順序・並列・分岐・階層）。",
+    svg: `<svg viewBox="0 0 380 156" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="116" height="140" rx="10" fill="#cffafe" stroke="#0891b2" stroke-width="2"/><text x="64" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7490">抽象化</text><text x="64" y="58" text-anchor="middle" font-size="10" fill="#334155">重要な所だけ抜く</text><text x="64" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">ピクトグラム</text><text x="64" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">路線図・アイコン</text><rect x="132" y="8" width="116" height="140" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="190" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">可視化</text><text x="190" y="58" text-anchor="middle" font-size="10" fill="#334155">見えないを見える化</text><text x="190" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">図・表・グラフ</text><text x="190" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">フローチャート</text><rect x="258" y="8" width="116" height="140" rx="10" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2"/><text x="316" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">構造化</text><text x="316" y="58" text-anchor="middle" font-size="10" fill="#334155">関係を整理・図式化</text><text x="316" y="86" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f172a">順序 / 並列</text><text x="316" y="108" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f172a">分岐 / 階層</text><text x="316" y="130" text-anchor="middle" font-size="9" fill="#334155">例: トーナメント表</text></svg>`
+  },
+  bf_ud: {
+    title: "バリアフリー vs UD ＆ Webデザイン4用語",
+    cap: "バリアフリー＝後付けの配慮（手話ワイプ・字幕）、UD＝最初から障壁のない設計（ピクトグラム）。UI＝操作するモノ、UX＝利用体験・印象。",
+    svg: `<svg viewBox="0 0 380 162" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="178" height="68" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/><text x="95" y="29" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">バリアフリー（後付け配慮）</text><text x="95" y="52" text-anchor="middle" font-size="10" fill="#0f172a">手話ワイプ・字幕・振動呼出器</text><rect x="196" y="8" width="178" height="68" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.8"/><text x="285" y="29" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">ユニバーサルデザイン（初期設計）</text><text x="285" y="52" text-anchor="middle" font-size="10" fill="#0f172a">ピクトグラム・大きなアイコン</text><rect x="6" y="84" width="178" height="70" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/><text x="95" y="106" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">アクセシビリティ / ユーザビリティ</text><text x="95" y="128" text-anchor="middle" font-size="10" fill="#0f172a">誰でも到達できる / 使いやすい</text><rect x="196" y="84" width="178" height="70" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.8"/><text x="285" y="106" text-anchor="middle" font-size="12" font-weight="bold" fill="#6b21a8">UI（モノ） vs UX（体験）</text><text x="285" y="128" text-anchor="middle" font-size="10" fill="#0f172a">画面・ボタン ／ 感覚・印象</text></svg>`
+  },
+  pdca: {
+    title: "PDCAサイクル（業務改善・制作の流れ）",
+    cap: "Plan（計画）→ Do（実行）→ Check（評価）→ Action（改善）の4ステップを繰り返し回して質を高めます。",
+    svg: `<svg viewBox="0 0 380 148" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="12" width="160" height="52" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="90" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">P : Plan（計画）</text><text x="90" y="52" text-anchor="middle" font-size="10" fill="#334155">目標と手順を立てる</text><text x="190" y="44" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">→</text><rect x="210" y="12" width="160" height="52" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="290" y="34" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">D : Do（実行）</text><text x="290" y="52" text-anchor="middle" font-size="10" fill="#334155">計画に沿って実践</text><text x="290" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#0891b2">↓</text><rect x="210" y="86" width="160" height="52" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="290" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">C : Check（評価）</text><text x="290" y="126" text-anchor="middle" font-size="10" fill="#334155">結果を検証・分析</text><text x="190" y="118" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">←</text><rect x="10" y="86" width="160" height="52" rx="10" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2"/><text x="90" y="108" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">A : Action（改善）</text><text x="90" y="126" text-anchor="middle" font-size="10" fill="#334155">改善策を次の計画へ</text><text x="90" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#0891b2">↑</text></svg>`
+  },
+  html_tags: {
+    title: "HTMLの基本構造と代表タグ",
+    cap: "<html>文書全体、<body>本文、<h1>〜<h6>見出し（数字大ほど小見出し）、<p>段落、<img>画像、<strong>太字、<blockquote>引用。",
+    svg: `<svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="368" height="148" rx="10" fill="#e2e8f0" stroke="#475569" stroke-width="2"/><text x="18" y="24" font-size="11" font-weight="bold" fill="#1e293b">&lt;html&gt; 文書全体</text><rect x="18" y="30" width="344" height="114" rx="8" fill="#ffffff" stroke="#0891b2" stroke-width="2"/><text x="28" y="48" font-size="11" font-weight="bold" fill="#0e7490">&lt;body&gt; 本文エリア</text><rect x="28" y="56" width="156" height="34" rx="6" fill="#cffafe"/><text x="106" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">&lt;h1&gt;〜&lt;h6&gt; 見出し</text><rect x="194" y="56" width="156" height="34" rx="6" fill="#dcfce7"/><text x="272" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">&lt;p&gt; 段落 ／ &lt;strong&gt; 太字</text><rect x="28" y="98" width="156" height="34" rx="6" fill="#fef3c7"/><text x="106" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">&lt;img&gt; 画像</text><rect x="194" y="98" width="156" height="34" rx="6" fill="#f3e8ff"/><text x="272" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">&lt;blockquote&gt; 引用</text></svg>`
+  },
+  logic_choco: {
+    title: "論理回路（AND / OR / NOT）チョコで理解",
+    cap: "AND＝両方そろったらOK（1）、OR＝ひとつでもあればOK（両方1でも1）、NOT＝反対に反転（1→0、0→1）。",
+    svg: `<svg viewBox="0 0 380 154" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="116" height="138" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="64" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">AND（かつ）</text><text x="64" y="56" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f172a">両方そろえば 1</text><text x="64" y="82" text-anchor="middle" font-size="10" fill="#334155">1 &amp; 1 → 1</text><text x="64" y="100" text-anchor="middle" font-size="10" fill="#334155">1 &amp; 0 → 0</text><text x="64" y="124" text-anchor="middle" font-size="9" fill="#1e3a8a">両方チョコ→OK</text><rect x="132" y="8" width="116" height="138" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="190" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">OR（または）</text><text x="190" y="56" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f172a">1つでもあれば 1</text><text x="190" y="82" text-anchor="middle" font-size="10" fill="#334155">1 | 0 → 1</text><text x="190" y="100" text-anchor="middle" font-size="10" fill="#334155">1 | 1 → 1</text><text x="190" y="124" text-anchor="middle" font-size="9" fill="#166534">片方チョコ→OK</text><rect x="258" y="8" width="116" height="138" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="316" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">NOT（否定）</text><text x="316" y="56" text-anchor="middle" font-size="10" font-weight="bold" fill="#0f172a">反対に反転</text><text x="316" y="82" text-anchor="middle" font-size="10" fill="#334155">1 → 0</text><text x="316" y="100" text-anchor="middle" font-size="10" fill="#334155">0 → 1</text><text x="316" y="124" text-anchor="middle" font-size="9" fill="#92400e">ある ⇔ ない</text></svg>`
+  },
+  malware_tree: {
+    title: "マルウェアの分類（挙動と被害の違い）",
+    cap: "トロイの木馬＝増殖せず偽装、ワーム＝単独増殖、ウイルス＝寄生増殖。さらにスパイウェア（情報窃取）・アドウェア（不要広告）・ランサムウェア（身代金暗号化）。",
+    svg: `<svg viewBox="0 0 380 162" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="368" height="28" rx="7" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.8"/><text x="190" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">マルウェア（不正プログラムの総称）</text><rect x="6" y="42" width="116" height="52" rx="8" fill="#fef3c7" stroke="#b45309"/><text x="64" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">トロイの木馬</text><text x="64" y="80" text-anchor="middle" font-size="9" fill="#0f172a">増殖せず偽装活動</text><rect x="132" y="42" width="116" height="52" rx="8" fill="#fef3c7" stroke="#b45309"/><text x="190" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">ワーム</text><text x="190" y="80" text-anchor="middle" font-size="9" fill="#0f172a">単独で自己増殖</text><rect x="258" y="42" width="116" height="52" rx="8" fill="#fef3c7" stroke="#b45309"/><text x="316" y="62" text-anchor="middle" font-size="11" font-weight="bold" fill="#92400e">ウイルス</text><text x="316" y="80" text-anchor="middle" font-size="9" fill="#0f172a">他ファイル寄生増殖</text><rect x="6" y="102" width="116" height="52" rx="8" fill="#dbeafe" stroke="#1d4ed8"/><text x="64" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">スパイウェア</text><text x="64" y="140" text-anchor="middle" font-size="9" fill="#0f172a">気づかれず情報送信</text><rect x="132" y="102" width="116" height="52" rx="8" fill="#dbeafe" stroke="#1d4ed8"/><text x="190" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">アドウェア</text><text x="190" y="140" text-anchor="middle" font-size="9" fill="#0f172a">不要広告(ad)を表示</text><rect x="258" y="102" width="116" height="52" rx="8" fill="#dbeafe" stroke="#1d4ed8"/><text x="316" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">ランサムウェア</text><text x="316" y="140" text-anchor="middle" font-size="9" fill="#0f172a">暗号化し身代金要求</text></svg>`
+  },
+  scales: {
+    title: "データの4つの尺度水準（質的 vs 量的）",
+    cap: "質的データ＝名義尺度（分類）・順序尺度（順位）。量的データ＝間隔尺度（等間隔・西暦/℃/偏差値）・比率尺度（絶対0点あり・身長/体重/年齢）。",
+    svg: `<svg viewBox="0 0 380 162" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="178" height="146" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="95" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">質的データ（分類・順位）</text><rect x="14" y="38" width="162" height="50" rx="6" fill="#fff"/><text x="95" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">① 名義尺度（分類のみ）</text><text x="95" y="74" text-anchor="middle" font-size="9" fill="#334155">血液型・性別・郵便番号</text><rect x="14" y="96" width="162" height="50" rx="6" fill="#fff"/><text x="95" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">② 順序尺度（順位あり）</text><text x="95" y="132" text-anchor="middle" font-size="9" fill="#334155">順位・英検の級・ランキング</text><rect x="196" y="8" width="178" height="146" rx="10" fill="#cffafe" stroke="#0891b2" stroke-width="2"/><text x="285" y="28" text-anchor="middle" font-size="12" font-weight="bold" fill="#0e7490">量的データ（差・比の計算）</text><rect x="204" y="38" width="162" height="50" rx="6" fill="#fff"/><text x="285" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">③ 間隔尺度（差に意味）</text><text x="285" y="74" text-anchor="middle" font-size="9" fill="#334155">西暦・気温(℃)・偏差値</text><rect x="204" y="96" width="162" height="50" rx="6" fill="#fff"/><text x="285" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">④ 比率尺度（絶対0・比可）</text><text x="285" y="132" text-anchor="middle" font-size="9" fill="#334155">身長・体重・時間・年齢</text></svg>`
+  },
+  tld_domain: {
+    title: "ドメインとTLD（ccTLD vs gTLD）",
+    cap: "ccTLD＝国別コード（jp, au, fr, us など）。gTLD＝分野・用途別（com＝商業、org＝非営利、gov＝米国政府機関など）。",
+    svg: `<svg viewBox="0 0 380 144" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="178" height="124" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/><text x="95" y="36" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">ccTLD（国別）</text><text x="95" y="62" text-anchor="middle" font-size="11" fill="#334155">国ごとに割り当て</text><text x="95" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">.jp（日本） / .us（米国）</text><text x="95" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">.au（豪） / .fr（仏）</text><rect x="196" y="10" width="178" height="124" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="285" y="36" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">gTLD（用途・分野別）</text><text x="285" y="62" text-anchor="middle" font-size="11" fill="#334155">組織や用途ごとに割当</text><text x="285" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">.com（商業） / .org（非営利）</text><text x="285" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">.gov（米国政府機関）</text></svg>`
+  },
+  radix: {
+    title: "2進数・10進数・16進数 ＆ 2の補数",
+    cap: "2進数4桁＝16進数1桁（0〜9, A〜F）。負の数を表す「2の補数」は『全ビット反転して＋1』で求めます。",
+    svg: `<svg viewBox="0 0 380 155" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="368" height="62" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/><text x="190" y="29" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7490">2進数 4桁 ＝ 16進数 1桁（重み：8, 4, 2, 1）</text><text x="190" y="53" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">1010(2)=10(10)=A(16) ／ 1111(2)=15(10)=F(16)</text><rect x="6" y="82" width="368" height="64" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="190" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">負の数の表現：2の補数 ＝ 全ビット反転 ＋ 1</text><text x="190" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">例(+5): 0101 → 反転 1010 → +1 で 1011 (-5)</text></svg>`
+  },
+  logic: {
+    title: "基本論理回路と真理値表（AND / OR / NOT / XOR）",
+    cap: "AND＝両方1で1、OR＝どちらか1で1、NOT＝反転、XOR（排他的論理和）＝入力が異なるときだけ1（半加算器の和Sに使用）。",
+    svg: `<svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="8" width="178" height="68" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/><text x="95" y="31" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e3a8a">AND（論理積）</text><text x="95" y="54" text-anchor="middle" font-size="11" fill="#0f172a">両方1のときだけ 1</text><rect x="196" y="8" width="178" height="68" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.8"/><text x="285" y="31" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">OR（論理和）</text><text x="285" y="54" text-anchor="middle" font-size="11" fill="#0f172a">どちらか1なら 1</text><rect x="6" y="84" width="178" height="68" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.8"/><text x="95" y="107" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">NOT（否定）</text><text x="95" y="130" text-anchor="middle" font-size="11" fill="#0f172a">0→1、1→0 に反転</text><rect x="196" y="84" width="178" height="68" rx="8" fill="#f3e8ff" stroke="#7e22ce" stroke-width="1.8"/><text x="285" y="107" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b21a8">XOR（排他的論理和）</text><text x="285" y="130" text-anchor="middle" font-size="11" fill="#0f172a">入力が違うときだけ 1</text></svg>`
+  },
+  pcm: {
+    title: "アナログ→デジタル変換（PCM方式3段階）",
+    cap: "①標本化（時間で区切る）→ ②量子化（高さを整数値に丸める）→ ③符号化（2進数に変換）の順。データ量＝周波数×ビット数×ch×秒。",
+    svg: `<svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="18" width="108" height="104" rx="10" fill="#cffafe" stroke="#0891b2" stroke-width="2"/><text x="60" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7490">① 標本化</text><text x="60" y="74" text-anchor="middle" font-size="11" fill="#0f172a">一定時間ごとに</text><text x="60" y="92" text-anchor="middle" font-size="11" fill="#0f172a">値を切り出す</text><text x="125" y="76" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">→</text><rect x="136" y="18" width="108" height="104" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="190" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">② 量子化</text><text x="190" y="74" text-anchor="middle" font-size="11" fill="#0f172a">段階的な数値に</text><text x="190" y="92" text-anchor="middle" font-size="11" fill="#0f172a">当てはめる</text><text x="255" y="76" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">→</text><rect x="266" y="18" width="108" height="104" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="320" y="48" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">③ 符号化</text><text x="320" y="74" text-anchor="middle" font-size="11" fill="#0f172a">0と1の2進数</text><text x="320" y="92" text-anchor="middle" font-size="11" fill="#0f172a">に変換する</text></svg>`
+  },
+  tcpip: {
+    title: "TCP/IP 4階層モデルと代表プロトコル",
+    cap: "上位から「アプリケーション層（HTTP/SMTP/DNS）→ トランスポート層（TCP/UDP）→ インターネット層（IP）→ ネットワークインタフェース層（Ethernet/Wi-Fi）」。",
+    svg: `<svg viewBox="0 0 380 164" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="360" height="32" rx="7" fill="#dbeafe" stroke="#1d4ed8"/><text x="190" y="29" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">④ アプリケーション層：HTTP / HTTPS / SMTP / DNS</text><rect x="10" y="46" width="360" height="32" rx="7" fill="#dcfce7" stroke="#15803d"/><text x="190" y="67" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">③ トランスポート層：TCP（信頼性）/ UDP（速度）</text><rect x="10" y="84" width="360" height="32" rx="7" fill="#fef3c7" stroke="#b45309"/><text x="190" y="105" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">② インターネット層：IP（宛先IP・ルーティング）</text><rect x="10" y="122" width="360" height="32" rx="7" fill="#f3e8ff" stroke="#7e22ce"/><text x="190" y="143" text-anchor="middle" font-size="12" font-weight="bold" fill="#6b21a8">① ネットワークI/F層：Ethernet / Wi-Fi / MACアドレス</text></svg>`
+  },
+  crypto: {
+    title: "公開鍵暗号方式 vs デジタル署名（鍵の使い分け）",
+    cap: "暗号化は「受信者の公開鍵」で暗号化し「受信者の秘密鍵」で復号。デジタル署名は逆に「送信者の秘密鍵」で署名し「送信者の公開鍵」で検証します。",
+    svg: `<svg viewBox="0 0 380 154" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="364" height="64" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/><text x="190" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#0e7490">公開鍵暗号方式（盗聴防止）</text><text x="190" y="54" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">受信者の公開鍵で暗号化 → 受信者の秘密鍵で復号</text><rect x="8" y="82" width="364" height="64" rx="10" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/><text x="190" y="104" text-anchor="middle" font-size="13" font-weight="bold" fill="#991b1b">デジタル署名（なりすまし・改ざん防止）</text><text x="190" y="128" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">送信者の秘密鍵で署名 → 送信者の公開鍵で検証</text></svg>`
+  },
+  search: {
+    title: "線形探索 vs 二分探索（計算量の違い）",
+    cap: "線形探索は先頭から順に調べる（未整列OK・最大N回）。二分探索は整列済みデータを毎回半分に絞る（超高速・最大 log2(N)+1 回）。",
+    svg: `<svg viewBox="0 0 380 148" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="176" height="128" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/><text x="96" y="36" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">線形探索</text><text x="96" y="64" text-anchor="middle" font-size="11" fill="#0f172a">先頭から1つずつ確認</text><text x="96" y="88" text-anchor="middle" font-size="11" fill="#0f172a">整列不要</text><text x="96" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">最大 N 回</text><rect x="196" y="10" width="176" height="128" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/><text x="284" y="36" text-anchor="middle" font-size="13" font-weight="bold" fill="#166534">二分探索</text><text x="284" y="64" text-anchor="middle" font-size="11" fill="#0f172a">中央値と比べ半分に絞る</text><text x="284" y="88" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">事前整列が必須！</text><text x="284" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">最大 log₂N 回（超高速）</text></svg>`
+  },
+  stats: {
+    title: "箱ひげ図（四分位数）＆ 相関係数 r",
+    cap: "箱ひげ図は左から「最小値・第1四分位数(25%)・中央値(50%)・第3四分位数(75%)・最大値」。箱の幅＝四分位範囲(IQR)。相関係数は −1〜＋1。",
+    svg: `<svg viewBox="0 0 380 150" xmlns="http://www.w3.org/2000/svg"><line x1="35" y1="68" x2="345" y2="68" stroke="#0f172a" stroke-width="3"/><line x1="35" y1="48" x2="35" y2="88" stroke="#0f172a" stroke-width="3"/><line x1="345" y1="48" x2="345" y2="88" stroke="#0f172a" stroke-width="3"/><rect x="115" y="42" width="150" height="52" fill="#cffafe" stroke="#0891b2" stroke-width="2.5"/><line x1="185" y1="42" x2="185" y2="94" stroke="#b91c1c" stroke-width="3"/><text x="35" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">最小</text><text x="115" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#0e7490">Q1(25%)</text><text x="185" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">中央値(Q2)</text><text x="265" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#0e7490">Q3(75%)</text><text x="345" y="116" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">最大</text><text x="190" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">四分位範囲(IQR) ＝ Q3 − Q1（中央50%の散らばり）</text></svg>`
+  }
+};
+
+const INTERMISSION_TIPS = [
+  { t: "1バイト＝8ビット（256通り）", b: "データ量計算の単位変換で最もミスが多いのが bit と Byte（B）の違いです。bps（bit/秒）と MB（Byte）が混ざる問題は必ず「×8」または「÷8」で単位を揃えましょう。" },
+  { t: "2の補数は「反転＋1」", b: "負の2進数表現（2の補数）は、すべてのビットを0⇔1反転させてから1を足すだけ。最上位ビットが1なら負の数です。" },
+  { t: "配列の添字は0始まりか1始まりか", b: "共通テストのDNCL（手順記述標準言語）では配列の添字が0始まりのケースが多いですが、問題文の定義を最初に必ず確認しましょう。" },
+  { t: "公開鍵暗号とデジタル署名は逆！", b: "暗号化＝受信者の公開鍵→受信者の秘密鍵。デジタル署名＝送信者の秘密鍵→送信者の公開鍵。「誰の鍵か」を声に出して確認すると迷いません。" },
+  { t: "相関関係 ≠ 因果関係", b: "散布図で強い正の相関（rが1に近い）があっても、一方が原因とは限りません。「第3の変数（擬似相関）」が隠れていないか疑うのがデータ活用の鉄則です。" },
+  { t: "箱ひげ図から読み取れること・読めないこと", b: "箱ひげ図では「中央値・四分位数・範囲」は分かりますが、「データの個数・平均値・ヒストグラムの山の数」は原則読み取れません。" }
+];
+
+const ADVICES = [
+  "【計算問題のコツ】基数変換・音や画像のデータ量・転送時間（データ量÷回線速度）は公式を丸暗記せず「単位（bit/Byte/秒）」を約分する感覚で解くとミスが激減します。",
+  "【プログラミング攻略】ループや条件分岐のトレース問題は、頭の中だけで追わず、変数の変化を1回ずつメモする（トレース表）習慣が本番の9割突破につながります。",
+  "【情報社会・セキュリティ】著作権（方式主義ではなく無方式主義・死後70年）と産業財産権（特許20年・意匠25年・商標10年更新可）の比較表をセットで押さえましょう。"
+];
+
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
+function yesterdayStr() {
+  const d = new Date(Date.now() - 86400000);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function getRankLabel(pct) {
+  if (pct >= 100) return "👑 情報Ⅰ 完全制覇";
+  if (pct >= 80) return "🏆 情報マスター";
+  if (pct >= 50) return "🥇 共通テスト高得点圏";
+  if (pct >= 25) return "💻 アルゴリズム実践者";
+  if (pct >= 10) return "✨ 土台クリア";
+  return "🌱 ビギナー";
+}
+
+function fallbackStableId(qText, ansText) {
+  const str = `${String(qText || "").trim()}||${String(ansText || "").trim()}`;
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return "JH1-F-" + (h >>> 0).toString(16).padStart(8, "0");
+}
+
+async function loadDatabase() {
+  const icon = document.getElementById("load-icon");
+  const msg = document.getElementById("load-msg");
+  const retry = document.getElementById("btn-retry");
+  icon.textContent = "⏳";
+  msg.textContent = "問題データ（joho1_data.json）を読み込んでいます...";
+  retry.style.display = "none";
+
+  const targetUrl = new URL(DATA_URL, location.href).href;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+
+  try {
+    const res = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store", signal: controller.signal });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch (e) { throw new Error(`JSON形式エラー: ${e.message}`); }
+    if (!Array.isArray(data) || data.length === 0) throw new Error("問題データが空です");
+
+    const seenIds = new Set();
+    BANK = data.filter(item => item && item.q && Array.isArray(item.options) && item.options.length >= 2).map(item => {
+      const ansText = item.options[item.ans] || "";
+      let qid = (item.id && String(item.id).trim()) ? String(item.id).trim() : fallbackStableId(item.q, ansText);
+      if (seenIds.has(qid)) qid = fallbackStableId(item.q + seenIds.size, ansText);
+      seenIds.add(qid);
+      return { ...item, id: qid };
+    });
+
+    if (BANK.length === 0) throw new Error("有効な問題データがありません");
+    showView("v-home");
+  } catch (err) {
+    clearTimeout(timer);
+    icon.textContent = "⚠️";
+    const reason = err.name === "AbortError" ? "読み込みが8秒でタイムアウトしました" : err.message;
+    msg.innerHTML =
+      `読み込みに失敗しました。<br>` +
+      `<b>原因：</b>${reason}<br>` +
+      `<b>現在の環境：</b>${location.protocol}<br>` +
+      `<b>参照先：</b><span style="word-break:break-all;font-size:12px;">${targetUrl}</span>`;
+    retry.style.display = "flex";
+  }
+}
+
+function loadProg() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      return {
+        items: p.items || {},
+        solved: p.solved || 0,
+        streak: p.streak || 0,
+        lastDate: p.lastDate || "",
+        todayDate: p.todayDate || "",
+        todayCount: p.todayCount || 0,
+        bestCombo: p.bestCombo || 0
+      };
+    }
+  } catch (e) {}
+  return { items: {}, solved: 0, streak: 0, lastDate: "", todayDate: "", todayCount: 0, bestCombo: 0 };
+}
+function saveProg() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(prog)); } catch (e) {} }
+
+function recordActivity() {
+  const td = todayStr();
+  const yd = yesterdayStr();
+  if (prog.todayDate !== td) {
+    prog.todayDate = td;
+    prog.todayCount = 0;
+  }
+  prog.todayCount += 1;
+  if (prog.lastDate !== td) {
+    prog.streak = (prog.lastDate === yd) ? (prog.streak || 0) + 1 : 1;
+    prog.lastDate = td;
+  }
+}
+
+function showView(id) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  const backBtn = document.getElementById("btn-back-home");
+  backBtn.style.display = (id === "v-quiz" || id === "v-listen") ? "inline-block" : "none";
+  if (id === "v-home") refreshHome();
+}
+
+function backToHome() {
+  if (listening) { stopListen(); return; }
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  showView("v-home");
+}
+
 function refreshHome() {
-  document.getElementById('s-tot').textContent = BANK.length;
-  let lrn = 0, rev = 0;
+  const total = BANK.length;
+  let lrn = 0, mastered = 0, rev = 0;
   BANK.forEach(q => {
     const p = prog.items[q.id];
-    if (p && p.n > 0) { lrn++; if (p.ng || (p.ok / p.n < 0.7)) rev++; }
+    if (p && p.n > 0) {
+      lrn++;
+      if (!p.ng && (p.ok / p.n) >= 0.7) mastered++;
+      if (p.ng || (p.ok / p.n) < 0.7) rev++;
+    }
   });
-  document.getElementById('s-lrn').textContent = lrn;
-  document.getElementById('s-rev').textContent = rev;
-  const br = document.getElementById('b-rev');
-  document.getElementById('rev-n').textContent = rev;
-  br.style.display = rev > 0 ? 'block' : 'none';
-}
-function prio(q, now) {
-  const p = prog.items[q.id];
-  if (!p || !p.n) return 1000 + Math.random() * 20;
-  return 100 + (p.ng ? 500 : 0) + Math.min(((now - (p.t || 0)) / 3600000) * 5, 200) + (1 - p.ok / p.n) * 200 + Math.random() * 20;
-}
-function startQuiz(mode) {
-  const cat = document.getElementById('f-cat').value;
-  const pri = document.getElementById('f-pri').value;
-  let pool = BANK.filter(q => (cat === 'ALL' || q.cat === cat) && (pri === 'ALL' || q.priority === pri));
-  if (mode === 'REVIEW') {
-    pool = pool.filter(q => { const p = prog.items[q.id]; return p && (p.ng || (p.ok / p.n < 0.7)); });
+
+  const pct = total > 0 ? Math.round((lrn / total) * 100) : 0;
+  document.getElementById("s-tot").textContent = total;
+  document.getElementById("s-lrn").textContent = lrn;
+  document.getElementById("s-rev").textContent = rev;
+  document.getElementById("rev-n").textContent = rev;
+  document.getElementById("b-rev").style.display = rev > 0 ? "flex" : "none";
+
+  document.getElementById("ov-pct").textContent = `${pct}%`;
+  document.getElementById("ov-fill").style.width = `${pct}%`;
+  document.getElementById("ov-rank").textContent = getRankLabel(pct);
+  document.getElementById("ov-count").textContent = `学習済 ${lrn} / ${total} 問（定着 ${mastered}問）`;
+
+  const stepPct = total >= 200 ? 5 : 10;
+  const nextMilestonePct = Math.min(100, Math.floor(pct / stepPct) * stepPct + stepPct);
+  const nextTargetCount = Math.ceil((total * nextMilestonePct) / 100);
+  const remain = Math.max(0, nextTargetCount - lrn);
+  document.getElementById("ov-next").textContent =
+    pct >= 100 ? "🎉 全問学習達成！" : `${nextMilestonePct}%到達まであと ${Math.max(1, remain)}問`;
+
+  const td = todayStr();
+  const yd = yesterdayStr();
+  const activeStreak = (prog.lastDate === td || prog.lastDate === yd) ? (prog.streak || 0) : 0;
+  const todayCnt = prog.todayDate === td ? (prog.todayCount || 0) : 0;
+  const motiBar = document.getElementById("moti-bar");
+  document.getElementById("m-streak").textContent = `🔥 連続 ${activeStreak}日`;
+  if (todayCnt >= DAILY_GOAL) {
+    motiBar.classList.add("done");
+    document.getElementById("m-today").textContent = `✅ 今日の目標達成（${todayCnt}問）`;
+  } else {
+    motiBar.classList.remove("done");
+    document.getElementById("m-today").textContent = `🎯 今日 ${todayCnt} / ${DAILY_GOAL}問`;
   }
-  if (!pool.length) { alert("対象問題がありません。"); return; }
-  const now = Date.now();
-  curList = [...pool].sort((a, b) => prio(b, now) - prio(a, now)).slice(0, 10).sort(() => Math.random() - 0.5);
+}
+
+function forgettingScore(q, now) {
+  const p = prog.items[q.id];
+  if (!p || !p.n) return 0;
+  const elapsedDays = Math.max(0, (now - (p.t || 0)) / 86400000);
+  return (p.ng ? 500 : 0) + (1 - (p.ok / p.n)) * 250 + Math.min(elapsedDays * 40, 200) + Math.random() * 20;
+}
+
+function startQuiz(mode) {
+  const cat = document.getElementById("f-cat").value;
+  const pri = document.getElementById("f-pri").value;
+  let pool = BANK.filter(q => (cat === "ALL" ? true : (cat === "MLABO" ? q.sourceTag === "MLABO" : q.cat === cat)) && (pri === "ALL" || q.priority === pri));
+  isReviewSession = (mode === "REVIEW");
+
+  if (isReviewSession) {
+    pool = pool.filter(q => { const p = prog.items[q.id]; return p && (p.ng || (p.ok / p.n) < 0.7); });
+    if (!pool.length) { alert("復習が必要な問題はありません！"); return; }
+    const now = Date.now();
+    curList = [...pool].sort((a, b) => forgettingScore(b, now) - forgettingScore(a, now)).slice(0, 10);
+  } else {
+    if (!pool.length) { alert("該当する問題がありません。条件を変更してください。"); return; }
+    const now = Date.now();
+    const unseen = pool.filter(q => !prog.items[q.id] || prog.items[q.id].n === 0).sort(() => Math.random() - 0.5);
+    const seen = pool.filter(q => prog.items[q.id] && prog.items[q.id].n > 0).sort((a, b) => forgettingScore(b, now) - forgettingScore(a, now));
+    const targetRev = seen.length > 0 ? Math.min(2, seen.length) : 0;
+    let combined = [...unseen.slice(0, 10 - targetRev), ...seen.slice(0, targetRev)];
+    if (combined.length < Math.min(10, pool.length)) {
+      const used = new Set(combined.map(q => q.id));
+      for (const q of seen) {
+        if (!used.has(q.id)) { combined.push(q); used.add(q.id); }
+        if (combined.length >= Math.min(10, pool.length)) break;
+      }
+    }
+    curList = combined.sort(() => Math.random() - 0.5);
+  }
   idx = 0; score = 0; wrongList = [];
-  showView('v-quiz');
+  combo = 0; sessionBestCombo = 0; sessionNewMastered = 0; sessionOvercame = 0;
+  showView("v-quiz");
   renderQ();
 }
+
+function highlightQuestionText(text) {
+  const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return escaped
+    .replace(/「([^」]+)」/g, '<span class="q-hl">「$1」</span>')
+    .replace(/『([^』]+)』/g, '<span class="q-hl">『$1』</span>');
+}
+
+function resolveFigure(q) {
+  if (!q) return null;
+  const fig = (q.figId && FIGURES[q.figId]) ? FIGURES[q.figId] : null;
+  const url = (q.imgUrl && q.imgUrl.trim()) ? q.imgUrl.trim() : "";
+  const svg = fig && fig.svg ? fig.svg : "";
+  const title = (q.imgCaption && q.imgCaption.trim()) ? q.imgCaption.trim() : (fig ? fig.title : "参考図解");
+  const cap = fig ? fig.cap : (q.imgCaption || q.exp || "");
+  if (!url && !svg) return null;
+  return { url, svg, title, cap };
+}
+
+function renderThumbCard(q, cardId, mediaId, capId) {
+  const card = document.getElementById(cardId);
+  const media = document.getElementById(mediaId);
+  const capEl = document.getElementById(capId);
+  const info = resolveFigure(q);
+  if (!info) {
+    card.classList.remove("active");
+    media.innerHTML = "";
+    return;
+  }
+  capEl.textContent = info.title;
+  if (info.url) {
+    const img = document.createElement("img");
+    img.src = info.url;
+    img.alt = info.title;
+    img.referrerPolicy = "no-referrer";
+    img.onerror = () => {
+      if (info.svg) media.innerHTML = info.svg;
+      else card.classList.remove("active");
+    };
+    media.innerHTML = "";
+    media.appendChild(img);
+  } else {
+    media.innerHTML = info.svg;
+  }
+  card.classList.add("active");
+}
+
+function openZoomModal(info) {
+  if (!info) return;
+  const body = document.getElementById("zoom-body");
+  body.classList.remove("zoomed");
+  document.getElementById("btn-zoom-toggle").textContent = "🔍 2倍に拡大";
+  document.getElementById("zoom-title").textContent = info.title;
+  document.getElementById("zoom-cap").textContent = info.cap;
+  if (info.url) {
+    const img = document.createElement("img");
+    img.src = info.url;
+    img.alt = info.title;
+    img.referrerPolicy = "no-referrer";
+    img.onerror = () => { if (info.svg) body.innerHTML = info.svg; };
+    body.innerHTML = "";
+    body.appendChild(img);
+  } else {
+    body.innerHTML = info.svg;
+  }
+  document.getElementById("m-zoom").classList.add("active");
+}
+function openCurrentFigure() { openZoomModal(resolveFigure(curList[idx])); }
+function openFigureById(figId) {
+  const f = FIGURES[figId];
+  if (f) openZoomModal({ url: "", svg: f.svg, title: f.title, cap: f.cap });
+}
+function toggleZoomScale() {
+  const body = document.getElementById("zoom-body");
+  const btn = document.getElementById("btn-zoom-toggle");
+  const isZoomed = body.classList.toggle("zoomed");
+  btn.textContent = isZoomed ? "🔎 全体表示に戻す" : "🔍 2倍に拡大";
+}
+function closeZoom() { document.getElementById("m-zoom").classList.remove("active"); }
+
 function renderQ() {
-  document.getElementById('sheet').classList.remove('active');
+  document.getElementById("sheet").classList.remove("active");
   const q = curList[idx];
-  document.getElementById('p-fill').style.width = `${(idx / curList.length) * 100}%`;
-  document.getElementById('q-cat').textContent = `${q.catName} / ${q.priority === 'S' ? '最重要' : '重要'}`;
-  document.getElementById('q-num').textContent = `${idx + 1} / ${curList.length}`;
-  document.getElementById('q-txt').textContent = q.q;
-  const opts = document.getElementById('opts');
-  opts.innerHTML = '';
-  [0,1,2,3].sort(() => Math.random() - 0.5).forEach(i => {
-    const b = document.createElement('button');
-    b.className = 'opt';
-    b.textContent = q.options[i];
-    b.onclick = () => answer(i, b);
-    opts.appendChild(b);
+  document.getElementById("p-fill").style.width = `${(idx / curList.length) * 100}%`;
+  document.getElementById("q-cat").textContent = q.catName;
+  const priEl = document.getElementById("q-pri");
+  priEl.textContent = q.priority === "S" ? "★ 最重要" : "● 重要";
+  priEl.className = q.priority === "S" ? "badge s" : "badge";
+
+  const comboEl = document.getElementById("q-combo");
+  if (combo >= 2) {
+    comboEl.textContent = `🔥 ${combo}連続`;
+    comboEl.style.display = "inline-block";
+  } else {
+    comboEl.style.display = "none";
+  }
+
+  document.getElementById("q-num").textContent = `${idx + 1} / ${curList.length}`;
+  document.getElementById("q-id").textContent = `ID: ${q.id}`;
+  document.getElementById("q-txt").innerHTML = highlightQuestionText(q.q);
+
+  const codeEl = document.getElementById("q-code");
+  if (q.code && q.code.trim()) {
+    codeEl.textContent = q.code.trim();
+    codeEl.classList.add("active");
+  } else {
+    codeEl.textContent = "";
+    codeEl.classList.remove("active");
+  }
+
+  renderThumbCard(q, "q-thumb", "q-thumb-media", "q-thumb-cap");
+
+  const optsEl = document.getElementById("opts");
+  optsEl.innerHTML = "";
+  const order = q.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+  const labels = ["①", "②", "③", "④"];
+  order.forEach((optIdx, pos) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.dataset.optIdx = String(optIdx);
+    btn.textContent = `${labels[pos] || (pos + 1)} ${q.options[optIdx]}`;
+    btn.onclick = () => checkAnswer(optIdx, btn);
+    optsEl.appendChild(btn);
   });
 }
-function answer(i, btn) {
-  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+
+function checkAnswer(selectedIdx, btn) {
+  document.querySelectorAll(".opt-btn").forEach(b => b.disabled = true);
   const q = curList[idx];
-  const ok = (i === q.ans);
-  const p = prog.items[q.id] || { n: 0, ok: 0, ng: false, t: 0 };
-  p.n++; p.t = Date.now();
-  if (ok) { score++; p.ok++; p.ng = false; btn.classList.add('ok'); }
-  else { p.ng = true; wrongList.push(q); btn.classList.add('ng');
-    document.querySelectorAll('.opt').forEach(b => { if (b.textContent === q.options[q.ans]) b.classList.add('ok'); });
+  const isOk = selectedIdx === q.ans;
+  const prev = prog.items[q.id];
+  const wasUnseen = !prev || prev.n === 0;
+  const wasNg = Boolean(prev && prev.ng);
+
+  const p = prev || { n: 0, ok: 0, ng: false, t: 0 };
+  p.n += 1; p.t = Date.now();
+  if (isOk) {
+    score += 1; p.ok += 1; p.ng = false; btn.classList.add("ok");
+    combo += 1;
+    if (combo > sessionBestCombo) sessionBestCombo = combo;
+    if (combo > (prog.bestCombo || 0)) prog.bestCombo = combo;
+    if (wasUnseen) sessionNewMastered += 1;
+    if (wasNg) sessionOvercame += 1;
+  } else {
+    combo = 0;
+    p.ng = true; wrongList.push(q); btn.classList.add("ng");
+    document.querySelectorAll(".opt-btn").forEach(b => { if (Number(b.dataset.optIdx) === q.ans) b.classList.add("ok"); });
   }
   prog.items[q.id] = p;
   prog.solved = (prog.solved || 0) + 1;
-  save();
-  document.getElementById('sh-head').textContent = ok ? "⭕ 正解！" : "❌ 不正解";
-  document.getElementById('sh-head').style.color = ok ? "var(--ok)" : "var(--ng)";
-  document.getElementById('sh-ans').textContent = `正解：${q.options[q.ans]}`;
-  document.getElementById('sh-exp').textContent = q.exp;
-  const refEl = document.getElementById('sh-ref');
-  if (q.refUrl) {
-    refEl.href = q.refUrl;
-    refEl.textContent = `📊 ${q.refLabel || '解説・図解ページを開く'} ↗`;
-    refEl.style.display = 'flex';
-  } else {
-    refEl.style.display = 'none';
-  }
-  document.getElementById('sheet').classList.add('active');
-  speak(ok ? "正解です" : "不正解です");
-  if (prog.solved % 30 === 0) {
+  recordActivity();
+  saveProg();
+
+  const head = document.getElementById("sh-head");
+  head.textContent = isOk ? "⭕ 正解！" : "❌ 不正解";
+  head.style.color = isOk ? "var(--ok)" : "var(--ng)";
+  document.getElementById("sh-combo").textContent = (isOk && combo >= 2) ? `🔥 ${combo}連続正解！` : "";
+  document.getElementById("sh-ans").textContent = `正解：${q.options[q.ans]}`;
+  document.getElementById("sh-exp").textContent = q.exp || `正解は「${q.options[q.ans]}」です。`;
+  renderThumbCard(q, "sh-thumb", "sh-thumb-media", "sh-thumb-cap");
+  const refEl = document.getElementById("sh-ref");
+  refEl.href = q.refUrl || "https://m-labo7.com/informatics-simple-check-point/";
+  refEl.textContent = `📖 ${q.refLabel || "参考ページを見る"} ↗`;
+
+  document.getElementById("sheet").classList.add("active");
+  speak(isOk ? `正解です。${q.options[q.ans]}` : `不正解です。正解は、${q.options[q.ans]}`);
+
+  if (prog.solved > 0 && prog.solved % 30 === 0) {
     setTimeout(() => {
-      document.getElementById('adv-txt').textContent = ADVICES[(Math.floor(prog.solved / 30) - 1) % ADVICES.length];
-      document.getElementById('m-adv').classList.add('active');
-    }, 500);
+      document.getElementById("adv-txt").textContent = ADVICES[(Math.floor(prog.solved / 30) - 1) % ADVICES.length];
+      document.getElementById("m-adv").classList.add("active");
+    }, 550);
   }
 }
+
 function nextQ() {
-  idx++;
+  idx += 1;
   if (idx < curList.length) renderQ();
   else {
-    document.getElementById('p-fill').style.width = '100%';
-    document.getElementById('r-sc').textContent = `${score} / ${curList.length}`;
-    document.getElementById('r-rev').style.display = wrongList.length ? 'block' : 'none';
-    document.getElementById('m-res').classList.add('active');
+    document.getElementById("p-fill").style.width = "100%";
+    document.getElementById("r-sc").textContent = `${score} / ${curList.length} 問正解`;
+
+    const growthParts = [];
+    if (sessionNewMastered > 0) growthParts.push(`✨ 初見正解 +${sessionNewMastered}問`);
+    if (sessionOvercame > 0) growthParts.push(`💪 苦手克服 +${sessionOvercame}問`);
+    if (sessionBestCombo >= 2) growthParts.push(`🔥 最大${sessionBestCombo}連続`);
+    const tdCnt = prog.todayDate === todayStr() ? prog.todayCount : 0;
+    growthParts.push(`🎯 今日 ${tdCnt}/${DAILY_GOAL}問`);
+    document.getElementById("r-growth").textContent = growthParts.join("  /  ");
+
+    const tipObj = INTERMISSION_TIPS[Math.floor((prog.solved || 0) / 10) % INTERMISSION_TIPS.length];
+    document.getElementById("r-tip").innerHTML = `<b>💡 ひとくち攻略メモ：${tipObj.t}</b>${tipObj.b}`;
+
+    const allClear = wrongList.length === 0;
+    document.getElementById("r-msg").textContent = allClear
+      ? "全問正解達成！次の10問へ進めます。"
+      : (isReviewSession ? "復習モードでは間違えた問題を全問正解すると次へ進めます。" : "間違えた問題を復習して、確実に定着させましょう。");
+    document.getElementById("r-rev").style.display = allClear ? "none" : "flex";
+    document.getElementById("m-res").classList.add("active");
   }
 }
-function closeRes(act) {
-  document.getElementById('m-res').classList.remove('active');
-  if (act === 'REV') { curList = [...wrongList]; idx = 0; score = 0; wrongList = []; showView('v-quiz'); renderQ(); }
-  else if (act === 'NEXT') startQuiz('NORMAL');
-  else showView('v-home');
+
+function closeRes(action) {
+  document.getElementById("m-res").classList.remove("active");
+  if (action === "REV") {
+    curList = [...wrongList]; idx = 0; score = 0; wrongList = [];
+    combo = 0; sessionBestCombo = 0; sessionNewMastered = 0; sessionOvercame = 0;
+    isReviewSession = true; showView("v-quiz"); renderQ();
+  } else if (action === "NEXT") {
+    if (isReviewSession && wrongList.length > 0) {
+      alert("復習モードでは間違えた問題をすべて正解すると通常モードの次へ進めます。");
+      document.getElementById("m-res").classList.add("active");
+      return;
+    }
+    startQuiz("NORMAL");
+  } else if (action === "STATS") {
+    showView("v-home");
+    openStats();
+  } else {
+    showView("v-home");
+  }
 }
+
+function switchSumTab(tabName) {
+  document.getElementById("tab-guide").classList.toggle("active", tabName === "guide");
+  document.getElementById("tab-figs").classList.toggle("active", tabName === "figs");
+  document.getElementById("panel-guide").classList.toggle("active", tabName === "guide");
+  document.getElementById("panel-figs").classList.toggle("active", tabName === "figs");
+}
+
+function openSummary(defaultTab) {
+  const grid = document.getElementById("sum-grid");
+  grid.innerHTML = "";
+  Object.keys(FIGURES).forEach(k => {
+    const f = FIGURES[k];
+    const div = document.createElement("div");
+    div.className = "thumb-tile";
+    div.innerHTML = `<div class="tile-img">${f.svg}</div><span>🔍 ${f.title}</span>`;
+    div.onclick = () => openFigureById(k);
+    grid.appendChild(div);
+  });
+  switchSumTab(defaultTab === "figs" ? "figs" : "guide");
+  document.getElementById("m-sum").classList.add("active");
+}
+
 function openStats() {
-  document.getElementById('st-body').innerHTML = `累計解答数：<b>${prog.solved || 0}</b> 回<br>収録問題数：<b>${BANK.length}</b> 問`;
-  document.getElementById('m-st').classList.add('active');
+  const cats = [
+    ["BASE", "⓪ 最初に覚える土台知識"],
+    ["SOC", "① 情報社会とデザイン"],
+    ["DIG", "② デジタル化とコンピュータ"],
+    ["ALG", "③ アルゴリズムとプログラミング"],
+    ["NET", "④ ネットワークとデータの活用"],
+    ["APP", "⑤ 共通テスト形式の応用"]
+  ];
+
+  let totalDone = 0, totalN = 0, totalOk = 0;
+  BANK.forEach(q => {
+    const p = prog.items[q.id];
+    if (p && p.n > 0) { totalDone++; totalN += p.n; totalOk += p.ok; }
+  });
+  const ovAchieve = BANK.length > 0 ? Math.round((totalDone / BANK.length) * 100) : 0;
+  const ovAcc = totalN > 0 ? Math.round((totalOk / totalN) * 100) : 0;
+
+  document.getElementById("st-summary").innerHTML = `
+    <div class="st-chip"><b>${ovAchieve}%</b><span>全体達成率</span></div>
+    <div class="st-chip"><b>${ovAcc}%</b><span>総合正答率</span></div>
+    <div class="st-chip"><b>${prog.solved || 0}回</b><span>累計 / 🔥${prog.bestCombo || 0}連続</span></div>
+  `;
+
+  const mlaboSub = BANK.filter(q => q.sourceTag === "MLABO");
+  const allGroups = [...cats.map(([c, n]) => [n, BANK.filter(q => q.cat === c)])];
+  if (mlaboSub.length > 0) allGroups.unshift(["✨ 直前チェック（えむ心理研究室）", mlaboSub]);
+  const rows = allGroups.map(([name, sub]) => {
+    let done = 0, nSum = 0, okSum = 0;
+    sub.forEach(q => {
+      const p = prog.items[q.id];
+      if (p && p.n > 0) { done++; nSum += p.n; okSum += p.ok; }
+    });
+    const ach = sub.length > 0 ? Math.round((done / sub.length) * 100) : 0;
+    const acc = nSum > 0 ? `${Math.round((okSum / nSum) * 100)}%` : "--";
+    return `
+      <div class="st-item">
+        <div class="st-item-head">
+          <span>${name}</span>
+          <span style="color:var(--pri);">達成率 ${ach}%</span>
+        </div>
+        <div class="st-bar"><div class="st-bar-fill" style="width:${ach}%;"></div></div>
+        <div class="st-item-meta">
+          <span>学習済：${done} / ${sub.length} 問</span>
+          <span>正答率：${acc}（${okSum}/${nSum}）</span>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById("st-body").innerHTML = rows.join("");
+  document.getElementById("m-st").classList.add("active");
 }
+
+function resetProg() {
+  if (confirm("これまでの学習進捗をすべて削除しますか？")) {
+    prog = { items: {}, solved: 0, streak: 0, lastDate: "", todayDate: "", todayCount: 0, bestCombo: 0 };
+    saveProg(); refreshHome();
+    document.getElementById("m-st").classList.remove("active");
+  }
+}
+
 function exportProg() {
-  const txt = JSON.stringify(prog);
-  navigator.clipboard?.writeText(txt).then(() => alert("進捗コードをコピーしました。")).catch(() => prompt("コピーしてください:", txt));
+  const now = new Date();
+  const stamp =
+    now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2, "0") +
+    String(now.getDate()).padStart(2, "0") + "_" +
+    String(now.getHours()).padStart(2, "0") +
+    String(now.getMinutes()).padStart(2, "0");
+  const defaultName = `しんや_${APP_ID}_${stamp}`;
+  const customName = prompt("進捗データの保存名を入力してください：", defaultName);
+  if (!customName) return;
+
+  const cleanName = customName.trim();
+  const payload = JSON.stringify({
+    schemaVersion: 1, appId: APP_ID, exportName: cleanName,
+    exportedAt: now.toISOString(), prog: prog
+  });
+
+  try {
+    const blob = new Blob([payload], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `${cleanName}.json`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {}
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(payload)
+      .then(() => alert(`「${cleanName}」をファイル保存＆クリップボードにコピーしました。`))
+      .catch(() => alert(`「${cleanName}.json」を保存しました。`));
+  } else {
+    prompt("以下の進捗コードをコピーしてください：", payload);
+  }
 }
+
+function applyImportedPayload(rawText) {
+  let parsed;
+  try { parsed = JSON.parse(rawText.trim()); } catch (e) {
+    alert("JSON形式の読み込みに失敗しました。"); return;
+  }
+  if (!parsed || parsed.appId !== APP_ID) {
+    alert(`この問題集（${APP_ID}）からエクスポートされたデータではないため取り込めません。`); return;
+  }
+  if (!parsed.prog || typeof parsed.prog.items !== "object") {
+    alert("進捗データの形式が正しくありません。"); return;
+  }
+  const incoming = parsed.prog;
+  const shouldMerge = confirm(
+    `「${parsed.exportName || "進捗データ"}」を読み込みます。\n\n` +
+    "・OK：現在の進捗と統合（新しい解答日時を優先してマージ）\n" +
+    "・キャンセル：このデータで完全に上書き"
+  );
+  if (shouldMerge) {
+    const mergedItems = { ...prog.items };
+    let addedCount = 0, updatedCount = 0;
+    Object.entries(incoming.items).forEach(([qid, inItem]) => {
+      const curItem = mergedItems[qid];
+      if (!curItem) { mergedItems[qid] = inItem; addedCount++; }
+      else if ((inItem.t || 0) > (curItem.t || 0)) { mergedItems[qid] = inItem; updatedCount++; }
+    });
+    prog = {
+      items: mergedItems,
+      solved: Math.max(prog.solved || 0, incoming.solved || 0),
+      streak: Math.max(prog.streak || 0, incoming.streak || 0),
+      lastDate: (incoming.lastDate || "") > (prog.lastDate || "") ? incoming.lastDate : prog.lastDate,
+      todayDate: prog.todayDate || incoming.todayDate || "",
+      todayCount: Math.max(prog.todayCount || 0, incoming.todayCount || 0),
+      bestCombo: Math.max(prog.bestCombo || 0, incoming.bestCombo || 0)
+    };
+    saveProg(); refreshHome();
+    alert(`統合完了（新規反映：${addedCount}件 / 最新更新：${updatedCount}件）`);
+  } else {
+    prog = {
+      items: incoming.items,
+      solved: incoming.solved || 0,
+      streak: incoming.streak || 0,
+      lastDate: incoming.lastDate || "",
+      todayDate: incoming.todayDate || "",
+      todayCount: incoming.todayCount || 0,
+      bestCombo: incoming.bestCombo || 0
+    };
+    saveProg(); refreshHome();
+    alert(`「${parsed.exportName || "進捗データ"}」で進捗を上書きしました。`);
+  }
+}
+
 function importProg() {
-  const txt = prompt("進捗コードを貼り付けてください:");
-  if (!txt) return;
-  try { const d = JSON.parse(txt); if (d.items) { prog = d; save(); refreshHome(); alert("復元しました。"); } }
-  catch { alert("形式が不正です。"); }
+  const useFile = confirm(
+    "進捗データの読み込み方法を選んでください。\n\n" +
+    "・OK：保存したJSONファイルを選択\n" +
+    "・キャンセル：コピーした進捗コードを貼り付け"
+  );
+  if (useFile) {
+    const input = document.createElement("input");
+    input.type = "file"; input.accept = ".json,application/json,text/plain";
+    input.onchange = (ev) => {
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => applyImportedPayload(String(reader.result || ""));
+      reader.readAsText(file, "utf-8");
+    };
+    input.click();
+  } else {
+    const txt = prompt("エクスポートした進捗コードを貼り付けてください：");
+    if (txt) applyImportedPayload(txt);
+  }
 }
-function speak(txt, cb) {
-  if (!('speechSynthesis' in window)) { if (cb) cb(); return; }
+
+function speak(text, onDone) {
+  if (!("speechSynthesis" in window)) { if (onDone) onDone(); return; }
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(txt);
-  u.lang = 'ja-JP';
-  if (cb) u.onend = cb;
-  window.speechSynthesis.speak(u);
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "ja-JP"; utter.rate = 1.05;
+  if (onDone) utter.onend = onDone;
+  window.speechSynthesis.speak(utter);
 }
+
 function startListen() {
-  listening = true;
-  showView('v-listen');
-  let list = BANK.filter(q => prog.items[q.id]?.ng);
-  if (!list.length) list = [...BANK];
+  listening = true; showView("v-listen");
+  const wrongPool = BANK.filter(q => prog.items[q.id] && prog.items[q.id].ng);
+  const pool = wrongPool.length > 0 ? wrongPool : [...BANK];
   let i = 0;
   const step = () => {
     if (!listening) return;
-    const q = list[i % list.length];
-    document.getElementById('l-head').textContent = `問題（${q.catName}）`;
-    document.getElementById('l-body').textContent = q.q;
-    speak("問題。" + q.q, () => {
+    const q = pool[i % pool.length];
+    document.getElementById("l-badge").textContent = `問題（${q.catName}）`;
+    document.getElementById("l-main").textContent = q.q;
+    speak(`問題。${q.q}`, () => {
       if (!listening) return;
-      timer = setTimeout(() => {
+      listenTimer = setTimeout(() => {
         if (!listening) return;
         const ans = q.options[q.ans];
-        document.getElementById('l-head').textContent = "解答と解説";
-        document.getElementById('l-body').textContent = `正解：${ans}
-
-${q.exp}`;
+        document.getElementById("l-badge").textContent = "解答と解説";
+        document.getElementById("l-main").textContent = `【正解】${ans}\n\n${q.exp}`;
         speak(`正解は、${ans}。${q.exp}`, () => {
           if (!listening) return;
-          i++;
-          timer = setTimeout(step, 1800);
+          i += 1; listenTimer = setTimeout(step, 2000);
         });
-      }, 1200);
+      }, 1500);
     });
   };
   step();
 }
+
 function stopListen() {
   listening = false;
-  clearTimeout(timer);
-  window.speechSynthesis?.cancel();
-  showView('v-home');
+  if (listenTimer) clearTimeout(listenTimer);
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  showView("v-home");
 }
-refreshHome();
+
+loadDatabase();
 </script>
 </body>
 </html>
